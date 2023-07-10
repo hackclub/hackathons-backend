@@ -15,7 +15,17 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
     cd hackathons-backend
     ```
 
-3. Start the server
+3. Set up your credentials
+
+   ```sh
+   cp .env.example .env
+   ```
+
+   Then, place the master key in `/config/master.key`. If you don't have the
+   master key, ask [@garyhtou](https://garytou.com) or someone on the Hack Club
+   Bank engineering team.
+
+4. Start the server
 
     ```sh
     docker compose up
