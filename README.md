@@ -6,7 +6,7 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
 
 ### Getting Started
 
-1. Make sure you have Docker installed ([instructions](https://docs.docker.com/get-docker/))
+1. Make sure you have Docker and [Ruby 3.2.2 installed](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-22-04#step-1-install-rbenv-and-dependencies).
 
 2. Clone the repo
 
@@ -15,24 +15,33 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
     cd hackathons-backend
     ```
 
-3. Set up your credentials
+3. Setup credentials
 
    ```sh
    cp .env.example .env
    ```
 
-   Then, place the master key in `/config/master.key`. If you don't have the
+   Then, place the master key in `config/master.key`. If you don't have the
    master key, ask [@garyhtou](https://garytou.com) or someone on the Hack Club
    Bank engineering team.
 
-4. Start the server
+4. Install dependencies
+
+    ```sh
+    bundle install
+    ```
+
+5. Boot required services (PostgreSQL, etc.)
 
     ```sh
     docker compose up
     ```
 
-   Upon your first run, you may need to initialize the database. Simply visit
-   [localhost:3000](http://localhost:3000) and click the "Create database"
-   button, or run `docker compose run --rm web bin/rails db:create`.
+6. Setup the database and run the server
 
-The application will now be running at [localhost:3000](http://localhost:3000)
+   ```sh
+   rails db:setup
+   rails server
+   ```
+
+The application will now be running at [localhost:3000](http://localhost:3000)!
