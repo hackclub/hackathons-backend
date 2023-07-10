@@ -31,7 +31,8 @@
 /config/master.key
 
 # Environment variables
-.env
+.env*
+!.env*example
 
 # IDEs
 .idea
