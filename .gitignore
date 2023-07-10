@@ -33,3 +33,7 @@
 # Environment variables
 .env
 
+# IDEs
+.idea
+.vscode
+
