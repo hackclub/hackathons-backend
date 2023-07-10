@@ -1,24 +1,28 @@
-# README
+# Hackathons Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackclub.com)!
 
-Things you may want to cover:
+## Development
 
-* Ruby version
+### Getting Started
 
-* System dependencies
+1. Make sure you have Docker installed ([instructions](https://docs.docker.com/get-docker/))
 
-* Configuration
+2. Clone the repo
 
-* Database creation
+    ```sh
+    git clone https://github.com/hackclub/hackathons-backend.git
+    cd hackathons-backend
+    ```
 
-* Database initialization
+3. Start the server
 
-* How to run the test suite
+    ```sh
+    docker compose up
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+   Upon your first run, you may need to initialize the database. Simply visit
+   [localhost:3000](http://localhost:3000) and click the "Create database"
+   button, or run `docker compose run --rm web bin/rails db:create`.
 
-* Deployment instructions
-
-* ...
+The application will now be running at [localhost:3000](http://localhost:3000)
