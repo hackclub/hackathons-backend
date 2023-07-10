@@ -1,26 +1,13 @@
 version: "3.9"
 services:
-  web:
-    build:
-      context: .
-    volumes:
-      - .:/app
-    links:
-      - db
-    ports:
-      - '3000:3000'
-    env_file:
-      - .env
-
   db:
     image: postgres:15.3
     ports: 
       - '5432:5432'
     volumes:
-      - hackathons-postgres:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
 
 volumes:
-  hackathons-postgres:
-
+  postgres:
