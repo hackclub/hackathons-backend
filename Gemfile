@@ -35,6 +35,7 @@ end
 group :development do
   gem "web-console"
   gem "rack-mini-profiler"
+  gem "letter_opener_web"
 
   gem "spring"
 end
