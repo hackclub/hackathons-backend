@@ -20,7 +20,7 @@ module Hackathons
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.action_mailer.default_url_options = {
-      host: Rails.application.credentials.default_url_host[Rails.env]
+      host: ENV["HOST"] || Rails.application.credentials.dig(:default_url_host, Rails.env) || "localhost:3000"
     }
     config.action_mailer.default_options = {
       from: "hackathons@hackclub.com"
