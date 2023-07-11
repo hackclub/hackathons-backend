@@ -18,5 +18,15 @@ module Hackathons
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.action_mailer.default_url_options = {
+      host: Rails.application.credentials.default_url_host[Rails.env]
+    }
+    config.action_mailer.default_options = {
+      from: "hackathons@hackclub.com"
+
+      # Emails sent to hackathons@hackclub.com are received by
+      # the Hack Club Bank team at bank@hackclub.com
+    }
   end
 end

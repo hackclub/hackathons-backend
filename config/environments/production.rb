@@ -62,6 +62,16 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "hackathons_production"
 
+  # Send emails via SMTP using Amazon SES
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: Rails.application.credentials.smtp[:address],
+    port: Rails.application.credentials.smtp[:port],
+    domain: Rails.application.credentials.smtp[:domain],
+    user_name: Rails.application.credentials.smtp[:username],
+    password: Rails.application.credentials.smtp[:password],
+    authentication: :plain
+  }
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
