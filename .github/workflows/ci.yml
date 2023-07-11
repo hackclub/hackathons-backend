@@ -2,7 +2,7 @@ name: CI
 on: [ push ]
 jobs:
   standard:
-    name: Rubocop
+    name: Standard
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
