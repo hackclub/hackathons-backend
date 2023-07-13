@@ -12,7 +12,7 @@ class User::PrivilegeTest < ActiveSupport::TestCase
     user = users(:peasant_matt)
     user.promote_to_admin
 
-    assert user.events&.first&.action == "promoted_to_admin"
+    assert user.events&.last&.action == "promoted_to_admin"
   end
 
   test "demoting a user" do
@@ -26,6 +26,6 @@ class User::PrivilegeTest < ActiveSupport::TestCase
     user = users(:matt)
     user.demote_from_admin
 
-    assert user.events&.first&.action == "demoted_from_admin"
+    assert user.events&.last&.action == "demoted_from_admin"
   end
 end
