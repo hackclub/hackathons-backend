@@ -19,6 +19,8 @@ module Hackathons
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    config.active_record.encryption.encrypt_fixtures = true
+
     config.action_mailer.default_url_options = {
       host: ENV["HOST"] || Rails.application.credentials.dig(:default_url_host, Rails.env) || "localhost:3000"
     }
