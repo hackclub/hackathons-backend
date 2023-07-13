@@ -1,0 +1,9 @@
+matt:
+  name: Matt Almeida
+  email_address: matt7@hey.local
+  admin: true
+
+peasant_matt:
+  name: Matt Almeida
+  email_address: matt7@hey.test
+  admin: false
