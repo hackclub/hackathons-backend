@@ -7,9 +7,35 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Set up Ruby
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
       - name: Run Standard
         run: bundle exec standardrb
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15.3
+        ports: ["5432:5432"]
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Setup Postgres
+        run: bundle exec rails db:create
+        env:
+          DATABASE_URL: postgresql://postgres@127.0.0.1:5432
+          RAILS_ENV: test
+      - name: Run tests
+        run: bundle exec rails test:all
+        env:
+          DATABASE_URL: postgresql://postgres@127.0.0.1:5432
