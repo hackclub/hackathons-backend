@@ -105,6 +105,7 @@ GEM
     faraday-net_http_persistent (2.1.0)
       faraday (~> 2.5)
       net-http-persistent (~> 4.0)
+    geocoder (1.8.2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -294,6 +295,7 @@ DEPENDENCIES
   capybara
   debug
   dotenv-rails
+  geocoder
   importmap-rails
   jbuilder
   letter_opener_web
