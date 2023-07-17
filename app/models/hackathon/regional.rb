@@ -5,18 +5,23 @@ module Hackathon::Regional
     geocoded_by :address
     reverse_geocoded_by :latitude, :longitude do |hackathon, results| # essentially formats the location
       if (result = results.first)
-        hackathon.country_code = result.country_code
+        hackathon.country_code = result.country_code.upcase
+        hackathon.postal_code = result.postal_code
         hackathon.province = result.province || result.state
         hackathon.city = result.city
-        hackathon.postal_code = result.postal_code
         hackathon.address = result.address
+        hackathon.street = [result.house_number, result.street].compact.join(" ")
       end
     end
 
     before_save :geocode, :reverse_geocode, if: -> { (new_record? || address_changed?) && valid? }
   end
 
-  def state
-    province
+  def address
+    super.presence || [street, city, province, postal_code, country_code].compact.join(", ")
+  end
+
+  def general_location
+    [city, province, country_code].compact.join(", ")
   end
 end

@@ -10,4 +10,5 @@ class ActiveSupport::TestCase
   fixtures :all
 
   Geocoder.configure(lookup: :test, ip_lookup: :test)
+  Geocoder::Lookup::Test.reset
 end
