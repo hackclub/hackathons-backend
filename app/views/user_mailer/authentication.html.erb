@@ -1,1 +1,3 @@
-<%= link_to "Sign In!", new_session_url(auth_token: @authentication.token) %>
+Here's your <%= link_to "sign in link", new_session_url(auth_token: @authentication.token) %>:
+
+<%= link_to nil, new_session_url(auth_token: @authentication.token) %>
