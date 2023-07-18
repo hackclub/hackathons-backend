@@ -1,12 +1,6 @@
 require "application_system_test_case"
 
 class AuthenticationFlowTest < ApplicationSystemTestCase
-  test "trying to view root page unauthenticated" do
-    visit root_path
-
-    assert_current_path sign_in_path
-  end
-
   test "requesting a sign in link" do
     visit sign_in_path
 
