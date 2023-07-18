@@ -16,7 +16,7 @@ class User::Authentication < ApplicationRecord
   end
 
   def complete
-    record(:completed)
+    record(:completed, by: user)
   end
 
   def delivery
