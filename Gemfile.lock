@@ -108,6 +108,10 @@ GEM
     geocoder (1.8.2)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    hashid-rails (1.4.1)
+      activerecord (>= 4.0)
+      hashids (~> 1.0)
+    hashids (1.0.6)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -296,6 +300,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   geocoder
+  hashid-rails
   importmap-rails
   jbuilder
   letter_opener_web

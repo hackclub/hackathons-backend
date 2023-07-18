@@ -24,6 +24,8 @@ gem "jbuilder" # JSON templating
 
 gem "geocoder"
 
+gem "hashid-rails" # Non-sequential IDs
+
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby] # Windows doesn't include zoneinfo files
 gem "bootsnap", require: false # reduces boot times through caching; required in config/boot.rb
 
