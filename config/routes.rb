@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "hackathons#index"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get "sign_in", to: "users/authentications#new", as: :sign_in
+  scope :my, module: :users do
+    resource :authentication, only: [:create, :show]
+    resources :sessions, only: [:new, :destroy]
+  end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

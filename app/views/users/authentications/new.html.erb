@@ -1,0 +1,14 @@
+<h2>Sign In</h2>
+
+<%= turbo_frame_tag :authentication, target: "_top" do %>
+  <% if @user&.persisted? %>
+    <p class="notice">
+      An email has been sent to <strong><%= @user.email_address %></strong> with a link to sign in.
+    </p>
+  <% else %>
+    <%= form_with url: authentication_path do |form| %>
+      <%= form.text_field :email_address, placeholder: "orpheus@hackclub.test" %>
+      <%= form.button "Send Sign In Link" %>
+    <% end %>
+  <% end %>
+<% end %>
