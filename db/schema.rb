@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_18_091913) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_18_223503) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_requests", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.string "uuid"
+    t.string "user_agent"
+    t.string "ip_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_requests_on_event_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "eventable_type"
@@ -69,6 +79,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_091913) do
     t.index ["name"], name: "index_tags_on_name"
   end
 
+  create_table "user_authentications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_user_authentications_on_token"
+    t.index ["user_id"], name: "index_user_authentications_on_user_id"
+  end
+
+  create_table "user_sessions", force: :cascade do |t|
+    t.bigint "authentication_id", null: false
+    t.string "token", null: false
+    t.datetime "last_accessed_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authentication_id"], name: "index_user_sessions_on_authentication_id"
+    t.index ["token"], name: "index_user_sessions_on_token"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email_address", null: false
     t.string "name"
@@ -79,6 +108,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_091913) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "event_requests", "events"
   add_foreign_key "events", "users", column: "creator_id"
   add_foreign_key "events", "users", column: "target_id"
+  add_foreign_key "user_authentications", "users"
+  add_foreign_key "user_sessions", "user_authentications", column: "authentication_id"
 end
