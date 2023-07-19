@@ -24,6 +24,10 @@ class HackathonTest < ActiveSupport::TestCase
       .rejecting("text/plain", "application/pdf")
   end
 
+  context "associations" do
+    should belong_to(:applicant).required
+  end
+
   test "creating a hackathon with invalid dates" do
     hackathon = Hackathon.new(
       name: "TestHacks",
