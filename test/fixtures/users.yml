@@ -7,3 +7,8 @@ peasant_matt:
   name: Matt Almeida
   email_address: matt7@hey.test
   admin: false
+
+gary:
+  name: Gary Tou
+  email_address: gary@hackclub.com
+  admin: true
