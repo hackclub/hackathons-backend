@@ -35,6 +35,14 @@ jobs:
         env:
           DATABASE_URL: postgresql://postgres@127.0.0.1:5432
           RAILS_ENV: test
+      - name: Update apt
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: sudo apt-get update -yqq
+      - name: Install libvips
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: sudo apt-get install -yqq libvips
       - name: Run tests
         run: bundle exec rails test:all
         env:
