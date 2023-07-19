@@ -86,7 +86,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_015234) do
     t.integer "expected_attendees", null: false
     t.integer "modality", default: 0, null: false
     t.boolean "financial_assistance", null: false
+    t.bigint "applicant_id", null: false
     t.index ["address"], name: "index_hackathons_on_address"
+    t.index ["applicant_id"], name: "index_hackathons_on_applicant_id"
     t.index ["country_code", "city"], name: "index_hackathons_on_country_code_and_city"
     t.index ["country_code", "province", "city"], name: "index_hackathons_on_country_code_and_province_and_city"
     t.index ["latitude", "longitude"], name: "index_hackathons_on_latitude_and_longitude"
@@ -146,6 +148,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_015234) do
   add_foreign_key "event_requests", "events"
   add_foreign_key "events", "users", column: "creator_id"
   add_foreign_key "events", "users", column: "target_id"
+  add_foreign_key "hackathons", "users", column: "applicant_id"
   add_foreign_key "user_authentications", "users"
   add_foreign_key "user_sessions", "user_authentications", column: "authentication_id"
 end
