@@ -23,6 +23,7 @@ gem "stimulus-rails"
 # Active Storage
 gem "aws-sdk-s3", require: false
 gem "image_processing", ">= 1.2"
+gem "active_storage_validations"
 
 gem "jbuilder" # JSON templating
 
@@ -51,5 +52,6 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
+  gem "shoulda"
   gem "webdrivers"
 end

@@ -1,0 +1,9 @@
+assemble_logo:
+  name: logo
+  record: assemble (Hackathon)
+  blob: assemble_logo
+
+assemble:
+  name: banner
+  record: assemble (Hackathon)
+  blob: assemble

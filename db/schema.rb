@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_19_015234) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_19_234350) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_015234) do
     t.string "street"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "website", null: false
+    t.boolean "high_school_led", default: true, null: false
+    t.integer "expected_attendees", null: false
+    t.integer "modality", default: 0, null: false
+    t.boolean "financial_assistance", null: false
     t.bigint "applicant_id", null: false
     t.index ["address"], name: "index_hackathons_on_address"
     t.index ["applicant_id"], name: "index_hackathons_on_applicant_id"

@@ -2,7 +2,7 @@ require "test_helper"
 
 class TaggingTest < ActiveSupport::TestCase
   test "tagging a hackathon by name" do
-    hackathon = hackathons(:test_hacks)
+    hackathon = hackathons(:assemble)
 
     assert_no_difference -> { hackathon.tags.reload.count } do
       hackathon.tag_as "Ian Approved"
@@ -14,7 +14,7 @@ class TaggingTest < ActiveSupport::TestCase
   end
 
   test "tagging a hackathon" do
-    hackathon = hackathons(:test_hacks)
+    hackathon = hackathons(:assemble)
 
     assert_no_difference -> { hackathon.tags.reload.count } do
       hackathon.tag_with Tag.last
@@ -28,7 +28,7 @@ class TaggingTest < ActiveSupport::TestCase
   end
 
   test "tagging a hackathon with EVERYTHING" do
-    hackathon = hackathons(:test_hacks)
+    hackathon = hackathons(:assemble)
 
     assert_no_difference -> { hackathon.tags.reload.count } do
       hackathon.tag_with Tag.all
@@ -44,7 +44,7 @@ class TaggingTest < ActiveSupport::TestCase
   end
 
   test "untagging a hackathon by name" do
-    hackathon = hackathons(:test_hacks)
+    hackathon = hackathons(:assemble)
 
     assert_no_difference -> { hackathon.tags.reload.count } do
       hackathon.untag_as "Great Snacks"
@@ -58,7 +58,7 @@ class TaggingTest < ActiveSupport::TestCase
   end
 
   test "untagging a hackathon" do
-    hackathon = hackathons(:test_hacks)
+    hackathon = hackathons(:assemble)
 
     assert_no_difference -> { hackathon.tags.reload.count } do
       hackathon.untag Tag.last

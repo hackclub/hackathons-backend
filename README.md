@@ -45,3 +45,12 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
    ```
 
 The application will now be running at [localhost:3000](http://localhost:3000)!
+
+### Additional Dependencies
+
+Rails 7 (Active Storage) depends on [vips](https://libvips.github.io/libvips/) to process images. You'll want this
+dependency installed on your machine. For macs, run:
+
+```sh
+brew install vips
+```

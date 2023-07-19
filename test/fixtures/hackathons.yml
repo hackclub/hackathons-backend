@@ -1,5 +1,10 @@
-test_hacks:
-  name: TestHacks
-  starts_at: <%= Time.now %>
-  ends_at: <%= 1.day.from_now %>
+assemble:
+  name: Assemble
+  starts_at: August 5th, 2023
+  ends_at: August 7th, 2023
+  website: https://assemble.hackclub.com
+  high_school_led: true
+  expected_attendees: 150
+  modality: <%= Hackathon.modalities[:in_person] %>
+  financial_assistance: true
   applicant: gary

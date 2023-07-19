@@ -7,4 +7,6 @@ class Hackathon < ApplicationRecord
   include Regional
   include Scheduled
   include Applicant
+  include Brand
+  include Gathering
 end
