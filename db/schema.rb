@@ -81,6 +81,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_015234) do
     t.string "street"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "website", null: false
+    t.boolean "high_school_led", null: false
+    t.integer "expected_attendees", null: false
+    t.integer "modality", default: 0, null: false
+    t.boolean "financial_assistance", null: false
     t.index ["address"], name: "index_hackathons_on_address"
     t.index ["country_code", "city"], name: "index_hackathons_on_country_code_and_city"
     t.index ["country_code", "province", "city"], name: "index_hackathons_on_country_code_and_province_and_city"
