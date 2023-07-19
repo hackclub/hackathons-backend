@@ -12,7 +12,8 @@ class Hackathon::RegionalTest < ActiveSupport::TestCase
       modality: "in_person",
       financial_assistance: true,
       logo: active_storage_blobs(:assemble_logo),
-      banner: active_storage_blobs(:assemble)
+      banner: active_storage_blobs(:assemble),
+      applicant: users(:gary)
     )
   end
 
