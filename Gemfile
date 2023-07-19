@@ -20,6 +20,10 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 
+# Active Storage
+gem "aws-sdk-s3", require: false
+gem "image_processing", ">= 1.2"
+
 gem "jbuilder" # JSON templating
 
 gem "geocoder"
