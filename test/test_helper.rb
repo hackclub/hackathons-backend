@@ -11,4 +11,11 @@ class ActiveSupport::TestCase
 
   Geocoder.configure(lookup: :test, ip_lookup: :test)
   Geocoder::Lookup::Test.reset
+
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      with.test_framework :minitest
+      with.library :rails
+    end
+  end
 end
