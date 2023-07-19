@@ -2,7 +2,7 @@ require "test_helper"
 
 class Hackathon::RegionalTest < ActiveSupport::TestCase
   test "creating a hackathon with seperated location attributes" do
-    hackathon = Hackathon.new name: "HQHacks", starts_at: Time.now, ends_at: 1.day.from_now
+    hackathon = Hackathon.new name: "HQHacks", starts_at: Time.now, ends_at: 1.day.from_now, applicant: users(:gary)
 
     Geocoder::Lookup::Test.add_stub(
       "15 Falls Road, Shelburne, Vermont", [{"coordinates" => [44.3803059, -73.2271145]}]
@@ -33,7 +33,7 @@ class Hackathon::RegionalTest < ActiveSupport::TestCase
   end
 
   test "creating a hackathon with a full address" do
-    hackathon = Hackathon.new name: "HQHacks", starts_at: Time.now, ends_at: 1.day.from_now
+    hackathon = Hackathon.new name: "HQHacks", starts_at: Time.now, ends_at: 1.day.from_now, applicant: users(:gary)
 
     Geocoder::Lookup::Test.add_stub(
       "15 Falls Road, VT", [{"coordinates" => [44.3803059, -73.2271145]}]
