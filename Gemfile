@@ -27,7 +27,9 @@ gem "active_storage_validations"
 
 gem "jbuilder" # JSON templating
 
+# Geography
 gem "geocoder"
+gem "countries"
 
 gem "hashid-rails" # Non-sequential IDs
 
