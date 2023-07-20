@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_19_254548) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_19_234350) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,25 +64,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_254548) do
     t.index ["creator_id"], name: "index_events_on_creator_id"
     t.index ["eventable_type", "eventable_id"], name: "index_events_on_eventable"
     t.index ["target_id"], name: "index_events_on_target_id"
-  end
-
-  create_table "hackathon_subscriptions", force: :cascade do |t|
-    t.bigint "subscriber_id", null: false
-    t.integer "status", default: 1, null: false
-    t.string "country_code"
-    t.string "province"
-    t.string "city"
-    t.string "postal_code"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["country_code", "city"], name: "index_hackathon_subscriptions_on_country_code_and_city"
-    t.index ["country_code", "province", "city"], name: "index_hackathon_subscriptions_on_country_and_province_and_city"
-    t.index ["latitude", "longitude"], name: "index_hackathon_subscriptions_on_latitude_and_longitude"
-    t.index ["postal_code"], name: "index_hackathon_subscriptions_on_postal_code"
-    t.index ["status", "subscriber_id"], name: "index_hackathon_subscriptions_on_status_and_subscriber_id"
-    t.index ["subscriber_id"], name: "index_hackathon_subscriptions_on_subscriber_id"
   end
 
   create_table "hackathons", force: :cascade do |t|
@@ -167,7 +148,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_254548) do
   add_foreign_key "event_requests", "events"
   add_foreign_key "events", "users", column: "creator_id"
   add_foreign_key "events", "users", column: "target_id"
-  add_foreign_key "hackathon_subscriptions", "users", column: "subscriber_id"
   add_foreign_key "hackathons", "users", column: "applicant_id"
   add_foreign_key "user_authentications", "users"
   add_foreign_key "user_sessions", "user_authentications", column: "authentication_id"
