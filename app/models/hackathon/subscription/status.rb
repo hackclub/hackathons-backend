@@ -4,7 +4,7 @@ module Hackathon::Subscription::Status
 
   included do
     enum status: {inactive: 0, active: 1}
-    after_update :track_changes
+    after_update :track_changes, unless: -> { self.class::Status.suppressed? }
 
     scope :active_for, ->(user) { active.where(subscriber: user) }
   end
@@ -12,12 +12,12 @@ module Hackathon::Subscription::Status
   private
 
   def track_changes
-    if changed_to_inactive? && !suppressed?
+    if changed_to_inactive?
       record(:disabled)
     end
   end
 
   def changed_to_inactive?
-    status_changed? && inactive?
+    saved_change_to_status? && inactive?
   end
 end
