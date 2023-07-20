@@ -9,4 +9,5 @@ class Hackathon < ApplicationRecord
   include Applicant
   include Brand
   include Gathering
+  include Swag
 end
