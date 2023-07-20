@@ -3,6 +3,7 @@ module Hackathon::Subscription::Regional
 
   included do
     attribute :location_input
+    validates :location_input, presence: true, unless: -> { city? || province? || country_code? }
 
     geocoded_by :location
     reverse_geocoded_by :latitude, :longitude do |object, results| # essentially formats the location
@@ -25,7 +26,7 @@ module Hackathon::Subscription::Regional
   private
 
   def geocoding_needed?
-    location_input.present? || city_changed? || province_changed? || country_code_changed?
+    location_input_changed? || city_changed? || province_changed? || country_code_changed?
   end
 
   def location_unique_per_subscriber
