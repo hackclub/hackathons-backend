@@ -37,4 +37,16 @@ class SubscriptionTest < ActiveSupport::TestCase
       Hackathon::Subscription.create location_input: "05482"
     end
   end
+
+  test "disabling a subscription" do
+    subscription = Hackathon::Subscription.new location_input: "05482"
+    assert subscription.save
+    assert subscription.active?
+
+    assert_difference -> { subscription.events.count } do
+      subscription.update! status: :inactive
+    end
+
+    assert_includes subscription.events.collect(&:action), "disabled"
+  end
 end
