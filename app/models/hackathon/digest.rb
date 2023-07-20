@@ -20,7 +20,7 @@ class Hackathon::Digest
   def locations_to_search
     locations = active_subscriptions.collect(&:location).compact.uniq
 
-    locations.sort_by! do |location| # sort by location specificity
+    locations.sort_by! do |location| # sort by least specific to most specific location
       location.split(", ").length
     end
 
