@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_19_234350) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_000103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_234350) do
     t.integer "modality", default: 0, null: false
     t.boolean "financial_assistance", null: false
     t.bigint "applicant_id", null: false
+    t.bigint "swag_mailing_address_id"
     t.index ["address"], name: "index_hackathons_on_address"
     t.index ["applicant_id"], name: "index_hackathons_on_applicant_id"
     t.index ["country_code", "city"], name: "index_hackathons_on_country_code_and_city"
@@ -94,6 +95,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_234350) do
     t.index ["latitude", "longitude"], name: "index_hackathons_on_latitude_and_longitude"
     t.index ["postal_code"], name: "index_hackathons_on_postal_code"
     t.index ["status", "starts_at", "ends_at"], name: "index_hackathons_on_status_and_starts_at_and_ends_at"
+    t.index ["swag_mailing_address_id"], name: "index_hackathons_on_swag_mailing_address_id"
+  end
+
+  create_table "mailing_addresses", force: :cascade do |t|
+    t.string "name"
+    t.string "line1", null: false
+    t.string "line2"
+    t.string "city", null: false
+    t.string "province"
+    t.string "postal_code"
+    t.string "country_code", default: "US", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -148,6 +162,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_234350) do
   add_foreign_key "event_requests", "events"
   add_foreign_key "events", "users", column: "creator_id"
   add_foreign_key "events", "users", column: "target_id"
+  add_foreign_key "hackathons", "mailing_addresses", column: "swag_mailing_address_id"
   add_foreign_key "hackathons", "users", column: "applicant_id"
   add_foreign_key "user_authentications", "users"
   add_foreign_key "user_sessions", "user_authentications", column: "authentication_id"
