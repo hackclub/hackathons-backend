@@ -22,7 +22,6 @@ jobs:
         ports: ["5432:5432"]
         env:
           POSTGRES_HOST_AUTH_METHOD: trust
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -30,20 +29,14 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Setup Postgres
-        run: bundle exec rails db:create
-        env:
-          DATABASE_URL: postgresql://postgres@127.0.0.1:5432
-          RAILS_ENV: test
-      - name: Update apt
+      - name: Install system dependencies
         env:
           DEBIAN_FRONTEND: noninteractive
-        run: sudo apt-get update -yqq
-      - name: Install libvips
-        env:
-          DEBIAN_FRONTEND: noninteractive
-        run: sudo apt-get install -yqq libvips
+        run: |
+          sudo apt-get update -yqq
+          sudo apt-get install -yqq libvips
       - name: Run tests
-        run: bundle exec rails test:all
+        run: bundle exec rails db:create test:all
         env:
+          RAILS_ENV: test
           DATABASE_URL: postgresql://postgres@127.0.0.1:5432
