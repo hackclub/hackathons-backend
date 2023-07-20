@@ -2,33 +2,45 @@ module Hackathon::Subscription::Regional
   extend ActiveSupport::Concern
 
   included do
-    geocoded_by :location_input
+    attribute :location_input
+
+    geocoded_by :location
     reverse_geocoded_by :latitude, :longitude do |object, results| # essentially formats the location
       if (result = results.first)
         object.country_code = result.country_code.upcase
         object.province = result.state_code
         object.city = result.city
-      else
-        record(:geocoding_failed)
       end
     end
-    before_save :geocode, :reverse_geocode, if: -> { new_record? || location_changed? }
-    validate :unique_location_per_subscriber, if: -> { new_record? || location_changed? }
+    before_validation :geocode, :reverse_geocode, if: -> { geocoding_needed? }
+    after_save :record_result, if: -> { geocoding_needed? }
+
+    validate :location_unique_per_subscriber, if: -> { geocoding_needed? }
   end
 
   def location
-    [city, province, country_code].compact.join(", ").presence || location_input
+    location_input || [city, province, country_code].compact.join(", ")
   end
 
   private
 
-  def location_changed?
-    city_changed? || province_changed? || country_changed?
+  def geocoding_needed?
+    location_input.present? || city_changed? || province_changed? || country_code_changed?
   end
 
-  def unique_location_per_subscriber
-    if subscriber.subscriptions.active.where.not(id:).exists?(city:, province:, country_code:)
-      errors.add(:base, "You've already subscribed for this area!")
+  def location_unique_per_subscriber
+    if self.class.active_for(subscriber)
+        .where(city:, province:, country_code:)
+        .excluding(self).exists?
+      errors.add(:base, "You've already subscribed to this area!")
+    end
+  end
+
+  def record_result
+    if geocoded?
+      record :geocoded, location_input:, location:, latitude:, longitude:
+    else
+      record :geocoding_failed, location_input: location
     end
   end
 end

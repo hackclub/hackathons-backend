@@ -9,7 +9,7 @@ module Eventable
 
   private
 
-  def record(action, target = nil, by: Current.user)
-    events.create!(action: action, target: target, creator: by)
+  def record(action, target = nil, by: Current.user, **details)
+    events.create!(action: action, target: target, creator: by, details: details)
   end
 end
