@@ -8,7 +8,7 @@ module Hackathon::Subscription::Regional
     reverse_geocoded_by :latitude, :longitude do |object, results| # essentially formats the location
       if (result = results.first)
         object.country_code = result.country_code.upcase
-        object.province = result.state_code
+        object.province = result.province || result.state
         object.city = result.city
       end
     end
