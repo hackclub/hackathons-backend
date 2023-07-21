@@ -4,25 +4,25 @@ class TaggingTest < ActiveSupport::TestCase
   test "tagging a hackathon by name" do
     hackathon = hackathons(:assemble)
 
-    assert_no_difference -> { hackathon.tags.reload.count } do
-      hackathon.tag_with name: "Ian Approved"
+    assert_no_difference -> { hackathon.tags.count } do
+      hackathon.tag_as "Ian Approved"
     end
 
-    assert_difference -> { hackathon.tags.reload.count }, 1 do
-      hackathon.tag_with! name: "Matt A. Approved"
+    assert_difference -> { hackathon.tags.count }, 1 do
+      hackathon.tag_as! "Matt A. Approved"
     end
   end
 
   test "tagging a hackathon" do
     hackathon = hackathons(:assemble)
 
-    assert_no_difference -> { hackathon.tags.reload.count } do
+    assert_no_difference -> { hackathon.tags.count } do
       hackathon.tag_with Tag.last
     end
 
     Tag.create! name: "Matt A. Approved"
 
-    assert_difference -> { hackathon.tags.reload.count }, 1 do
+    assert_difference -> { hackathon.tags.count }, 1 do
       hackathon.tag_with Tag.last
     end
   end
@@ -30,7 +30,7 @@ class TaggingTest < ActiveSupport::TestCase
   test "tagging a hackathon with EVERYTHING" do
     hackathon = hackathons(:assemble)
 
-    assert_no_difference -> { hackathon.tags.reload.count } do
+    assert_no_difference -> { hackathon.tags.count } do
       hackathon.tag_with Tag.all
     end
 
@@ -38,7 +38,7 @@ class TaggingTest < ActiveSupport::TestCase
     Tag.create! name: "Best Hackathon Ever"
     Tag.create! name: "Great Snacks"
 
-    assert_difference -> { hackathon.tags.reload.count }, 3 do
+    assert_difference -> { hackathon.tags.count }, 3 do
       hackathon.tag_with Tag.all
     end
   end
@@ -46,27 +46,27 @@ class TaggingTest < ActiveSupport::TestCase
   test "untagging a hackathon by name" do
     hackathon = hackathons(:assemble)
 
-    assert_no_difference -> { hackathon.tags.reload.count } do
-      hackathon.untag name: "Great Snacks"
+    assert_no_difference -> { hackathon.tags.count } do
+      hackathon.untag_as "Great Snacks"
     end
 
     hackathon.tag_with! name: "Great Snacks"
 
-    assert_difference -> { hackathon.tags.reload.count }, -1 do
-      hackathon.untag name: "Great Snacks"
+    assert_difference -> { hackathon.tags.count }, -1 do
+      hackathon.untag_as "Great Snacks"
     end
   end
 
   test "untagging a hackathon" do
     hackathon = hackathons(:assemble)
 
-    assert_no_difference -> { hackathon.tags.reload.count } do
+    assert_no_difference -> { hackathon.tags.count } do
       hackathon.untag Tag.last
     end
 
     hackathon.tag_with! name: "Great Snacks"
 
-    assert_difference -> { hackathon.tags.reload.count }, -1 do
+    assert_difference -> { hackathon.tags.count }, -1 do
       hackathon.untag Tag.last
     end
   end
