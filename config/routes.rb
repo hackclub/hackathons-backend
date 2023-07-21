@@ -7,5 +7,11 @@ Rails.application.routes.draw do
     resources :sessions, only: [:new, :destroy]
   end
 
+  namespace :api, defaults: {format: :json} do
+    scope "/v:api_version" do
+      resources :hackathons, only: [:index, :show]
+    end
+  end
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

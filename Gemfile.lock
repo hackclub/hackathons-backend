@@ -309,6 +309,11 @@ GEM
       concurrent-ruby (~> 1.0)
     unaccent (0.4.0)
     unicode-display_width (2.4.2)
+    versioncake (4.1.1)
+      actionpack (> 5.0)
+      activesupport (> 5.0)
+      railties (> 5.0)
+      tzinfo (> 1.2)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -359,6 +364,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  versioncake
   web-console
   webdrivers
 
