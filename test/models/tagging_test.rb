@@ -5,11 +5,11 @@ class TaggingTest < ActiveSupport::TestCase
     hackathon = hackathons(:assemble)
 
     assert_no_difference -> { hackathon.tags.count } do
-      hackathon.tag_as "Ian Approved"
+      hackathon.tag_with name: "Ian Approved"
     end
 
     assert_difference -> { hackathon.tags.count }, 1 do
-      hackathon.tag_as! "Matt A. Approved"
+      hackathon.tag_with! name: "Matt A. Approved"
     end
   end
 
@@ -47,13 +47,13 @@ class TaggingTest < ActiveSupport::TestCase
     hackathon = hackathons(:assemble)
 
     assert_no_difference -> { hackathon.tags.count } do
-      hackathon.untag_as "Great Snacks"
+      hackathon.untag name: "Great Snacks"
     end
 
     hackathon.tag_with! name: "Great Snacks"
 
     assert_difference -> { hackathon.tags.count }, -1 do
-      hackathon.untag_as "Great Snacks"
+      hackathon.untag name: "Great Snacks"
     end
   end
 
