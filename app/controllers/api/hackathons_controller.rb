@@ -1,6 +1,8 @@
 class Api::HackathonsController < ApiController
+  include ::Pagination
+
   def index
-    @hackathons = Hackathon.approved
+    @hackathons = paginate Hackathon.approved
   end
 
   def show

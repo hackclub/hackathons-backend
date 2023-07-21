@@ -28,6 +28,9 @@ gem "active_storage_validations"
 # API
 gem "jbuilder" # JSON templating
 gem "versioncake"
+gem "jbuilder_pagination_plus", require: "jbuilder/pagination" # Depends on Kaminari and Jbuilder
+
+gem "kaminari"
 
 # Geography
 gem "geocoder"

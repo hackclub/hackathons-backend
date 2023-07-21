@@ -1,4 +1,17 @@
 module ApiHelper
+  # Shape for a paginated response
+  def paginated(json, collection)
+    json.data do
+      yield
+    end
+    json.links do
+      json.pages! collection, url: request.original_url
+    end
+    json.meta do
+      json.count collection.total_count
+    end
+  end
+
   # Shape for an object
   def obj(json, object)
     json.id object.hashid
