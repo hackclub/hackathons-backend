@@ -42,6 +42,8 @@ module Api::Concerns::Errors
 
   def server_error(error)
     Rails.logger.error(error.inspect)
+    raise error if Rails.env.development?
+
     render_error error, type: :internal_server_error, status: :internal_server_error,
       title: "An error has occurred",
       detail: "Please try again later. If the problem persists, please contact #{Hackathons::SUPPORT_EMAIL}."
