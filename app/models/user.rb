@@ -4,5 +4,5 @@ class User < ApplicationRecord
   include Authenticatable
   include Identifiable
   include Named
-  include Privileged
+  include Privileged # depends on Eventable
 end
