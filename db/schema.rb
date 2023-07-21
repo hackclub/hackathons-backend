@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_054548) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_205641) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +64,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_054548) do
     t.index ["creator_id"], name: "index_events_on_creator_id"
     t.index ["eventable_type", "eventable_id"], name: "index_events_on_eventable"
     t.index ["target_id"], name: "index_events_on_target_id"
+  end
+
+  create_table "hackathon_digest_listings", force: :cascade do |t|
+    t.bigint "digest_id", null: false
+    t.bigint "hackathon_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["digest_id"], name: "index_hackathon_digest_listings_on_digest_id"
+    t.index ["hackathon_id"], name: "index_hackathon_digest_listings_on_hackathon_id"
+  end
+
+  create_table "hackathon_digests", force: :cascade do |t|
+    t.bigint "recipient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipient_id"], name: "index_hackathon_digests_on_recipient_id"
   end
 
   create_table "hackathon_subscriptions", force: :cascade do |t|
@@ -181,6 +197,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_054548) do
   add_foreign_key "event_requests", "events"
   add_foreign_key "events", "users", column: "creator_id"
   add_foreign_key "events", "users", column: "target_id"
+  add_foreign_key "hackathon_digest_listings", "hackathon_digests", column: "digest_id"
+  add_foreign_key "hackathon_digest_listings", "hackathons"
+  add_foreign_key "hackathon_digests", "users", column: "recipient_id"
   add_foreign_key "hackathon_subscriptions", "users", column: "subscriber_id"
   add_foreign_key "hackathons", "mailing_addresses", column: "swag_mailing_address_id"
   add_foreign_key "hackathons", "users", column: "applicant_id"
