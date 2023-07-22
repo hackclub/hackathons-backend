@@ -4,6 +4,14 @@ module Taggable
   included do
     has_many :taggings, as: :taggable, dependent: :destroy
     has_many :tags, through: :taggings
+
+    # scope that handles tags or names of tags passed in
+    scope :tagged_with, ->(tags_or_names) {
+      Array(tags_or_names).flat_map do |tag|
+        tag = Tag.find_by(name: tag) unless tag.is_a? Tag
+        joins(:taggings).where(taggings: {tag: tag})
+      end
+    }
   end
 
   def tagged_with?(tags_or_names)

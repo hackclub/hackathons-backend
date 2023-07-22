@@ -16,6 +16,19 @@ class TaggingTest < ActiveSupport::TestCase
     assert_not @hackathon.tagged_with? "Nonexistent"
   end
 
+  test "scoping by tags" do
+    assert Hackathon.tagged_with("Great Snacks").none?
+    assert Hackathon.tagged_with(Tag.last).none?
+
+    @hackathon.taggings.create! tag: Tag.new(name: "Great Snacks")
+
+    assert_includes Hackathon.tagged_with("Great Snacks"), @hackathon
+
+    Tag.create! name: "Matt A. Approved"
+    assert_not_includes Hackathon.tagged_with("Matt A. Approved"), @hackathon
+    assert_not_includes Hackathon.tagged_with(Tag.last), @hackathon
+  end
+
   test "tagging a hackathon by name" do
     assert_no_difference -> { @hackathon.tags.count } do
       @hackathon.tag_with "Ian Approved"
