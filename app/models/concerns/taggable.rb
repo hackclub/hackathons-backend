@@ -6,13 +6,6 @@ module Taggable
     has_many :tags, through: :taggings
 
     # scope that handles tags or names of tags passed in
-    scope :tagged_with_old, ->(tags_or_names) {
-      Array(tags_or_names).flat_map do |tag|
-        tag = Tag.find_by(name: tag) unless tag.is_a? Tag
-        joins(:taggings).where(taggings: {tag: tag})
-      end
-    }
-
     scope :tagged_with, ->(tags_or_names) {
       tags, names = Array(tags_or_names).partition { |tag| tag.is_a? Tag }
       tags.concat Tag.where(name: names)
