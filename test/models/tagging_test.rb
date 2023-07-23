@@ -14,6 +14,7 @@ class TaggingTest < ActiveSupport::TestCase
     assert @hackathon.tagged_with? Tag.last
 
     assert_not @hackathon.tagged_with? "Nonexistent"
+    assert_not @hackathon.tagged_with? nil
   end
 
   test "scoping by tags" do

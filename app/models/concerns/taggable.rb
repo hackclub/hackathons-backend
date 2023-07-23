@@ -5,7 +5,6 @@ module Taggable
     has_many :taggings, as: :taggable, dependent: :destroy
     has_many :tags, through: :taggings
 
-    # scope that handles tags or names of tags passed in
     scope :tagged_with, ->(tags_or_names) {
       tags, names = Array(tags_or_names).partition { |tag| tag.is_a? Tag }
       tags.concat Tag.where(name: names)
@@ -15,6 +14,7 @@ module Taggable
   end
 
   def tagged_with?(tags_or_names)
+    return false unless tags_or_names.present?
     Array(tags_or_names).all? do |tag|
       tag = Tag.find_by(name: tag) unless tag.is_a? Tag
       tags.include? tag
