@@ -21,23 +21,20 @@ module Api::Concerns::Errors
 
   def unsupported_version(error)
     api_version = params[:api_version]
+    detail = "API version v#{api_version} is not supported."
 
-    render_error error, type: :invalid_api_version_error,
-      title: "Unsupported API version",
-      detail: "API version v#{api_version} is not supported."
+    api_error ::Api::InvalidApiVersionError.new(detail:, backtrace: error.backtrace)
   end
 
   def not_found(error)
-    model_name = error.try(:model) || "resource"
+    model_name = error.try(:model) || "object"
     id = error.try(:id) || params[:id]
 
     detail = "The requested #{model_name}"
     detail += " with id='#{id}'" if id
     detail += " could not be found."
 
-    render_error error, type: :not_found_error, status: :not_found,
-      title: "Object not found",
-      detail:
+    api_error ::Api::NotFoundError.new(detail:, backtrace: error.backtrace)
   end
 
   def server_error(error)
