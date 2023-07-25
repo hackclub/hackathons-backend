@@ -196,6 +196,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.3-x86_64-linux)
       racc (~> 1.4)
+    pagy (6.0.3)
     parallel (1.23.0)
     parser (3.2.2.3)
       ast (~> 2.4.1)
@@ -309,6 +310,11 @@ GEM
       concurrent-ruby (~> 1.0)
     unaccent (0.4.0)
     unicode-display_width (2.4.2)
+    versioncake (4.1.1)
+      actionpack (> 5.0)
+      activesupport (> 5.0)
+      railties (> 5.0)
+      tzinfo (> 1.2)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -346,6 +352,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   letter_opener_web
+  pagy
   pg
   puma
   rack-mini-profiler
@@ -359,6 +366,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  versioncake
   web-console
   webdrivers
 
