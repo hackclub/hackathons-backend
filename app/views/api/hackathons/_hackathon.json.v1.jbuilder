@@ -1,4 +1,4 @@
-obj json, hackathon do
+shape_for hackathon, json do
   json.extract!(hackathon,
     :name,
     :starts_at,
@@ -6,8 +6,8 @@ obj json, hackathon do
     :website,
     :modality)
 
-  json.logo file_url_for hackathon.logo, :small
-  json.banner file_url_for hackathon.banner, :large
+  json.logo_url file_url_for hackathon.logo, :small
+  json.banner_url file_url_for hackathon.banner, :large
 
   json.location do
     json.city hackathon.city
@@ -16,9 +16,4 @@ obj json, hackathon do
     json.longitude hackathon.longitude
     json.latitude hackathon.latitude
   end
-
-  # TBD: whether we should expose tags in the API
-  # json.tags do
-  #   json.array! hackathon.tags.map(&:name)
-  # end
 end

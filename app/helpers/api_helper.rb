@@ -27,25 +27,26 @@ module ApiHelper
     end
   end
 
-  # Shape for an object
-  def obj(json, object)
-    json.id object.hashid
-    json.type object.class.try(:api_type) || object.class.name.underscore.parameterize
+  # Adds standard attributes to JSON for a record.
+  def shape_for(record, json)
+    json.id record.hashid
+    json.type record.class.try(:api_type) || record.class.name.underscore.parameterize
 
     yield if block_given?
 
-    json.created_at object.created_at if object.respond_to?(:created_at)
+    json.created_at record.created_at if record.respond_to?(:created_at)
+
     json.links do
-      api_url_for(object).tap do |url|
-        json.self url if url
+      if (self_url = api_url_for(record))
+        json.self self_url
       end
     end
   end
 
-  # API URL for an object. By default, the api_version of the generated URL is
+  # API URL for an record. By default, the api_version of the generated URL is
   # the same as the current request's version.
-  def api_url_for(object, **options)
-    polymorphic_url([:api, object], api_version: @request_version, **options)
+  def api_url_for(record, **options)
+    polymorphic_url([:api, record], api_version: @request_version, **options)
   rescue NoMethodError
     nil
   end

@@ -1,4 +1,4 @@
-module Api::Concerns::Errors
+module Api::Errors
   extend ActiveSupport::Concern
 
   included do
@@ -23,7 +23,7 @@ module Api::Concerns::Errors
 
   def unsupported_version(error)
     api_version = params[:api_version]
-    detail = "API version v#{api_version} is not supported."
+    detail = "API version #{api_version} is not supported."
 
     api_error ::Api::InvalidApiVersionError.new(detail:, backtrace: error.backtrace)
   end
@@ -32,8 +32,8 @@ module Api::Concerns::Errors
     model_name = error.try(:model) || "object"
     id = error.try(:id) || params[:id]
 
-    detail = "The requested #{model_name}"
-    detail += " with id='#{id}'" if id
+    detail = "The #{model_name}"
+    detail += " with id '#{id}'" if id
     detail += " could not be found."
 
     api_error ::Api::NotFoundError.new(detail:, backtrace: error.backtrace)
