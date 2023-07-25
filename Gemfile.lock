@@ -155,18 +155,6 @@ GEM
       rack (~> 2.0, >= 2.0.0)
     jmespath (1.6.2)
     json (2.6.3)
-    kaminari (1.2.2)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.2)
-      kaminari-activerecord (= 1.2.2)
-      kaminari-core (= 1.2.2)
-    kaminari-actionview (1.2.2)
-      actionview
-      kaminari-core (= 1.2.2)
-    kaminari-activerecord (1.2.2)
-      activerecord
-      kaminari-core (= 1.2.2)
-    kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
     launchy (2.5.2)
       addressable (~> 2.8)
@@ -211,6 +199,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.3-x86_64-linux)
       racc (~> 1.4)
+    pagy (6.0.3)
     parallel (1.23.0)
     parser (3.2.2.3)
       ast (~> 2.4.1)
@@ -366,8 +355,8 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jbuilder_pagination_plus
-  kaminari
   letter_opener_web
+  pagy
   pg
   puma
   rack-mini-profiler

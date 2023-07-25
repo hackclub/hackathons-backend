@@ -1,14 +1,28 @@
 module ApiHelper
   # Shape for a paginated response
-  def paginated(json, collection)
+  def paginated(json, pagy)
     json.data do
       yield
     end
+
     json.links do
-      json.pages! collection, url: request.original_url
+      scaffold_url = pagy_metadata(pagy, absolute: true)[:scaffold_url]
+      url_for_page = ->(page) do
+        next nil if page.nil?
+        scaffold_url.gsub("__pagy_page__", page.to_s)
+      end
+
+      json.first url_for_page.call(1)
+
+      %i[prev next last].each do |link|
+        json.set! link, url_for_page.call(pagy.public_send(link))
+      end
+
+      json.self url_for_page.call(pagy.page)
     end
+
     json.meta do
-      json.count collection.total_count
+      json.extract! pagy, :count, :pages
     end
   end
 
