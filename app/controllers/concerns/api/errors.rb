@@ -33,7 +33,7 @@ module Api::Errors
     id = error.try(:id) || params[:id]
 
     detail = "The #{model_name}"
-    detail += ' with id "#{id}"' if id
+    detail += " with id '#{id}'" if id
     detail += " could not be found."
 
     api_error ::Api::NotFoundError.new(detail:, backtrace: error.backtrace)
