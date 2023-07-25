@@ -29,7 +29,7 @@ module ApiHelper
   # Shape for an object
   def obj(json, object)
     json.id object.hashid
-    json.type object.class.try(:api_type) || object.class.name.underscore
+    json.type object.class.try(:api_type) || object.class.name.underscore.parameterize
 
     yield if block_given?
 
