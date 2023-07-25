@@ -7,5 +7,7 @@ class Api::SubscriptionsController < ApiController
         subscriber: user
       )
     end
+
+    render partial: "api/subscriptions/subscription", locals: {subscription: @subscription}
   end
 end
