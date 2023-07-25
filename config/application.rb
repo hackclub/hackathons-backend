@@ -21,9 +21,10 @@ module Hackathons
 
     config.active_record.encryption.encrypt_fixtures = true
 
-    config.action_mailer.default_url_options = {
-      host: ENV["HOST"] || Rails.application.credentials.dig(:default_url_host, Rails.env) || "localhost:3000"
-    }
+    host = ENV["HOST"] || Rails.application.credentials.dig(:default_url_host, Rails.env) || "localhost:3000"
+    Rails.application.routes.default_url_options[:host] = host
+
+    config.action_mailer.default_url_options = {host:}
     config.action_mailer.default_options = {
       from: "hackathons@hackclub.com"
 
