@@ -22,7 +22,8 @@ module ApiHelper
     end
 
     json.meta do
-      json.extract! pagy, :count, :pages
+      json.total_count pagy.count
+      json.total_pages pagy.pages
     end
   end
 
