@@ -1,4 +1,4 @@
-obj json, subscription do
+shape_for subscription, json do
   json.status subscription.status
 
   json.location do

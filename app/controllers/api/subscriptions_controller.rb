@@ -1,4 +1,4 @@
-class Api::SubscriptionsController < ApiController
+class Api::SubscriptionsController < Api::BaseController
   def create
     ActiveRecord::Base.transaction do
       user = User.find_or_create_by!(email_address: params.require(:email))
