@@ -37,8 +37,8 @@ module ApiHelper
     json.created_at record.created_at if record.respond_to?(:created_at)
 
     json.links do
-      api_url_for(record).tap do |url|
-        json.self url if url
+      if (self_url = api_url_for(record))
+        json.self self_url
       end
     end
   end
