@@ -36,7 +36,9 @@ module ApiHelper
 
     json.created_at object.created_at if object.respond_to?(:created_at)
     json.links do
-      json.self api_url_for(object)
+      api_url_for(object).tap do |url|
+        json.self url if url
+      end
     end
   end
 
@@ -44,6 +46,8 @@ module ApiHelper
   # the same as the current request's version.
   def api_url_for(object, **options)
     polymorphic_url([:api, object], api_version: @request_version, **options)
+  rescue NoMethodError
+    nil
   end
 
   # Permanent URL for an attached file or variant
