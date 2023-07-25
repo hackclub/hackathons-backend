@@ -5,7 +5,7 @@ module Hackathon::Digest::Listings
 
   included do
     has_many :listings, dependent: :destroy
-    has_many :listed_hackathons, through: :listings
+    has_many :listed_hackathons, through: :listings, source: :hackathon
 
     before_create :build_list_of_relevant_hackathons
   end
