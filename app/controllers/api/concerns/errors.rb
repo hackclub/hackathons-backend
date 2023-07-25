@@ -15,6 +15,8 @@ module Api::Concerns::Errors
     # more context such as the `title` and `detail`.
     rescue_from VersionCake::UnsupportedVersionError, with: :unsupported_version
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
+    rescue_from ActionController::ParameterMissing, with: :bad_request
   end
 
   private
@@ -35,6 +37,20 @@ module Api::Concerns::Errors
     detail += " could not be found."
 
     api_error ::Api::NotFoundError.new(detail:, backtrace: error.backtrace)
+  end
+
+  def invalid_record(error)
+    api_error ::Api::BadRequestError.new(
+      detail: error.record&.errors&.full_messages&.join(", "),
+      backtrace: error.backtrace
+    )
+  end
+
+  def bad_request(error)
+    api_error ::Api::BadRequestError.new(
+      detail: error.message,
+      backtrace: error.backtrace
+    )
   end
 
   def server_error(error)
