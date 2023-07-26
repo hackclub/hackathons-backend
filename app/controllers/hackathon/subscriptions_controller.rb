@@ -8,6 +8,6 @@ class Hackathon::SubscriptionsController < ApplicationController
     @unsubscribed = @subscription.update!(status: :inactive)
 
     @subscriber = @subscription.subscriber
-    @other_subscriptions = Hackathon::Subscription.active_for(@subscription.subscriber)
+    @other_subscriptions = Hackathon::Subscription.active_for(@subscriber)
   end
 end
