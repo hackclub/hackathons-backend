@@ -25,7 +25,7 @@ class SubscriptionTest < ActiveSupport::TestCase
       Hackathon::Subscription.create location_input: "05482"
     end
 
-    assert_equal "Shelburne, Vermont, US", Hackathon::Subscription.first.location
+    assert_equal "Shelburne, Vermont, US", Hackathon::Subscription.last.location
   end
 
   test "subscribing for the same area" do
