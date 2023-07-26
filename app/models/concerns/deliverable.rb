@@ -3,7 +3,7 @@ module Deliverable
   extend Suppressible
 
   included do
-    after_create_commit :deliver_later, unless: -> { Deliverable.suppressed? }
+    after_create_commit :deliver_later, if: :deliver_after_creation?
   end
 
   def deliver_later
@@ -12,6 +12,12 @@ module Deliverable
 
   def deliver_now
     delivery.deliver_now
+  end
+
+  private
+
+  def deliver_after_creation?
+    !Deliverable.suppressed?
   end
 
   def delivery
