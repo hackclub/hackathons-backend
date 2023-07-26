@@ -23,6 +23,10 @@ module Hackathon::Subscription::Regional
     location_input || [city, province, country_code].compact.join(", ")
   end
 
+  def to_location
+    Location.new(city, province, country_code)
+  end
+
   private
 
   def geocoding_needed?

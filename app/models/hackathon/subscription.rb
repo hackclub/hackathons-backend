@@ -6,4 +6,5 @@ class Hackathon::Subscription < ApplicationRecord
   include Regional # depends on Status
 
   belongs_to :subscriber, class_name: "User", default: -> { Current.user }
+  has_many :listings, class_name: "Hackathon::Digest::Listing"
 end

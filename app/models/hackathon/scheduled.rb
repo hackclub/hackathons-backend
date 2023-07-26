@@ -7,5 +7,7 @@ module Hackathon::Scheduled
     validate do
       errors.add(:ends_at, :before_start_date) if errors.none? && ends_at < starts_at
     end
+
+    scope :upcoming, -> { where("starts_at > ?", Time.now) }
   end
 end

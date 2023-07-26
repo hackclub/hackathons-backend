@@ -5,29 +5,48 @@ module Hackathon::Digest::Listings::ByLocation
   private
 
   def nearby_upcoming_hackathons
-    locations_to_search.flat_map do |location|
-      upcoming_hackathons.near(location, 50, units: :mi)
-    end.compact.uniq
+    subscriptions_to_search.flat_map do |subscription|
+      # Searching for hackathons **in** Subscription's location
+      hackathons = upcoming_hackathons.select do |hackathon|
+        hackathon.to_location.covered_by_or_equal?(subscription.to_location)
+      end
+
+      # Searching for hackathons **near** Subscription's location
+      if subscription.to_location.sig_component == :city
+        nearby_hackathons = upcoming_hackathons
+          .near(subscription.location, 150, units: :mi)
+          .where.not(city: [nil, ""])
+
+        hackathons.concat(nearby_hackathons).uniq!
+      end
+
+      hackathons.map { |hackathon| {hackathon:, subscription:} }
+    end
   end
 
-  def locations_to_search
-    active_subscriptions = Hackathon::Subscription.active_for(recipient)
-    locations = active_subscriptions.collect(&:location).compact.uniq
+  def subscriptions_to_search
+    # If this needs to be more performant, it can be implemented as a tree. Each
+    # node represents a single components. The root node is the "world".
+    # Children of the "world" are countries. Children of countries are
+    # provinces, and children of provinces are cities. Subscriptions should be
+    # attached to the significant component's node.
+    #
+    # To determine the list of subscriptions, walk the tree starting at the root
+    # node. When you reach a node with a subscription, add it to the list. Then
+    # skip it's children and continue walking the tree starting at the next
+    # sibling node.
 
-    locations.sort_by! do |location| # sort by least specific to most specific location
-      location.split(", ").length
-    end
+    active_subscriptions = Hackathon::Subscription.active_for(recipient).to_a
+    active_subscriptions.reject do |subscription|
+      return true if subscription.location.blank?
 
-    locations.reject! do |location| # don't include those superseded by more general locations
-      locations.any? do |previous_location|
-        previous_location.start_with?(location)
+      active_subscriptions.any? do |other|
+        subscription.to_location.covers?(other.to_location)
       end
     end
-
-    locations.compact.uniq
   end
 
   def upcoming_hackathons
-    Hackathon.approved.where("starts_at > ?", Time.now)
+    Hackathon.approved.upcoming
   end
 end
