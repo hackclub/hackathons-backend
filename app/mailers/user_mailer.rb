@@ -1,8 +1,8 @@
 class UserMailer < ApplicationMailer
   before_action :set_user
 
-  def authentication(authentication = nil)
-    @authentication = authentication || @user.authentications.last
+  def authentication(authentication)
+    @authentication = authentication
 
     mail to: @authentication.user.email_address, subject: "Sign in to Hackathons"
   end
