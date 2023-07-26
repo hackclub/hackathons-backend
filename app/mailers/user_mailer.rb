@@ -10,6 +10,6 @@ class UserMailer < ApplicationMailer
   private
 
   def set_user
-    @user = params & [:user] || Current.user
+    @user = params&.[](:user) || Current.user
   end
 end
