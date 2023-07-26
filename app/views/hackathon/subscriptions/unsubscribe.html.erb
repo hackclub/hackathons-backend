@@ -1,0 +1,20 @@
+<h1>High School Hackathons</h1>
+<% if @unsubscribed %>
+  <p class="notice">
+    You have unsubscribed from emails regarding hackathons near
+    <b><%= @subscription.location %></b>.
+  </p>
+
+  <% if @other_subscriptions.any? %>
+    <p style="margin-bottom: 0;">
+      <b><%= @subscriber.email_address %></b> is also subscribed to:
+    </p>
+    <ul>
+      <% @other_subscriptions.each do |subscription| %>
+        <li><%= subscription.location %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% else %>
+  <p>This unsubscribe link has expired.</p>
+<% end %>
