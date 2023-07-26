@@ -22,7 +22,7 @@ class User::Authentication < ApplicationRecord
   private
 
   def delivery
-    UserMailer.authentication
+    UserMailer.authentication(self)
   end
 
   AUTHENTICATION_VALIDITY_PERIOD = 1.hour
