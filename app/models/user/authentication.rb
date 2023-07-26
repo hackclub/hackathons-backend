@@ -8,7 +8,7 @@ class User::Authentication < ApplicationRecord
   has_one :session, dependent: :destroy
 
   def expired?
-    created_at + AUTHENTICATION_VALIDITY_PERIOD < Time.now
+    (created_at + AUTHENTICATION_VALIDITY_PERIOD).past?
   end
 
   def succeeded?
@@ -16,14 +16,14 @@ class User::Authentication < ApplicationRecord
   end
 
   def complete
-    record(:completed, by: user)
-  end
-
-  def delivery
-    UserMailer.with(authentication: self).authentication
+    record :completed, by: user
   end
 
   private
+
+  def delivery
+    UserMailer.authentication(self)
+  end
 
   AUTHENTICATION_VALIDITY_PERIOD = 1.hour
 end

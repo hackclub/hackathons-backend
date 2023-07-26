@@ -1,11 +1,11 @@
 matt:
   name: Matt Almeida
-  email_address: matt7@hey.local
+  email_address: matt7@hey.com
   admin: true
 
 peasant_matt:
   name: Matt Almeida
-  email_address: matt7@hey.test
+  email_address: matt7@hey.local
   admin: false
 
 gary:

@@ -2,7 +2,7 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   test "creating a user" do
-    user = User.new name: "Valid User", email_address: "user@hey.test"
+    user = User.new name: "Valid User", email_address: "user@hey.com"
     assert user.save
   end
 
