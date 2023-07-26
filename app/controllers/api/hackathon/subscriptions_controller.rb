@@ -1,4 +1,4 @@
-class Api::SubscriptionsController < Api::BaseController
+class Api::Hackathon::SubscriptionsController < Api::BaseController
   def create
     ActiveRecord::Base.transaction do
       user = User.find_or_create_by!(email_address: params.require(:email))
@@ -8,6 +8,6 @@ class Api::SubscriptionsController < Api::BaseController
       )
     end
 
-    render partial: "api/subscriptions/subscription", locals: {subscription: @subscription}
+    render partial: "api/hackathons/subscriptions/subscription", locals: {subscription: @subscription}
   end
 end
