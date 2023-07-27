@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_205641) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_26_225359) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -121,7 +121,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_205641) do
     t.boolean "high_school_led", default: true, null: false
     t.integer "expected_attendees", null: false
     t.integer "modality", default: 0, null: false
-    t.boolean "financial_assistance", null: false
     t.bigint "swag_mailing_address_id"
     t.index ["address"], name: "index_hackathons_on_address"
     t.index ["applicant_id"], name: "index_hackathons_on_applicant_id"

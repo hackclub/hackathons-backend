@@ -6,5 +6,4 @@ assemble:
   high_school_led: true
   expected_attendees: 150
   modality: <%= Hackathon.modalities[:in_person] %>
-  financial_assistance: true
   applicant: gary
