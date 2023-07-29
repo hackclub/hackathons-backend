@@ -7,9 +7,10 @@ class Location
 
   attr_reader :city, :province, :country
 
+  # Listed in the order of significance.
   # The name "component" is pulled from USPS
   # https://pe.usps.com/text/pub28/28c2_012.htm#ep526349
-  COMPONENTS_ORDERED_BY_SPECIFICITY = [:city, :province, :country]
+  COMPONENTS = [:city, :province, :country]
 
   def component(compon)
     send(compon) if compon.in? COMPONENTS
