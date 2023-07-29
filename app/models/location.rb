@@ -37,10 +37,10 @@ class Location
   def covers?(other)
     # Location A covers location B if location A is the more broad than location B.
 
-    return false unless sig_component_value && other.send(:sig_component_value)
-    return false if sig_component_value >= other.send(:sig_component_value) # Location A is more specific than location B.
+    return false unless most_significant_component_value && other.most_significant_component_value
+    return false if most_significant_component_value >= other.most_significant_component_value # Location A is more specific than location B.
 
-    sig = other.send(:sig_component_value)
+    sig = other.most_significant_component_value
     COMPONENTS[sig..].all? do |compon|
       component(compon) == other.component(compon)
     end
@@ -62,9 +62,12 @@ class Location
     components.compact.join(", ")
   end
 
-  private
+  protected
 
-  def sig_component_value
+  # "Most Significant Component" value. Components with a higher significance
+  # have a higher value. This is useful for comparing the significance of two
+  # components.
+  def most_significant_component_value
     COMPONENTS.reverse.index most_significant_component
   end
 end
