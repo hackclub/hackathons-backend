@@ -15,10 +15,9 @@ module Hackathon::Digest::Listings
 
   MAX_LISTINGS = 5
 
-  def build_list_of_relevant_hackathons
-    nearby_upcoming_hackathons.first(MAX_LISTINGS).each do |result|
+  def build_list_of_relevant_hackathons(max_listings: MAX_LISTINGS)
+    nearby_upcoming_hackathons.first(max_listings).each do |result|
       listings.build hackathon: result[:hackathon], subscription: result[:subscription]
-      # listings.create! hackathon: result[:hackathon], subscription: result[:subscription]
     end
   end
 end

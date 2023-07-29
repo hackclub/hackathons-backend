@@ -7,39 +7,48 @@ module Hackathon::Digest::Listings::ByLocation
   def nearby_upcoming_hackathons
     subscriptions_to_search.flat_map do |subscription|
       # Searching for hackathons **in** Subscription's location
-      hackathons = upcoming_hackathons.select do |hackathon|
-        hackathon.to_location.covered_by_or_equal?(subscription.to_location)
-      end
+      hackathons = hackathons_in subscription.to_location
 
       # Searching for hackathons **near** Subscription's location
-      if subscription.to_location.most_significant_component == :city
-        nearby_hackathons = upcoming_hackathons
-          .near(subscription.location, 150, units: :mi)
-          .where.not(city: [nil, ""])
+      hackathons.concat hackathons_near(subscription.to_location)
 
-        hackathons.concat(nearby_hackathons).uniq!
-      end
+      hackathons.uniq.map { |hackathon| {hackathon:, subscription:} }
+    end
+    # TODO: order the returned list (helpful for when `max_listings` is used)
+  end
 
-      hackathons.map { |hackathon| {hackathon:, subscription:} }
+  def hackathons_in(location)
+    upcoming_hackathons.select do |hackathon|
+      hackathon.to_location.covered_by_or_equal?(location)
     end
   end
 
-  def subscriptions_to_search
-    # If this needs to be more performant, it can be implemented as a tree. Each
-    # node represents a single components. The root node is the "world".
-    # Children of the "world" are countries. Children of countries are
-    # provinces, and children of provinces are cities. Subscriptions should be
-    # attached to the significant component's node.
-    #
-    # To determine the list of subscriptions, walk the tree starting at the root
-    # node. When you reach a node with a subscription, add it to the list. Then
-    # skip it's children and continue walking the tree starting at the next
-    # sibling node.
+  def hackathons_near(location)
+    # In order to get accurate "nearby" searches, we must have accurate
+    # coordinates. Generally, coordinates obtained via geocoding are only
+    # accurate when the input address is very specific. And geocoded coordinates
+    # for general locations are almost useless. For example, the geocoded
+    # coordinates for "United States" is located in Kansas, which is middle of
+    # the country. This means that a search for "hackathons near United States"
+    # is really a search for "hackathons near Kansas". So, we only search for
+    # nearby hackathons if the location is specific enough (has a most
+    # significant component of city).
+    return [] unless location.most_significant_component == :city
 
+    upcoming_hackathons
+      .where.not(city: [nil, ""]) # where Most Significant Component is city
+      .near(location.to_s, 150, units: :mi)
+  end
+
+  def subscriptions_to_search
     active_subscriptions = Hackathon::Subscription.active_for(recipient).to_a
     active_subscriptions.reject do |subscription|
+      # Remove subscriptions that don't have a location 📍
       return true if subscription.location.blank?
 
+      # Remove any subscriptions that are covered by another subscription.
+      # For example, "Seattle, WA, US" would be covered by a subscription to
+      # "WA US" (which is more general than Seattle).
       active_subscriptions.any? do |other|
         subscription.to_location.covers?(other.to_location)
       end
