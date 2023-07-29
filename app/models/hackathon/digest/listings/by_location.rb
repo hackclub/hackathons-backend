@@ -5,29 +5,59 @@ module Hackathon::Digest::Listings::ByLocation
   private
 
   def nearby_upcoming_hackathons
-    locations_to_search.flat_map do |location|
-      upcoming_hackathons.near(location, 50, units: :mi)
-    end.compact.uniq
+    subscriptions_to_search.flat_map do |subscription|
+      # Searching for hackathons **in** Subscription's location
+      hackathons = hackathons_in subscription.to_location
+
+      # Searching for hackathons **near** Subscription's location
+      hackathons.concat hackathons_near(subscription.to_location)
+
+      hackathons.uniq.map { |hackathon| {hackathon:, subscription:} }
+    end
+    # TODO: order the returned list (helpful for when `max_listings` is used)
   end
 
-  def locations_to_search
-    active_subscriptions = Hackathon::Subscription.active_for(recipient)
-    locations = active_subscriptions.collect(&:location).compact.uniq
-
-    locations.sort_by! do |location| # sort by least specific to most specific location
-      location.split(", ").length
+  def hackathons_in(location)
+    upcoming_hackathons.select do |hackathon|
+      hackathon.to_location.covered_by_or_equal?(location)
     end
+  end
 
-    locations.reject! do |location| # don't include those superseded by more general locations
-      locations.any? do |previous_location|
-        previous_location.start_with?(location)
+  def hackathons_near(location)
+    # In order to get accurate "nearby" searches, we must have accurate
+    # coordinates. Generally, coordinates obtained via geocoding are only
+    # accurate when the input address is very specific. And geocoded coordinates
+    # for general locations are almost useless. For example, the geocoded
+    # coordinates for "United States" is located in Kansas, which is middle of
+    # the country. This means that a search for "hackathons near United States"
+    # is really a search for "hackathons near Kansas". So, we only search for
+    # nearby hackathons if the location is specific enough (has a most
+    # significant component of city).
+    #
+    # Highly recommended video 📺: https://www.youtube.com/watch?v=vh6zanS_epw
+    return [] unless location.most_significant_component == :city
+
+    upcoming_hackathons
+      .where.not(city: [nil, ""]) # where Most Significant Component is city
+      .near(location.to_s, 150, units: :mi)
+  end
+
+  def subscriptions_to_search
+    active_subscriptions = Hackathon::Subscription.active_for(recipient).to_a
+    active_subscriptions.reject do |subscription|
+      # Remove subscriptions that don't have a location 📍
+      return true if subscription.location.blank?
+
+      # Remove any subscriptions that are covered by another subscription.
+      # For example, "Seattle, WA, US" would be covered by a subscription to
+      # "WA US" (which is more general than Seattle).
+      active_subscriptions.any? do |other|
+        subscription.to_location.covers?(other.to_location)
       end
     end
-
-    locations.compact.uniq
   end
 
   def upcoming_hackathons
-    Hackathon.approved.where("starts_at > ?", Time.now)
+    Hackathon.approved.upcoming
   end
 end

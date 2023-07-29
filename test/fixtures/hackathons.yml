@@ -1,5 +1,6 @@
 assemble:
   name: Assemble
+  status: <%= Hackathon.statuses[:approved] %>
   starts_at: August 5th, 2023
   ends_at: August 7th, 2023
   website: https://assemble.hackclub.com
@@ -8,3 +9,44 @@ assemble:
   modality: <%= Hackathon.modalities[:in_person] %>
   financial_assistance: true
   applicant: gary
+zephyr:
+  name: The Hacker Zephyr
+  status: <%= Hackathon.statuses[:approved] %>
+  starts_at: July 15th, 2023
+  ends_at: July 25th, 2023
+  website: https://zephyr.hackclub.com
+  high_school_led: true
+  expected_attendees: 50
+  modality: <%= Hackathon.modalities[:in_person] %>
+  financial_assistance: true
+  applicant: gary
+seattle_hacks:
+  name: SeattleHacks
+  status: <%= Hackathon.statuses[:approved] %>
+  starts_at: <%= 1.day.from_now %>
+  ends_at: <%= 2.days.from_now %>
+  website: https://hackclub.com
+  high_school_led: true
+  expected_attendees: 50
+  modality: <%= Hackathon.modalities[:in_person] %>
+  financial_assistance: true
+  applicant: gary
+  city: Seattle
+  province: Washington
+  country_code: US
+bellevue_hacks:
+  name: BellevueHacks
+  status: <%= Hackathon.statuses[:approved] %>
+  starts_at: <%= 1.day.from_now %>
+  ends_at: <%= 2.days.from_now %>
+  website: https://hackclub.com
+  high_school_led: true
+  expected_attendees: 50
+  modality: <%= Hackathon.modalities[:in_person] %>
+  financial_assistance: true
+  applicant: gary
+  city: Bellevue
+  province: Washington
+  country_code: US
+  latitude: 47.6144219
+  longitude: -122.192337
