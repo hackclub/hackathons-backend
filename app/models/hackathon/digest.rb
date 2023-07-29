@@ -15,6 +15,10 @@ class Hackathon::Digest < ApplicationRecord
       def method_missing(_)
         # noop
       end
+
+      def respond_to_missing?
+        true
+      end
     end.new
   end
 end
