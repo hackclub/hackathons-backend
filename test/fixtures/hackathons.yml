@@ -48,3 +48,5 @@ bellevue_hacks:
   city: Bellevue
   province: Washington
   country_code: US
+  latitude: 47.6144219
+  longitude: -122.192337

@@ -26,15 +26,6 @@ class Hackathon::Digest::Listings::ByLocationTest < ActiveSupport::TestCase
     Geocoder::Lookup::Test.add_stub("US", [us])
     Geocoder::Lookup::Test.add_stub(us["coordinates"], [us.except("coordinates")])
 
-    bellevue_wa = {
-      "city" => "Bellevue",
-      "state" => "Washington",
-      "country_code" => "us",
-      "coordinates" => [47.6144219, -122.192337]
-    }
-    Geocoder::Lookup::Test.add_stub("Bellevue, Washington, US", [bellevue_wa])
-    Geocoder::Lookup::Test.add_stub(bellevue_wa["coordinates"], [bellevue_wa.except("coordinates")])
-
     @user = users(:gary)
   end
 
@@ -56,11 +47,7 @@ class Hackathon::Digest::Listings::ByLocationTest < ActiveSupport::TestCase
   test "listing hackathons within 150 miles of a city" do
     @user.subscriptions.create! location_input: "Seattle, Washington, US"
 
-    hackathon_near_seattle = hackathons(:bellevue_hacks).dup
-    hackathon_near_seattle.assign_attributes(
-      logo: active_storage_blobs(:assemble_logo), banner: active_storage_blobs(:assemble)
-    )
-    hackathon_near_seattle.save!
+    hackathon_near_seattle = hackathons(:bellevue_hacks)
 
     digest = Hackathon::Digest.create! recipient: @user
 
