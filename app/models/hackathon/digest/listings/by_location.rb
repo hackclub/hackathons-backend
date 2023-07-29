@@ -33,6 +33,8 @@ module Hackathon::Digest::Listings::ByLocation
     # is really a search for "hackathons near Kansas". So, we only search for
     # nearby hackathons if the location is specific enough (has a most
     # significant component of city).
+    #
+    # Highly recommended video 📺: https://www.youtube.com/watch?v=vh6zanS_epw
     return [] unless location.most_significant_component == :city
 
     upcoming_hackathons
