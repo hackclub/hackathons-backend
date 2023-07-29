@@ -38,7 +38,7 @@ class Hackathon::Digest::Listings::ByLocationTest < ActiveSupport::TestCase
     @user = users(:gary)
   end
 
-  test "when the user has no subscriptions it returns an empty array" do
+  test "creating a digest for user without subscriptions" do
     digest = Hackathon::Digest.create! recipient: @user
 
     assert_equal [], digest.listings
