@@ -53,7 +53,7 @@ class Hackathon::Digest::Listings::ByLocationTest < ActiveSupport::TestCase
     assert_includes digest.listed_hackathons, hackathon_in_seattle
   end
 
-  test "it returns hackathon within 150 miles of the subscription city" do
+  test "listing hackathons within 150 miles of a city" do
     @user.subscriptions.create! location_input: "Seattle, Washington, US"
 
     hackathon_near_seattle = hackathons(:bellevue_hacks).dup
