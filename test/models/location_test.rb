@@ -14,7 +14,7 @@ class LocationTest < ActiveSupport::TestCase
 
     assert_equal %w[Seattle Washington US], loc.components
 
-    assert :city, loc.sig_component
+    assert :city, loc.most_significant_component
   end
 
   test "creating a location without city" do
@@ -30,7 +30,7 @@ class LocationTest < ActiveSupport::TestCase
 
     assert_equal [nil, "Washington", "US"], loc.components
 
-    assert :province, loc.sig_component
+    assert :province, loc.most_significant_component
   end
 
   test "creating a location without province" do
@@ -46,7 +46,7 @@ class LocationTest < ActiveSupport::TestCase
 
     assert_equal ["Seattle", nil, "US"], loc.components
 
-    assert :city, loc.sig_component
+    assert :city, loc.most_significant_component
   end
 
   test "creating a location without city and province" do
@@ -62,7 +62,7 @@ class LocationTest < ActiveSupport::TestCase
 
     assert_equal [nil, nil, "US"], loc.components
 
-    assert :country, loc.sig_component
+    assert :country, loc.most_significant_component
   end
 
   test "country covers city" do

@@ -20,9 +20,11 @@ class Location
     [@city, @province, @country]
   end
 
-  def sig_component
-    # The significant component represents the most specific location attribute
-    # that is provided (similar to sig figs in math).
+  def most_significant_component
+    # The "most significant component" represents the most specific location
+    # attribute that is provided. This is similar to the concept of "most
+    # significant bit". With a full location (all attributes provided), the most
+    # significant component is the city.
     COMPONENTS.each do |compon|
       return compon if send(compon).present?
     end
@@ -63,6 +65,6 @@ class Location
   private
 
   def sig_component_value
-    COMPONENTS.reverse.index sig_component
+    COMPONENTS.reverse.index most_significant_component
   end
 end

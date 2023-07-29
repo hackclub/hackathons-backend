@@ -12,7 +12,7 @@ module Hackathon::Digest::Listings::ByLocation
       end
 
       # Searching for hackathons **near** Subscription's location
-      if subscription.to_location.sig_component == :city
+      if subscription.to_location.most_significant_component == :city
         nearby_hackathons = upcoming_hackathons
           .near(subscription.location, 150, units: :mi)
           .where.not(city: [nil, ""])
