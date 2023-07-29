@@ -67,7 +67,7 @@ class Hackathon::Digest::Listings::ByLocationTest < ActiveSupport::TestCase
     assert_includes digest.listed_hackathons, hackathon_near_seattle
   end
 
-  test "returns hackathon in the same subscription state" do
+  test "listing hackathons in the same state" do
     @user.subscriptions.create! location_input: "Washington, US"
 
     hackathon_in_washington = hackathons(:seattle_hacks)
