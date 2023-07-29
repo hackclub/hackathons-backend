@@ -10,7 +10,7 @@ module Hackathon::Regional
         hackathon.province = result.province || result.state
         hackathon.city = result.city
         hackathon.address = result.address
-        hackathon.street = [result.try(:house_number), result.try(:street)].compact.join(" ").presence
+        hackathon.street = [result.house_number, result.street].compact.join(" ").presence
       end
     end
 
