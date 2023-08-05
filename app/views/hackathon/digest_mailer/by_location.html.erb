@@ -1,0 +1,5 @@
+Check out these <%= @digest.listings.count %> hackathons coming up near you.
+
+<% @listings_by_subscription.each do |subscription, listings| %>
+  <%= render "subscription", subscription:, listings: %>
+<% end %>

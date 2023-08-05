@@ -1,0 +1,5 @@
+Near <%= subscription.location %>
+
+<% listings.each do |listing| %>
+  <%= render "hackathon", hackathon: listing.hackathon %>
+<% end %>

@@ -9,6 +9,11 @@ assemble:
   modality: <%= Hackathon.modalities[:in_person] %>
   financial_assistance: true
   applicant: gary
+  city: San Francisco
+  province: California
+  country_code: US
+  latitude: 37.7790262
+  longitude: -122.419906
 zephyr:
   name: The Hacker Zephyr
   status: <%= Hackathon.statuses[:approved] %>
@@ -34,6 +39,8 @@ seattle_hacks:
   city: Seattle
   province: Washington
   country_code: US
+  latitude: 47.6038321
+  longitude: -122.330062
 bellevue_hacks:
   name: BellevueHacks
   status: <%= Hackathon.statuses[:approved] %>

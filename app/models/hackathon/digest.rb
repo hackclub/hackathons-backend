@@ -10,15 +10,6 @@ class Hackathon::Digest < ApplicationRecord
   private
 
   def delivery
-    # TODO: Implement
-    Class.new do
-      def method_missing(_)
-        # noop
-      end
-
-      def respond_to_missing?
-        true
-      end
-    end.new
+    Hackathon::DigestMailer.with(digest: self).by_location
   end
 end

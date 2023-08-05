@@ -1,0 +1,24 @@
+<article style="margin-bottom: 1.25rem;">
+  <%# Hackathon name %>
+  <div style="margin-bottom: 0.25rem;">
+    <% if hackathon.logo.attached? %>
+      <%= image_tag hackathon.logo, style: "width: 32px; vertical-align: middle; margin-right: 0.5rem;" %>
+    <% end %>
+    <h3 style="vertical-align: middle; display: inline-block; margin: 0;">
+      <%= link_to hackathon.name, hackathon.website %>
+    </h3>
+  </div>
+
+  <%# Hackathon description %>
+  <div>
+    <p style="margin: 0;">
+      <%= hackathon.starts_at.to_date.to_fs(:long_ordinal) %>
+      <span style="font-weight: lighter; font-size: 0.9rem;">
+        (<%= time_ago_in_words hackathon.starts_at %> from now)
+      </span>
+    </p>
+    <p style="margin: 0;">
+      <%= link_to hackathon.website, hackathon.website %>
+    </p>
+  </div>
+</article>
