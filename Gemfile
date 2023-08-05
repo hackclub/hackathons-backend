@@ -19,6 +19,7 @@ gem "sprockets-rails"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
+gem "premailer-rails" # Inline CSS for emails
 
 # Active Storage
 gem "aws-sdk-s3", require: false
@@ -36,8 +37,6 @@ gem "geocoder"
 gem "countries"
 
 gem "hashid-rails" # Non-sequential IDs
-
-gem "premailer-rails" # Inline CSS for emails
 
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby] # Windows doesn't include zoneinfo files
 gem "bootsnap", require: false # reduces boot times through caching; required in config/boot.rb
