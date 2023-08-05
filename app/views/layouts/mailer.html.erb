@@ -76,7 +76,7 @@
   </header>
 
   <main id="layout__content">
-    <% yield_default :greeting do %>
+    <% yield_with_default_for :greeting do %>
       <p>
         <%# If there is only ONE recipient, it will attempt to extract the name of the recipient %>
         <% if message&.to&.one? && (name = (@recipient || @user)&.first_name || User.find_by_email_address(message&.to&.first)&.first_name) %>
@@ -89,7 +89,7 @@
 
     <%= yield %>
 
-    <% yield_default :signature do %>
+    <% yield_with_default_for :signature do %>
       <p>
         Best,
         <br/>
@@ -97,7 +97,7 @@
       </p>
     <% end %>
 
-    <% yield_default :fine_print do %>
+    <% yield_with_default_for :fine_print do %>
       <p style="font-size: 0.75rem; font-weight: lighter">
         High School Hackathons is maintained by <%= link_to "Hack Club", "https://hackclub.com" %> staff.
       </p>
@@ -113,7 +113,7 @@
       Check out our <%= link_to "website", Hackathons::WEBSITE %>!
     </p>
 
-    <% yield_default :unsubscribe do %>
+    <% yield_with_default_for :unsubscribe do %>
       <p>
         Update your <%= link_to "email preferences", @email_preferences_url || root_url %> to choose which emails you
         receive, or <%= link_to "unsubscribe", @unsubscribe_url || root_url %> from all future emails.

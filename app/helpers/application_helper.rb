@@ -3,7 +3,7 @@ module ApplicationHelper
   #
   # USAGE:
   # ```
-  # <% yield_default :signature do %>
+  # <% yield_with_default_for :signature do %>
   #   Default signature here
   # <% end %>
   # ```
@@ -23,7 +23,7 @@ module ApplicationHelper
   # - https://guides.rubyonrails.org/layouts_and_rendering.html#understanding-yield
   # - https://apidock.com/rails/ActionView/Helpers/CaptureHelper/content_for
   # - https://apidock.com/rails/v5.2.3/ActionView/Helpers/CaptureHelper/content_for%3F
-  def yield_default(key, &block)
+  def yield_with_default_for(key, &block)
     default_key = :"default_#{key}"
     before_key = :"before_#{key}"
     after_key = :"after_#{key}"
