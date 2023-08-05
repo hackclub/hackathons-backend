@@ -1,1 +1,29 @@
+<% yield_default :greeting do %>
+  <%# If there is only ONE recipient, it will attempt to extract the name of the recipient %>
+  <% if !message&.to&.many? && (name = (@recipient || @user)&.first_name || User.find_by_email_address(message&.to&.first)&.first_name) %>
+    Hey <%= name %>!
+  <% else %>
+    Hey there!
+  <% end %>
+<% end %>
+
 <%= yield %>
+
+<% yield_default :signature do %>
+  Best,
+  Hack Club
+<% end %>
+
+<% yield_default :fine_print do %>
+  High School Hackathons is maintained by Hack Club (https://hackclub.com) staff.
+<% end %>
+
+================================================================================
+
+Excited about more hackathons across the globe? Or want to list your hackathon? Check out our website (<%= Hackathons::WEBSITE %>)!
+
+<% yield_default :unsubscribe do %>
+  Update your email preferences (<%= @email_preferences_url || root_url %>) to choose which emails you receive, or unsubscribe (<%= @unsubscribe_url || root_url %>) from all future emails.
+<% end %>
+
+Hack Club, 8605 Santa Monica Blvd #86294 West Hollywood, CA 90069.
