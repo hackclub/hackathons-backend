@@ -30,9 +30,9 @@ class Hackathon::Digest::Listings::ByLocationTest < ActiveSupport::TestCase
   end
 
   test "creating a digest for user without subscriptions" do
-    digest = Hackathon::Digest.create! recipient: @user
-
-    assert_equal [], digest.listings
+    assert_raises ActiveRecord::RecordInvalid, "Should raise error due to listings being empty" do
+      Hackathon::Digest.create! recipient: @user
+    end
   end
 
   test "it returns hackathons in the same subscription city" do

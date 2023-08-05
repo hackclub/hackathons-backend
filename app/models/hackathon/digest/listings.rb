@@ -8,15 +8,15 @@ module Hackathon::Digest::Listings
     has_many :listed_hackathons, through: :listings, source: :hackathon
     has_many :listed_subscriptions, through: :listings, source: :subscription
 
-    before_create :build_list_of_relevant_hackathons
+    before_validation :build_relevant_listings
+    validates_length_of :listings, minimum: 1, on: :create, message: "must have at least one listing"
   end
 
   private
 
   MAX_LISTINGS = 8
 
-  def build_list_of_relevant_hackathons(max_listings: MAX_LISTINGS)
-    # TODO: handle case where there are no nearby hackathons (don't allow for creation of digest)
+  def build_relevant_listings(max_listings: MAX_LISTINGS)
     nearby_upcoming_hackathons.first(max_listings).each do |result|
       listings.build hackathon: result[:hackathon], subscription: result[:subscription]
     end
