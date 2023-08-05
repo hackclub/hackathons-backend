@@ -1,5 +1,5 @@
 <h2>
-  <span style="font-weight: lighter">Near</span> <%= subscription.location %>
+  <span style="font-weight: lighter">Near</span> <%= subscription.to_location.to_fs(:short) %>
 </h2>
 <div style="margin-bottom: 2rem;">
   <% listings.each do |listing| %>
