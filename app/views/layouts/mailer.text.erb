@@ -1,6 +1,6 @@
 <% yield_default :greeting do %>
   <%# If there is only ONE recipient, it will attempt to extract the name of the recipient %>
-  <% if !message&.to&.many? && (name = (@recipient || @user)&.first_name || User.find_by_email_address(message&.to&.first)&.first_name) %>
+  <% if message&.to&.one? && (name = (@recipient || @user)&.first_name || User.find_by_email_address(message&.to&.first)&.first_name) %>
     Hey <%= name %>!
   <% else %>
     Hey there!
