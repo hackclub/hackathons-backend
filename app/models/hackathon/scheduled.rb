@@ -10,4 +10,12 @@ module Hackathon::Scheduled
 
     scope :upcoming, -> { where("starts_at > ?", Time.now) }
   end
+
+  def start_date
+    starts_at.to_date
+  end
+
+  def end_date
+    ends_at.to_date
+  end
 end

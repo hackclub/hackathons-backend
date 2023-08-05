@@ -12,7 +12,7 @@
   <%# Hackathon description %>
   <div>
     <p style="margin: 0;">
-      <%= hackathon.starts_at.to_date.to_fs(:long_ordinal) %>
+      <%= hackathon.start_date.to_fs(:long_ordinal) %>
       <span style="font-weight: lighter; font-size: 0.9rem;">
         (<%= time_ago_in_words hackathon.starts_at %> from now)
       </span>
