@@ -2,7 +2,7 @@ class ApplicationMailer < ActionMailer::Base
   default from: "hackathons@hackclub.com"
   layout "mailer"
 
-  helper :application
+  helper :mailer, :application
 
   after_action :set_unsubscribe_header
 

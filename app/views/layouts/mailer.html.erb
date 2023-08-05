@@ -77,14 +77,7 @@
 
   <main id="layout__content">
     <% yield_with_default_for :greeting do %>
-      <p>
-        <%# If there is only ONE recipient, it will attempt to extract the name of the recipient %>
-        <% if message&.to&.one? && (name = (@recipient || @user)&.first_name || User.find_by_email_address(message&.to&.first)&.first_name) %>
-          Hey <%= name %>!
-        <% else %>
-          Hey there!
-        <% end %>
-      </p>
+      <p>Hey <%= recipient_name || "there" %>!</p>
     <% end %>
 
     <%= yield %>
