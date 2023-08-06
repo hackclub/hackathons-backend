@@ -1,5 +1,7 @@
 module Hackathon::Digest::Listings
   class Criterion::Location < Criterion
+    MAX_DISTANCE = 150 # miles
+
     def candidate_listings
       subscriptions_to_search.flat_map do |subscription|
         # Search for hackathons **in** Subscription's location
@@ -36,7 +38,7 @@ module Hackathon::Digest::Listings
 
       upcoming_hackathons
         .where.not(city: [nil, ""]) # where Most Significant Component is city
-        .near(location.to_s, 150, units: :mi)
+        .near(location.to_s, MAX_DISTANCE, units: :mi)
     end
   end
 end
