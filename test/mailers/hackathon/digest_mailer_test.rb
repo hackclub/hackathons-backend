@@ -16,6 +16,8 @@ class Hackathon::DigestMailerTest < ActionMailer::TestCase
       assert_match hackathon.name, mail.body.encoded
     end
 
+    # Email CAN-SPAM compliance
     assert_match "unsubscribe", mail.body.encoded
+    assert_match Hackathons::HACK_CLUB_ADDRESS[:full], mail.body.encoded
   end
 end
