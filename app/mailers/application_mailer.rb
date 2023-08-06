@@ -4,12 +4,17 @@ class ApplicationMailer < ActionMailer::Base
 
   helper :mailer, :application
 
+  before_action :set_default_unsubscribe_urls
   after_action :set_unsubscribe_header
 
   private
 
+  def set_default_unsubscribe_urls
+    @unsubscribe_url = root_url
+    @email_preferences_url = root_url
+  end
+
   def set_unsubscribe_header
-    url = @unsubscribe_url || root_url
-    headers["List-Unsubscribe"] = "<#{url}>" if url
+    headers["List-Unsubscribe"] = "<#{@unsubscribe_url}>" if @unsubscribe_url
   end
 end
