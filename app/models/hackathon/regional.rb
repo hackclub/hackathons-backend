@@ -2,6 +2,8 @@ module Hackathon::Regional
   extend ActiveSupport::Concern
 
   included do
+    validates :address, presence: true, on: :submit
+
     geocoded_by :address
     reverse_geocoded_by :latitude, :longitude do |hackathon, results| # essentially formats the location
       if (result = results.first)

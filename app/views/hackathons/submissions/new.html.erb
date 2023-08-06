@@ -1,0 +1,43 @@
+<%= form_with model: @hackathon, url: hackathons_requests_path do |form| %>
+  <div>
+    <%= form.label :name, "Hackathon Name" %>
+    <%= form.text_field :name, required: true, placeholder: "Epoch" %>
+  </div>
+
+  <div>
+    <%= form.label :website %>
+    <%= form.text_field :website, required: true, placeholder: "epoch.hackclub.com" %>
+  </div>
+
+  <div>
+    <%= form.label :logo %>
+    <%= form.file_field :logo %>
+  </div>
+
+  <div>
+    <%= form.label :banner %>
+    <%= form.file_field :banner %>
+  </div>
+
+  <div>
+    <%= form.label :start_date %>
+    <%= form.date_field :starts_at, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :end_date %>
+    <%= form.date_field :ends_at, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :location %>
+    <%= form.text_field :address, required: true, placeholder: "15 Falls Rd, Shelburne VT" %>
+  </div>
+
+  <div>
+    <%= form.label :expected_attendees %>
+    <%= form.number_field :expected_attendees, required: true %>
+  </div>
+
+  <%= form.button "Submit for Review" %>
+<% end %>
