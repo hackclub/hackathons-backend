@@ -8,10 +8,10 @@ module Hackathon::Scheduled
     validates :ends_at, presence: true
 
     validate :dates_are_chronological,
-             unless: -> { errors.include?(:starts_at) || errors.include?(:ends_at) }
+      unless: -> { errors.include?(:starts_at) || errors.include?(:ends_at) }
 
     validate :dates_are_in_the_future, on: :submit,
-             unless: -> { errors.include?(:starts_at) || errors.include?(:ends_at) }
+      unless: -> { errors.include?(:starts_at) || errors.include?(:ends_at) }
   end
 
   private
