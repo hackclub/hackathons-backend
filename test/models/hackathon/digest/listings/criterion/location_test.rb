@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Hackathon::Digest::Listings::ByLocationTest < ActiveSupport::TestCase
+class Hackathon::Digest::Listings::Criterion::LocationTest < ActiveSupport::TestCase
   setup do
     seattle = {
       "city" => "Seattle",
@@ -29,14 +29,9 @@ class Hackathon::Digest::Listings::ByLocationTest < ActiveSupport::TestCase
     @user = users(:gary)
   end
 
-  test "creating a digest for user without subscriptions" do
-    assert_raises ActiveRecord::RecordInvalid, "Should raise error due to listings being empty" do
-      Hackathon::Digest.create! recipient: @user
-    end
-  end
-
   test "it returns hackathons in the same subscription city" do
-    @user.subscriptions.create! location_input: "Seattle, Washington, US"
+    subscription = hackathon_subscriptions(:gary_seattle)
+    @user = subscription.subscriber
 
     hackathon_in_seattle = hackathons(:seattle_hacks)
     digest = Hackathon::Digest.create! recipient: @user
@@ -45,7 +40,8 @@ class Hackathon::Digest::Listings::ByLocationTest < ActiveSupport::TestCase
   end
 
   test "listing hackathons within 150 miles of a city" do
-    @user.subscriptions.create! location_input: "Seattle, Washington, US"
+    subscription = hackathon_subscriptions(:gary_seattle)
+    @user = subscription.subscriber
 
     hackathon_near_seattle = hackathons(:bellevue_hacks)
 
