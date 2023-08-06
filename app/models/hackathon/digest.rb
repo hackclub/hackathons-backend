@@ -10,6 +10,6 @@ class Hackathon::Digest < ApplicationRecord
   private
 
   def delivery
-    Hackathon::DigestMailer.with(digest: self).by_location
+    Hackathon::DigestMailer.with(digest: self).digest
   end
 end

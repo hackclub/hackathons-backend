@@ -1,5 +1,5 @@
 class Hackathon::DigestMailer < ApplicationMailer
-  def by_location
+  def digest
     @digest = params[:digest]
     @recipient = @digest.recipient
 
