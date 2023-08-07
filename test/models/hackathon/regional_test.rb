@@ -10,7 +10,6 @@ class Hackathon::RegionalTest < ActiveSupport::TestCase
       high_school_led: true,
       expected_attendees: 20,
       modality: "in_person",
-      financial_assistance: true,
       logo: active_storage_blobs(:assemble_logo),
       banner: active_storage_blobs(:assemble),
       applicant: users(:gary)

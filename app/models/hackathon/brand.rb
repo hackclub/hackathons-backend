@@ -2,7 +2,7 @@ module Hackathon::Brand
   extend ActiveSupport::Concern
 
   included do
-    validates :website, presence: true, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
+    validates :website, format: URI::DEFAULT_PARSER.make_regexp(%w[http https]), on: :submit
 
     has_one_attached :logo do |logo|
       logo.variant :small, resize_to_limit: [128, 128]
@@ -13,10 +13,9 @@ module Hackathon::Brand
 
     validates :logo, :banner,
       attached: true, content_type: {in: /\Aimage\/.*\z/, message: "is not an image"},
-      size: {less_than: 25.megabytes, message: "is too powerful (max 25 MB)"}
+      size: {less_than: 25.megabytes, message: "is too powerful (max 25 MB)"},
+      on: :submit
 
     validates :banner, aspect_ratio: :landscape
-
-    validates :high_school_led, :financial_assistance, inclusion: [true, false]
   end
 end
