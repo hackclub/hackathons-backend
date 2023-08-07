@@ -17,7 +17,6 @@ zephyr:
   high_school_led: true
   expected_attendees: 50
   modality: <%= Hackathon.modalities[:in_person] %>
-  financial_assistance: true
   applicant: gary
 seattle_hacks:
   name: SeattleHacks
@@ -28,7 +27,6 @@ seattle_hacks:
   high_school_led: true
   expected_attendees: 50
   modality: <%= Hackathon.modalities[:in_person] %>
-  financial_assistance: true
   applicant: gary
   city: Seattle
   province: Washington
@@ -42,7 +40,6 @@ bellevue_hacks:
   high_school_led: true
   expected_attendees: 50
   modality: <%= Hackathon.modalities[:in_person] %>
-  financial_assistance: true
   applicant: gary
   city: Bellevue
   province: Washington
