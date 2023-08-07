@@ -31,7 +31,9 @@ class HackathonTest < ActiveSupport::TestCase
 
     assert_not hackathon.save
 
-    assert hackathon.update(ends_at: 2.days.from_now)
+    hackathon.ends_at = 2.days.from_now
+
+    assert hackathon.save
   end
 
   test "creating a hackathon without an applicant" do
