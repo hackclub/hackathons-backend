@@ -71,8 +71,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_125411) do
     t.bigint "hackathon_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "subscription_id", null: false
     t.index ["digest_id"], name: "index_hackathon_digest_listings_on_digest_id"
     t.index ["hackathon_id"], name: "index_hackathon_digest_listings_on_hackathon_id"
+    t.index ["subscription_id"], name: "index_hackathon_digest_listings_on_subscription_id"
   end
 
   create_table "hackathon_digests", force: :cascade do |t|
@@ -197,6 +199,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_125411) do
   add_foreign_key "events", "users", column: "creator_id"
   add_foreign_key "events", "users", column: "target_id"
   add_foreign_key "hackathon_digest_listings", "hackathon_digests", column: "digest_id"
+  add_foreign_key "hackathon_digest_listings", "hackathon_subscriptions", column: "subscription_id"
   add_foreign_key "hackathon_digest_listings", "hackathons"
   add_foreign_key "hackathon_digests", "users", column: "recipient_id"
   add_foreign_key "hackathon_subscriptions", "users", column: "subscriber_id"

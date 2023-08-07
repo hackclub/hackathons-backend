@@ -11,7 +11,7 @@ class SubscriptionTest < ActiveSupport::TestCase
         {
           "city" => "Shelburne",
           "state" => "Vermont",
-          "country_code" => "US"
+          "country_code" => "us"
         }
       ]
     )

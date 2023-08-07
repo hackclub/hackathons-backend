@@ -35,7 +35,7 @@ class Hackathon::RegionalTest < ActiveSupport::TestCase
           "city" => "Shelburne",
           "state" => "Vermont",
           "postal_code" => "05482",
-          "country_code" => "US"
+          "country_code" => "us"
         }
       ]
     )
@@ -59,7 +59,7 @@ class Hackathon::RegionalTest < ActiveSupport::TestCase
           "city" => "Shelburne",
           "state" => "Vermont",
           "postal_code" => "05482",
-          "country_code" => "US"
+          "country_code" => "us"
         }
       ]
     )
