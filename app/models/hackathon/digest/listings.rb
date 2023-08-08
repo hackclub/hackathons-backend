@@ -1,22 +1,29 @@
 module Hackathon::Digest::Listings
   extend ActiveSupport::Concern
 
-  include ByLocation
-
   included do
     has_many :listings, dependent: :destroy
     has_many :listed_hackathons, through: :listings, source: :hackathon
     has_many :listed_subscriptions, through: :listings, source: :subscription
 
-    before_create :build_list_of_relevant_hackathons
+    before_validation :build_candidate_listings, on: :create
+    validates_length_of :listings, minimum: 1, on: :create, message: "must not be empty"
   end
 
   private
 
-  MAX_LISTINGS = 5
+  LISTING_CRITERIA = [Criterion::Location]
+  MAX_LISTINGS = 8
 
-  def build_list_of_relevant_hackathons(max_listings: MAX_LISTINGS)
-    nearby_upcoming_hackathons.first(max_listings).each do |result|
+  def applicable_listings(listing_criteria: LISTING_CRITERIA, max_listings: MAX_LISTINGS)
+    listing_criteria
+      .flat_map { |criterion| criterion.new(recipient:).candidate_listings }
+      .sort_by { |candidate| candidate[:hackathon].starts_at }
+      .first(max_listings)
+  end
+
+  def build_candidate_listings
+    applicable_listings.each do |result|
       listings.build hackathon: result[:hackathon], subscription: result[:subscription]
     end
   end

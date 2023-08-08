@@ -19,6 +19,7 @@ gem "sprockets-rails"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
+gem "premailer-rails" # Inline CSS for emails
 
 # Active Storage
 gem "aws-sdk-s3", require: false

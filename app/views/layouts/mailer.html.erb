@@ -1,13 +1,124 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Email styles need to be inline */
-    </style>
-  </head>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <style>
+      /*
+        Email styles are automatically inlined by premailer gem
+        - https://github.com/fphilipe/premailer-rails
+        - https://github.com/premailer/premailer
 
-  <body>
+        For the CSS class names, I'm following the BEM methodology!
+        ~ @garyhtou
+      */
+
+      html, body {
+          padding: 0;
+          margin: 0;
+          background-color: #ffffff;
+          color: #1f2d3d;
+          font-family: 'Phantom Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+
+      a {
+          color: #ec3750;
+          text-decoration: none;
+      }
+
+      #layout {
+          max-width: 800px;
+          margin: 0 auto;
+      }
+
+      #layout__header {
+          border-radius: 0 0 2rem 2rem;
+          background-color: #f9fafc;
+          padding: 0 1rem 1rem 1rem;
+      }
+
+      #layout__logo {
+          width: 9rem;
+          margin: 0;
+      }
+
+      #layout__title {
+          font-size: 3rem;
+          text-align: center;
+          color: #ec3750;
+          margin: 0;
+      }
+
+      #layout__content {
+          padding: 1rem;
+      }
+
+      #layout__footer {
+          padding: 1rem;
+          font-size: 0.75rem;
+      }
+
+      .layout__separator {
+          border-top: 1px dashed lightgray;
+          margin: 1rem 0;
+      }
+
+  </style>
+  <title>High School Hackathons</title>
+</head>
+
+<body>
+<div id="layout">
+  <header id="layout__header">
+    <%= image_tag "flag-orpheus-top.png", id: "layout__logo" %>
+    <h1 id="layout__title">
+      High School Hackathons
+    </h1>
+  </header>
+
+  <main id="layout__content">
+    <% yield_with_default_for :greeting do %>
+      <p>Hey <%= recipient_name || "there" %>!</p>
+    <% end %>
+
     <%= yield %>
-  </body>
+
+    <% yield_with_default_for :signature do %>
+      <p>
+        Best,
+        <br/>
+        Hack Club
+      </p>
+    <% end %>
+
+    <% yield_with_default_for :fine_print do %>
+      <p style="font-size: 0.75rem; font-weight: lighter">
+        High School Hackathons is maintained by <%= link_to "Hack Club", "https://hackclub.com" %> staff.
+      </p>
+    <% end %>
+  </main>
+
+  <div class="layout__separator" style="margin: 0 1rem;"></div>
+
+  <footer id="layout__footer">
+
+    <p>
+      Excited about hackathons across the globe? Want to list your own?
+      Check out our <%= link_to "website", Hackathons::WEBSITE %>!
+    </p>
+
+    <% yield_with_default_for :unsubscribe do %>
+      <p>
+        Update your <%= link_to "email preferences", @email_preferences_url %> to choose which emails you
+        receive, or <%= link_to "unsubscribe", @unsubscribe_url %> from all future emails.
+      </p>
+    <% end %>
+
+    <address>
+      Hack Club, <%= Hackathons::HACK_CLUB_ADDRESS[:full] %>.
+    </address>
+
+  </footer>
+
+</div>
+</body>
 </html>

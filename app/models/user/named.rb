@@ -4,4 +4,8 @@ module User::Named
   included do
     encrypts :name
   end
+
+  def first_name
+    name.split(" ").first
+  end
 end
