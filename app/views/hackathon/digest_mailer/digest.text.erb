@@ -1,4 +1,6 @@
-Check out these <%= @digest.listings.count %> hackathons coming up near you.
+Check out
+<%= (count = @digest.listings.count) > 1 ? "these #{count} hackathons" : "this hackathon" %>
+coming up near you.
 
 <% @listings_by_subscription.each do |subscription, listings| %>
   <%= render "subscription", subscription:, listings: %>

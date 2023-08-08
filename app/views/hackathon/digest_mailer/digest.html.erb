@@ -1,4 +1,12 @@
-Check out these <%= @digest.listings.count %> hackathons coming up near you.
+<p>
+  Check out
+  <% if (count = @digest.listings.count) > 1 %>
+    these <%= count %> hackathons
+  <% else %>
+    this hackathon
+  <% end %>
+  coming up near you.
+</p>
 
 <% @listings_by_subscription.each do |subscription, listings| %>
   <%= render "subscription", subscription:, listings: %>
