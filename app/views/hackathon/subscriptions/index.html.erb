@@ -1,0 +1,16 @@
+<% content_for :title, "Manage Subscriptions" %>
+
+<h1>Manage Subscriptions</h1>
+
+<% if @expired %>
+  <p>This link has expired.</p>
+<% else %>
+
+  <p>
+    Hey there, <b><%= @user.name || @user.email_address %></b>!
+    <br/>
+    You are currently subscribed to the following locations.
+  </p>
+
+  <%= render "manage", subscriptions: @subscriptions %>
+<% end %>

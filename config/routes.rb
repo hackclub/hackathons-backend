@@ -7,6 +7,17 @@ Rails.application.routes.draw do
     resources :sessions, only: [:new, :destroy]
   end
 
+  resources :users, only: [] do
+    scope module: :hackathon do
+      resources :subscriptions, only: :index do
+        get "unsubscribe_all", on: :collection
+      end
+      namespace :subscriptions do
+        resource :bulk, controller: :bulk, only: [:update, :destroy]
+      end
+    end
+  end
+
   namespace :api, defaults: {format: :json} do
     scope "/v:api_version" do
       resources :hackathons, only: [:index, :show]
