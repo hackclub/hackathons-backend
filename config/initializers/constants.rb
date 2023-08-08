@@ -4,7 +4,7 @@ module Hackathons
   HACK_CLUB_ADDRESS = {
     full: "8605 Santa Monica Blvd #86294 West Hollywood, CA 90069",
 
-    street: "8605 Santa Monica Blvd #86294 #86294",
+    street: "8605 Santa Monica Blvd #86294",
     city: "West Hollywood",
     province: "CA",
     zip: "90069"
