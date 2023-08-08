@@ -62,6 +62,17 @@ class Location
     components.compact.join(", ")
   end
 
+  def to_formatted_s(format = nil)
+    case format
+    when :short
+      (@country == "US") ? [city, province].compact.join(", ") : to_s
+    else
+      to_s
+    end
+  end
+
+  alias_method :to_fs, :to_formatted_s
+
   protected
 
   # "Most Significant Component" value. Components with a higher significance

@@ -14,6 +14,14 @@ module Hackathon::Scheduled
       unless: -> { errors.include?(:starts_at) || errors.include?(:ends_at) }
   end
 
+  def start_date
+    starts_at.to_date
+  end
+
+  def end_date
+    ends_at.to_date
+  end
+
   private
 
   def dates_are_chronological

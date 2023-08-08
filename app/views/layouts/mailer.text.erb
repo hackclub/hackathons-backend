@@ -1,1 +1,24 @@
+<% yield_with_default_for :greeting do %>
+  Hey <%= recipient_name || "there" %>!
+<% end %>
+
 <%= yield %>
+
+<% yield_with_default_for :signature do %>
+  Best,
+  Hack Club
+<% end %>
+
+<% yield_with_default_for :fine_print do %>
+  High School Hackathons is maintained by Hack Club (https://hackclub.com) staff.
+<% end %>
+
+================================================================================
+
+Excited about more hackathons across the globe? Want to list your own? Check out our website (<%= Hackathons::WEBSITE %>)!
+
+<% yield_with_default_for :unsubscribe do %>
+  Update your email preferences (<%= @email_preferences_url %>) to choose which emails you receive, or unsubscribe (<%= @unsubscribe_url %>) from all future emails.
+<% end %>
+
+Hack Club, <%= Hackathons::HACK_CLUB_ADDRESS[:full] %>.

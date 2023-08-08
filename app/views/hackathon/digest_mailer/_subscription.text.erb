@@ -1,0 +1,5 @@
+Near <%= subscription.to_location.to_fs(:short) %>
+
+<% listings.each do |listing| %>
+  <%= render "hackathon", hackathon: listing.hackathon %>
+<% end %>
