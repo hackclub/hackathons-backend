@@ -15,7 +15,7 @@ module Hackathon::Digest::Listings
   LISTING_CRITERIA = [Criterion::Location]
   MAX_LISTINGS = 8
 
-  def candidate_listings(listing_criteria: LISTING_CRITERIA, max_listings: MAX_LISTINGS)
+  def applicable_listings(listing_criteria: LISTING_CRITERIA, max_listings: MAX_LISTINGS)
     listing_criteria
       .flat_map { |criterion| criterion.new(recipient:).candidate_listings }
       .sort_by { |candidate| candidate[:hackathon].starts_at }
@@ -23,7 +23,7 @@ module Hackathon::Digest::Listings
   end
 
   def build_candidate_listings
-    candidate_listings.each do |result|
+    applicable_listings.each do |result|
       listings.build hackathon: result[:hackathon], subscription: result[:subscription]
     end
   end
