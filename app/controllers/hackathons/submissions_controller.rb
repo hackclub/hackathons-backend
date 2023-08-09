@@ -7,6 +7,7 @@ class Hackathons::SubmissionsController < ApplicationController
 
   def new
     @hackathon = Hackathon.new
+    @hackathon.build_swag_mailing_address
   end
 
   def create
@@ -33,7 +34,15 @@ class Hackathons::SubmissionsController < ApplicationController
       :starts_at,
       :ends_at,
       :address,
-      :expected_attendees
+      :expected_attendees,
+      swag_mailing_address: [
+        :line1,
+        :line2,
+        :city,
+        :province,
+        :postal_code,
+        :country_code
+      ]
     )
   end
 end

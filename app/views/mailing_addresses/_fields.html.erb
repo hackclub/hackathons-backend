@@ -1,0 +1,24 @@
+<div>
+  <%= form.label :line1, "Street" %>
+  <%= form.text_field :line1 %>
+</div>
+
+<div>
+  <%= form.label :line2, "Apartment, Suite, etc." %>
+  <%= form.text_field :line2 %>
+</div>
+
+<div>
+  <%= form.label :city %>
+  <%= form.text_field :city %>
+</div>
+
+<div>
+  <%= form.label :province, "State/Province" %>
+  <%= form.text_field :province %>
+</div>
+
+<div>
+  <%= form.label :country %>
+  <%= form.collection_select :country, ISO3166::Country.all, :alpha2, :common_name, selected: "US" %>
+</div>
