@@ -1,4 +1,4 @@
-<%= form_with model: @hackathon, url: hackathons_requests_path do |form| %>
+<%= form_with model: @hackathon, url: hackathons_submissions_path do |form| %>
   <div>
     <%= form.label :name, "Hackathon Name" %>
     <%= form.text_field :name, required: true, placeholder: "Epoch" %>
