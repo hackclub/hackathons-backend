@@ -45,7 +45,7 @@
       <%= label_tag "hackathon_requested_swag", "Would you like an envelope of stickers & postcards mailed to your address?" %>
     </div>
 
-    <div data-form--visibility-target="element" style="display: none;">
+    <div data-form--visibility-target="element" style="display: none;" class="push--top">
       <%= form.fields_for :swag_mailing_address do |mailing_address_form| %>
         <%= render "mailing_addresses/fields", form: mailing_address_form %>
       <% end %>
