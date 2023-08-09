@@ -34,7 +34,12 @@
     <%= form.text_field :address, required: true, placeholder: "15 Falls Rd, Shelburne VT" %>
   </div>
 
-  <div data-controller="form--visibility">
+  <div>
+    <%= form.label :expected_attendees %>
+    <%= form.number_field :expected_attendees, required: true %>
+  </div>
+
+  <div data-controller="form--visibility" class="notice">
     <div>
       <%= check_box_tag nil, nil, false, id: "hackathon_requested_swag", data: {"form--visibility-target": "input", "action": "change->form--visibility#toggle"} %>
       <%= label_tag "hackathon_requested_swag", "Would you like an envelope of stickers & postcards mailed to your address?" %>
@@ -45,11 +50,6 @@
         <%= render "mailing_addresses/fields", form: mailing_address_form %>
       <% end %>
     </div>
-  </div>
-
-  <div>
-    <%= form.label :expected_attendees %>
-    <%= form.number_field :expected_attendees, required: true %>
   </div>
 
   <%= form.button "Submit for Review" %>
