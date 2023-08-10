@@ -21,6 +21,8 @@ class Hackathons::SubmissionsController < ApplicationController
       @hackathon.swag_mailing_address = nil
     end
 
+    @hackathon.applicant = User.find_or_initialize_by(hackathon_params[:applicant])
+
     if @hackathon.save context: :submit
       if hackathon_params[:offers_financial_assistance]
         @hackathon.tag_with! "Offers Financial Assistance"
