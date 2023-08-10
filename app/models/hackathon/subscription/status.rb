@@ -25,6 +25,14 @@ module Hackathon::Subscription::Status
     end
   end
 
+  def unsubscribe!
+    update(status: :inactive)
+  end
+
+  def resubscribe!
+    update(status: :active)
+  end
+
   private
 
   def track_changes

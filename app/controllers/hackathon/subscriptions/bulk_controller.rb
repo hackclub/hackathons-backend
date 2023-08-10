@@ -7,14 +7,14 @@ class Hackathon::Subscriptions::BulkController < ApplicationController
   # Marking subscriptions as active. Used for undoing an "Unsubscribe from all".
   # PUT /users/:user_id/subscriptions/bulk
   def update
-    @subscriptions.update_all(status: :active)
+    @subscriptions.each(&:resubscribe!)
     redirect_to Hackathon::Subscription.manage_subscriptions_url_for @user
   end
 
   # Marking subscriptions as inactive.
   # DELETE /users/:user_id/subscriptions/bulk
   def destroy
-    @subscriptions.update_all(status: :inactive)
+    @subscriptions.each(&:unsubscribe!)
     redirect_to Hackathon::Subscription.manage_subscriptions_url_for @user
   end
 
