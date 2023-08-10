@@ -1,12 +1,12 @@
 <%= form_with model: @hackathon, url: hackathons_submissions_path, class: "push--top" do |form| %>
   <div>
     <%= form.label :name, "Hackathon Name" %>
-    <%= form.text_field :name, required: true, placeholder: "Epoch" %>
+    <%= form.text_field :name, required: true, placeholder: "Assemble" %>
   </div>
 
   <div>
     <%= form.label :website %>
-    <%= form.text_field :website, required: true, placeholder: "epoch.hackclub.com" %>
+    <%= form.text_field :website, required: true, placeholder: "assemble.hackclub.com" %>
   </div>
 
   <div>
@@ -43,7 +43,7 @@
 
   <div>
     <%= form.label :location %>
-    <%= form.text_field :address, required: true, placeholder: "15 Falls Rd, Shelburne VT" %>
+    <%= form.text_field :address, required: true, placeholder: "760 Market St, San Francisco, CA" %>
   </div>
 
   <div>
