@@ -30,6 +30,7 @@ gem "active_storage_validations"
 
 # Background jobs
 gem "sidekiq"
+gem "sidekiq-cron"
 
 # API
 gem "jbuilder" # JSON templating
