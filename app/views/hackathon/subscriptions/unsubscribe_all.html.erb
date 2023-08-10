@@ -1,0 +1,34 @@
+<% content_for :title, "Unsubscribe" %>
+
+<h1>Unsubscribe</h1>
+
+<% if @expired %>
+  <p>This link has expired.</p>
+<% else %>
+
+  <p>
+    Hey there, <b><%= @user.name || @user.email_address %></b>!
+  </p>
+
+  <p>
+    You have unsubscribed from all emails.
+    <% unless @unsubscribe_count.zero? %>
+      You were previous subscribed to
+      <%= @unsubscribe_count %> <%= "location".pluralize(@unsubscribe_count) %>.
+    <% end %>
+
+    <br/>
+    <i>Sad to see you go. :(</i>
+  </p>
+
+  <%# Button for undo-ing unsubscribe all %>
+  <% unless @unsubscribe_count.zero? %>
+    <%= form_with url: user_subscriptions_bulk_path, method: :put do |form| %>
+      <% @unsubscribed_ids.each do |id| %>
+        <%= form.hidden_field "ids[]", value: id %>
+      <% end %>
+
+      <%= form.button "Undo" %>
+    <% end %>
+  <% end %>
+<% end %>

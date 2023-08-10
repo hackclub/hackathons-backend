@@ -1,0 +1,27 @@
+<% if subscriptions.present? %>
+  <%= form_with url: user_subscriptions_bulk_path, method: :delete,
+    data: {
+      controller: "forms--required-checkboxes",
+      "forms--required-checkboxes-require-value": "some"
+    } do |form| %>
+
+    <% subscriptions.each do |subscription| %>
+      <div class="subscription">
+        <%= check_box_tag "ids[]", subscription.id, false, data: {
+          action: "change->forms--required-checkboxes#changed",
+          "forms--required-checkboxes-target": "input"
+        }, id: dom_id(subscription) %>
+        <%= form.label dom_id(subscription), subscription.location %>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.submit "Unsubscribe", data: {"forms--required-checkboxes-target": "button"}, disabled: true %>
+      or
+      <%= link_to "unsubscribe from all", unsubscribe_all_user_subscriptions_url %>
+    </div>
+  <% end %>
+
+<% else %>
+  <p>You are not subscribed to any locations.</p>
+<% end %>
