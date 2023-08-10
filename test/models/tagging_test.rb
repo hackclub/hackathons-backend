@@ -2,7 +2,7 @@ require "test_helper"
 
 class TaggingTest < ActiveSupport::TestCase
   setup do
-    @hackathon = hackathons(:assemble)
+    @hackathon = hackathons(:zephyr)
   end
 
   test "checking for tags" do

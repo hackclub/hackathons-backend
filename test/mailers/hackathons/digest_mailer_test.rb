@@ -1,9 +1,9 @@
 require "test_helper"
 
-class Hackathon::DigestMailerTest < ActionMailer::TestCase
+class Hackathons::DigestMailerTest < ActionMailer::TestCase
   test "digest" do
     digest = hackathon_digests(:one)
-    mail = Hackathon::DigestMailer.with(digest:).digest
+    mail = Hackathons::DigestMailer.with(digest:).digest
 
     assert_equal "Hackathons near you", mail.subject
     assert_equal [digest.recipient.email_address], mail.to

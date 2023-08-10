@@ -1,23 +1,8 @@
-assemble:
-  name: Assemble
-  status: <%= Hackathon.statuses[:approved] %>
-  starts_at: August 5th, 2023
-  ends_at: August 7th, 2023
-  website: https://assemble.hackclub.com
-  high_school_led: true
-  expected_attendees: 150
-  modality: <%= Hackathon.modalities[:in_person] %>
-  applicant: gary
-  city: San Francisco
-  province: California
-  country_code: US
-  latitude: 37.7790262
-  longitude: -122.419906
 zephyr:
   name: The Hacker Zephyr
   status: <%= Hackathon.statuses[:approved] %>
-  starts_at: July 15th, 2023
-  ends_at: July 25th, 2023
+  starts_at: <%= 1.day.from_now %>
+  ends_at: <%= 2.days.from_now %>
   website: https://zephyr.hackclub.com
   high_school_led: true
   expected_attendees: 50

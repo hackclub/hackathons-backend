@@ -1,4 +1,4 @@
-class Hackathon::DigestMailer < ApplicationMailer
+class Hackathons::DigestMailer < ApplicationMailer
   def digest
     @digest = params[:digest]
     @recipient = @digest.recipient

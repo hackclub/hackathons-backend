@@ -16,9 +16,11 @@ gem "airrecord" # Airtable client
 
 # Assets
 gem "sprockets-rails"
+gem "sass-rails"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
+gem "local_time"
 gem "premailer-rails" # Inline CSS for emails
 
 # Active Storage
