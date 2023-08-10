@@ -36,12 +36,9 @@ module Hackathon::Subscription::Status
   private
 
   def track_changes
-    if changed_to_inactive?
-      record(:disabled)
-    end
-  end
+    return unless saved_change_to_status?
 
-  def changed_to_inactive?
-    saved_change_to_status? && inactive?
+    record(:enabled) if active?
+    record(:disabled) if inactive?
   end
 end
