@@ -25,11 +25,11 @@ module Hackathon::Subscription::Status
     end
   end
 
-  def unsubscribe!
+  def unsubscribe
     update(status: :inactive)
   end
 
-  def resubscribe!
+  def resubscribe
     update(status: :active)
   end
 
