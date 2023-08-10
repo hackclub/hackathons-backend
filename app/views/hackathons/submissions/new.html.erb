@@ -10,6 +10,18 @@
   </div>
 
   <div>
+    <%= form.fields_for :applicant do |applicant_fields| %>
+      <%= applicant_fields.label :email_address %>
+
+      <% if Current.user %>
+        <%= applicant_fields.email_field :email_address, value: Current.user.email_address, disabled: true %>
+      <% else %>
+        <%= applicant_fields.email_field :email_address, required: true %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
     <%= form.label :logo %>
     <%= form.file_field :logo %>
   </div>
