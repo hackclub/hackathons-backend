@@ -14,10 +14,12 @@ class Hackathons::SubmissionsController < ApplicationController
 
   def create
     @hackathon = Hackathon.new(
-      hackathon_params.except(:applicant, :offers_financial_assistance)
+      hackathon_params.except(:applicant, :offers_financial_assistance, :requested_swag)
     )
 
-    @hackathon.applicant = Current.user || User.find_or_initialize_by(hackathon_params[:applicant])
+    if hackathon_params[:requested_swag] == "0"
+      @hackathon.swag_mailing_address = nil
+    end
 
     if @hackathon.save context: :submit
       if hackathon_params[:offers_financial_assistance]
@@ -47,7 +49,8 @@ class Hackathons::SubmissionsController < ApplicationController
       :address,
       :expected_attendees,
       :offers_financial_assistance,
-      swag_mailing_address: [
+      :requested_swag,
+      swag_mailing_address_attributes: [
         :line1,
         :line2,
         :city,

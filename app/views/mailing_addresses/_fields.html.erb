@@ -19,6 +19,6 @@
 </div>
 
 <div>
-  <%= form.label :country %>
-  <%= form.collection_select :country, ISO3166::Country.all, :alpha2, :common_name, selected: "US" %>
+  <%= form.label :country_code, "Country" %>
+  <%= form.collection_select :country_code, ISO3166::Country.all, :alpha2, :common_name, selected: "US" %>
 </div>
