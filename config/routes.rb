@@ -1,3 +1,6 @@
+require "sidekiq/web"
+require "constraints/admin"
+
 Rails.application.routes.draw do
   root "hackathons#index"
 
@@ -29,6 +32,10 @@ Rails.application.routes.draw do
 
   namespace :hackathons do
     resources :submissions, only: [:index, :new, :create, :show]
+  end
+
+  constraints Constraints::Admin do
+    mount Sidekiq::Web => "/sidekiq"
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

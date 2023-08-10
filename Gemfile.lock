@@ -301,6 +301,11 @@ GEM
     shoulda-context (2.0.0)
     shoulda-matchers (4.4.1)
       activesupport (>= 4.2.0)
+    sidekiq (7.1.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.14.0)
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -382,6 +387,7 @@ DEPENDENCIES
   sass-rails
   selenium-webdriver
   shoulda
+  sidekiq
   spring
   sprockets-rails
   standard

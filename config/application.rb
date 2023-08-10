@@ -21,6 +21,8 @@ module Hackathons
 
     config.active_record.encryption.encrypt_fixtures = true
 
+    config.active_job.queue_adapter = :sidekiq
+
     host = ENV["HOST"] || Rails.application.credentials.dig(:default_url_host, Rails.env) || "localhost:3000"
     Rails.application.routes.default_url_options[:host] = host
 

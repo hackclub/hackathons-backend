@@ -1,0 +1,12 @@
+---
+:verbose: false
+:concurrency: 10
+:timeout: 25
+
+:queues:
+  - critical
+  - default
+  - mailers
+  - active_storage_analysis
+  - active_storage_purge
+  - low
