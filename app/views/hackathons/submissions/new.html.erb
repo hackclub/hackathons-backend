@@ -39,6 +39,11 @@
     <%= form.number_field :expected_attendees, required: true %>
   </div>
 
+  <div class="push--top">
+    <%= form.check_box :offers_financial_assistance %>
+    <%= form.label :offers_financial_assistance, "Does your hackathon offer financial assistance?" %>
+  </div>
+
   <div data-controller="form--visibility" class="notice">
     <div>
       <%= check_box_tag nil, nil, false, id: "hackathon_requested_swag", data: {"form--visibility-target": "input", "action": "change->form--visibility#toggle"} %>
