@@ -166,6 +166,7 @@ GEM
       railties (>= 5.2)
       rexml
     lint_roller (1.1.0)
+    local_time (2.1.0)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -280,6 +281,16 @@ GEM
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     selenium-webdriver (4.11.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -312,6 +323,7 @@ GEM
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     thor (1.2.2)
+    tilt (2.2.0)
     timeout (0.4.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -359,6 +371,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   letter_opener_web
+  local_time
   pagy
   pg
   premailer-rails
@@ -366,6 +379,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 7.0.6)
   redis
+  sass-rails
   selenium-webdriver
   shoulda
   spring

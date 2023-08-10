@@ -1,0 +1,8 @@
+<h3>Your Hackathon Submissions</h3>
+<% @hackathons.each do |hackathon| %>
+  <article>
+    <%= link_to hackathon.name, hackathons_submission_path(hackathon) %>
+
+    <small><i>submitted <%= time_ago hackathon.created_at %></i></small>
+  </article>
+<% end %>

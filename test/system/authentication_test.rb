@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class AuthenticationFlowTest < ApplicationSystemTestCase
+class AuthenticationTest < ApplicationSystemTestCase
   setup do
     @user = users(:matt)
   end

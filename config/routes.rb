@@ -27,5 +27,9 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :hackathons do
+    resources :submissions, only: [:index, :new, :create, :show]
+  end
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
