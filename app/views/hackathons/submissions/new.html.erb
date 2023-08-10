@@ -32,17 +32,17 @@
   </div>
 
   <div>
-    <%= form.label :start_date %>
+    <%= form.label :starts_at, "Start date" %>
     <%= form.date_field :starts_at, required: true %>
   </div>
 
   <div>
-    <%= form.label :end_date %>
+    <%= form.label :ends_at, "End date" %>
     <%= form.date_field :ends_at, required: true %>
   </div>
 
   <div>
-    <%= form.label :location %>
+    <%= form.label :address, "Location" %>
     <%= form.text_field :address, required: true, placeholder: "760 Market St, San Francisco, CA" %>
   </div>
 
