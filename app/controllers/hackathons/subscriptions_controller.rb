@@ -18,7 +18,7 @@ class Hackathons::SubscriptionsController < ApplicationController
     @subscriptions = @user.subscriptions.active
 
     @unsubscribed_ids = @subscriptions.pluck(:id)
-    @unsubscribe_count = @subscriptions.map(&:unsubscribe!).count(true)
+    @unsubscribe_count = @subscriptions.map(&:unsubscribe).count(true)
   end
 
   private
