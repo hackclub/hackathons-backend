@@ -5,16 +5,20 @@ module Hackathon::Subscription::Regional
     attribute :location_input
     validates :location, presence: true
 
-    geocoded_by :location
-    reverse_geocoded_by :latitude, :longitude do |object, results|
-      # essentially formats the location
+    geocoded_by :location do |subscription, results|
+      # Geocodes to coordinates and standardizes the location attributes
       if (result = results.first)
-        object.country_code = result.country_code.upcase
-        object.province = result.province || result.state
-        object.city = result.city
+        subscription.attributes = {
+          city: result.city,
+          province: result.province || result.state,
+          country_code: result.country_code.upcase,
+
+          longitude: result.coordinates.second,
+          latitude: result.coordinates.first
+        }
       end
     end
-    before_validation :geocode, :reverse_geocode, if: -> { geocoding_needed? }
+    before_validation :geocode, if: -> { geocoding_needed? }
     after_save :record_result, if: -> { geocoding_needed? }
 
     validate :location_unique_per_subscriber, if: :active?

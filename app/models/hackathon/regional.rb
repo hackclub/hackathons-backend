@@ -4,19 +4,23 @@ module Hackathon::Regional
   included do
     validates :address, presence: true, on: :submit
 
-    geocoded_by :address
-    reverse_geocoded_by :latitude, :longitude do |hackathon, results| # essentially formats the location
+    geocoded_by :address do |hackathon, results|
+      # Geocodes to coordinates and standardizes the location attributes
       if (result = results.first)
-        hackathon.country_code = result.country_code.upcase
-        hackathon.postal_code = result.postal_code
-        hackathon.province = result.province || result.state
-        hackathon.city = result.city
-        hackathon.address = result.address
-        hackathon.street = [result.house_number, result.street].compact.join(" ").presence
+        hackathon.attributes = {
+          latitude: result.coordinates.first,
+          longitude: result.coordinates.second,
+
+          street: [result.house_number, result.street].compact.join(" ").presence,
+          address: result.address,
+          city: result.city,
+          province: result.province || result.state,
+          postal_code: result.postal_code,
+          country_code: result.country_code.upcase
+        }
       end
     end
-
-    before_save :geocode, :reverse_geocode, if: -> { (new_record? || address_changed?) && valid? }
+    before_save :geocode, if: -> { (new_record? || address_changed?) && valid? }
   end
 
   def address
