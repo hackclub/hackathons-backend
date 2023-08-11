@@ -9,7 +9,6 @@ class Hackathon::Digest::Listings::Criterion::LocationTest < ActiveSupport::Test
       "coordinates" => [47.6038321, -122.330062]
     }
     Geocoder::Lookup::Test.add_stub("Seattle, Washington, US", [seattle])
-    Geocoder::Lookup::Test.add_stub(seattle["coordinates"], [seattle.except("coordinates")])
 
     washington = {
       "state" => "Washington",
@@ -17,14 +16,12 @@ class Hackathon::Digest::Listings::Criterion::LocationTest < ActiveSupport::Test
       "coordinates" => [47.2868352, -120.212613]
     }
     Geocoder::Lookup::Test.add_stub("Washington, US", [washington])
-    Geocoder::Lookup::Test.add_stub(washington["coordinates"], [washington.except("coordinates")])
 
     us = {
       "country_code" => "us",
       "coordinates" => [39.7837304, -100.445882]
     }
     Geocoder::Lookup::Test.add_stub("US", [us])
-    Geocoder::Lookup::Test.add_stub(us["coordinates"], [us.except("coordinates")])
 
     @user = users(:gary)
   end
