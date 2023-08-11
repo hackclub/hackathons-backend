@@ -17,16 +17,7 @@ Rails.application.routes.draw do
         get "unsubscribe_all", on: :collection
       end
       namespace :subscriptions do
-        resource :bulk, controller: :bulk, only: [:update, :destroy]
-      end
-    end
-  end
-
-  namespace :api, defaults: {format: :json} do
-    scope "/v:api_version" do
-      resources :hackathons, only: [:index, :show]
-      scope module: :hackathon do
-        resources :subscriptions, only: :create
+        resource :bulk, only: [:update, :destroy]
       end
     end
   end
@@ -37,7 +28,24 @@ Rails.application.routes.draw do
 
   constraints Constraints::Admin do
     mount Sidekiq::Web => "/sidekiq"
+
+    namespace :admin do
+      resources :hackathons, except: [:new, :create] do
+        scope module: :hackathons do
+          resource :approval, :rejection, :hold, only: [:create]
+        end
+      end
+    end
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  namespace :api, defaults: {format: :json} do
+    scope "/v:api_version" do
+      resources :hackathons, only: [:index, :show]
+      scope module: :hackathon do
+        resources :subscriptions, only: :create
+      end
+    end
+  end
 end

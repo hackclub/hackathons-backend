@@ -1,0 +1,61 @@
+<% content_for :title, @hackathon.name %>
+
+<div id="<%= dom_id(@hackathon) %>" class="hackathon">
+    <h1 class="heading--medium">
+      <%= @hackathon.name %>
+    </h1>
+
+    <div>
+      Status:
+      <%= @hackathon.status %>
+    </div>
+
+    <div>
+      Applicant:
+      <%= "#{@hackathon.applicant.name}, " if @hackathon.applicant.name.present? %>
+      <%= @hackathon.applicant.email_address %>
+    </div>
+
+    <div>
+      Website:
+      <%= @hackathon.website %>
+    </div>
+
+    <div>
+      Starts <%= local_time_ago(@hackathon.starts_at) %>,
+      ends <%= local_time_ago(@hackathon.ends_at) %>
+    </div>
+
+    <div>
+      Expected Attendees:
+      <%= @hackathon.expected_attendees %> <%= @hackathon.modality.humanize(capitalize: false) %>
+    </div>
+
+    <div>
+      Location:
+
+      <%= @hackathon.address %>
+
+      <% if @hackathon.latitude %>
+        <span title="latitude, longitude"><%= @hackathon.latitude %>, <%= @hackathon.longitude %></span>
+      <% end %>
+    </div>
+
+    <div>
+      <% if @hackathon.requested_swag? %>
+        Swag requested for: <%= @hackathon.swag_mailing_address.full %>
+      <% else %>
+        No swag requested.
+      <% end %>
+    </div>
+
+    <div class="button-group">
+      <%= button_to "Approve", admin_hackathon_approval_path(@hackathon) %>
+      <%= button_to "Reject", admin_hackathon_rejection_path(@hackathon) %>
+      <%= button_to "Hold", admin_hackathon_hold_path(@hackathon) %>
+    </div>
+
+    <section>
+      <%= render "events/timeline", {eventable: @hackathon} %>
+    </section>
+</div>

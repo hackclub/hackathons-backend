@@ -1,0 +1,31 @@
+.hackathon--pending {
+  border-color: darkgray;
+}
+
+.hackathon--approved {
+  border-color: limegreen;
+}
+
+.hackathon--rejected {
+  border-color: red;
+}
+
+.hackathon-snippet {
+  border: 3px solid;
+  padding: 0.5rem;
+  display: flex;
+}
+
+.hackathon-snippet__title {
+  margin: 0 !important;
+  font-weight: normal;
+}
+
+.hackathon-snippet__time {
+  margin-left: auto;
+  text-decoration: none !important;
+}
+
+.hackathon > * {
+  margin-top: 1rem;
+}

@@ -2,7 +2,7 @@ module HackathonScoped
   extend ActiveSupport::Concern
 
   included do
-    before_action :set_hackathon, except: [:index, :new, :create]
+    before_action :set_hackathon
   end
 
   private
