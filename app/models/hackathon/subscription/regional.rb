@@ -9,12 +9,12 @@ module Hackathon::Subscription::Regional
       # Geocodes to coordinates and standardizes the location attributes
       if (result = results.first)
         subscription.attributes = {
+          latitude: result.latitude,
+          longitude: result.longitude,
+
           city: result.city,
           province: result.province || result.state,
-          country_code: result.country_code.upcase,
-
-          longitude: result.coordinates.second,
-          latitude: result.coordinates.first
+          country_code: result.country_code.upcase
         }
       end
     end

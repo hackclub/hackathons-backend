@@ -8,8 +8,8 @@ module Hackathon::Regional
       # Geocodes to coordinates and standardizes the location attributes
       if (result = results.first)
         hackathon.attributes = {
-          latitude: result.coordinates.first,
-          longitude: result.coordinates.second,
+          latitude: result.latitude,
+          longitude: result.longitude,
 
           address: result.address,
           street: [result.house_number, result.street].compact.join(" ").presence,
