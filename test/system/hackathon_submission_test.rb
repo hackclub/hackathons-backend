@@ -6,7 +6,7 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
       "760 Market St, San Francisco, CA", [{
         coordinates: [37.7866671, -122.40505],
         address: "760, Market Street, Union Square, San Francisco, CAL Fire Northern Region, California, 94102, United States",
-        house_number: "750",
+        house_number: "760",
         street: "Market Street",
         city: "San Francisco",
         province: "California",
