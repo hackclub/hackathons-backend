@@ -1,4 +1,4 @@
-class Hackathon::SubscriptionsController < ApplicationController
+class Hackathons::SubscriptionsController < ApplicationController
   skip_before_action :redirect_if_unauthenticated, only: [:index, :unsubscribe_all]
   before_action :set_user, only: [:index, :unsubscribe_all]
 
