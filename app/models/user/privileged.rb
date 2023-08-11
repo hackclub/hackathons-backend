@@ -1,4 +1,10 @@
 module User::Privileged
+  extend ActiveSupport::Concern
+
+  included do
+    scope :admins, -> { where admin: true }
+  end
+
   def promote_to_admin
     transaction do
       update! admin: true

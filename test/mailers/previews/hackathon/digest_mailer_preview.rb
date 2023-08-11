@@ -1,7 +1,10 @@
-# Preview all emails at http://localhost:3000/rails/mailers/hackathon/digest_mailer
+# Preview all emails at http://localhost:3000/rails/mailers/hackathons/digest_mailer
 class Hackathons::DigestMailerPreview < ActionMailer::Preview
-  # Preview this email at http://localhost:3000/rails/mailers/hackathon/digest_mailer/by_location
-  def by_location
+  def digest
     Hackathons::DigestMailer.with(digest: Hackathon::Digest.last).digest
+  end
+
+  def admin_summary
+    Hackathons::DigestMailer.with(digests: Hackathon::Digest.all).admin_summary
   end
 end

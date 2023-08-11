@@ -1,4 +1,4 @@
-<article style="margin-bottom: 1.25rem;">
+<article style="margin-bottom: 1.5rem;">
   <%# Hackathon name %>
   <div style="margin-bottom: 0.25rem;">
     <% if hackathon.logo.attached? %>
@@ -7,6 +7,7 @@
     <h3 style="vertical-align: middle; display: inline-block; margin: 0;">
       <%= link_to hackathon.name, hackathon.website %>
     </h3>
+    <%= local_assigns[:subtitle] %>
   </div>
 
   <%# Hackathon description %>
@@ -17,7 +18,10 @@
         (<%= time_ago_in_words hackathon.starts_at %> from now)
       </span>
     </p>
-    <p style="margin: 0;">
+
+    <%= yield %>
+
+    <p style="margin: 0.2rem 0;">
       <%= link_to hackathon.website, hackathon.website %>
     </p>
   </div>
