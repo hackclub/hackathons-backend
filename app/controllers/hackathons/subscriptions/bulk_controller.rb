@@ -1,4 +1,4 @@
-class Hackathon::Subscriptions::BulkController < ApplicationController
+class Hackathons::Subscriptions::BulkController < ApplicationController
   skip_before_action :redirect_if_unauthenticated, only: [:update, :destroy]
 
   before_action :set_user

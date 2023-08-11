@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [] do
-    scope module: :hackathon do
+    scope module: :hackathons do
       resources :subscriptions, only: :index do
         get "unsubscribe_all", on: :collection
       end
