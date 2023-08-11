@@ -3,19 +3,16 @@ require "application_system_test_case"
 class HackathonSubmissionTest < ApplicationSystemTestCase
   setup do
     Geocoder::Lookup::Test.add_stub(
-      "760 Market St, San Francisco, CA", [{"coordinates" => [37.7866671, -122.40505]}]
-    )
-
-    Geocoder::Lookup::Test.add_stub(
-      [37.7866671, -122.40505],
-      [{
-        "address" => "760 Market Street, San Francisco, California",
-        "house_number" => "760",
-        "street" => "Market Street",
-        "city" => "San Francisco",
-        "state" => "California",
-        "postal_code" => "94102",
-        "country_code" => "US"
+      "760 Market St, San Francisco, CA", [{
+        coordinates: [37.7866671, -122.40505],
+        address: "760, Market Street, Union Square, San Francisco, CAL Fire Northern Region, California, 94102, United States",
+        house_number: "760",
+        street: "Market Street",
+        city: "San Francisco",
+        province: "California",
+        state: "California",
+        postal_code: "94102",
+        country_code: "us"
       }]
     )
   end
