@@ -1,0 +1,3 @@
+weekly_digest:
+  cron: "every tuesday at 10am on America/Los_Angeles"
+  class: "Hackathon::DigestJob"

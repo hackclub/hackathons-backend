@@ -28,6 +28,10 @@ gem "aws-sdk-s3", require: false
 gem "image_processing", ">= 1.2"
 gem "active_storage_validations"
 
+# Background jobs
+gem "sidekiq"
+gem "sidekiq-cron"
+
 # API
 gem "jbuilder" # JSON templating
 gem "versioncake" # API versioning
