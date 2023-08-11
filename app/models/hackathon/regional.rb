@@ -11,8 +11,8 @@ module Hackathon::Regional
           latitude: result.coordinates.first,
           longitude: result.coordinates.second,
 
-          street: [result.house_number, result.street].compact.join(" ").presence,
           address: result.address,
+          street: [result.house_number, result.street].compact.join(" ").presence,
           city: result.city,
           province: result.province || result.state,
           postal_code: result.postal_code,
