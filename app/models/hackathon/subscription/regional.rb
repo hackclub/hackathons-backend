@@ -6,7 +6,8 @@ module Hackathon::Subscription::Regional
     validates :location_input, presence: true, unless: -> { city? || province? || country_code? }
 
     geocoded_by :location
-    reverse_geocoded_by :latitude, :longitude do |object, results| # essentially formats the location
+    reverse_geocoded_by :latitude, :longitude do |object, results|
+      # essentially formats the location
       if (result = results.first)
         object.country_code = result.country_code.upcase
         object.province = result.province || result.state
@@ -16,7 +17,7 @@ module Hackathon::Subscription::Regional
     before_validation :geocode, :reverse_geocode, if: -> { geocoding_needed? }
     after_save :record_result, if: -> { geocoding_needed? }
 
-    validate :location_unique_per_subscriber, if: -> { geocoding_needed? }
+    validate :location_unique_per_subscriber, if: :active?
   end
 
   def location
