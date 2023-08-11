@@ -24,7 +24,7 @@ class Hackathons::SubmissionsController < ApplicationController
     @hackathon.applicant = User.find_or_initialize_by(hackathon_params[:applicant])
 
     if @hackathon.save context: :submit
-      if hackathon_params[:offers_financial_assistance]
+      if hackathon_params[:offers_financial_assistance] == "1"
         @hackathon.tag_with! "Offers Financial Assistance"
       end
 
