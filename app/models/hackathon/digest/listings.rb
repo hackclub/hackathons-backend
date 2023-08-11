@@ -6,7 +6,7 @@ module Hackathon::Digest::Listings
     has_many :listed_hackathons, through: :listings, source: :hackathon
     has_many :listed_subscriptions, through: :listings, source: :subscription
 
-    before_validation :build_candidate_listings, on: :create
+    before_validation :build_candidate_listings, on: :create, if: -> { listings.empty? }
     validates_length_of :listings, minimum: 1, on: :create, message: "must not be empty"
   end
 
