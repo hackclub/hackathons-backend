@@ -64,3 +64,11 @@ dependency installed on your machine. For macs, run:
 ```sh
 brew install vips
 ```
+
+## Deployment
+
+- Herokou
+  - Postgres (Heroku Postgres)
+  - Redis (Redis Enterprise Cloud)
+- Hetzner
+  - Runs the Rails app and Sidekiq
