@@ -51,7 +51,7 @@ module Hackathon::Digest::Listings
         # For example, "Seattle, WA, US" would be covered by a subscription to
         # "WA US" (which is more general than Seattle).
         active_subscriptions.any? do |other|
-          subscription.to_location.covers?(other.to_location)
+          subscription.to_location.covered_by?(other.to_location)
         end
       end
     end

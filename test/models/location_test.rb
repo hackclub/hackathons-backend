@@ -49,6 +49,15 @@ class LocationTest < ActiveSupport::TestCase
     assert :country, loc.most_significant_component
   end
 
+  test "country covers state" do
+    washington = Location.new(nil, "Washington", "US")
+    us = Location.new(nil, nil, "US")
+
+    assert us.covers? washington
+    assert washington.covered_by? us
+    assert_not washington == us
+  end
+
   test "country covers city" do
     seattle = Location.new("Seattle", "Washington", "US")
     us = Location.new(nil, nil, "US")
