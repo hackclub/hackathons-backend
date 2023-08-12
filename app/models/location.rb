@@ -1,8 +1,8 @@
 class Location
-  def initialize(city, province, country)
+  def initialize(city, province, country_code)
     @city = city
     @province = province
-    @country = country
+    @country = country_code
   end
 
   attr_reader :city, :province, :country
@@ -12,12 +12,13 @@ class Location
   # https://pe.usps.com/text/pub28/28c2_012.htm#ep526349
   COMPONENTS = [:city, :province, :country]
 
-  def component(compon)
-    send(compon) if compon.in? COMPONENTS
-  end
-
   def components
     [@city, @province, @country]
+  end
+
+  def country_name
+    (ISO3166::Country[@country] || ISO3166::Country.find_country_by_any_name(@country))
+      &.common_name
   end
 
   def most_significant_component
@@ -27,6 +28,12 @@ class Location
     # significant component is the city.
     COMPONENTS.each do |compon|
       return compon if send(compon).present?
+    end
+  end
+
+  COMPONENTS.each do |compon|
+    define_method "#{compon}_most_significant?" do
+      most_significant_component == compon
     end
   end
 
@@ -42,7 +49,7 @@ class Location
 
     sig = other.most_significant_component_value
     COMPONENTS[sig..].all? do |compon|
-      component(compon) == other.component(compon)
+      send(compon) == other.send(compon)
     end
   end
 
@@ -59,16 +66,15 @@ class Location
   end
 
   def to_s
+    return country_name if country_most_significant? && country_name.present?
+
     components.compact.join(", ")
   end
 
   def to_formatted_s(format = nil)
-    case format
-    when :short
-      (@country == "US") ? [city, province].compact.join(", ") : to_s
-    else
-      to_s
-    end
+    return to_s unless format == :short && @country == "US" && !country_most_significant?
+
+    [city, province].compact.join(", ")
   end
 
   alias_method :to_fs, :to_formatted_s
