@@ -24,6 +24,9 @@ default: &default
 development:
   <<: *default
   database: hackathons_development
+  # The following line fixes an segmentation fault error with postgresql on Macs
+  # https://github.com/ged/ruby-pg/issues/311#issuecomment-561927000
+  gssencmode: disable
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -58,6 +61,9 @@ development:
 test:
   <<: *default
   database: hackathons_test
+  # The following line fixes an segmentation fault error with postgresql on Macs
+  # https://github.com/ged/ruby-pg/issues/311#issuecomment-561927000
+  gssencmode: disable
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
