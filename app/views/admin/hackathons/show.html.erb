@@ -1,5 +1,9 @@
 <% content_for :title, @hackathon.name %>
 
+<% content_for :nav do %>
+  <%= link_to "◀ Back to Hackathons", admin_hackathons_path, class: "button" %>
+<% end %>
+
 <div id="<%= dom_id(@hackathon) %>" class="hackathon">
     <h1 class="heading--medium">
       <%= @hackathon.name %>
