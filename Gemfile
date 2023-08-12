@@ -5,7 +5,7 @@ ruby "3.2.2"
 
 gem "dotenv-rails"
 
-gem "rails", "~> 7.0.7"
+gem "rails", github: "rails/rails"
 
 # Drivers
 gem "pg"
