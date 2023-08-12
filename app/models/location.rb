@@ -47,7 +47,7 @@ class Location
     return false unless most_significant_component_value && other.most_significant_component_value
     return false if most_significant_component_value >= other.most_significant_component_value # Location A is more specific than location B.
 
-    sig = other.most_significant_component_value
+    sig = COMPONENTS.index most_significant_component
     COMPONENTS[sig..].all? do |compon|
       send(compon) == other.send(compon)
     end
