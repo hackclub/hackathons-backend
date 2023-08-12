@@ -12,7 +12,7 @@ shape_for hackathon, json do
   json.location do
     json.city hackathon.city
     json.state hackathon.province
-    json.country hackathon.country_code
+    json.country_code hackathon.country_code
     json.longitude hackathon.longitude
     json.latitude hackathon.latitude
   end
