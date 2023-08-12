@@ -30,6 +30,12 @@ class Location
     end
   end
 
+  COMPONENTS.each do |compon|
+    define_method "#{compon}_most_significant?" do
+      most_significant_component == compon
+    end
+  end
+
   def ==(other)
     components == other.components
   end
@@ -63,12 +69,9 @@ class Location
   end
 
   def to_formatted_s(format = nil)
-    case format
-    when :short
-      (@country == "US") ? [city, province].compact.join(", ") : to_s
-    else
-      to_s
-    end
+    return to_s unless format == :short && @country == "US" && !country_most_significant?
+
+    [city, province].compact.join(", ")
   end
 
   alias_method :to_fs, :to_formatted_s
