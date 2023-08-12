@@ -1,8 +1,8 @@
 class Location
-  def initialize(city, province, country)
+  def initialize(city, province, country_code)
     @city = city
     @province = province
-    @country = country
+    @country = country_code
   end
 
   attr_reader :city, :province, :country
@@ -17,7 +17,8 @@ class Location
   end
 
   def country_name
-    ISO3166::Country[@country]&.common_name
+    (ISO3166::Country[@country] || ISO3166::Country.find_country_by_any_name(@country))
+      &.common_name
   end
 
   def most_significant_component

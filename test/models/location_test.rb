@@ -117,4 +117,42 @@ class LocationTest < ActiveSupport::TestCase
     assert_not us1.covered_by? us2
     assert_not us2.covered_by? us1
   end
+
+  test "country to country name" do
+    location = Location.new(nil, nil, "US")
+    assert_equal "United States", location.country_name
+
+    location = Location.new(nil, nil, "United States")
+    assert_equal "United States", location.country_name
+  end
+
+  test "non-existent country code to country name" do
+    location = Location.new(nil, nil, nil)
+    assert_equal nil, location.country_name
+
+    location = Location.new(nil, nil, "I DON'T EXIST")
+    assert_equal nil, location.country_name
+  end
+
+  test "to_s with only country" do
+    location = Location.new(nil, nil, "US")
+
+    # Should use country's common name
+    assert_equal "United States", location.to_s
+  end
+
+  test "to_s with short format" do
+    location = Location.new("Seattle", "Washington", "US")
+    assert_equal "Seattle, Washington", location.to_formatted_s(:short) # Should drop the country if in the US
+
+    # to_formatted_s and to_s should be the same
+    location = Location.new("Vancouver", "British Columbia", "CA")
+    assert_equal "Vancouver, British Columbia, CA", location.to_fs(:short)
+  end
+
+  test "short to_s, with only country" do
+    location = Location.new(nil, nil, "US")
+    # Should use country's common name
+    assert_equal "United States", location.to_fs(:short)
+  end
 end
