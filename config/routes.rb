@@ -3,6 +3,8 @@ require "sidekiq/cron/web"
 require "constraints/admin"
 
 Rails.application.routes.draw do
+  get "up", to: "rails/health#show", as: :health_check
+
   root "hackathons#index"
 
   get "sign_in", to: "users/authentications#new", as: :sign_in
