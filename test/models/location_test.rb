@@ -8,10 +8,6 @@ class LocationTest < ActiveSupport::TestCase
     assert_equal "Washington", loc.province
     assert_equal "US", loc.country
 
-    assert_equal "Seattle", loc.component(:city)
-    assert_equal "Washington", loc.component(:province)
-    assert_equal "US", loc.component(:country)
-
     assert_equal %w[Seattle Washington US], loc.components
 
     assert :city, loc.most_significant_component
@@ -23,10 +19,6 @@ class LocationTest < ActiveSupport::TestCase
     assert_nil loc.city
     assert_equal "Washington", loc.province
     assert_equal "US", loc.country
-
-    assert_nil loc.component(:city)
-    assert_equal "Washington", loc.component(:province)
-    assert_equal "US", loc.component(:country)
 
     assert_equal [nil, "Washington", "US"], loc.components
 
@@ -40,10 +32,6 @@ class LocationTest < ActiveSupport::TestCase
     assert_nil loc.province
     assert_equal "US", loc.country
 
-    assert_equal "Seattle", loc.component(:city)
-    assert_nil loc.component(:province)
-    assert_equal "US", loc.component(:country)
-
     assert_equal ["Seattle", nil, "US"], loc.components
 
     assert :city, loc.most_significant_component
@@ -55,10 +43,6 @@ class LocationTest < ActiveSupport::TestCase
     assert_nil loc.city
     assert_nil loc.province
     assert_equal "US", loc.country
-
-    assert_nil loc.component(:city)
-    assert_nil loc.component(:province)
-    assert_equal "US", loc.component(:country)
 
     assert_equal [nil, nil, "US"], loc.components
 

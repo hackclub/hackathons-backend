@@ -12,10 +12,6 @@ class Location
   # https://pe.usps.com/text/pub28/28c2_012.htm#ep526349
   COMPONENTS = [:city, :province, :country]
 
-  def component(compon)
-    send(compon) if compon.in? COMPONENTS
-  end
-
   def components
     [@city, @province, @country]
   end
@@ -52,7 +48,7 @@ class Location
 
     sig = other.most_significant_component_value
     COMPONENTS[sig..].all? do |compon|
-      component(compon) == other.component(compon)
+      send(compon) == other.send(compon)
     end
   end
 
