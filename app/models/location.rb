@@ -47,6 +47,14 @@ class Location
     return false unless most_significant_component_value && other.most_significant_component_value
     return false if most_significant_component_value >= other.most_significant_component_value # Location A is more specific than location B.
 
+    # Loops from this object's most significant component to it's least
+    # significant component.
+    #   Example:
+    #   - If MSC is city, then loop from          city -> province -> country
+    #   - If MSC is province, then loop from      province -> country
+    #   - If MSC is country, then loop through    country
+    # For each iteration, check that each component is equal to the other
+    # object's component.
     sig = COMPONENTS.index most_significant_component
     COMPONENTS[sig..].all? do |compon|
       send(compon) == other.send(compon)
