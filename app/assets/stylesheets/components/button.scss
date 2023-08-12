@@ -5,3 +5,15 @@
 .button-group > * {
   margin-right: 1.5rem;
 }
+
+.button--success {
+  background-color: limegreen;
+}
+
+.button--neutral {
+  background-color: darkgray;
+}
+
+.button--danger {
+  background-color: crimson;
+}

@@ -1,15 +1,3 @@
-.hackathon--pending {
-  border-color: darkgray;
-}
-
-.hackathon--approved {
-  border-color: limegreen;
-}
-
-.hackathon--rejected {
-  border-color: red;
-}
-
 .hackathon-snippet {
   border: 3px solid;
   padding: 0.5rem;
@@ -28,4 +16,16 @@
 
 .hackathon > * {
   margin-top: 1rem;
+}
+
+.hackathon--pending {
+  border-color: darkgray;
+}
+
+.hackathon--approved {
+  border-color: limegreen;
+}
+
+.hackathon--rejected {
+  border-color: red;
 }

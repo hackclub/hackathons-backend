@@ -50,9 +50,9 @@
     </div>
 
     <div class="button-group">
-      <%= button_to "Approve", admin_hackathon_approval_path(@hackathon) %>
-      <%= button_to "Reject", admin_hackathon_rejection_path(@hackathon) %>
-      <%= button_to "Hold", admin_hackathon_hold_path(@hackathon) %>
+      <%= button_to "Approve", admin_hackathon_approval_path(@hackathon), class: "button--success" %>
+      <%= button_to "Reject", admin_hackathon_rejection_path(@hackathon), class: "button--danger" %>
+      <%= button_to "Hold", admin_hackathon_hold_path(@hackathon), class: "button--neutral" %>
     </div>
 
     <section>
