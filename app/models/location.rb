@@ -20,6 +20,10 @@ class Location
     [@city, @province, @country]
   end
 
+  def country_name
+    ISO3166::Country[@country]&.common_name
+  end
+
   def most_significant_component
     # The "most significant component" represents the most specific location
     # attribute that is provided. This is similar to the concept of "most
@@ -65,6 +69,8 @@ class Location
   end
 
   def to_s
+    return country_name if country_most_significant? && country_name.present?
+
     components.compact.join(", ")
   end
 

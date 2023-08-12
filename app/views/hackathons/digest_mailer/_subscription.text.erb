@@ -1,4 +1,4 @@
-Near <%= subscription.to_location.to_fs(:short) %>
+<%= subscription.to_location.city_most_significant? ? "Near" : "In" %> <%= subscription.to_location.to_fs(:short) %>
 
 <% listings.each do |listing| %>
   <%= render "hackathon", hackathon: listing.hackathon %>
