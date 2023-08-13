@@ -9,7 +9,6 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   config.enable_reloading = defined?(Spring) # Spring needs code reloading enabled to work properly
-  config.action_view.cache_template_loading = true unless config.enable_reloading
 
   # Eager loading loads your whole application. When running a single test locally,
   # this probably isn't necessary. It's a good idea to do in a continuous integration
