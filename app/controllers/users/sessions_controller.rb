@@ -14,11 +14,6 @@ class Users::SessionsController < ApplicationController
         return redirect_to sign_in_path
       end
 
-      unless authentication.user.admin? # Don't allow non-admins to sign in
-        authentication.reject reason: :non_admin
-        return redirect_to root_path
-      end
-
       authentication.complete
       session = authentication.create_session!
 

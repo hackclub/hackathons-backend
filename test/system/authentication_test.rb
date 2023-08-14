@@ -52,21 +52,6 @@ class AuthenticationTest < ApplicationSystemTestCase
     assert_current_path sign_in_path
   end
 
-  test "as a non-admin" do
-    user = users(:peasant_matt)
-    authentication = user.authentications.create!
-
-    assert_no_difference -> { user.sessions.count } do
-      visit new_session_path(auth_token: authentication.token)
-    end
-
-    assert_not authentication.succeeded?
-    assert_equal "rejected", authentication.events&.last&.action
-    assert_equal "non_admin", authentication.events&.last&.details&.dig("reason")
-
-    assert_no_current_path sign_in_path
-  end
-
   test "using a valid link" do
     authentication = @user.authentications.create!
 
