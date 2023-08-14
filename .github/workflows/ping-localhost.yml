@@ -1,0 +1,15 @@
+name: Ping localhost
+on: [ push ]
+jobs:
+  ping-localhost:
+    name: Ping localhost
+    runs-on: ubuntu-latest
+    steps:
+      - name: ping localhost
+        run: ping localhost
+  ping-127_0_0_1:
+    name: Ping 127.0.0.1
+    runs-on: ubuntu-latest
+    steps:
+      - name: ping 127.0.0.1
+        run: ping 127.0.0.1
