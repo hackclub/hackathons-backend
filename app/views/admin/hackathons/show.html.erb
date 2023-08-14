@@ -9,6 +9,24 @@
     <%= @hackathon.name %>
   </h1>
 
+  <% if @hackathon.logo.present? || @hackathon.banner.present? %>
+    <section style="display: flex;">
+      <% if @hackathon.logo.present? %>
+        <div>
+          <h2 class="heading--small">Logo</h2>
+          <%= image_tag @hackathon.logo, size: 128 %>
+        </div>
+      <% end %>
+
+      <% if @hackathon.banner.present? %>
+        <div>
+          <h2 class="heading--small">Banner</h2>
+          <%= image_tag @hackathon.banner, height: 128 %>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
+
   <div>
     Status:
     <%= @hackathon.status %>
