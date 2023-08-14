@@ -17,7 +17,7 @@ Rails.application.routes.draw do
         get "unsubscribe_all", on: :collection
       end
       namespace :subscriptions do
-        resource :bulk, only: [:update, :destroy]
+        resource :bulk, controller: :bulk, only: [:update, :destroy]
       end
     end
   end
