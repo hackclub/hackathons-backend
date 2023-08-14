@@ -31,6 +31,10 @@ module Hackathon::Regional
     [city, province, country_code].compact.join(", ")
   end
 
+  def country
+    ISO3166::Country[country_code]&.common_name
+  end
+
   def to_location
     Location.new(city, province, country_code)
   end
