@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     scope "/v:api_version" do
       resources :hackathons, only: [:index, :show]
-      scope module: :hackathon do
+      namespace :hackathons do
         resources :subscriptions, only: :create
       end
 
