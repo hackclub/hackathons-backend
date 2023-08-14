@@ -22,6 +22,24 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :hackathons do
+    resources :submissions, only: [:index, :new, :create, :show]
+  end
+
+  constraints Constraints::Admin do
+    mount Sidekiq::Web => "/sidekiq"
+
+    namespace :admin do
+      resources :hackathons, except: [:new, :create] do
+        scope module: :hackathons do
+          resource :approval, :rejection, :hold, only: [:create]
+        end
+      end
+    end
+  end
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   namespace :api, defaults: {format: :json} do
     scope "/v:api_version" do
       resources :hackathons, only: [:index, :show]
@@ -36,14 +54,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  namespace :hackathons do
-    resources :submissions, only: [:index, :new, :create, :show]
-  end
-
-  constraints Constraints::Admin do
-    mount Sidekiq::Web => "/sidekiq"
-  end
-
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

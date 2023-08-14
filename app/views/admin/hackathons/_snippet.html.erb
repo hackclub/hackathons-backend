@@ -1,0 +1,6 @@
+<%= link_to admin_hackathon_path(hackathon) do %>
+  <article id="<%= dom_id(hackathon) %>" class="hackathon-snippet hackathon--<%= hackathon.status %>">
+    <h2 class="heading--small hackathon-snippet__title"><%= hackathon.name %></h2>
+    <span class="hackathon-snippet__time">created <%= local_time_ago(hackathon.created_at) %></span>
+  </article>
+<% end %>
