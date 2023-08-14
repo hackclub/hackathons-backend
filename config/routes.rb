@@ -28,6 +28,12 @@ Rails.application.routes.draw do
       scope module: :hackathon do
         resources :subscriptions, only: :create
       end
+
+      namespace :stats do
+        namespace :hackathons do
+          resources :subscriptions, only: :index
+        end
+      end
     end
   end
 
