@@ -18,4 +18,7 @@ shape_for hackathon, json do
     json.longitude hackathon.longitude
     json.latitude hackathon.latitude
   end
+
+  # This is temporary! See `Hackathon.apac?` for more info.
+  json.apac hackathon.apac?
 end
