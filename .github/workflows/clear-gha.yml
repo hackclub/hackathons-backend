@@ -3,4 +3,6 @@ on: [ push ]
 jobs:
   wipe-gha:
     name: Wipe Github Actions cache
-    uses: easimon/wipe-cache@v2
+    runs-on: ubuntu-latest
+    steps:
+      - uses: easimon/wipe-cache@v2
