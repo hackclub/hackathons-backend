@@ -1,5 +1,8 @@
 <h2>
-  <span style="font-weight: lighter">Near</span> <%= subscription.to_location.to_fs(:short) %>
+  <span style="font-weight: lighter">
+    <%= subscription.to_location.city_most_significant? ? "Near" : "In" %>
+  </span>
+  <%= subscription.to_location.to_fs(:short) %>
 </h2>
 <div style="margin-bottom: 2rem;">
   <% listings.each do |listing| %>

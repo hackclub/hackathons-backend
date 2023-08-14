@@ -31,6 +31,22 @@ module Hackathon::Regional
     [city, province, country_code].compact.join(", ")
   end
 
+  def country
+    ISO3166::Country[country_code]&.common_name
+  end
+
+  # TODO: This method and the `apac` column is a temporary solution!
+  # The column contains the migrated `apac` boolean from Airtable. Newly created
+  # hackathons (after the migration) will have the `apac` column set to `nil`,
+  # where it uses on the Country gem to determine if the hackathon is in APAC.
+  #
+  # See https://github.com/hackclub/hackathons-backend/issues/106
+  def apac?
+    return apac unless apac.nil?
+
+    ISO3166::Country[country_code]&.world_region == "APAC"
+  end
+
   def to_location
     Location.new(city, province, country_code)
   end

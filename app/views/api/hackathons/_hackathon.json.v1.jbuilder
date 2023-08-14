@@ -11,9 +11,14 @@ shape_for hackathon, json do
 
   json.location do
     json.city hackathon.city
-    json.state hackathon.province
-    json.country hackathon.country_code
+    json.province hackathon.province
+    json.country hackathon.country
+    json.country_code hackathon.country_code
+
     json.longitude hackathon.longitude
     json.latitude hackathon.latitude
   end
+
+  # This is temporary! See `Hackathon.apac?` for more info.
+  json.apac hackathon.apac?
 end

@@ -12,7 +12,9 @@ class Hackathons::DigestMailer < ApplicationMailer
   end
 
   def admin_summary
-    @digests = params[:digests]
+    # This reloads the (possible) params[:digests] array as an
+    # ActiveRecord::Relation so that we can use includes to prevent an N+1.
+    @digests = Hackathon::Digest.where(id: params[:digests].map(&:id))
 
     @digests_by_hackathons = @digests
       .includes(listings: {hackathon: {logo_attachment: :blob}})
