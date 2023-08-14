@@ -8,10 +8,6 @@ class LocationTest < ActiveSupport::TestCase
     assert_equal "Washington", loc.province
     assert_equal "US", loc.country
 
-    assert_equal "Seattle", loc.component(:city)
-    assert_equal "Washington", loc.component(:province)
-    assert_equal "US", loc.component(:country)
-
     assert_equal %w[Seattle Washington US], loc.components
 
     assert :city, loc.most_significant_component
@@ -23,10 +19,6 @@ class LocationTest < ActiveSupport::TestCase
     assert_nil loc.city
     assert_equal "Washington", loc.province
     assert_equal "US", loc.country
-
-    assert_nil loc.component(:city)
-    assert_equal "Washington", loc.component(:province)
-    assert_equal "US", loc.component(:country)
 
     assert_equal [nil, "Washington", "US"], loc.components
 
@@ -40,10 +32,6 @@ class LocationTest < ActiveSupport::TestCase
     assert_nil loc.province
     assert_equal "US", loc.country
 
-    assert_equal "Seattle", loc.component(:city)
-    assert_nil loc.component(:province)
-    assert_equal "US", loc.component(:country)
-
     assert_equal ["Seattle", nil, "US"], loc.components
 
     assert :city, loc.most_significant_component
@@ -56,13 +44,18 @@ class LocationTest < ActiveSupport::TestCase
     assert_nil loc.province
     assert_equal "US", loc.country
 
-    assert_nil loc.component(:city)
-    assert_nil loc.component(:province)
-    assert_equal "US", loc.component(:country)
-
     assert_equal [nil, nil, "US"], loc.components
 
     assert :country, loc.most_significant_component
+  end
+
+  test "country covers state" do
+    washington = Location.new(nil, "Washington", "US")
+    us = Location.new(nil, nil, "US")
+
+    assert us.covers? washington
+    assert washington.covered_by? us
+    assert_not washington == us
   end
 
   test "country covers city" do
@@ -132,5 +125,43 @@ class LocationTest < ActiveSupport::TestCase
 
     assert_not us1.covered_by? us2
     assert_not us2.covered_by? us1
+  end
+
+  test "country to country name" do
+    location = Location.new(nil, nil, "US")
+    assert_equal "United States", location.country_name
+
+    location = Location.new(nil, nil, "United States")
+    assert_equal "United States", location.country_name
+  end
+
+  test "non-existent country code to country name" do
+    location = Location.new(nil, nil, nil)
+    assert_nil location.country_name
+
+    location = Location.new(nil, nil, "I DON'T EXIST")
+    assert_nil location.country_name
+  end
+
+  test "to_s with only country" do
+    location = Location.new(nil, nil, "US")
+
+    # Should use country's common name
+    assert_equal "United States", location.to_s
+  end
+
+  test "to_s with short format" do
+    location = Location.new("Seattle", "Washington", "US")
+    assert_equal "Seattle, Washington", location.to_formatted_s(:short) # Should drop the country if in the US
+
+    # to_formatted_s and to_s should be the same
+    location = Location.new("Vancouver", "British Columbia", "CA")
+    assert_equal "Vancouver, British Columbia, CA", location.to_fs(:short)
+  end
+
+  test "short to_s, with only country" do
+    location = Location.new(nil, nil, "US")
+    # Should use country's common name
+    assert_equal "United States", location.to_fs(:short)
   end
 end

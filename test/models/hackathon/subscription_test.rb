@@ -3,17 +3,13 @@ require "test_helper"
 class SubscriptionTest < ActiveSupport::TestCase
   setup do
     Geocoder::Lookup::Test.add_stub(
-      "05482", [{"coordinates" => [44.3909, -73.2187]}]
-    )
-    Geocoder::Lookup::Test.add_stub(
-      [44.3909, -73.2187],
-      [
-        {
-          "city" => "Shelburne",
-          "state" => "Vermont",
-          "country_code" => "us"
-        }
-      ]
+      "05482", [{
+        coordinates: [44.3909, -73.2187],
+        city: "Shelburne",
+        province: "Vermont",
+        state: "Vermont",
+        country_code: "us"
+      }]
     )
 
     @user = users(:matt)

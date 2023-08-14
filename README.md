@@ -6,14 +6,15 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
 
 ### Getting Started
 
-1. Make sure you have Docker and [Ruby 3.2.2 installed](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-22-04#step-1-install-rbenv-and-dependencies).
+1. Make sure you have Docker
+   and [Ruby 3.2.2 installed](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-22-04#step-1-install-rbenv-and-dependencies).
 
 2. Clone the repo
 
-    ```sh
-    git clone https://github.com/hackclub/hackathons-backend.git
-    cd hackathons-backend
-    ```
+   ```sh
+   git clone https://github.com/hackclub/hackathons-backend.git
+   cd hackathons-backend
+   ```
 
 3. Setup credentials
 
@@ -27,21 +28,30 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
 
 4. Install dependencies
 
-    ```sh
-    bundle install
-    ```
+   ```sh
+   bundle install
+   ```
 
 5. Boot required services (PostgreSQL, etc.)
 
-    ```sh
-    docker compose up
-    ```
+   ```sh
+   docker compose up
+   ```
 
 6. Setup the database and run the server
 
    ```sh
    rails db:setup
    rails server
+   ```
+
+7. `(OPTIONAL)` Run background jobs
+
+   We use [Sidekiq](https://sidekiq.org/) to run background jobs. To start the
+   Sidekiq server, run:
+
+   ```sh
+   bundle exec sidekiq
    ```
 
 The application will now be running at [localhost:3000](http://localhost:3000)!
@@ -54,3 +64,11 @@ dependency installed on your machine. For macs, run:
 ```sh
 brew install vips
 ```
+
+## Deployment
+
+- Herokou
+  - Postgres (Heroku Postgres)
+  - Redis (Redis Enterprise Cloud)
+- Hetzner
+  - Runs the Rails app and Sidekiq

@@ -1,0 +1,6 @@
+<% eventable.events.includes(:creator, :target).each do |event| %>
+  <article id="<%= dom_id(event) %>" class="timeline__event">
+    <%= event.description %>
+    <i><%= local_time_ago(event.created_at) %></i>
+  </article>
+<% end %>

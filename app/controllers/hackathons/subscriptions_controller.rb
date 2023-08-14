@@ -1,4 +1,4 @@
-class Hackathon::SubscriptionsController < ApplicationController
+class Hackathons::SubscriptionsController < ApplicationController
   skip_before_action :redirect_if_unauthenticated, only: [:index, :unsubscribe_all]
   before_action :set_user, only: [:index, :unsubscribe_all]
 
@@ -18,7 +18,7 @@ class Hackathon::SubscriptionsController < ApplicationController
     @subscriptions = @user.subscriptions.active
 
     @unsubscribed_ids = @subscriptions.pluck(:id)
-    @unsubscribe_count = @subscriptions.map(&:unsubscribe!).count(true)
+    @unsubscribe_count = @subscriptions.map(&:unsubscribe).count(true)
   end
 
   private

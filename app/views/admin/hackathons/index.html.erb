@@ -1,0 +1,7 @@
+<h1>Hackathons</h1>
+
+<% @hackathons.each do |hackathon| %>
+  <%= render "snippet", hackathon: %>
+<% end %>
+
+<%== pagy_nav(@pagy) %>

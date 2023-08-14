@@ -5,7 +5,7 @@ ruby "3.2.2"
 
 gem "dotenv-rails"
 
-gem "rails", "~> 7.0.6"
+gem "rails", github: "rails/rails"
 
 # Drivers
 gem "pg"
@@ -28,9 +28,14 @@ gem "aws-sdk-s3", require: false
 gem "image_processing", ">= 1.2"
 gem "active_storage_validations"
 
+# Background jobs
+gem "sidekiq"
+gem "sidekiq-cron"
+
 # API
 gem "jbuilder" # JSON templating
 gem "versioncake" # API versioning
+gem "rack-cors" # Cross-origin resource sharing
 
 gem "pagy" # Pagination
 

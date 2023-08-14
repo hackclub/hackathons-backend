@@ -14,31 +14,28 @@ class Hackathon::RegionalTest < ActiveSupport::TestCase
       banner: active_storage_blobs(:assemble),
       applicant: users(:gary)
     )
+
+    [{
+      coordinates: [44.3803059, -73.2271145],
+      address: "15, Falls Road, Shelburne, Chittenden County, Vermont, 05482, United States",
+      house_number: "15",
+      street: "Falls Road",
+      city: "Shelburne",
+      province: "Vermont",
+      state: "Vermont",
+      postal_code: "05482",
+      country_code: "us"
+    }].tap do |results|
+      # The geocode results are the same for both lookup strings
+      Geocoder::Lookup::Test.add_stub("15 Falls Road, Shelburne, Vermont", results)
+      Geocoder::Lookup::Test.add_stub("15 Falls Road, VT", results)
+    end
   end
 
   test "creating a hackathon with seperated location attributes" do
-    Geocoder::Lookup::Test.add_stub(
-      "15 Falls Road, Shelburne, Vermont", [{"coordinates" => [44.3803059, -73.2271145]}]
-    )
-
     @hackathon.street = "15 Falls Road"
     @hackathon.city = "Shelburne"
     @hackathon.province = "Vermont"
-
-    Geocoder::Lookup::Test.add_stub(
-      [44.3803059, -73.2271145],
-      [
-        {
-          "address" => "15, Falls Road, Shelburne, Chittenden County, Vermont, 05482, United States",
-          "house_number" => "15",
-          "street" => "Falls Road",
-          "city" => "Shelburne",
-          "state" => "Vermont",
-          "postal_code" => "05482",
-          "country_code" => "us"
-        }
-      ]
-    )
 
     assert @hackathon.save
     assert_equal @hackathon.street, "15 Falls Road"
@@ -46,24 +43,6 @@ class Hackathon::RegionalTest < ActiveSupport::TestCase
   end
 
   test "creating a hackathon with a full address" do
-    Geocoder::Lookup::Test.add_stub(
-      "15 Falls Road, VT", [{"coordinates" => [44.3803059, -73.2271145]}]
-    )
-    Geocoder::Lookup::Test.add_stub(
-      [44.3803059, -73.2271145],
-      [
-        {
-          "address" => "15, Falls Road, Shelburne, Chittenden County, Vermont, 05482, United States",
-          "house_number" => "15",
-          "street" => "Falls Road",
-          "city" => "Shelburne",
-          "state" => "Vermont",
-          "postal_code" => "05482",
-          "country_code" => "us"
-        }
-      ]
-    )
-
     @hackathon.address = "15 Falls Road, VT"
 
     assert @hackathon.save

@@ -46,6 +46,8 @@ class AuthenticationTest < ApplicationSystemTestCase
     end
 
     assert_not authentication.succeeded?
+    assert_equal "rejected", authentication.events&.last&.action
+    assert_equal "expired", authentication.events&.last&.details&.dig("reason")
 
     assert_current_path sign_in_path
   end

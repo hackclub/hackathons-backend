@@ -34,7 +34,7 @@ module Hackathon::Digest::Listings
       # significant component of city).
       #
       # Highly recommended video 📺: https://www.youtube.com/watch?v=vh6zanS_epw
-      return [] unless location.most_significant_component == :city
+      return [] unless location.city_most_significant?
 
       upcoming_hackathons
         .where.not(city: [nil, ""]) # where Most Significant Component is city
@@ -51,7 +51,7 @@ module Hackathon::Digest::Listings
         # For example, "Seattle, WA, US" would be covered by a subscription to
         # "WA US" (which is more general than Seattle).
         active_subscriptions.any? do |other|
-          subscription.to_location.covers?(other.to_location)
+          subscription.to_location.covered_by?(other.to_location)
         end
       end
     end

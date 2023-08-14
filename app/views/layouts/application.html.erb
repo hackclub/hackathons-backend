@@ -13,6 +13,13 @@
 
   <body>
     <%= render "shared/flash" %>
-    <%= yield %>
+
+    <nav class="push-double--top">
+      <%= yield_with_default_for :nav %>
+    </nav>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
