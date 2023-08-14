@@ -137,10 +137,10 @@ class LocationTest < ActiveSupport::TestCase
 
   test "non-existent country code to country name" do
     location = Location.new(nil, nil, nil)
-    assert_equal nil, location.country_name
+    assert_nil location.country_name
 
     location = Location.new(nil, nil, "I DON'T EXIST")
-    assert_equal nil, location.country_name
+    assert_nil location.country_name
   end
 
   test "to_s with only country" do
