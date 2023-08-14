@@ -129,6 +129,7 @@ GEM
     aws-sigv4 (1.6.0)
       aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.1.1)
+    bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -159,6 +160,7 @@ GEM
       railties (>= 3.2)
     drb (2.1.1)
       ruby2_keywords
+    ed25519 (1.3.0)
     erubi (1.12.0)
     et-orbi (1.2.7)
       tzinfo
@@ -222,6 +224,15 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitest (5.19.0)
+    mrsk (0.15.1)
+      activesupport (>= 7.0)
+      bcrypt_pbkdf (~> 1.0)
+      dotenv (~> 2.8)
+      ed25519 (~> 1.2)
+      net-ssh (~> 7.0)
+      sshkit (~> 1.21)
+      thor (~> 1.2)
+      zeitwerk (~> 2.5)
     msgpack (1.7.1)
     mutex_m (0.1.2)
     net-http-persistent (4.0.2)
@@ -233,8 +244,11 @@ GEM
       net-protocol
     net-protocol (0.2.1)
       timeout
+    net-scp (4.0.0)
+      net-ssh (>= 2.6.5, < 8.0.0)
     net-smtp (0.3.3)
       net-protocol
+    net-ssh (7.2.0)
     nio4r (2.5.9)
     nokogiri (1.15.4-aarch64-linux)
       racc (~> 1.4)
@@ -347,6 +361,9 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sshkit (1.21.5)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     standard (1.30.1)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
@@ -411,6 +428,7 @@ DEPENDENCIES
   jbuilder
   letter_opener_web
   local_time
+  mrsk
   pagy
   pg
   premailer-rails
