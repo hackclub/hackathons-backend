@@ -54,9 +54,13 @@
     </div>
 
     <div class="button-group">
-      <%= button_to "Approve", admin_hackathon_approval_path(@hackathon), class: "button--success" %>
-      <%= button_to "Reject", admin_hackathon_rejection_path(@hackathon), class: "button--danger" %>
-      <%= button_to "Hold", admin_hackathon_hold_path(@hackathon), class: "button--neutral" %>
+      <% if @hackathon.pending? %>
+        <%= button_to "Approve", admin_hackathon_approval_path(@hackathon), class: "button--success" %>
+        <%= button_to "Reject", admin_hackathon_rejection_path(@hackathon), class: "button--danger" %>
+      <% end %>
+      <% unless @hackathon.pending? %>
+        <%= button_to "Hold for review", admin_hackathon_hold_path(@hackathon), class: "button--neutral" %>
+      <% end %>
     </div>
 
     <section>
