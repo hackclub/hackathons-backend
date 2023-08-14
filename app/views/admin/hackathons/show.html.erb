@@ -15,6 +15,11 @@
   </div>
 
   <div>
+    High School Led:
+    <%= @hackathon.high_school_led? ? "Yes" : "No" %>
+  </div>
+
+  <div>
     Applicant:
     <%= "#{@hackathon.applicant.name}, " if @hackathon.applicant.name.present? %>
     <%= @hackathon.applicant.email_address %>
