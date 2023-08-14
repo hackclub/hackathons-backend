@@ -12,7 +12,6 @@ shape_for hackathon, json do
   json.location do
     json.city hackathon.city
     json.province hackathon.province
-    json.province_code hackathon.province_code
     json.country hackathon.country
     json.country_code hackathon.country_code
 
