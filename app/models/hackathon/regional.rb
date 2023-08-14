@@ -31,6 +31,12 @@ module Hackathon::Regional
     [city, province, country_code].compact.join(", ")
   end
 
+  def province_code
+    # Use are using the Countries gem for this because Geocoder returns the same
+    # thing for province/state and province_code/state_code (ex. "California").
+    ISO3166::Country[country_code]&.find_subdivision_by_name(province)&.code
+  end
+
   def country
     ISO3166::Country[country_code]&.common_name
   end
