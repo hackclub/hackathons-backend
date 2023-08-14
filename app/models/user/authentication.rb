@@ -19,6 +19,10 @@ class User::Authentication < ApplicationRecord
     record :completed, by: user
   end
 
+  def reject(reason: nil)
+    record :rejected, reason: reason
+  end
+
   private
 
   def delivery

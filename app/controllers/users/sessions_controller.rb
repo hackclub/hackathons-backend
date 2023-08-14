@@ -4,7 +4,15 @@ class Users::SessionsController < ApplicationController
 
   def new
     if (authentication = User::Authentication.find_by(token: params[:auth_token]))
-      return redirect_to sign_in_path if authentication.expired? || authentication.succeeded?
+      if authentication.expired?
+        authentication.reject reason: :expired
+        return redirect_to sign_in_path
+      end
+
+      if authentication.succeeded?
+        authentication.reject reason: :previously_succeeded
+        return redirect_to sign_in_path
+      end
 
       authentication.complete
       session = authentication.create_session!
