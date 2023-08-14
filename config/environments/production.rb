@@ -73,11 +73,11 @@ Rails.application.configure do
   # Send emails via SMTP using Amazon SES
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: Rails.application.credentials.smtp[:address],
-    port: Rails.application.credentials.smtp[:port],
-    domain: Rails.application.credentials.smtp[:domain],
-    user_name: Rails.application.credentials.smtp[:username],
-    password: Rails.application.credentials.smtp[:password],
+    address: Rails.application.credentials.dig(:smtp, :address),
+    port: Rails.application.credentials.dig(:smtp, :port),
+    domain: Rails.application.credentials.dig(:smtp, :domain),
+    user_name: Rails.application.credentials.dig(:smtp, :username),
+    password: Rails.application.credentials.dig(:smtp, :password),
     authentication: :plain
   }
   config.action_mailer.perform_caching = false
