@@ -36,6 +36,7 @@ gem "sidekiq-cron"
 gem "jbuilder" # JSON templating
 gem "versioncake" # API versioning
 gem "rack-cors" # Cross-origin resource sharing
+gem "faraday" # GET / POST requests
 
 gem "pagy" # Pagination
 
@@ -47,9 +48,6 @@ gem "hashid-rails" # Non-sequential IDs
 
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby] # Windows doesn't include zoneinfo files
 gem "bootsnap", require: false # reduces boot times through caching; required in config/boot.rb
-
-# For POST Requests
-gem "faraday"
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]

@@ -6,8 +6,8 @@ shape_for hackathon, json do
     :modality)
 
   json.website do
-    if hackathon.tagged_with?("Website down")
-      hackathon.archived_website
+    if hackathon.tagged_with?("Website Down")
+      hackathon.website_archive_url
     else
       hackathon.website
     end

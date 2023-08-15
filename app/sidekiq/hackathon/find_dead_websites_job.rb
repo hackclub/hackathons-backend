@@ -4,14 +4,12 @@ class Hackathon::FindDeadWebsitesJob
   include Sidekiq::Job
 
   def perform
-    hackathons.find_each do |hackathon|
+    past_hackathons.find_each do |hackathon|
       response = Faraday.get(hackathon.website)
       if response.status != 200 || !response.body.include? hackathon.name
-        if !hackathon.tagged_with "Website down"
-          hackathon.tag_with "Website down"
-        end
-      elsif hackathon.tagged_with "Website down"
-        hackathon.untag "Website down"
+        hackathon.tag_with "Website Down"
+      else
+        hackathon.untag "Website Down"
       end
     end
   end
