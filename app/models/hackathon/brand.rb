@@ -19,7 +19,7 @@ module Hackathon::Brand
     validates :banner, aspect_ratio: :landscape
   end
 
-  def archived_website
+  def website_archive_url
     "https://web.archive.org/#{website.sub(/^https?:\/\/(www.)?/, "")}"
   end
 end
