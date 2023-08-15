@@ -1,4 +1,4 @@
-require 'faraday'
+require "faraday"
 
 class Hackathon::FindDeadWebsitesJob
   include Sidekiq::Job
@@ -10,10 +10,8 @@ class Hackathon::FindDeadWebsitesJob
         if !hackathon.tagged_with "Website down"
           hackathon.tag_with "Website down"
         end
-      else
-        if hackathon.tagged_with "Website down"
-          hackathon.untag "Website down"
-        end
+      elsif hackathon.tagged_with "Website down"
+        hackathon.untag "Website down"
       end
     end
   end
