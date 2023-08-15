@@ -25,6 +25,8 @@ registry:
     - MRSK_REGISTRY_PASSWORD
 
 env:
+  clear:
+    HOST: dash.hackathons.hackclub.com
   secret:
     - RAILS_MASTER_KEY
     - DATABASE_URL
