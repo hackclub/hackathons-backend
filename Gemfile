@@ -49,6 +49,8 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby] # Windows doesn't 
 gem "bootsnap", require: false # reduces boot times through caching; required in config/boot.rb
 
 gem "mrsk" # Deployments
+gem "console1984"
+gem "audits1984"
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]

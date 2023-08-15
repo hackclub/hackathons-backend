@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ -f tmp/.console-user ]; then
+  CONSOLE_USER=$(cat tmp/.console-user)
+  exec bundle exec mrsk app exec -i "env CONSOLE_USER=\"${CONSOLE_USER}\" bin/rails console"
+else
+  while [ -z "$CONSOLE_USER" ]; do
+    echo -n "To access the production console, enter your name: "
+    read CONSOLE_USER
+  done
+  echo $CONSOLE_USER > tmp/.console-user
+  exec bundle exec mrsk app exec -i "env CONSOLE_USER=\"${CONSOLE_USER}\" bin/rails console"
+fi
