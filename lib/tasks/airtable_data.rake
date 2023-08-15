@@ -12,7 +12,7 @@ namespace :airtable_data do
       ]
 
       puts "MIGRATING HACKATHONS"
-      Airtable::Hackathon.all(sort: {created_at: :desc}).each do |record|
+      Airtable::Hackathon.all(sort: {created_at: :asc}).each do |record|
         ActiveRecord::Base.transaction do
           if Hackathon.find_by(airtable_id: record.id)
             puts "Skipping #{record.name} (#{record.id})"
