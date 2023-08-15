@@ -1,5 +1,3 @@
-require "faraday"
-
 class Hackathon::ArchiveWebsiteJob
   include Sidekiq::Job
 
