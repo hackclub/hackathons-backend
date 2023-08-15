@@ -140,6 +140,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_08_15_205623) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "airtable_id"
+    t.index ["airtable_id"], name: "index_hackathon_subscriptions_on_airtable_id", unique: true
     t.index ["country_code", "city"], name: "index_hackathon_subscriptions_on_country_code_and_city"
     t.index ["country_code", "province", "city"], name: "index_hackathon_subscriptions_on_country_and_province_and_city"
     t.index ["latitude", "longitude"], name: "index_hackathon_subscriptions_on_latitude_and_longitude"
@@ -170,7 +172,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_08_15_205623) do
     t.bigint "applicant_id", null: false
     t.bigint "swag_mailing_address_id"
     t.boolean "apac"
+    t.string "airtable_id"
     t.index ["address"], name: "index_hackathons_on_address"
+    t.index ["airtable_id"], name: "index_hackathons_on_airtable_id", unique: true
     t.index ["applicant_id"], name: "index_hackathons_on_applicant_id"
     t.index ["country_code", "city"], name: "index_hackathons_on_country_code_and_city"
     t.index ["country_code", "province", "city"], name: "index_hackathons_on_country_code_and_province_and_city"
@@ -215,7 +219,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_08_15_205623) do
     t.string "token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["token"], name: "index_user_authentications_on_token"
+    t.index ["token"], name: "index_user_authentications_on_token", unique: true
     t.index ["user_id"], name: "index_user_authentications_on_user_id"
   end
 
@@ -226,7 +230,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_08_15_205623) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["authentication_id"], name: "index_user_sessions_on_authentication_id"
-    t.index ["token"], name: "index_user_sessions_on_token"
+    t.index ["token"], name: "index_user_sessions_on_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|
