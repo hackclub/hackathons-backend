@@ -1,4 +1,4 @@
-module Audits1984
+module Audit1984
   private
 
   def find_current_auditor
