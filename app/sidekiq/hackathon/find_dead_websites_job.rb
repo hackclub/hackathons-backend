@@ -20,6 +20,6 @@ class Hackathon::FindDeadWebsitesJob
 
   def hackathons
     # Hackathons which have already finished
-    Hackathon.approved.where("ends_at >= ?", 1.day.ago)
+    Hackathon.approved.where("ends_at < ?", Time.now)
   end
 end
