@@ -13,17 +13,17 @@ namespace :airtable_data do
 
       puts "MIGRATING HACKATHONS"
       Airtable::Hackathon.all(sort: {created_at: :asc}).each do |record|
-        ActiveRecord::Base.transaction do
-          if Hackathon.find_by(airtable_id: record.id)
-            puts "Skipping #{record.name} (#{record.id})"
-            next
-          end
+        if Hackathon.find_by(airtable_id: record.id)
+          puts "Skipping #{record.name} (#{record.id})"
+          next
+        end
 
+        ActiveRecord::Base.transaction do
           hackathon = Hackathon.new
           hackathon.airtable_id = record.id
 
           %w[name status starts_at ends_at website high_school_led
-            expected_attendees modality apac created_at].each do |field|
+            expected_attendees modality apac].each do |field|
             value = record.send field
             hackathon.send "#{field}=", value
           end
@@ -62,7 +62,13 @@ namespace :airtable_data do
 
           # Save it!
           puts "Creating #{hackathon.name} (#{hackathon.airtable_id})"
+          hackathon.created_at = record.created_at
           hackathon.save!
+
+          # Correct :created Event's created_at
+          [hackathon, hackathon.swag_mailing_address].compact.each do |object|
+            object.events.find_by(action: :created).update!(created_at: hackathon.created_at)
+          end
 
           # Flag geocoding errors
           if hackathon.in_person? && !hackathon.geocoded?
@@ -78,12 +84,12 @@ namespace :airtable_data do
     def migrate_subscriptions
       puts "MIGRATING SUBSCRIPTIONS"
       Airtable::Subscriber.all(sort: {created_at: :asc}).each do |record|
-        ActiveRecord::Base.transaction do
-          if (subscription = Hackathon::Subscription.find_by(airtable_id: record.id))
-            puts "Skipping #{record.id} (#{subscription.location})"
-            next
-          end
+        if (subscription = Hackathon::Subscription.find_by(airtable_id: record.id))
+          puts "Skipping #{record.id} (#{subscription.location})"
+          next
+        end
 
+        ActiveRecord::Base.transaction do
           subscription = Hackathon::Subscription.new
           subscription.airtable_id = record.id
 
@@ -104,8 +110,12 @@ namespace :airtable_data do
           end
 
           # Save it!
+          subscription.created_at = record.created_at
           subscription.save!
           puts "Creating #{subscription.airtable_id} (#{subscription.location})"
+
+          # Correct :created Event's created_at
+          subscription.events.find_by(action: :created).update!(created_at: subscription.created_at)
         end
       rescue ActiveRecord::RecordInvalid => e
         puts "Skipping #{record.id} (#{record.location}) because of validation error: #{e.message}"
