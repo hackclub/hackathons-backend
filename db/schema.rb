@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_14_030407) do
+ActiveRecord::Schema[7.1].define(version: 2023_08_15_052624) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -95,6 +95,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_030407) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "airtable_id"
+    t.index ["airtable_id"], name: "index_hackathon_subscriptions_on_airtable_id", unique: true
     t.index ["country_code", "city"], name: "index_hackathon_subscriptions_on_country_code_and_city"
     t.index ["country_code", "province", "city"], name: "index_hackathon_subscriptions_on_country_and_province_and_city"
     t.index ["latitude", "longitude"], name: "index_hackathon_subscriptions_on_latitude_and_longitude"
@@ -125,7 +127,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_030407) do
     t.bigint "applicant_id", null: false
     t.bigint "swag_mailing_address_id"
     t.boolean "apac"
+    t.string "airtable_id"
     t.index ["address"], name: "index_hackathons_on_address"
+    t.index ["airtable_id"], name: "index_hackathons_on_airtable_id", unique: true
     t.index ["applicant_id"], name: "index_hackathons_on_applicant_id"
     t.index ["country_code", "city"], name: "index_hackathons_on_country_code_and_city"
     t.index ["country_code", "province", "city"], name: "index_hackathons_on_country_code_and_province_and_city"

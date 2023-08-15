@@ -2,10 +2,10 @@ module Hackathon::Regional
   extend ActiveSupport::Concern
 
   included do
-    validates :address, presence: true, on: :submit
+    validates :address, presence: true, on: :submit, unless: :online?
 
     geocoded_by :address do |hackathon, results|
-      # Geocodes to coordinates and standardizes the location attributes
+      # Geocode to coordinates and standardizes the location attributes
       if (result = results.first)
         hackathon.attributes = {
           latitude: result.latitude,
@@ -16,7 +16,7 @@ module Hackathon::Regional
           city: result.city,
           province: result.province || result.state,
           postal_code: result.postal_code,
-          country_code: result.country_code.upcase
+          country_code: result.country_code&.upcase
         }
       end
     end
