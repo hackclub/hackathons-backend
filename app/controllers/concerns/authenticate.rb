@@ -9,7 +9,7 @@ module Authenticate
   private
 
   def authenticate
-    if (session = User::Session.find_by(token: cookies.encrypted[:session_token]))
+    if (session = User::Session.find_by(token: cookies.signed[:session_token]))
       session.access
       Current.session = session
     end
