@@ -23,7 +23,7 @@ module Hackathons
 
     config.active_job.queue_adapter = :sidekiq
 
-    host = ENV["HOST"] || Rails.application.credentials.dig(:default_url_host, Rails.env) || "localhost:3000"
+    host = ENV["HOST"] || "localhost:3000"
     Rails.application.routes.default_url_options[:host] = host
 
     config.action_mailer.default_url_options = {host:}
