@@ -5,7 +5,13 @@ shape_for hackathon, json do
     :ends_at,
     :modality)
 
-  json.website hackathon.tagged_with("Website down") ? "https://web.archive.org/" + hackathon.website.sub(/^https?:\/\/(www.)?/, "") : hackathon.website
+  json.website do
+    if hackathon.tagged_with("Website down")
+      hackathon.archived_website
+    else
+      hackathon.website
+    end
+  end
 
   json.logo_url file_url_for hackathon.logo, :small
   json.banner_url file_url_for hackathon.banner, :large
