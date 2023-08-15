@@ -17,7 +17,7 @@ class Users::SessionsController < ApplicationController
       authentication.complete
       session = authentication.create_session!
 
-      cookies.signed[:session_token] = session.token
+      cookies.permanent.signed[:session_token] = session.token
       redirect_to root_path
     else
       redirect_to sign_in_path
@@ -26,7 +26,7 @@ class Users::SessionsController < ApplicationController
 
   def destroy
     Current.session.destroy!
-    cookies.signed[:session_token] = nil
+    cookies.permanent.signed[:session_token] = nil
     redirect_to root_path
   end
 end
