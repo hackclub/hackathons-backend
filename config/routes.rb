@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   constraints Constraints::Admin do
     mount Sidekiq::Web => "/sidekiq"
+    mount Audits1984::Engine => "/admin/audits"
 
     namespace :admin do
       resources :hackathons, except: [:new, :create] do

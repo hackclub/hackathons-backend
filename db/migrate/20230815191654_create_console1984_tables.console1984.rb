@@ -23,7 +23,7 @@ class CreateConsole1984Tables < ActiveRecord::Migration[7.0]
       t.references :session, null: false, index: false
       t.timestamps
 
-      t.index [ :session_id, :created_at, :sensitive_access_id ], name: "on_session_and_sensitive_chronologically"
+      t.index [:session_id, :created_at, :sensitive_access_id], name: "on_session_and_sensitive_chronologically"
     end
 
     create_table :console1984_sensitive_accesses do |t|
