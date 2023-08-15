@@ -6,7 +6,7 @@ class Hackathon::FindDeadWebsitesJob
   def perform
     hackathons.find_each do |hackathon|
       response = Faraday.get(hackathon.website)
-      if response.status != 200
+      if response.status != 200 or !response.body.include? hackathon.name
         if !hackathon.tagged_with "Website down"
           hackathon.tag_with "Website down"
         end
