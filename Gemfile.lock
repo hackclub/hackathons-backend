@@ -404,6 +404,7 @@ DEPENDENCIES
   countries
   debug
   dotenv-rails
+  faraday (~> 2.7, >= 2.7.10)
   geocoder
   hashid-rails
   image_processing (>= 1.2)
