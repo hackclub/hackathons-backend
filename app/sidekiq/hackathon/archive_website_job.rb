@@ -6,7 +6,7 @@ class Hackathon::ArchiveWebsiteJob
   def perform
     hackathons.find_each do |hackathon|
       response = Faraday.get(hackathon.website)
-      if response.status != 200 and response.body.include? hackathon.name
+      if response.status != 200 && response.body.include? hackathon.name
         Faraday.get("https://web.archive.org/save/" + hackathon.website.sub(/^https?:\/\/(www.)?/, ""))
       end
     end
