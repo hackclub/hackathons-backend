@@ -35,7 +35,7 @@ namespace :airtable_data do
           hackathon.logo.attach(io: record.logo, filename: record.logo_filename) if record.logo
           hackathon.banner.attach(io: record.banner, filename: record.banner_filename) if record.banner
 
-          hackathon.record(:imported, from: :airtable, data: record.fields.except(airtable_swag_mailing_address_fields))
+          hackathon.record(:imported_from_airtable, data: record.fields.except(airtable_swag_mailing_address_fields))
 
           # Financial assistance
           if record.offers_financial_assistance
@@ -51,13 +51,13 @@ namespace :airtable_data do
 
             original_address = record.fields.slice(airtable_swag_mailing_address_fields)
 
-            hackathon.swag_mailing_address.record(:imported, from: :airtable, data: original_address)
+            hackathon.swag_mailing_address.record(:imported_from_airtable, data: original_address)
           end
 
           # Applicant
           hackathon.applicant = User.find_or_initialize_by(email_address: record.applicant_email) do |applicant|
             applicant.created_at = record.created_at
-            applicant.record(:imported, from: :airtable)
+            applicant.record(:imported_from_airtable)
           end
 
           # Save it!
@@ -101,12 +101,12 @@ namespace :airtable_data do
             subscription.record(:disabled, created_at: record.unsubscribed_at)
           end
 
-          subscription.record(:imported, from: :airtable, data: record.fields)
+          subscription.record(:imported_from_airtable, data: record.fields)
 
           # Subscriber
           subscription.subscriber = User.find_or_initialize_by(email_address: record.email) do |subscriber|
             subscriber.created_at = record.created_at
-            subscriber.record(:imported, from: :airtable)
+            subscriber.record(:imported_from_airtable)
           end
 
           # Save it!
