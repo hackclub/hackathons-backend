@@ -1,4 +1,6 @@
 class UserMailer < ApplicationMailer
+  self.deliver_later_queue_name = :critical
+
   before_action :set_user
 
   def authentication(authentication)
