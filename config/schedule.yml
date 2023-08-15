@@ -2,10 +2,10 @@ weekly_digest:
   cron: "every tuesday at 10am on America/Los_Angeles"
   class: "Hackathon::DigestJob"
 
-weekly_website_archive:
+archive_websites:
   cron: "every monday at 10am on America/Los_Angeles"
   class: "Hackathon::ArchiveWebsiteJob"
   
-daily_find_dead_wesites:
+find_dead_websites:
   cron: "every day at 10am on America/Los_Angeles"
   class: "Hackathon::FindDeadWebsitesJob"
