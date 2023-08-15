@@ -24,15 +24,21 @@ module Taggable
   def tag_with(tags_or_names)
     Array(tags_or_names).each do |tag|
       tag = Tag.find_by(name: tag) unless tag.is_a? Tag
-      taggings.create_or_find_by tag: tag
+      if new_record?
+        taggings.find_or_initialize_by tag: tag
+      else
+        taggings.find_or_create_by tag: tag
+      end
     end
   end
 
   def tag_with!(tags_or_names)
-    Array(tags_or_names).each do |tag|
-      tag = Tag.find_or_initialize_by(name: tag) unless tag.is_a? Tag
-      taggings.create_or_find_by tag: tag
+    tags = Array(tags_or_names).map do |tag|
+      next tag if tag.is_a? Tag
+      Tag.find_or_initialize_by(name: tag)
     end
+
+    tag_with tags
   end
 
   def untag(tags_or_names)
