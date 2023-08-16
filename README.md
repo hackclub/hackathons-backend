@@ -72,3 +72,18 @@ brew install vips
   - Redis (Redis Enterprise Cloud)
 - Hetzner
   - Runs the Rails app and Sidekiq
+  - Deployed via [MRSK](https://mrsk.dev/)
+
+### MRSK Deployment
+
+All pushes to the `main` branch are automatically deployed by MRSK.
+- Environment variables are stored on GitHub and accessed by the GitHub Actions
+  when deploying.
+- Deployments take roughly 5 minutes to complete.
+
+To use the production Rails Console, you must first have SSH access to the
+Hetzner server(s). Then, run:
+
+```sh
+mrsk app exec "bin/rails c"
+```
