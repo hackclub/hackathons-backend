@@ -20,7 +20,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ vars.KNOWN_HOSTS }}
       - name: Deploy to production!
-        run: mrsk deploy
+        run: bundle exec mrsk deploy
         env:
           RAILS_MASTER_KEY: ${secrets.RAILS_MASTER_KEY}
           DATABASE_URL: ${secrets.DATABASE_URL}
