@@ -1,0 +1,38 @@
+service: hackathons
+
+image: hackclub/hackathons
+
+servers:
+  web:
+    hosts:
+      - app-1.hackathons.hackclub.com
+    options:
+      memory: 1G
+      cpus: 1
+  jobs:
+    hosts:
+      - app-1.hackathons.hackclub.com
+    cmd: bundle exec sidekiq
+    options:
+      memory: 2G
+      cpus: 1
+
+registry:
+  server: ghcr.io
+  username:
+    - MRSK_REGISTRY_USERNAME
+  password:
+    - MRSK_REGISTRY_PASSWORD
+
+env:
+  clear:
+    HOST: dash.hackathons.hackclub.com
+  secret:
+    - RAILS_MASTER_KEY
+    - DATABASE_URL
+    - REDIS_URL
+
+builder:
+  multiarch: false
+  cache:
+    type: gha
