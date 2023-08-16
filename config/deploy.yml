@@ -31,6 +31,7 @@ env:
     - RAILS_MASTER_KEY
     - DATABASE_URL
     - REDIS_URL
+    - APP_REVISION
 
 builder:
   multiarch: false
