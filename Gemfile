@@ -63,6 +63,8 @@ group :development do
   gem "web-console"
   gem "rack-mini-profiler"
   gem "letter_opener_web"
+  gem "better_errors"
+  gem "binding_of_caller" # used by better_errors
 
   gem "spring"
 end
