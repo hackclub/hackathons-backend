@@ -52,6 +52,9 @@ gem "mrsk" # Deployments
 gem "console1984"
 gem "audits1984"
 
+# Application monitoring (errors, performance, etc.)
+gem "appsignal"
+
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
 
