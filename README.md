@@ -87,3 +87,7 @@ Hetzner server(s). Then, run:
 ```sh
 mrsk app exec "bin/rails c"
 ```
+
+---
+
+Application performance monitoring sponsored by <a href="https://appsignal.com/?ref=github:hackclub/hackathons-backend">AppSignal</a>.
