@@ -2,7 +2,7 @@
 
 begin
   require_relative "config/environment"
-rescue Exception => error
+rescue Exception => error # standard:disable Lint/RescueException
   Appsignal.send_error(error)
   raise
 end
