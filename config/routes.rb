@@ -36,6 +36,9 @@ Rails.application.routes.draw do
       resources :hackathons, except: [:new, :create] do
         scope module: :hackathons do
           resource :approval, :rejection, :hold, only: [:create]
+
+          resource :name, :website, :times,
+            :expected_attendees, only: :edit
         end
       end
     end
