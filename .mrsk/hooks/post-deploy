@@ -1,3 +1,19 @@
 #!/bin/sh
 
 echo "Deployed $MRSK_VERSION -> $MRSK_DESTINATION in $MRSK_RUNTIME seconds"
+
+MESSAGE=$(cat <<-EOF
+Deployed $MRSK_VERSION -> $MRSK_DESTINATION in $MRSK_RUNTIME seconds
+Recorded at: $MRSK_RECORDED_AT
+Performed by: $MRSK_PERFORMER
+Service version: $MRSK_SERVICE_VERSION
+MRSK version: $MRSK_VERSION
+Hosts: $MRSK_HOSTS
+Command: $MRSK_COMMAND
+Subcommand: $MRSK_SUBCOMMAND
+Destination: $MRSK_DESTINATION
+Role: $MRSK_ROLE
+EOF
+)
+
+curl -X POST -H 'Content-Type: application/json' -d "{\"message\": \"$MESSAGE\"}" "$DEPLOYMENT_NOTIF_WEBHOOK_URL"
