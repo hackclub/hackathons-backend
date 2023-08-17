@@ -1,10 +1,5 @@
-@import "*";
-@import "components/*";
-
-body {
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
-}
+@import "shared/**/*";
+@import "components/**/*";
 
 .field_with_errors {
   border: darkred 1px solid;

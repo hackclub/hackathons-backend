@@ -1,0 +1,91 @@
+// The following CSS variables are already defined by the Hack Club CSS theme
+// that's linked in the view layout. However, they are being "redefined" here so
+// that IDEs don't complain about undefined css variables.
+//
+// This file isn't actually used/compiled by SCSS since the wildcard import in
+// `application.scss` ignores dotfiles (including this one).
+
+:root {
+  --darker: var(--darker);
+  --dark: var(--dark);
+  --darkless: var(--darkless);
+  --black: var(--black);
+  --steel: var(--steel);
+  --slate: var(--slate);
+  --muted: var(--muted);
+  --smoke: var(--smoke);
+  --snow: var(--snow);
+  --white: var(--white);
+  --red: var(--red);
+  --orange: var(--orange);
+  --yellow: var(--yellow);
+  --green: var(--green);
+  --cyan: var(--cyan);
+  --blue: var(--blue);
+  --purple: var(--purple);
+  --text: var(--text);
+  --background: var(--background);
+  --elevated: var(--elevated);
+  --sheet: var(--sheet);
+  --sunken: var(--sunken);
+  --border: var(--border);
+  --primary: var(--primary);
+  --secondary: var(--secondary);
+  --accent: var(--accent);
+  --twitter: var(--twitter);
+  --facebook: var(--facebook);
+  --instagram: var(--instagram);
+  --breakpoint-xs: var(--breakpoint-xs);
+  --breakpoint-s: var(--breakpoint-s);
+  --breakpoint-m: var(--breakpoint-m);
+  --breakpoint-l: var(--breakpoint-l);
+  --breakpoint-xl: var(--breakpoint-xl);
+  --spacing-0: var(--spacing-0);
+  --spacing-1: var(--spacing-1);
+  --spacing-2: var(--spacing-2);
+  --spacing-3: var(--spacing-3);
+  --spacing-4: var(--spacing-4);
+  --spacing-5: var(--spacing-5);
+  --spacing-6: var(--spacing-6);
+  --spacing-7: var(--spacing-7);
+  --spacing-8: var(--spacing-8);
+  --font-1: var(--font-1);
+  --font-2: var(--font-2);
+  --font-3: var(--font-3);
+  --font-4: var(--font-4);
+  --font-5: var(--font-5);
+  --font-6: var(--font-6);
+  --font-7: var(--font-7);
+  --font-8: var(--font-8);
+  --font-9: var(--font-9);
+  --font-10: var(--font-10);
+  --line-height-limit: var(--line-height-limit);
+  --line-height-title: var(--line-height-title);
+  --line-height-heading: var(--line-height-heading);
+  --line-height-subheading: var(--line-height-subheading);
+  --line-height-caption: var(--line-height-caption);
+  --line-height-body: var(--line-height-body);
+  --font-weight-body: var(--font-weight-body);
+  --font-weight-bold: var(--font-weight-bold);
+  --font-weight-heading: var(--font-weight-heading);
+  --letter-spacing-title: var(--letter-spacing-title);
+  --letter-spacing-headline: var(--letter-spacing-headline);
+  --size-wide-plus: var(--size-wide-plus);
+  --size-wide: var(--size-wide);
+  --size-layout-plus: var(--size-layout-plus);
+  --size-layout: var(--size-layout);
+  --size-copy-ultra: var(--size-copy-ultra);
+  --size-copy-plus: var(--size-copy-plus);
+  --size-copy: var(--size-copy);
+  --size-narrow-plus: var(--size-narrow-plus);
+  --size-narrow: var(--size-narrow);
+  --radii-small: var(--radii-small);
+  --radii-default: var(--radii-default);
+  --radii-extra: var(--radii-extra);
+  --radii-ultra: var(--radii-ultra);
+  --radii-circle: var(--radii-circle);
+  --shadow-text: var(--shadow-text);
+  --shadow-small: var(--shadow-small);
+  --shadow-card: var(--shadow-card);
+  --shadow-elevated: var(--shadow-elevated);
+}

@@ -1,0 +1,11 @@
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; column-gap: var(--spacing-4)">
+  <h1 class="headline" style="color: var(--red); margin-bottom: var(--spacing-2); margin-top: var(--spacing-1)">
+    <%= link_to "Hackathons Dashboard", admin_hackathons_path, style: "text-decoration: none;" %>
+  </h1>
+  <div style="display: flex; align-items: center; gap: var(--spacing-2);">
+        <span>
+          Welcome, <%= Current.user.first_name || "admin" %>
+        </span>
+    <%= avatar Current.user %>
+  </div>
+</div>
