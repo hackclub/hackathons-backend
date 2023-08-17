@@ -15,7 +15,13 @@ class Admin::HackathonsController < Admin::BaseController
     if @hackathon.update(hackathon_params)
       redirect_to admin_hackathon_path(@hackathon)
     else
-      render :edit, status: :unprocessable_entity, notice: @hackathon.errors.full_messages.to_sentence
+      flash.now[:notice] = @hackathon.errors.full_messages.first
+
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("flash", partial: "shared/flash") }
+
+        #format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -23,7 +29,7 @@ class Admin::HackathonsController < Admin::BaseController
     if @hackathon.destroy
       redirect_to admin_hackathons_path, notice: "#{@hackathon.name} has been deleted."
     else
-      render :show, status: :unprocessable_entity, notice: @hackathon.errors.full_messages.first
+      render :show, status: :unprocessable_entity
     end
   end
 
@@ -37,6 +43,7 @@ class Admin::HackathonsController < Admin::BaseController
       :banner,
       :starts_at,
       :ends_at,
+      :modality,
       :address,
       :expected_attendees,
       :offers_financial_assistance,

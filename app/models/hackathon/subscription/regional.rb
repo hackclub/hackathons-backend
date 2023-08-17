@@ -50,7 +50,7 @@ module Hackathon::Subscription::Regional
     if self.class.active_for(subscriber)
         .where(city:, province:, country_code:)
         .excluding(self).exists?
-      errors.add(:base, :already_subscribed, message: "You've already subscribed to this area!")
+      errors.add(:base, message: "You've already subscribed to this area!")
     end
   end
 

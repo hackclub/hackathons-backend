@@ -26,17 +26,17 @@ module Hackathon::Scheduled
 
   def dates_are_chronological
     if ends_at < starts_at
-      errors.add(:ends_at, :before_the_start)
+      errors.add(:ends_at, "must be after the start time")
     end
   end
 
   def dates_are_in_the_future
     if starts_at < Time.now
-      errors.add(:starts_at, :in_the_past)
+      errors.add(:starts_at, "must be in the future")
     end
 
     if ends_at < Time.now
-      errors.add(:ends_at, :in_the_past)
+      errors.add(:ends_at, "must be in the future")
     end
   end
 end
