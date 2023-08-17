@@ -92,8 +92,8 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
 
     assert_difference -> { Hackathon.count } do
       click_on "Submit for Review"
+      assert_text(/submitted/i)
     end
-    assert_text(/submitted/i)
 
     assert Hackathon.last.requested_swag?
   end
