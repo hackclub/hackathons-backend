@@ -48,4 +48,11 @@ module ApplicationHelper
 
     image_tag user.gravatar_url, default_options.deep_merge(options)
   end
+
+  def page(size)
+    size = :normal unless %i[full wide copy narrow].include?(size)
+    return if size == :normal
+
+    content_for(:container_class) { size.to_s }
+  end
 end

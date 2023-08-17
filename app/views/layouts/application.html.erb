@@ -12,10 +12,10 @@
   <%= javascript_importmap_tags %>
 </head>
 
-<body>
+<body style="<%= content_for :body_style %>">
 <%= render "shared/flash" %>
 
-<main class="container" style="padding-bottom: var(--spacing-5)">
+<main class="container <%= content_for :container_class %>">
   <%= yield %>
 </main>
 </body>
