@@ -20,7 +20,7 @@ class Admin::HackathonsController < Admin::BaseController
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace("flash", partial: "shared/flash") }
 
-        #format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
