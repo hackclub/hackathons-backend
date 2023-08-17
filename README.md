@@ -49,7 +49,7 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
    ```sh
    bundle exec sidekiq
    ```
-   Sidekiq is necessary for emails (such as sign in links) to be sent.
+   Sidekiq is necessary for most emails to be sent.
 
 The application will now be running at [localhost:3000](http://localhost:3000)!
 
