@@ -31,6 +31,7 @@ env:
     - RAILS_MASTER_KEY
     - DATABASE_URL
     - REDIS_URL
+    - APPSIGNAL_PUSH_API_KEY
     - APP_REVISION
 
 builder:
