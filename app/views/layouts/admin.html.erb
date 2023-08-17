@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= yield(:title).presence&.+(" — ") %> High School Hackathons</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title><%= yield(:title).presence&.+(" — ") %> High School Hackathons</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "https://css.hackclub.com/theme.min.css" %>
-    <%= stylesheet_link_tag "https://css.hackclub.com/fonts.min.css" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag "https://css.hackclub.com/theme.min.css" %>
+  <%= stylesheet_link_tag "https://css.hackclub.com/fonts.min.css" %>
+  <%= stylesheet_link_tag "admin", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-    <%= render "shared/flash" %>
+<body>
 
-    <nav class="push-double--top">
-      <%= yield_with_default_for :nav %>
-    </nav>
+<%= render "admin/header" %>
+<%= render "shared/flash" %>
 
-    <main>
-      <%= yield %>
-    </main>
-  </body>
+<main class="container wide" style="padding: var(--spacing-4); padding-bottom: var(--spacing-5)">
+  <%= yield %>
+</main>
+
+<%= render "admin/footer" %>
+
+</body>
 </html>

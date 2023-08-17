@@ -8,4 +8,9 @@ module User::Named
   def first_name
     name&.split(" ")&.first
   end
+
+  def gravatar_url
+    hash = Digest::MD5.hexdigest email_address.downcase
+    "https://www.gravatar.com/avatar/#{hash}"
+  end
 end

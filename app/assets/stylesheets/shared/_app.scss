@@ -1,0 +1,14 @@
+// This module is used by both the `application` and `admin` layouts.
+
+body {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+.hidden_link {
+  text-decoration: none;
+
+  &:hover, &:focus {
+    text-decoration: underline wavy;
+  }
+}

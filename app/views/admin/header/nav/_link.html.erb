@@ -1,0 +1,5 @@
+<% selected = @nav_active_item == link %>
+
+<%= link_to link, class: "admin__nav__link#{"-active" if selected }" do %>
+  <%= title %>
+<% end %>
