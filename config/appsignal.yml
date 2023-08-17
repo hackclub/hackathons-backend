@@ -41,3 +41,4 @@ test:
 production:
   <<: *defaults
   active: true
+  revision: "<%= ENV["APP_REVISION"] %>"
