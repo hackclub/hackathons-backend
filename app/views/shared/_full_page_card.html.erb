@@ -1,0 +1,10 @@
+<% page :full %>
+<% content_for :body_style, "background-color: var(--sheet)" %>
+
+<div>
+  <div class="full_page_card__background" style="background-image: url('<%= background_url %>');"></div>
+
+  <div class="full_page_card__card container narrow card">
+    <%= yield %>
+  </div>
+</div>
