@@ -1,4 +1,4 @@
-.admin__nav__link, .admin__nav__link-active {
+.admin__nav__link, .admin__nav__link--active {
   text-decoration: none;
 
   padding: var(--spacing-2) 0;
@@ -11,6 +11,6 @@
   }
 }
 
-.admin__nav__link-active {
+.admin__nav__link--active {
   border-bottom: black solid 4px;
 }
