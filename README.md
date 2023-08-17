@@ -22,10 +22,6 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
    cp .env.example .env
    ```
 
-   Then, place the master key in `config/master.key`. If you don't have the
-   master key, ask [@garyhtou](https://garytou.com) or someone on the Hack Club
-   Bank engineering team.
-
 4. Install dependencies
 
    ```sh
@@ -53,6 +49,7 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
    ```sh
    bundle exec sidekiq
    ```
+   Sidekiq is necessary for emails (such as sign in links) to be sent.
 
 The application will now be running at [localhost:3000](http://localhost:3000)!
 
