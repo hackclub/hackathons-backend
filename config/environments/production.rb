@@ -51,12 +51,20 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 
-  # Log to STDOUT and AppSignal.
+  # Use lograge to tame log output.
+  config.lograge.enabled = true
+
+  # Log to both STDOUT and AppSignal.
+  config.lograge.keep_original_rails_log = true
+  config.lograge.logger = Appsignal::Logger.new(
+    "rails",
+    format: Appsignal::Logger::LOGFMT
+  )
   console_logger = ActiveSupport::Logger.new($stdout)
     .tap { |logger| logger.formatter = ::Logger::Formatter.new }
     .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
-  config.logger = console_logger.extend(
-    ActiveSupport::Logger.broadcast(ActiveSupport::TaggedLogging.new(Appsignal::Logger.new("rails")))
+  config.lograge.logger = console_logger.extend(
+    ActiveSupport::Logger.broadcast(Appsignal::Logger.new("rails", format: Appsignal::Logger::LOGFMT))
   )
 
   # Prepend all log lines with the following tags.

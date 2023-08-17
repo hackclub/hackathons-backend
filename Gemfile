@@ -54,6 +54,7 @@ gem "audits1984"
 
 # Application monitoring (errors, performance, etc.)
 gem "appsignal"
+gem "lograge" # Log formatting
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
