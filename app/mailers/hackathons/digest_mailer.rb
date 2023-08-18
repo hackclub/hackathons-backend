@@ -11,24 +11,25 @@ class Hackathons::DigestMailer < ApplicationMailer
     mail to: @recipient.email_address, subject: "Hackathons near you"
   end
 
-  def admin_summary
-    # This reloads the (possible) params[:digests] array as an
+  def admin_summary(sent_digests)
+    # This reloads the (possible) sent_digests array as an
     # ActiveRecord::Relation so that we can use includes to prevent an N+1.
-    @digests = Hackathon::Digest.where(id: params[:digests].map(&:id))
+    @sent_digests = Hackathon::Digest.where(id: sent_digests.map(&:id)) ||
+      Hackathon::Digest.where(created_at: 6.days.ago...Time.now)
 
-    @digests_by_hackathons = @digests
+    @sent_digests_by_hackathons = @sent_digests
       .includes(listings: {hackathon: {logo_attachment: :blob}})
       .flat_map(&:listings).group_by(&:hackathon)
       .transform_values { |listings| listings.map(&:digest).uniq }
 
-    @hackathons = @digests_by_hackathons.keys
-      .sort_by { |hackathon| @digests_by_hackathons[hackathon].count }.reverse!
+    @listed_hackathons = @sent_digests_by_hackathons.keys
+      .sort_by { |hackathon| @sent_digests_by_hackathons[hackathon].count }.reverse!
 
     subject = <<~SUBJECT.squish
-      📬 Hackathons: #{@digests.count} #{"email".pluralize(@digests.count)}
-      sent for #{@hackathons.count} #{"hackathon".pluralize(@hackathons.count)}
+      📬 Hackathons: #{@sent_digests.count} #{"email".pluralize(@sent_digests.count)}
+      sent for #{@listed_hackathons.count} #{"hackathon".pluralize(@listed_hackathons.count)}
     SUBJECT
 
-    mail to: Hackathons::SUPPORT_EMAIL, cc: User.admins.map(&:email_address), subject:
+    mail to: Hackathons::SUPPORT_EMAIL, cc: User.admins.collect(&:email_address), subject:
   end
 end

@@ -8,24 +8,21 @@ Bundler.require(*Rails.groups)
 
 module Hackathons
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
 
     config.active_record.encryption.encrypt_fixtures = true
 
-    config.active_job.queue_adapter = :sidekiq
+    # Don't use separate queues for jobs enqueued by Rails:
+    config.action_mailer.deliver_later_queue_name = nil
+    config.action_mailbox.queues.routing = nil
+    config.action_mailbox.queues.incineration = nil
+    config.active_storage.queues.analysis = nil
+    config.active_storage.queues.transform = nil
+    config.active_storage.queues.mirror = nil
+    config.active_storage.queues.purge = nil
 
     host = ENV["HOST"] || "localhost:3000"
     Rails.application.routes.default_url_options[:host] = host
-
     config.action_mailer.default_url_options = {host:}
     config.action_mailer.default_options = {
       from: "hackathons@hackclub.com"
