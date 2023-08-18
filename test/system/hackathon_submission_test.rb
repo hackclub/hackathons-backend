@@ -49,8 +49,8 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
 
     assert_difference -> { Hackathon.count } do
       click_on "Submit for Review"
+      assert_text(/submitted/i)
     end
-    assert_text(/submitted/i)
 
     assert User.where(email_address: "not.a.user.yet@hey.test").exists?
 
