@@ -1,6 +1,6 @@
 import { Application } from "@hotwired/stimulus"
 
-import { appsignal } from "./appsignal";
+import { appsignal } from "appsignal";
 import { installErrorHandler } from "@appsignal/stimulus";
 
 const application = Application.start()

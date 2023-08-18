@@ -13,3 +13,4 @@ pin "https", to: "https://ga.jspm.io/npm:@jspm/core@2.0.1/nodelibs/browser/https
 pin "isomorphic-unfetch", to: "https://ga.jspm.io/npm:isomorphic-unfetch@3.1.0/browser.js"
 pin "tslib", to: "https://ga.jspm.io/npm:tslib@2.6.1/tslib.es6.mjs"
 pin "unfetch", to: "https://ga.jspm.io/npm:unfetch@4.2.0/dist/unfetch.js"
+pin "appsignal", preload: true
