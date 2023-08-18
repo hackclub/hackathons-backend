@@ -21,6 +21,8 @@ module Hackathon::Regional
       end
     end
     before_save :geocode, if: -> { (new_record? || address_changed?) && valid? }
+
+    before_validation :clear_location, if: :online?, on: :submit
   end
 
   def address
@@ -49,5 +51,21 @@ module Hackathon::Regional
 
   def to_location
     Location.new(city, province, country_code)
+  end
+
+  private
+
+  def clear_location
+    self.attributes = {
+      latitude: nil,
+      longitude: nil,
+
+      address: nil,
+      street: nil,
+      city: nil,
+      province: nil,
+      postal_code: nil,
+      country_code: nil
+    }
   end
 end

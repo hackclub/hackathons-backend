@@ -6,7 +6,7 @@ module Hackathon::Swag
 
   included do
     belongs_to :swag_mailing_address, class_name: "MailingAddress", optional: true
-    accepts_nested_attributes_for :swag_mailing_address
+    accepts_nested_attributes_for :swag_mailing_address, reject_if: :all_blank
   end
 
   def requested_swag?

@@ -1,0 +1,65 @@
+form.simple_form {
+  input:not([type="file"]):not([type="checkbox"]), textarea, select {
+    border: solid 2px var(--sunken);
+    min-width: 200px;
+  }
+
+  label {
+    flex-direction: row;
+    row-gap: var(--spacing-2);
+  }
+
+  // Simple form's asterisk (for required fields)
+  abbr[title] {
+    text-decoration: none;
+    margin-left: 2px;
+    color: var(--red);
+    opacity: 60%;
+  }
+
+  div.input {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form__inputs, .form__inputs--nested {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--spacing-4);
+
+    @each $type in (text, email, url) {
+      input[type="#{$type}"], textarea {
+        width: 100%;
+      }
+    }
+
+    .hint {
+      margin-bottom: var(--spacing-2);
+    }
+  }
+
+  .field_with_errors {
+    label {
+      color: var(--red);
+    }
+  }
+
+  .error {
+    color: var(--red);
+  }
+
+  .form__inputs--nested {
+    @media screen and (min-width: 32em) {
+      border-left: dotted 2px var(--sunken);
+      padding-left: var(--spacing-4);
+      margin-top: calc(var(--spacing-4) / -2);
+    }
+  }
+
+  .form__actions {
+    margin-top: var(--spacing-4);
+  }
+}
