@@ -64,6 +64,7 @@ brew install vips
 ### MRSK Deployment
 
 All pushes to the `main` branch are automatically deployed by MRSK.
+
 - Environment variables are stored on GitHub and accessed by the GitHub Actions
   when deploying.
 - Deployments take roughly 5 minutes to complete.
@@ -75,6 +76,17 @@ Hetzner server(s). Then, run:
 "bin/console"
 ```
 
+### Sidekiq
+
+Sidekiq is used to process background jobs in production. Development uses the
+good old default Active Job Async queue adapter.
+
+To check up on Sidekiq, visit `/admin/sidekiq` on the production site. You must
+be logged in as an admin to access this page.
+
 ---
 
-Application performance monitoring sponsored by <a href="https://appsignal.com/?ref=github:hackclub/hackathons-backend">AppSignal</a>.
+Application performance monitoring sponsored by
+<a href="https://appsignal.com/?ref=github:hackclub/hackathons-backend">
+AppSignal
+</a>.
