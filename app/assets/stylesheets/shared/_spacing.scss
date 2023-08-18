@@ -32,7 +32,7 @@ $spacing-unit: 1rem;
     }
   }
 
-  @each $list in ((x, top, bottom), (y, left, right)) {
+  @each $list in ((x, left, right), (y, top, bottom)) {
     $axis: nth($list, 1);
     $dir1: nth($list, 2);
     $dir2: nth($list, 3);

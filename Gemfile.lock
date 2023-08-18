@@ -163,6 +163,8 @@ GEM
       rainbow
     countries (5.6.0)
       unaccent (~> 0.3)
+    country_select (8.0.2)
+      countries (~> 5.0)
     crass (1.0.6)
     css_parser (1.14.0)
       addressable
@@ -379,6 +381,9 @@ GEM
       fugit (~> 1.8)
       globalid (>= 1.0.1)
       sidekiq (>= 6)
+    simple_form (5.2.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -450,6 +455,7 @@ DEPENDENCIES
   capybara
   console1984
   countries
+  country_select
   debug
   dotenv-rails
   geocoder
@@ -474,6 +480,7 @@ DEPENDENCIES
   shoulda
   sidekiq
   sidekiq-cron
+  simple_form
   spring
   sprockets-rails
   standard

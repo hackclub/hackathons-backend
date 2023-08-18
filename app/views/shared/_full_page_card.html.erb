@@ -2,9 +2,13 @@
 <% content_for :body_style, "background-color: var(--sheet)" %>
 
 <div>
-  <div class="full_page_card__background" style="background-image: url('<%= background_url %>');"></div>
+  <div style="height: var(--spacing-6);">
+    <div class="full_page_card__background" style="background-image: url('<%= background_url %>');"></div>
+  </div>
 
   <div class="full_page_card__card container narrow card">
     <%= yield %>
   </div>
+
+  <%= render "shared/footer" %>
 </div>

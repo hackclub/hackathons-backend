@@ -1,14 +1,10 @@
 .full_page_card__background {
-  height: var(--spacing-7);
+  height: 220%;
   background-position: center;
   background-size: cover;
 }
 
 .full_page_card__card {
-  position: relative;
-  top: calc(var(--spacing-7) / -3);
   background-color: var(--elevated);
-  padding: var(--spacing-4);
   border-radius: var(--radii-default);
-  margin-bottom: calc(var(--spacing-7) / -3);
 }
