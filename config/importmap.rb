@@ -14,3 +14,6 @@ pin "isomorphic-unfetch", to: "https://ga.jspm.io/npm:isomorphic-unfetch@3.1.0/b
 pin "tslib", to: "https://ga.jspm.io/npm:tslib@2.6.1/tslib.es6.mjs"
 pin "unfetch", to: "https://ga.jspm.io/npm:unfetch@4.2.0/dist/unfetch.js"
 pin "appsignal", preload: true
+pin "@appsignal/plugin-breadcrumbs-console", to: "https://ga.jspm.io/npm:@appsignal/plugin-breadcrumbs-console@1.1.27/dist/esm/index.js"
+pin "@appsignal/plugin-breadcrumbs-network", to: "https://ga.jspm.io/npm:@appsignal/plugin-breadcrumbs-network@1.1.21/dist/esm/index.js"
+pin "@appsignal/plugin-path-decorator", to: "https://ga.jspm.io/npm:@appsignal/plugin-path-decorator@1.0.15/dist/esm/index.js"
