@@ -9,6 +9,15 @@
   <%= stylesheet_link_tag "https://css.hackclub.com/theme.min.css" %>
   <%= stylesheet_link_tag "https://css.hackclub.com/fonts.min.css" %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+  <script>
+    const Hackathons = {
+      appsignal: {
+        // Frontend API key (intended to be exposed publicly)
+        key: "<%= "5b516ead-40f6-4ed3-8012-40c3882bfc90" if Rails.env.production? %>"
+      }
+    }
+  </script>
   <%= javascript_importmap_tags %>
 </head>
 

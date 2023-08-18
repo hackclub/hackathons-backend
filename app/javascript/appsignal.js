@@ -4,8 +4,7 @@ import {plugin as breadcrumbsNetwork} from "@appsignal/plugin-breadcrumbs-networ
 import {plugin as pathDecorator} from "@appsignal/plugin-path-decorator"
 
 export const appsignal = new Appsignal({
-    // Frontend API key (intended to be exposed publicly)
-    key: "5b516ead-40f6-4ed3-8012-40c3882bfc90",
+  key: Hackathons.appsignal.key,
 });
 
 appsignal.use(breadcrumbsConsole());
