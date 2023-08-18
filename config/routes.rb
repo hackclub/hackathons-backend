@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   constraints Constraints::Admin do
-    mount Sidekiq::Web => "/sidekiq"
+    mount Sidekiq::Web => "/admin/sidekiq" if Rails.env.production?
     mount Audits1984::Engine => "/admin/audits"
 
     namespace :admin do
