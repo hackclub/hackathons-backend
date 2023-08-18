@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -26,18 +26,18 @@ jobs:
         image: redis:7.0
         ports: ["6379:6379"]
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
       - name: Install system dependencies
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
           sudo apt-get update -yqq
           sudo apt-get install -yqq libvips
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
       - name: Run tests
         run: bundle exec rails db:create test:all
         env:
