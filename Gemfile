@@ -39,6 +39,10 @@ gem "rack-cors" # Cross-origin resource sharing
 
 gem "pagy" # Pagination
 
+# User interface
+gem "simple_form"
+gem "country_select"
+
 # Geography
 gem "geocoder"
 gem "countries"
