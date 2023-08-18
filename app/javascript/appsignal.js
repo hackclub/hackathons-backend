@@ -10,5 +10,3 @@ export const appsignal = new Appsignal({
 appsignal.use(breadcrumbsConsole());
 appsignal.use(breadcrumbsNetwork());
 appsignal.use(pathDecorator());
-
-console.log("Appsignal:", appsignal);
