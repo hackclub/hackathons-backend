@@ -7,14 +7,14 @@ servers:
     hosts:
       - app-1.hackathons.hackclub.com
     options:
-      memory: 1G
-      cpus: 1
+      memory: 2G
+      cpus: 2
   jobs:
     hosts:
       - app-1.hackathons.hackclub.com
     cmd: bundle exec sidekiq
     options:
-      memory: 2G
+      memory: 1G
       cpus: 1
 
 registry:
