@@ -27,6 +27,9 @@ registry:
 env:
   clear:
     HOST: dash.hackathons.hackclub.com
+    WEB_CONCURRENCY: 2
+    RAILS_MAX_THREADS: 10
+    RAILS_MIN_THREADS: 5
   secret:
     - RAILS_MASTER_KEY
     - DATABASE_URL
