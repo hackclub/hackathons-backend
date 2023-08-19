@@ -54,6 +54,7 @@ Rails.application.routes.draw do
       end
 
       namespace :stats do
+        resources :hackathons, only: :index
         namespace :hackathons do
           resources :subscriptions, only: :index
         end
