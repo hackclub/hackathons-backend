@@ -69,11 +69,18 @@ All pushes to the `main` branch are automatically deployed by MRSK.
   when deploying.
 - Deployments take roughly 5 minutes to complete.
 
-To use the production Rails Console, you must first have SSH access to the
-Hetzner server(s). Then, run:
+### Production Rails Console
+
+We audit the use of the production console with [`console1984`](https://github.com/basecamp/console1984)
+and [`audits1984`](https://github.com/basecamp/audits1984).
+
+To use the production console, you must first have SSH access to the Hetzner
+server(s). Please add [`@garyhtou`](https://garytou.com) for access.
+
+Then, run the following locally on your computer:
 
 ```sh
-"bin/console"
+bin/console
 ```
 
 ### Sidekiq

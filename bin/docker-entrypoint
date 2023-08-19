@@ -4,4 +4,8 @@ if [ "${*}" == "./bin/rails server" ]; then
   ./bin/rails db:prepare
 fi
 
+if [ -f tmp/pids/server.pid ]; then
+  rm tmp/pids/server.pid
+fi
+
 exec "${@}"

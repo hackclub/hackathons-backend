@@ -31,4 +31,5 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           REDIS_URL: ${{ secrets.REDIS_URL }}
           APPSIGNAL_PUSH_API_KEY: ${{ secrets.APPSIGNAL_PUSH_API_KEY }}
+          APPSIGNAL_FRONTEND_API_KEY: ${{ secrets.APPSIGNAL_FRONTEND_API_KEY }}
           APP_REVISION: ${{ github.sha }}
