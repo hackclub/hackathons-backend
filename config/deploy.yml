@@ -43,3 +43,7 @@ builder:
   cache:
     type: gha
     options: mode=max
+
+traefik:
+  args:
+    entrypoints.web.forwardedHeaders.trustedIPs: 10.0.0.0/8
