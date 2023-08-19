@@ -165,11 +165,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_08_15_205623) do
     t.string "street"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "applicant_id", null: false
     t.string "website"
     t.boolean "high_school_led", default: true, null: false
     t.integer "expected_attendees"
     t.integer "modality", default: 0, null: false
-    t.bigint "applicant_id", null: false
     t.bigint "swag_mailing_address_id"
     t.boolean "apac"
     t.string "airtable_id"
