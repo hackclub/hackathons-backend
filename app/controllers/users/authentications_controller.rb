@@ -1,5 +1,6 @@
 class Users::AuthenticationsController < ApplicationController
   skip_before_action :redirect_if_unauthenticated
+  before_action :redirect_if_authenticated, only: [:new, :create]
 
   def new
   end

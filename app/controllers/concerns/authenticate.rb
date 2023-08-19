@@ -20,6 +20,7 @@ module Authenticate
   end
 
   def redirect_if_authenticated
+    return redirect_to admin_hackathons_path if Current.user&.admin?
     redirect_to hackathons_submissions_path if Current.user
   end
 end
