@@ -1,8 +1,17 @@
 module MailerHelper
   def recipient_name
-    return unless @_message&.to&.one? # Abort if there are multiple recipients
+    recipient_emails =
+      if @_message&.to&.is_a?(String)
+        # Comma-separated list of email addresses
+        @_message.to.split(",")
+      else
+        # Array of email addresses
+        @_message&.to || []
+      end
 
-    recipient = @recipient || @user || User.find_by_email_address(@_message&.to&.first)
+    return if recipient_emails.many? # Abort if multiple recipients
+
+    recipient = @recipient || @user || User.find_by_email_address(recipient_emails.first)
     recipient&.first_name
   end
 end
