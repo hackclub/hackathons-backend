@@ -1,17 +1,47 @@
-#!/bin/sh
+#!/usr/bin/env ruby
 
-if !([ "$1" = "prod" ] || [ "$1" = "production" ]); then
-  exec bundle exec rails console
-elif [ -f tmp/.console-user ]; then
-  CONSOLE_USER=$(cat tmp/.console-user)
-  exec bundle exec mrsk app exec --reuse -i "env CONSOLE_USER=\"${CONSOLE_USER}\" bin/rails console"
+CONSOLE_USER_FILE = "tmp/.console-user"
+ENVIRONMENTS = {
+  %w[prod production] => :production,
+  %w[dev development] => :development,
+}
+environment = ENVIRONMENTS.find { |k, _| k.include? ARGV[0] }&.last || :development
+
+def console_user
+  ask_for_console_user until (user = read_console_user)
+  user
+end
+
+def ask_for_console_user
+  print "To access the production console, enter your name: "
+  File.write(CONSOLE_USER_FILE, STDIN.gets.chomp)
+end
+
+def read_console_user
+  File.read(CONSOLE_USER_FILE).strip if File.exist?(CONSOLE_USER_FILE)
+end
+
+def escape_str(string)
+  string.gsub("\"", "\\\"")
+end
+
+def mrsk_exec(cmd)
+  exec "bundle exec mrsk app exec --reuse -i \"#{cmd.gsub("\"", "\\\"")}\""
+end
+
+if environment == :production
+  begin
+    puts "❗ ARE YOU SURE YOU WANT TO ACCESS THE **REAL** PRODUCTION CONSOLE?"
+    print "Type \"real prod\" to confirm: "
+    confirmed = STDIN.gets.chomp == "real prod" # `gets` may raise Interrupt
+
+    raise Interrupt unless confirmed
+    puts # blank line to separate from MRSK output
+
+    mrsk_exec "env CONSOLE_USER=\"#{console_user}\" bin/rails console"
+  rescue Interrupt
+    puts "\nphew! you're safe 😅"
+  end
 else
-  while [ -z "$CONSOLE_USER" ]; do
-    echo -n "To access the production console, enter your name: "
-    read CONSOLE_USER
-  done
-
-  echo $CONSOLE_USER > tmp/.console-user
-
-  exec bundle exec mrsk app exec --reuse -i "env CONSOLE_USER=\"${CONSOLE_USER}\" bin/rails console"
-fi
+  exec "bin/rails console"
+end
