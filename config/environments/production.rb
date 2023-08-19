@@ -78,8 +78,7 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  # Use a real queuing backend for Active Job (and separate queues per environment).
-  # config.active_job.queue_name_prefix = "hackathons_production"
+  config.active_job.queue_adapter = :sidekiq
 
   # Send emails via SMTP using Amazon SES
   config.action_mailer.delivery_method = :smtp

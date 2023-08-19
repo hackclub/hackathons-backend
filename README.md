@@ -41,16 +41,6 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
    rails server
    ```
 
-7. `(OPTIONAL)` Run background jobs
-
-   We use [Sidekiq](https://sidekiq.org/) to run background jobs. To start the
-   Sidekiq server, run:
-
-   ```sh
-   bundle exec sidekiq
-   ```
-   Sidekiq is necessary for most emails to be sent.
-
 The application will now be running at [localhost:3000](http://localhost:3000)!
 
 ### Additional Dependencies
@@ -64,7 +54,7 @@ brew install vips
 
 ## Deployment
 
-- Herokou
+- Heroku
   - Postgres (Heroku Postgres)
   - Redis (Redis Enterprise Cloud)
 - Hetzner
@@ -93,6 +83,17 @@ Then, run the following locally on your computer:
 bin/console
 ```
 
+### Sidekiq
+
+Sidekiq is used to process background jobs in production. Development uses the
+good old default Active Job Async queue adapter.
+
+To check up on Sidekiq, visit `/admin/sidekiq` on the production site. You must
+be logged in as an admin to access this page.
+
 ---
 
-Application performance monitoring sponsored by <a href="https://appsignal.com/?ref=github:hackclub/hackathons-backend">AppSignal</a>.
+Application performance monitoring sponsored by
+<a href="https://appsignal.com/?ref=github:hackclub/hackathons-backend">
+AppSignal
+</a>.

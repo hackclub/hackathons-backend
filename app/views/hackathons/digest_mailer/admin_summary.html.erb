@@ -3,16 +3,16 @@
 <% end %>
 
 <p>
-  <%= @digests.count %> <%= "subscriber".pluralize(@digests.count) %> were notified
-  for <%= @hackathons.count %> <%= "hackathon".pluralize(@hackathons.count) %>.
+  <%= @sent_digests.count %> <%= "subscriber".pluralize(@sent_digests.count) %> were notified
+  for <%= @listed_hackathons.count %> <%= "hackathon".pluralize(@listed_hackathons.count) %>.
 </p>
 
 <div style="margin-top: 2rem;">
-  <% @hackathons.each do |hackathon| %>
+  <% @listed_hackathons.each do |hackathon| %>
 
     <% subtitle = capture do %>
       <span style="vertical-align: middle; margin-left: 1rem; color: white; background-color: #8492a6; border-radius: 1rem; padding: 0.25rem 0.5rem; font-size: 0.75rem;">
-        <% count = @digests_by_hackathons[hackathon].count %>
+        <% count = @sent_digests_by_hackathons[hackathon].count %>
         <%= count %> <%= "subscriber".pluralize(count) %> notified
       </span>
     <% end %>
