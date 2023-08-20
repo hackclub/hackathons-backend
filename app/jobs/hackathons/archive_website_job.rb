@@ -1,8 +1,7 @@
 class Hackathons::ArchiveWebsiteJob < ApplicationJob
   def perform(hackathon)
-    return if hackathon.website_down?
+    return if hackathon.website_down? # Prevents archiving parking pages
 
-    # Web Archive will only save status 200 pages by default
     capture_job = InternetArchive.instance.capture hackathon.website
 
     if capture_job["status"] == "error"
