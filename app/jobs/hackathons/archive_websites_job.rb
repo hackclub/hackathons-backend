@@ -1,8 +1,7 @@
 class Hackathons::ArchiveWebsitesJob < ApplicationJob
   def perform
     upcoming_or_recent_hackathons.find_each do |hackathon|
-      # I'm performing these archives synchronously to prevent overwhelming archive.org
-      ArchiveWebsiteJob.perform_now(hackathon)
+      ArchiveWebsiteJob.perform_later(hackathon)
     end
   end
 
