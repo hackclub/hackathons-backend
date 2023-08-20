@@ -19,7 +19,7 @@ module Taggable
       if tags.loaded?
         # Use loaded association to prevent N+1
         tags.any? do |t|
-          next t == tag if t.is_a? Tag
+          next t == tag if tag.is_a? Tag
           t.name == tag # tag is a name (string)
         end
       elsif tag.is_a? Tag
