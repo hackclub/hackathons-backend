@@ -458,6 +458,7 @@ DEPENDENCIES
   country_select
   debug
   dotenv-rails
+  faraday
   geocoder
   hashid-rails
   image_processing (>= 1.2)

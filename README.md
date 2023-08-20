@@ -5,6 +5,7 @@ _The thing that powers [hackathons.hackclub.com](https://hackathons.hackclub.com
 - 📎 Collecting and reviewing applications to list your hackathon
 - 📧 Notifying subscribers of hackathons in their area
 - 🌍 Geocoding hackathon and subscription locations into coordinates
+- 💾 Archiving hackathon websites for posterity
 - 🗓️ Provides a JSON API for the [front-end](https://github.com/hackclub/hackathons)
 
 <table>

@@ -1,6 +1,10 @@
 class Api::HackathonsController < Api::BaseController
   def index
-    @pagy, @hackathons = pagy(Hackathon.approved.with_attached_logo.with_attached_banner)
+    @pagy, @hackathons = pagy(
+      Hackathon.approved
+               .includes(:tags, :events)
+               .with_attached_logo.with_attached_banner
+    )
   end
 
   def show

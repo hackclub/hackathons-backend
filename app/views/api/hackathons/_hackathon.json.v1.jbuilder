@@ -3,8 +3,15 @@ shape_for hackathon, json do
     :name,
     :starts_at,
     :ends_at,
-    :website,
     :modality)
+
+  json.website begin
+    if hackathon.tagged_with?("Website Down") && hackathon.website_archived?
+      hackathon.archived_website_url
+    else
+      hackathon.website
+    end
+  end
 
   json.logo_url file_url_for hackathon.logo, :small
   json.banner_url file_url_for hackathon.banner, :large

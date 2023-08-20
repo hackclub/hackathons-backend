@@ -36,6 +36,7 @@ gem "sidekiq-cron"
 gem "jbuilder" # JSON templating
 gem "versioncake" # API versioning
 gem "rack-cors" # Cross-origin resource sharing
+gem "faraday" # GET / POST requests
 
 gem "pagy" # Pagination
 
