@@ -7,6 +7,7 @@ form.simple_form {
   label {
     flex-direction: row;
     row-gap: var(--spacing-2);
+    font-weight: 800;
   }
 
   // Simple form's asterisk (for required fields)
@@ -54,12 +55,30 @@ form.simple_form {
   .form__inputs--nested {
     @media screen and (min-width: 32em) {
       border-left: dotted 2px var(--sunken);
-      padding-left: var(--spacing-4);
+      padding-left: var(--spacing-3);
       margin-top: calc(var(--spacing-4) / -2);
     }
+  }
+  
+  .form__inputs--nested > div > label {
+    font-size: 18px;
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .form__inputs--nested > .lead {
+    font-size: var(--font-2)!important;
   }
 
   .form__actions {
     margin-top: var(--spacing-4);
+  }
+  
+  input::file-selector-button {
+    font-family: "Phantom Sans";
+    padding: 4px;
+    text-align: left;
+    background: var(--sunken);
+    border: 1px solid var(--border);
+    border-radius: var(--radii-small);
   }
 }
