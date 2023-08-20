@@ -16,7 +16,6 @@ module Taggable
   def tagged_with?(tags_or_names)
     return false unless tags_or_names.present?
     Array(tags_or_names).all? do |tag|
-
       if tags.loaded?
         # Use loaded association to prevent N+1
         tags.any? do |t|
@@ -28,7 +27,6 @@ module Taggable
       else
         tags.exists? name: tag
       end
-
     end
   end
 
