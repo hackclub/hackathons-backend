@@ -18,6 +18,7 @@
           background-color: #ffffff;
           color: #1f2d3d;
           font-family: 'Phantom Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          font-size: 16px;
       }
 
       a {
@@ -31,19 +32,22 @@
       }
 
       #layout__header {
-          border-radius: 0 0 2rem 2rem;
+          border-radius: 0 0 1rem 1rem;
           background-color: #f9fafc;
-          padding: 0 1rem 1rem 1rem;
+          padding: 1rem;
+          display: flex;
+          align-items: center;
       }
 
       #layout__logo {
-          width: 9rem;
+          height: 2rem;
           margin: 0;
       }
 
       #layout__title {
-          font-size: 3rem;
-          text-align: center;
+          flex-grow: 1;
+          font-size: 1.5rem;
+          text-align: right;
           color: #ec3750;
           margin: 0;
       }
@@ -53,13 +57,11 @@
       }
 
       #layout__footer {
-          padding: 1rem;
           font-size: 0.75rem;
       }
 
       .layout__separator {
           border-top: 1px dashed lightgray;
-          margin: 1rem 0;
       }
 
   </style>
@@ -69,9 +71,9 @@
 <body>
 <div id="layout">
   <header id="layout__header">
-    <%= image_tag "flag-orpheus-top.png", id: "layout__logo" %>
+    <%= image_tag "flag-standalone", id: "layout__logo" %>
     <h1 id="layout__title">
-      High School Hackathons
+      hackathons.hackclub.com
     </h1>
   </header>
 
@@ -92,7 +94,7 @@
 
     <% yield_with_default_for :fine_print do %>
       <p style="font-size: 0.75rem; font-weight: lighter">
-        High School Hackathons is maintained by <%= link_to "Hack Club", "https://hackclub.com" %> staff.
+        <%= link_to "hackathons.hackclub.com", "https://hackathons.hackclub.com" %> is maintained by <%= link_to "Hack Club", "https://hackclub.com" %> staff.
       </p>
     <% end %>
   </main>
