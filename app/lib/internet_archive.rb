@@ -30,7 +30,7 @@ class InternetArchive
 
   def auth_header
     {
-      authorization: "LOW #{access_key}:#{access_secret}"
+      Authorization: "LOW #{access_key}:#{access_secret}"
     }
   end
 end
