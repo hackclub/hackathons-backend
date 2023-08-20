@@ -1,11 +1,10 @@
 <footer style="margin: var(--spacing-4)">
   <p class="caption" style="text-align: center;">
-    High School Hackathons
     <% if Current.user&.admin? %>
       Dashboard
     <% end %>
     <br/>
-    Made with ❤️ by
+    <%= link_to "hackathons.hackclub.com", "https://hackathons.hackclub.com" %>, made with ❤️ by
     <%= link_to "Hack Club", "https://hackclub.com", class: "hidden-link" %>
   </p>
 
