@@ -19,7 +19,7 @@ module Hackathon::Brand::Website
   def website_up?
     response = Faraday.get website
     response.status == 200 && response.body.include?(name)
-  rescue StandardError
+  rescue
     false
   end
 

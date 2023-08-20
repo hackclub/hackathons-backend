@@ -24,13 +24,13 @@ class InternetArchive
 
   def headers
     {
-      "Accept": "application/json",
+      Accept: "application/json"
     }.deep_merge auth_header
   end
 
   def auth_header
     {
-      "authorization": "LOW #{access_key}:#{access_secret}"
+      authorization: "LOW #{access_key}:#{access_secret}"
     }
   end
 end
