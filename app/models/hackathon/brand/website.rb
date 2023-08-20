@@ -21,7 +21,7 @@ module Hackathon::Brand::Website
       f.response :follow_redirects
     end
     response = connection.get website
-    response.status == 200 && response.body.downcase.include?(name.downcase)
+    response.success? && response.body.downcase.include?(name.downcase)
   rescue Faraday::Error
     false
   end
