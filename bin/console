@@ -8,7 +8,7 @@ ENVIRONMENTS = {
 environment = ENVIRONMENTS.find { |k, _| k.include? ARGV[0] }&.last || :development
 
 def console_user
-  ask_for_console_user until (user = read_console_user)
+  ask_for_console_user while (user = read_console_user).to_s.empty?
   user
 end
 
@@ -33,12 +33,13 @@ if environment == :production
   begin
     puts "❗ ARE YOU SURE YOU WANT TO ACCESS THE **REAL** PRODUCTION CONSOLE?"
     print "Type \"real prod\" to confirm: "
-    confirmed = STDIN.gets.chomp == "real prod" # `gets` may raise Interrupt
+    confirmed = STDIN.gets&.chomp == "real prod" # `gets` may raise Interrupt
 
     raise Interrupt unless confirmed
+    user = console_user
     puts # blank line to separate from MRSK output
 
-    mrsk_exec "env CONSOLE_USER=\"#{console_user}\" bin/rails console"
+    mrsk_exec "env CONSOLE_USER=\"#{user}\" bin/rails console"
   rescue Interrupt
     puts "\nphew! you're safe 😅"
   end
