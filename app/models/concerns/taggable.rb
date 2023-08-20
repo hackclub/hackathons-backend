@@ -16,8 +16,19 @@ module Taggable
   def tagged_with?(tags_or_names)
     return false unless tags_or_names.present?
     Array(tags_or_names).all? do |tag|
-      tag = Tag.find_by(name: tag) unless tag.is_a? Tag
-      tags.include? tag
+
+      if tags.loaded?
+        # Use loaded association to prevent N+1
+        tags.any? do |t|
+          next t == tag if t.is_a? Tag
+          t.name == tag # tag is a name (string)
+        end
+      elsif tag.is_a? Tag
+        tags.include? tag
+      else
+        tags.exists? name: tag
+      end
+
     end
   end
 
