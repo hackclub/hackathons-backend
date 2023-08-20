@@ -107,10 +107,12 @@
     </p>
 
     <% yield_with_default_for :unsubscribe do %>
-      <p>
-        Update your <%= link_to "email preferences", @email_preferences_url %> to choose which emails you
-        receive, or <%= link_to "unsubscribe", @unsubscribe_url %> from all future emails.
-      </p>
+      <% if @email_preferences_url && @unsubscribe_url %>
+        <p>
+          Update your <%= link_to "email preferences", @email_preferences_url %> to choose which emails you
+          receive, or <%= link_to "unsubscribe", @unsubscribe_url %> from all future emails.
+        </p>
+      <% end %>
     <% end %>
 
     <address>

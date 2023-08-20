@@ -1,0 +1,8 @@
+<turbo-frame id="hackathon_name">
+  <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data: {controller: "form"} do |form| %>
+    <h1 class="heading--medium">
+      <%= form.text_field :name, required: true, data:
+        {action: "click@document->form#submitOnClickOutside keydown->form#submitOnEnter"} %>
+    </h1>
+  <% end %>
+</turbo-frame>

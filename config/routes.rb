@@ -3,8 +3,6 @@ require "sidekiq/cron/web"
 require "constraints/admin"
 
 Rails.application.routes.draw do
-  get "up", to: "rails/health#show", as: :health_check
-
   root "hackathons#index"
 
   get "sign_in", to: "users/authentications#new", as: :sign_in
@@ -29,18 +27,20 @@ Rails.application.routes.draw do
   end
 
   constraints Constraints::Admin do
-    mount Sidekiq::Web => "/sidekiq"
+    mount Sidekiq::Web => "/admin/sidekiq" if Rails.env.production?
+    mount Audits1984::Engine => "/admin/audits"
 
     namespace :admin do
       resources :hackathons, except: [:new, :create] do
         scope module: :hackathons do
           resource :approval, :rejection, :hold, only: [:create]
+
+          resource :name, :website, :times,
+            :expected_attendees, only: :edit
         end
       end
     end
   end
-
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   namespace :api, defaults: {format: :json} do
     scope "/v:api_version" do
@@ -50,10 +50,14 @@ Rails.application.routes.draw do
       end
 
       namespace :stats do
+        resources :hackathons, only: :index
         namespace :hackathons do
           resources :subscriptions, only: :index
         end
       end
     end
   end
+
+  get "up", to: "rails/health#show", as: :health_check
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

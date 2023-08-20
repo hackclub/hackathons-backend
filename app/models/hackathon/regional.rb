@@ -2,10 +2,10 @@ module Hackathon::Regional
   extend ActiveSupport::Concern
 
   included do
-    validates :address, presence: true, on: :submit
+    validates :address, presence: true, on: :submit, unless: :online?
 
     geocoded_by :address do |hackathon, results|
-      # Geocodes to coordinates and standardizes the location attributes
+      # Geocode to coordinates and standardizes the location attributes
       if (result = results.first)
         hackathon.attributes = {
           latitude: result.latitude,
@@ -16,11 +16,13 @@ module Hackathon::Regional
           city: result.city,
           province: result.province || result.state,
           postal_code: result.postal_code,
-          country_code: result.country_code.upcase
+          country_code: result.country_code&.upcase
         }
       end
     end
     before_save :geocode, if: -> { (new_record? || address_changed?) && valid? }
+
+    before_validation :clear_location, if: :online?, on: :submit
   end
 
   def address
@@ -49,5 +51,21 @@ module Hackathon::Regional
 
   def to_location
     Location.new(city, province, country_code)
+  end
+
+  private
+
+  def clear_location
+    self.attributes = {
+      latitude: nil,
+      longitude: nil,
+
+      address: nil,
+      street: nil,
+      city: nil,
+      province: nil,
+      postal_code: nil,
+      country_code: nil
+    }
   end
 end

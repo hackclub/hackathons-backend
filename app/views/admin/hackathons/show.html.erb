@@ -5,9 +5,12 @@
 <% end %>
 
 <div id="<%= dom_id(@hackathon) %>" class="hackathon">
-  <h1 class="heading--medium">
-    <%= @hackathon.name %>
-  </h1>
+  <turbo-frame id="hackathon_name">
+    <h1 class="heading--medium">
+      <%= @hackathon.name %>
+      <%= link_to "✏️", edit_admin_hackathon_name_path(@hackathon), class: "hidden-link text--small" %>
+    </h1>
+  </turbo-frame>
 
   <% if @hackathon.logo.present? || @hackathon.banner.present? %>
     <section style="display: flex;">
@@ -44,18 +47,27 @@
   </div>
 
   <div>
-    Website:
-    <%= @hackathon.website %>
+    <turbo-frame id="hackathon_website">
+      Website: <%= @hackathon.website %>
+      <%= link_to "✏️", edit_admin_hackathon_website_path(@hackathon), class: "hidden-link text--small" %>
+    </turbo-frame>
   </div>
 
   <div>
-    Starts <%= local_time_ago(@hackathon.starts_at) %>,
-    ends <%= local_time_ago(@hackathon.ends_at) %>
+    <turbo-frame id="hackathon_times">
+      Starts <%= local_time_ago(@hackathon.starts_at) %>,
+      ends <%= local_time_ago(@hackathon.ends_at) %>
+      <%= link_to "✏️", edit_admin_hackathon_times_path(@hackathon), class: "hidden-link text--small" %>
+    </turbo-frame>
   </div>
 
   <div>
-    Expected Attendees:
-    <%= @hackathon.expected_attendees %> <%= @hackathon.modality.humanize(capitalize: false) %>
+    <turbo-frame id="hackathon_expected_attendees">
+      Expected Attendees:
+      <%= @hackathon.expected_attendees %>
+      <%= @hackathon.modality.humanize(capitalize: false) %>
+      <%= link_to "✏️", edit_admin_hackathon_expected_attendees_path(@hackathon), class: "hidden-link text--small" %>
+    </turbo-frame>
   </div>
 
   <div>
@@ -69,11 +81,13 @@
   </div>
 
   <div>
-    <% if @hackathon.requested_swag? %>
-      Swag requested for: <%= @hackathon.swag_mailing_address.full %>
-    <% else %>
-      No swag requested.
-    <% end %>
+    <turbo-frame id="swag_mailing_address">
+      <% if @hackathon.requested_swag? %>
+        Swag requested for: <%= @hackathon.swag_mailing_address.full %>
+      <% else %>
+        No swag requested.
+      <% end %>
+    </turbo-frame>
   </div>
 
   <div class="button-group">

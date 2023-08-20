@@ -1,0 +1,16 @@
+.admin__nav__link, .admin__nav__link--active {
+  text-decoration: none;
+
+  padding: var(--spacing-2) 0;
+  color: var(--slate);
+  font-size: var(--font-3);
+
+  &:hover {
+    color: var(--red);
+    border-bottom: var(--red) solid 4px;
+  }
+}
+
+.admin__nav__link--active {
+  border-bottom: black solid 4px;
+}

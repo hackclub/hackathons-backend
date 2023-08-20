@@ -5,6 +5,11 @@
     <p class="notice">
       An email has been sent to <strong><%= @user.email_address %></strong> with a link to sign in.
     </p>
+    <% if Rails.env.development? %>
+      <p>
+        Psst. See the email in <%= link_to "letter opener", letter_opener_web_path %>.
+      </p>
+    <% end %>
   <% else %>
     <%= form_with url: authentication_path do |form| %>
       <%= form.text_field :email_address, placeholder: "orpheus@hackclub.test" %>

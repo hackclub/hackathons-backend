@@ -1,8 +1,27 @@
 # Hackathons Backend
 
-The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackclub.com)!
+_The thing that powers [hackathons.hackclub.com](https://hackathons.hackclub.com)!_
 
-## Development
+- 📎 Collecting and reviewing applications to list your hackathon
+- 📧 Notifying subscribers of hackathons in their area
+- 🌍 Geocoding hackathon and subscription locations into coordinates
+- 🗓️ Provides a JSON API for the [front-end](https://github.com/hackclub/hackathons)
+
+<table>
+<tr>
+ <th>📝 Application Form
+ <th>📬 Subscription Email
+<tr>
+ <td><img alt="Screenshot of Hackathons application form" src="https://github.com/hackclub/hackathons-backend/assets/20099646/46cada67-5852-44a4-bdef-a01308448112"/>
+ <td><img alt="Screenshot of Hackathons subscription email" src="https://github.com/hackclub/hackathons-backend/assets/20099646/2a3964df-7a3a-4383-94d3-80c53c928bc6"/>
+</table>
+
+## Contributing
+
+This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org/). It uses 🐘
+[PostgreSQL](https://www.postgresql.org/) for the database and 🥋
+[Sidekiq](https://sidekiq.org/)/[Redis](https://redis.io/) for background jobs.
+And we're running on Rails edge (Rails 7.1.0.alpha) and Ruby 3.2.2.
 
 ### Getting Started
 
@@ -22,10 +41,6 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
    cp .env.example .env
    ```
 
-   Then, place the master key in `config/master.key`. If you don't have the
-   master key, ask [@garyhtou](https://garytou.com) or someone on the Hack Club
-   Bank engineering team.
-
 4. Install dependencies
 
    ```sh
@@ -41,17 +56,8 @@ The thing that *soon* powers [hackathons.hackclub.com](https://hackathons.hackcl
 6. Setup the database and run the server
 
    ```sh
-   rails db:setup
+   rails db:prepare
    rails server
-   ```
-
-7. `(OPTIONAL)` Run background jobs
-
-   We use [Sidekiq](https://sidekiq.org/) to run background jobs. To start the
-   Sidekiq server, run:
-
-   ```sh
-   bundle exec sidekiq
    ```
 
 The application will now be running at [localhost:3000](http://localhost:3000)!
@@ -65,10 +71,52 @@ dependency installed on your machine. For macs, run:
 brew install vips
 ```
 
-## Deployment
+## Production Deployment
 
-- Herokou
-  - Postgres (Heroku Postgres)
-  - Redis (Redis Enterprise Cloud)
+**Vendors:**
+
+- Heroku
+  - Postgres (Heroku Postgres `standard0`)
+  - Redis (Heroku Data for Redis `premium0`)
 - Hetzner
-  - Runs the Rails app and Sidekiq
+  - Runs the Rails app and Sidekiq (3 vCPU, 4 GB)
+  - Deployed via [MRSK](https://mrsk.dev/)
+
+### MRSK
+
+All pushes to the `main` branch are automatically deployed by MRSK.
+
+- Environment variables are stored on GitHub and accessed by GitHub Actions
+  when deploying.
+- Deployments take roughly 2 minutes to complete.
+- After pushing to `main`, please monitor the `CD / Deploy` check for the status
+  of the deployment.
+
+### Production Rails Console
+
+We audit the use of the production console with [`console1984`](https://github.com/basecamp/console1984)
+and [`audits1984`](https://github.com/basecamp/audits1984).
+
+To use the production console, you must first have SSH access to the Hetzner
+server(s). Please ask [`@garyhtou`](https://garytou.com) for access.
+
+Then, run the following locally on your computer:
+
+```sh
+bin/console
+```
+
+### Sidekiq
+
+Sidekiq is used to process background jobs in production. In development, we use
+the good old default Active Job Async queue adapter.
+
+To check up on Sidekiq, visit `/admin/sidekiq` on the production site. You must
+be logged in as an admin to access this page.
+
+---
+
+Application performance monitoring sponsored by
+<a href="https://appsignal.com/?ref=github:hackclub/hackathons-backend">
+AppSignal
+</a>.

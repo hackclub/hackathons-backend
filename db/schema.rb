@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_14_030407) do
+ActiveRecord::Schema[7.1].define(version: 2023_08_18_183712) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,51 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_030407) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "audits1984_audits", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
+    t.text "notes"
+    t.bigint "session_id", null: false
+    t.bigint "auditor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["auditor_id"], name: "index_audits1984_audits_on_auditor_id"
+    t.index ["session_id"], name: "index_audits1984_audits_on_session_id"
+  end
+
+  create_table "console1984_commands", force: :cascade do |t|
+    t.text "statements"
+    t.bigint "sensitive_access_id"
+    t.bigint "session_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sensitive_access_id"], name: "index_console1984_commands_on_sensitive_access_id"
+    t.index ["session_id", "created_at", "sensitive_access_id"], name: "on_session_and_sensitive_chronologically"
+  end
+
+  create_table "console1984_sensitive_accesses", force: :cascade do |t|
+    t.text "justification"
+    t.bigint "session_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_console1984_sensitive_accesses_on_session_id"
+  end
+
+  create_table "console1984_sessions", force: :cascade do |t|
+    t.text "reason"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_console1984_sessions_on_created_at"
+    t.index ["user_id", "created_at"], name: "index_console1984_sessions_on_user_id_and_created_at"
+  end
+
+  create_table "console1984_users", force: :cascade do |t|
+    t.string "username", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["username"], name: "index_console1984_users_on_username"
   end
 
   create_table "event_requests", force: :cascade do |t|
@@ -81,6 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_030407) do
     t.bigint "recipient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_hackathon_digests_on_created_at"
     t.index ["recipient_id"], name: "index_hackathon_digests_on_recipient_id"
   end
 
@@ -95,6 +141,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_030407) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "airtable_id"
+    t.index ["airtable_id"], name: "index_hackathon_subscriptions_on_airtable_id", unique: true
     t.index ["country_code", "city"], name: "index_hackathon_subscriptions_on_country_code_and_city"
     t.index ["country_code", "province", "city"], name: "index_hackathon_subscriptions_on_country_and_province_and_city"
     t.index ["latitude", "longitude"], name: "index_hackathon_subscriptions_on_latitude_and_longitude"
@@ -125,7 +173,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_030407) do
     t.bigint "applicant_id", null: false
     t.bigint "swag_mailing_address_id"
     t.boolean "apac"
+    t.string "airtable_id"
     t.index ["address"], name: "index_hackathons_on_address"
+    t.index ["airtable_id"], name: "index_hackathons_on_airtable_id", unique: true
     t.index ["applicant_id"], name: "index_hackathons_on_applicant_id"
     t.index ["country_code", "city"], name: "index_hackathons_on_country_code_and_city"
     t.index ["country_code", "province", "city"], name: "index_hackathons_on_country_code_and_province_and_city"
@@ -170,7 +220,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_030407) do
     t.string "token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["token"], name: "index_user_authentications_on_token"
+    t.index ["token"], name: "index_user_authentications_on_token", unique: true
     t.index ["user_id"], name: "index_user_authentications_on_user_id"
   end
 
@@ -181,7 +231,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_030407) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["authentication_id"], name: "index_user_sessions_on_authentication_id"
-    t.index ["token"], name: "index_user_sessions_on_token"
+    t.index ["token"], name: "index_user_sessions_on_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|

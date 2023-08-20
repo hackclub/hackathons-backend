@@ -36,4 +36,23 @@ module ApplicationHelper
     concat content_for?(key) ? content_for(key) : content_for(default_key)
     concat content_for(after_key) if content_for?(after_key)
   end
+
+  def avatar(user, size: "32px", **options)
+    return if user.nil?
+
+    default_options = {
+      alt: "#{user.name} profile picture",
+      class: "avatar",
+      style: "width: #{size}; height: #{size};"
+    }
+
+    image_tag user.gravatar_url, default_options.deep_merge(options)
+  end
+
+  def page(size)
+    size = :normal unless %i[full wide copy narrow].include?(size)
+    return if size == :normal
+
+    content_for(:container_class) { size.to_s }
+  end
 end

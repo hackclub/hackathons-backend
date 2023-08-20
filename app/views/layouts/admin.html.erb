@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title).presence&.+(" — ") %> High School Hackathons</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "https://css.hackclub.com/theme.min.css" %>
+  <%= stylesheet_link_tag "https://css.hackclub.com/fonts.min.css" %>
+  <%= stylesheet_link_tag "admin", "data-turbo-track": "reload" %>
+
+  <script>
+    const Hackathons = {
+      appsignal: {
+        // Frontend API key (intended to be exposed publicly)
+        key: "<%= ENV["APPSIGNAL_FRONTEND_API_KEY"] if Rails.env.production? %>"
+      }
+    }
+  </script>
+  <%= javascript_importmap_tags %>
+</head>
+
+<body>
+
+<%= render "admin/header" %>
+<%= render "shared/flash" %>
+
+<main class="container wide" style="padding: var(--spacing-4); padding-bottom: var(--spacing-5)">
+  <%= yield %>
+</main>
+
+<%= render "shared/footer" %>
+
+</body>
+</html>

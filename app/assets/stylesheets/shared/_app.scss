@@ -1,0 +1,26 @@
+// This module is used by both the `application` and `admin` layouts.
+
+body {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+.hidden-link {
+  text-decoration: none;
+
+  &:hover, &:focus {
+    text-decoration: underline wavy;
+  }
+}
+
+.container {
+  @media screen and (max-width: 32em) {
+    padding: var(--spacing-3);
+  }
+
+  &.full {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+}

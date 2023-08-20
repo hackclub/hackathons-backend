@@ -40,6 +40,10 @@ gem "faraday" # GET / POST requests
 
 gem "pagy" # Pagination
 
+# User interface
+gem "simple_form"
+gem "country_select"
+
 # Geography
 gem "geocoder"
 gem "countries"
@@ -48,6 +52,14 @@ gem "hashid-rails" # Non-sequential IDs
 
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby] # Windows doesn't include zoneinfo files
 gem "bootsnap", require: false # reduces boot times through caching; required in config/boot.rb
+
+gem "mrsk" # Deployments
+gem "console1984"
+gem "audits1984"
+
+# Application monitoring (errors, performance, etc.)
+gem "appsignal"
+gem "lograge" # Log formatting
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
@@ -60,6 +72,8 @@ group :development do
   gem "web-console"
   gem "rack-mini-profiler"
   gem "letter_opener_web"
+  gem "better_errors"
+  gem "binding_of_caller" # used by better_errors
 
   gem "spring"
 end

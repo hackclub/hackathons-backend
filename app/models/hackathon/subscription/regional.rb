@@ -3,18 +3,22 @@ module Hackathon::Subscription::Regional
 
   included do
     attribute :location_input
-    validates :location, presence: true
+    validates :location, presence: {message: ->(object, _) { "'#{object.input_or_location}' could not be found." }}
 
-    geocoded_by :location do |subscription, results|
-      # Geocodes to coordinates and standardizes the location attributes
-      if (result = results.first)
+    geocoded_by :input_or_location do |subscription, results|
+      # Geocode to coordinates and standardizes the location attributes
+
+      # Bias towards US results. This handles cases where the user enters "CA",
+      # likely intending "California", but geocoding to "Canada".
+      us = results.first(2).find { |r| r.country_code&.upcase == "US" }
+      if (result = us || results.first)
         subscription.attributes = {
           latitude: result.latitude,
           longitude: result.longitude,
 
           city: result.city,
           province: result.province || result.state,
-          country_code: result.country_code.upcase
+          country_code: result.country_code&.upcase
         }
       end
     end
@@ -25,7 +29,11 @@ module Hackathon::Subscription::Regional
   end
 
   def location
-    location_input || [city, province, country_code].compact.join(", ")
+    [city, province, country_code].compact.join(", ")
+  end
+
+  def input_or_location
+    location_input || location
   end
 
   def to_location
@@ -42,7 +50,7 @@ module Hackathon::Subscription::Regional
     if self.class.active_for(subscriber)
         .where(city:, province:, country_code:)
         .excluding(self).exists?
-      errors.add(:base, "You've already subscribed to this area!")
+      errors.add(:base, :already_subscribed, message: "You've already subscribed to this area!")
     end
   end
 

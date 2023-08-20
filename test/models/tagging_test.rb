@@ -3,6 +3,7 @@ require "test_helper"
 class TaggingTest < ActiveSupport::TestCase
   setup do
     @hackathon = hackathons(:zephyr)
+    @new_hackathon = hackathons(:zephyr).dup
   end
 
   test "checking for tags" do
@@ -49,6 +50,15 @@ class TaggingTest < ActiveSupport::TestCase
 
     assert_difference -> { @hackathon.tags.count }, 1 do
       @hackathon.tag_with Tag.last
+    end
+  end
+
+  test "tagging a new hackathon" do
+    Tag.create! name: "Matt A. Approved"
+
+    assert_difference -> { @new_hackathon.tags.count }, 1 do
+      @new_hackathon.tag_with Tag.last
+      @new_hackathon.save!
     end
   end
 

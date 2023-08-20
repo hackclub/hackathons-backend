@@ -2,16 +2,31 @@ module Deliverable
   extend ActiveSupport::Concern
   extend Suppressible
 
+  class_methods do
+    # Configurator for deliverable_options
+    def delivered(timing, **options)
+      timing = timing.to_sym
+      raise ArgumentError, "Invalid timing: #{timing}" unless %i[now later].include?(timing)
+      self.deliverable_options = {timing: timing, **options}
+    end
+  end
+
   included do
-    after_create_commit :deliver_later, if: :deliver_after_creation?
-  end
+    class_attribute :deliverable_options,
+      instance_accessor: false, instance_predicate: false,
+      default: {
+        timing: :later
+      }
 
-  def deliver_later
-    delivery.deliver_later
-  end
-
-  def deliver_now
-    delivery.deliver_now
+    after_create_commit do
+      case self.class.deliverable_options[:timing]
+      when :now
+        delivery.deliver_now
+      else
+        # default to :later
+        delivery.deliver_later
+      end
+    end
   end
 
   private

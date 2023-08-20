@@ -1,11 +1,2 @@
-@import "*";
-@import "components/*";
-
-body {
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
-}
-
-.field_with_errors {
-  border: darkred 1px solid;
-}
+@import "shared/**/*";
+@import "components/**/*";

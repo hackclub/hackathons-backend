@@ -13,21 +13,19 @@ class Hackathons::SubmissionsController < ApplicationController
   end
 
   def create
-    @hackathon = Hackathon.new(
-      hackathon_params.except(:applicant, :offers_financial_assistance, :requested_swag)
-    )
+    requested_swag = params[:requested_swag] == "1"
+    offers_financial_assistance = params[:hackathon][:offers_financial_assistance] == "true"
 
-    if hackathon_params[:requested_swag] == "0"
-      @hackathon.swag_mailing_address = nil
+    @hackathon = Hackathon.new(hackathon_params)
+
+    @hackathon.swag_mailing_address = nil unless requested_swag
+    @hackathon.tag_with! "Offers Financial Assistance" if offers_financial_assistance
+
+    @hackathon.applicant = User.find_or_initialize_by(email_address: applicant_params[:email_address]) do |user|
+      user.attributes = applicant_params
     end
 
-    @hackathon.applicant = User.find_or_initialize_by(hackathon_params[:applicant])
-
     if @hackathon.save context: :submit
-      if hackathon_params[:offers_financial_assistance] == "1"
-        @hackathon.tag_with! "Offers Financial Assistance"
-      end
-
       redirect_to new_hackathons_submission_path, notice: "Your hackathon has been submitted for approval!"
     else
       render :new, status: :unprocessable_entity
@@ -48,10 +46,16 @@ class Hackathons::SubmissionsController < ApplicationController
       :banner,
       :starts_at,
       :ends_at,
-      :address,
+      :modality,
+      # Location
+      :street,
+      :city,
+      :province,
+      :postal_code,
+      :country_code,
       :expected_attendees,
-      :offers_financial_assistance,
-      :requested_swag,
+      :high_school_led,
+      # Swag
       swag_mailing_address_attributes: [
         :line1,
         :line2,
@@ -59,10 +63,14 @@ class Hackathons::SubmissionsController < ApplicationController
         :province,
         :postal_code,
         :country_code
-      ],
-      applicant: [
-        :email_address
       ]
+    )
+  end
+
+  def applicant_params
+    params.require(:hackathon).require(:applicant).permit(
+      :name,
+      :email_address
     )
   end
 end

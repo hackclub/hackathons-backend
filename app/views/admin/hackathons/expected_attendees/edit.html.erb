@@ -1,0 +1,8 @@
+<turbo-frame id="hackathon_expected_attendees">
+  <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon),
+                data: {controller: "form", action: "click@document->form#submitOnClickOutside"} do |form| %>
+    Expected Attendees:
+    <%= form.number_field :expected_attendees %>
+    <%= form.select :modality, ["in_person", "online", "hybrid"] %>
+  <% end %>
+</turbo-frame>

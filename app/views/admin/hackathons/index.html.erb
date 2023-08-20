@@ -1,7 +1,6 @@
-<h1>Hackathons</h1>
+<% @nav_active_item = admin_hackathons_path %>
+<h2 class="title">Hackathons</h2>
 
-<% @hackathons.each do |hackathon| %>
-  <%= render "snippet", hackathon: %>
-<% end %>
+<%= render partial: "snippet", collection: @hackathons, as: :hackathon %>
 
 <%== pagy_nav(@pagy) %>

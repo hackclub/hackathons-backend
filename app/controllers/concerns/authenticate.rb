@@ -9,7 +9,7 @@ module Authenticate
   private
 
   def authenticate
-    if (session = User::Session.find_by(token: cookies.encrypted[:session_token]))
+    if (session = User::Session.find_by(token: cookies.permanent.signed[:session_token]))
       session.access
       Current.session = session
     end
@@ -20,6 +20,7 @@ module Authenticate
   end
 
   def redirect_if_authenticated
-    redirect_to root_path if Current.user
+    return redirect_to admin_hackathons_path if Current.user&.admin?
+    redirect_to hackathons_submissions_path if Current.user
   end
 end
