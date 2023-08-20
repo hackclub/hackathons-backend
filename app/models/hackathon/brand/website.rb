@@ -4,6 +4,8 @@ module Hackathon::Brand::Website
   included do
     validates :website, format: URI::DEFAULT_PARSER.make_regexp(%w[http https]), allow_blank: true
     validates :website, presence: true, on: :submit
+
+    after_create_commit :archive_website_later
   end
 
   def archived_website_url
@@ -17,5 +19,11 @@ module Hackathon::Brand::Website
   def website_up?
     response = Faraday.get website
     response.status == 200 && response.body.include?(name)
+  end
+
+  private
+
+  def archive_website_later
+    Hackathons::ArchiveWebsiteJob.perform_later(self)
   end
 end
