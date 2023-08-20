@@ -19,6 +19,12 @@ module Hackathon::Brand::Website
   def website_up?
     response = Faraday.get website
     response.status == 200 && response.body.include?(name)
+  rescue StandardError
+    false
+  end
+
+  def website_archived?
+    events.any? { |event| event.action == "archived_website" }
   end
 
   private
