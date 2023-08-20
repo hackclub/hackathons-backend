@@ -17,9 +17,12 @@ module Hackathon::Brand::Website
   end
 
   def website_up?
-    response = Faraday.get website
-    response.status == 200 && response.body.include?(name)
-  rescue
+    connection = Faraday.new do |f|
+      f.response :follow_redirects
+    end
+    response = connection.get website
+    response.success? && response.body.downcase.include?(name.downcase)
+  rescue Faraday::Error
     false
   end
 
