@@ -5,9 +5,9 @@ shape_for hackathon, json do
     :ends_at,
     :modality)
 
-  json.website do
+  json.website begin
     if hackathon.tagged_with?("Website Down")
-      hackathon.website_archive_url
+      hackathon.archived_website_url
     else
       hackathon.website
     end
