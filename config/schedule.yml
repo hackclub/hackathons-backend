@@ -4,8 +4,8 @@ send_digests:
 
 archive_websites:
   cron: "every monday at 10am on America/Los_Angeles"
-  class: "Hackathon::ArchiveWebsiteJob"
+  class: "Hackathons::ArchiveWebsitesJob"
 
 find_downed_websites:
   cron: "every day at 10am on America/Los_Angeles"
-  class: "Hackathon::FindDeadWebsitesJob"
+  class: "Hackathons::FindDownedWebsitesJob"
