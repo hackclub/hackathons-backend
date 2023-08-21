@@ -1,4 +1,6 @@
 class Hackathons::FindDownedWebsitesJob < ApplicationJob
+  queue_as :low
+
   def perform
     past_hackathons.find_each do |hackathon|
       if hackathon.website_down?
