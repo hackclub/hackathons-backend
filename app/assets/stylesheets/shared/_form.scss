@@ -72,6 +72,10 @@ form.simple_form {
   .form__actions {
     margin-top: var(--spacing-4);
   }
+
+  .input.file {
+    padding-left: 0px;
+  }
   
   input::file-selector-button {
     font-family: "Phantom Sans";
