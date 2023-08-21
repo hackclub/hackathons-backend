@@ -4,10 +4,10 @@ module Deliverable
 
   class_methods do
     # Configurator for deliverable_options
-    def delivered(timing, **options)
+    def delivered(timing, **)
       timing = timing.to_sym
       raise ArgumentError, "Invalid timing: #{timing}" unless %i[now later].include?(timing)
-      self.deliverable_options = {timing: timing, **options}
+      self.deliverable_options = {timing: timing, **}
     end
   end
 

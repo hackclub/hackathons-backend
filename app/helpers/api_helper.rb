@@ -45,8 +45,8 @@ module ApiHelper
 
   # API URL for an record. By default, the api_version of the generated URL is
   # the same as the current request's version.
-  def api_url_for(record, **options)
-    polymorphic_url([:api, record], api_version: @request_version, **options)
+  def api_url_for(record, **)
+    polymorphic_url([:api, record], api_version: @request_version, **)
   rescue NoMethodError
     nil
   end
