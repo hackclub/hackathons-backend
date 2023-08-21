@@ -85,4 +85,12 @@ form.simple_form {
     border: 1px solid var(--border);
     border-radius: var(--radii-small);
   }
+
+  h1 > a {
+    text-decoration: none;
+  }
+
+  h1 {
+    word-wrap: break-word;
+  }
 }
