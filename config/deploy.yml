@@ -30,7 +30,7 @@ env:
     WEB_CONCURRENCY: 2
     RAILS_MAX_THREADS: 10
     RAILS_MIN_THREADS: 5
-    APPSIGNAL_HOSTNAME: ${hostname}
+    APPSIGNAL_HOSTNAME: "${hostname}"
   secret:
     - RAILS_MASTER_KEY
     - DATABASE_URL
