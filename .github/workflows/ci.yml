@@ -1,5 +1,7 @@
 name: CI
 on: [ push ]
+permissions:
+  packages: write
 jobs:
   standard:
     name: Standard
