@@ -1,4 +1,6 @@
 class Hackathons::ArchiveWebsiteJob < ApplicationJob
+  queue_as :low
+
   def perform(hackathon)
     return if hackathon.website_down? # Prevents archiving parking pages
 
