@@ -49,6 +49,12 @@ module ApplicationHelper
     image_tag user.gravatar_url, default_options.deep_merge(options)
   end
 
+  def ui_avatars(name, html: {}, **options)
+    url = URI.parse("https://ui-avatars.com/api/")
+    url.query = URI.encode_www_form({name:}.deep_merge(options))
+    image_tag url.to_s, **html
+  end
+
   def page(size)
     size = :normal unless %i[full wide copy narrow].include?(size)
     return if size == :normal

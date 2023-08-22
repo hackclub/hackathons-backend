@@ -4,90 +4,92 @@
   <%= link_to "◀ Back to Hackathons", admin_hackathons_path, class: "button" %>
 <% end %>
 
-<div id="<%= dom_id(@hackathon) %>" class="hackathon">
-  <turbo-frame id="hackathon_name">
-    <h1 class="heading--medium">
-      <%= @hackathon.name %>
-      <%= link_to "✏️", edit_admin_hackathon_name_path(@hackathon), class: "hidden-link text--small" %>
-    </h1>
-  </turbo-frame>
-
-  <% if @hackathon.logo.present? || @hackathon.banner.present? %>
-    <section style="display: flex;">
-      <% if @hackathon.logo.present? %>
-        <div>
-          <h2 class="heading--small">Logo</h2>
-          <%= image_tag @hackathon.logo, size: 128 %>
-        </div>
-      <% end %>
-
-      <% if @hackathon.banner.present? %>
-        <div>
-          <h2 class="heading--small">Banner</h2>
-          <%= image_tag @hackathon.banner, height: 128 %>
-        </div>
-      <% end %>
-    </section>
-  <% end %>
-
-  <div>
-    Status:
-    <%= @hackathon.status %>
-  </div>
-
-  <div>
-    High School Led:
-    <%= @hackathon.high_school_led? ? "Yes" : "No" %>
-  </div>
-
-  <div>
-    Applicant:
-    <%= "#{@hackathon.applicant.name}, " if @hackathon.applicant.name.present? %>
-    <%= @hackathon.applicant.email_address %>
-  </div>
-
-  <div>
-    <turbo-frame id="hackathon_website">
-      Website: <%= @hackathon.website %>
-      <%= link_to "✏️", edit_admin_hackathon_website_path(@hackathon), class: "hidden-link text--small" %>
+<article id="<%= dom_id(@hackathon) %>" class="hackathon">
+  <div class="hackathon__attributes">
+    <turbo-frame id="hackathon_name">
+      <h1 class="heading--medium">
+        <%= @hackathon.name %>
+        <%= link_to "✏️", edit_admin_hackathon_name_path(@hackathon), class: "hidden-link text--small" %>
+      </h1>
     </turbo-frame>
-  </div>
 
-  <div>
-    <turbo-frame id="hackathon_times">
-      Starts <%= local_time_ago(@hackathon.starts_at) %>,
-      ends <%= local_time_ago(@hackathon.ends_at) %>
-      <%= link_to "✏️", edit_admin_hackathon_times_path(@hackathon), class: "hidden-link text--small" %>
-    </turbo-frame>
-  </div>
+    <% if @hackathon.logo.present? || @hackathon.banner.present? %>
+      <section style="display: flex;" class="pt3">
+        <% if @hackathon.logo.present? %>
+          <div>
+            <h2 class="heading--small">Logo</h2>
+            <%= image_tag @hackathon.logo, size: 128 %>
+          </div>
+        <% end %>
 
-  <div>
-    <turbo-frame id="hackathon_expected_attendees">
-      Expected Attendees:
-      <%= @hackathon.expected_attendees %>
-      <%= @hackathon.modality.humanize(capitalize: false) %>
-      <%= link_to "✏️", edit_admin_hackathon_expected_attendees_path(@hackathon), class: "hidden-link text--small" %>
-    </turbo-frame>
-  </div>
-
-  <div>
-    Location:
-
-    <%= @hackathon.address %>
-
-    <% if @hackathon.latitude %>
-      <span title="latitude, longitude">- <%= @hackathon.latitude %>, <%= @hackathon.longitude %></span>
+        <% if @hackathon.banner.present? %>
+          <div>
+            <h2 class="heading--small">Banner</h2>
+            <%= image_tag @hackathon.banner, height: 128 %>
+          </div>
+        <% end %>
+      </section>
     <% end %>
-  </div>
 
-  <div>
-    <turbo-frame id="swag_mailing_address">
-      <% if @hackathon.requested_swag? %>
-        Swag requested for: <%= @hackathon.swag_mailing_address.full %>
-      <% else %>
-        No swag requested.
+    <div>
+      Status:
+      <%= @hackathon.status %>
+    </div>
+
+    <div>
+      High School Led:
+      <%= @hackathon.high_school_led? ? "Yes" : "No" %>
+    </div>
+
+    <div>
+      Applicant:
+      <%= "#{@hackathon.applicant.name}, " if @hackathon.applicant.name.present? %>
+      <%= @hackathon.applicant.email_address %>
+    </div>
+
+    <div>
+      <turbo-frame id="hackathon_website">
+        Website: <%= @hackathon.website %>
+        <%= link_to "✏️", edit_admin_hackathon_website_path(@hackathon), class: "hidden-link text--small" %>
+      </turbo-frame>
+    </div>
+
+    <div>
+      <turbo-frame id="hackathon_times">
+        Starts <%= local_time_ago(@hackathon.starts_at) %>,
+        ends <%= local_time_ago(@hackathon.ends_at) %>
+        <%= link_to "✏️", edit_admin_hackathon_times_path(@hackathon), class: "hidden-link text--small" %>
+      </turbo-frame>
+    </div>
+
+    <div>
+      <turbo-frame id="hackathon_expected_attendees">
+        Expected Attendees:
+        <%= @hackathon.expected_attendees %>
+        <%= @hackathon.modality.humanize(capitalize: false) %>
+        <%= link_to "✏️", edit_admin_hackathon_expected_attendees_path(@hackathon), class: "hidden-link text--small" %>
+      </turbo-frame>
+    </div>
+
+    <div>
+      Location:
+
+      <%= @hackathon.address %>
+
+      <% if @hackathon.latitude %>
+        <span title="latitude, longitude">- <%= @hackathon.latitude %>, <%= @hackathon.longitude %></span>
       <% end %>
-    </turbo-frame>
+    </div>
+
+    <div>
+      <turbo-frame id="swag_mailing_address">
+        <% if @hackathon.requested_swag? %>
+          Swag requested for: <%= @hackathon.swag_mailing_address.full %>
+        <% else %>
+          No swag requested.
+        <% end %>
+      </turbo-frame>
+    </div>
   </div>
 
   <div class="button-group">
@@ -100,7 +102,5 @@
     <% end %>
   </div>
 
-  <section>
-    <%= render "events/timeline", {eventable: @hackathon} %>
-  </section>
-</div>
+  <%= render "events/timeline", {eventable: @hackathon} %>
+</article>

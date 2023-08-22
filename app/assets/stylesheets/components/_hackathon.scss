@@ -14,8 +14,11 @@
   text-decoration: none !important;
 }
 
-.hackathon > * {
-  margin-top: 1rem;
+.hackathon__attributes {
+  > div {
+    margin-top: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
+  }
 }
 
 .hackathon--pending {
