@@ -6,7 +6,7 @@
     } do |form| %>
 
     <% subscriptions.each do |subscription| %>
-      <div class="subscription">
+      <div class="subscription" style="display: flex; column-gap: var(--spacing-2)">
         <%= check_box_tag "ids[]", subscription.id, false, data: {
           action: "change->form--required-checkboxes#changed",
           "form--required-checkboxes-target": "input"
@@ -15,8 +15,9 @@
       </div>
     <% end %>
 
-    <div>
-      <%= form.submit "Unsubscribe", data: {"form--required-checkboxes-target": "button"}, disabled: true %>
+    <div class="mt3">
+      <%= form.button "Unsubscribe", type: "submit", class: "btn mr2",
+        data: {"form--required-checkboxes-target": "button"}, disabled: true %>
       or
       <%= link_to "unsubscribe from all", unsubscribe_all_user_subscriptions_url %>
     </div>

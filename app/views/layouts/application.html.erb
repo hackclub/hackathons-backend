@@ -24,7 +24,7 @@
 <body style="<%= content_for :body_style %>">
 <%= render "shared/flash" %>
 
-<main class="container <%= content_for :container_class %>">
+<main class="container <%= yield :container_class %>">
   <%= yield %>
 </main>
 </body>
