@@ -12,7 +12,7 @@ servers:
   jobs:
     hosts:
       - app-1.hackathons.hackclub.com
-    cmd: bundle exec sidekiq -C config/sidekiq.yml
+    cmd: bundle exec sidekiq
     options:
       memory: 1G
       cpus: 1
