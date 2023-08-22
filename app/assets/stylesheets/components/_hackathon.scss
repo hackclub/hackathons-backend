@@ -10,6 +10,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  column-gap: var(--spacing-2);
+
   margin-bottom: var(--spacing-2);
 }
 
@@ -23,9 +25,6 @@
 
   padding-left: var(--spacing-2);
   padding-right: var(--spacing-2);
-
-  margin-left: var(--spacing-2);
-  margin-right: var(--spacing-2);
 }
 
 .hackathon-snippet__created-at {
