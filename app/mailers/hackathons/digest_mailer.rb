@@ -50,9 +50,8 @@ class Hackathons::DigestMailer < ApplicationMailer
     @listed_hackathons.each do |hackathon|
       @hackathon = hackathon
       @count = @digests_by_hackathons[hackathon].count
-      mail to: hackathon.applicant_email, 
-           subject: "We've just sent your hackathon to #{@count} hackers."
-    end   
-
+      mail to: hackathon.applicant_email,
+       subject: "We've just sent your hackathon to #{@count} hackers."
+    end
   end
 end
