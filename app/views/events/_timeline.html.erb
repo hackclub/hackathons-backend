@@ -1,6 +1,23 @@
-<% eventable.events.includes(:creator, :target).each do |event| %>
-  <article id="<%= dom_id(event) %>" class="timeline__event">
-    <%= event.description %>
-    <i><%= local_time_ago(event.created_at) %></i>
-  </article>
-<% end %>
+<section class="timeline">
+  <% eventable.events.order(created_at: :asc).includes(:creator, :target).each do |event| %>
+    <article id="<%= dom_id(event) %>" class="timeline__event">
+
+      <div class="timeline__icon">
+        <% if event.creator %>
+          <div style="display: inline-block;">
+            <%= avatar event.creator %>
+          </div>
+        <% else %>
+          <%= ui_avatars event.action, size: "32", length: 1, bold: true,
+            html: {class: "avatar", style: "width: 32px; height: 32px;", alt: "#{event.action} icon"} %>
+        <% end %>
+      </div>
+
+      <div class="timeline__description">
+        <%= event.description %>
+        <i><%= local_time_ago(event.created_at) %></i>
+      </div>
+
+    </article>
+  <% end %>
+</section>
