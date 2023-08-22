@@ -3,7 +3,7 @@ class Hackathons::ArchiveWebsitesJob < ApplicationJob
 
   def perform
     upcoming_or_recent_hackathons.find_each do |hackathon|
-      ArchiveWebsiteJob.perform_later(hackathon)
+      Hackathons::ArchiveWebsiteJob.perform_later(hackathon)
     end
   end
 
