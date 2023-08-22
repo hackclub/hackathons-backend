@@ -1,13 +1,13 @@
 <% content_for :title, "Unsubscribe" %>
 
-<h1>Unsubscribe</h1>
+<h1 class="mt5">Unsubscribe</h1>
 
 <% if @expired %>
   <p>This link has expired.</p>
 <% else %>
 
   <p>
-    Hey there, <b><%= @user.name || @user.email_address %></b>!
+    Hey there, <b><%= @user.first_name || @user.email_address %></b>!
   </p>
 
   <p>
@@ -28,7 +28,7 @@
         <%= form.hidden_field "ids[]", value: id %>
       <% end %>
 
-      <%= form.button "Undo" %>
+      <%= form.button "Undo", class: "cta" %>
     <% end %>
   <% end %>
 <% end %>
