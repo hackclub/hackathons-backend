@@ -26,6 +26,7 @@ class Hackathons::SubmissionsController < ApplicationController
     end
 
     if @hackathon.save context: :submit
+      NotifyAdmins.call(hackathon_title: @hackathon.name)
       redirect_to new_hackathons_submission_path, notice: "Your hackathon has been submitted for approval!"
     else
       render :new, status: :unprocessable_entity

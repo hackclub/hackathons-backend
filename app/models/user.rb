@@ -8,4 +8,6 @@ class User < ApplicationRecord
 
   has_many :subscriptions, class_name: "Hackathon::Subscription", foreign_key: "subscriber_id", inverse_of: :subscriber, dependent: :destroy
   has_many :digests, class_name: "Hackathon::Digest", foreign_key: "recipient_id", inverse_of: :recipient, dependent: :destroy
+
+  scope :admins, -> { where(admin: true) }
 end
