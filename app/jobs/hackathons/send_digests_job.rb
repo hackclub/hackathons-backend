@@ -8,7 +8,7 @@ class Hackathons::SendDigestsJob < ApplicationJob
 
       digest = subscriber.digests.new
 
-      digest.save! unless digest.listings.none?
+      digest.save! unless digest.invalid? && digest.listings.none?
       sent_digests << digest if digest.persisted?
     end
   ensure
