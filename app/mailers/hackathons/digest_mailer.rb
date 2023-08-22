@@ -48,6 +48,7 @@ class Hackathons::DigestMailer < ApplicationMailer
       .sort_by { |hackathon| @sent_digests_by_hackathons[hackathon].count }.reverse!
 
     @listed_hackathons.each do |hackathon|
+          @hackathon = hackathon # Set the instance variable
           mail to: hackathon.applicant_email, 
                subject: "We've just sent your hackathon to #{@digests_by_hackathons[hackathon].count} hackers."
     end   
