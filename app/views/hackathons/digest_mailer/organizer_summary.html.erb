@@ -3,7 +3,7 @@
 <% end %>
 
 <p>
-  We've just sent an email about <%= hackathon.name %> to <%= @digests_by_hackathons[hackathon].count %> hackers. Let us know how things go!
+  We've just sent an email about <%= @hackathon.name %> to <%= @digests_by_hackathons[@hackathon].count %> hackers. Let us know how things go!
 </p>
 
 <% content_for :signature do %>
