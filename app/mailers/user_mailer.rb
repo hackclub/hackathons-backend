@@ -6,7 +6,7 @@ class UserMailer < ApplicationMailer
   def authentication(authentication)
     @authentication = authentication
 
-    mail to: @authentication.user.email_address, subject: "Sign in to Hackathons"
+    mail to: @authentication.user.email_address, subject: "Sign in to hackathons.hackclub.com"
   end
 
   private
