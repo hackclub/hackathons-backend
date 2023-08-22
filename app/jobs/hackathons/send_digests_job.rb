@@ -18,7 +18,7 @@ class Hackathons::SendDigestsJob < ApplicationJob
   private
 
   def current_subscribers
-    User.includes(:subscriptions).where(subscriptions: {status: :active})
+    User.includes(:subscriptions).where(subscriptions: {status: :active}).includes(:digests)
   end
 
   def new_digest_pertinent?(subscriber)
