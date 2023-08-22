@@ -12,7 +12,6 @@ class Hackathons::SendOrganizerSummariesJob < ApplicationJob
 
     @listed_hackathons = @sent_digests_by_hackathons.keys
     @listed_hackathons.each do |hackathon|
-      hackathon = hackathon
       sent_digests = @digests_by_hackathons[hackathon]
       Hackathons::DigestMailer.admin_summary(sent_digests, hackathon).deliver_later if @sent_digests.any?
     end
