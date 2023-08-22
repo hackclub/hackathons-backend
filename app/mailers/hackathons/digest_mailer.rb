@@ -45,7 +45,6 @@ class Hackathons::DigestMailer < ApplicationMailer
       .transform_values { |listings| listings.map(&:digest).uniq }
 
     @listed_hackathons = @sent_digests_by_hackathons.keys
-      .sort_by { |hackathon| @sent_digests_by_hackathons[hackathon].count }.reverse!
 
     @listed_hackathons.each do |hackathon|
       @hackathon = hackathon
