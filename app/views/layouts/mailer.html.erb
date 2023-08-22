@@ -35,9 +35,7 @@
           border-radius: 0 0 1rem 1rem;
           background-color: #f9fafc;
           padding: 1rem;
-          display: flex;
-          align-items: center;
-          flex-wrap: wrap;
+          width: 100%;
       }
 
       #layout__logo {
@@ -46,10 +44,8 @@
       }
 
       #layout__title {
-          flex-grow: 1;
           font-size: 1.5rem;
           text-align: right;
-          color: #ec3750;
           margin: 0;
       }
 
@@ -71,12 +67,22 @@
 
 <body>
 <div id="layout">
-  <header id="layout__header">
-    <%= image_tag "flag-standalone.png", id: "layout__logo" %>
-    <h1 id="layout__title">
-      hackathons.hackclub.com
-    </h1>
-  </header>
+  <table id="layout__header">
+    <tbody>
+    <tr>
+      <td>
+        <img src="<%= image_url "flag-standalone.png" %>" alt="Hack Club flag" id="layout__logo"/>
+      </td>
+      <td>
+        <h1 id="layout__title">
+          <%# This must be a link, otherwise mail services will automatically
+              turn it into a link, causing the css red color to NOT apply. %>
+          <%= link_to "hackathons.hackclub.com", Hackathons::WEBSITE, style: "color: #ec3750" %>
+        </h1>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
   <main id="layout__content">
     <% yield_with_default_for :greeting do %>
@@ -95,7 +101,8 @@
 
     <% yield_with_default_for :fine_print do %>
       <p style="font-size: 0.75rem; font-weight: lighter">
-        <%= link_to "hackathons.hackclub.com", Hackathons::WEBSITE %> is maintained by <%= link_to "Hack Club", "https://hackclub.com" %> staff.
+        <%= link_to "hackathons.hackclub.com", Hackathons::WEBSITE %> is
+        maintained by <%= link_to "Hack Club", "https://hackclub.com" %> staff.
       </p>
     <% end %>
   </main>
