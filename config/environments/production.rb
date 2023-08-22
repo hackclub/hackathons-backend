@@ -59,8 +59,8 @@ Rails.application.configure do
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
-  config.lograge.custom_options = lambda do |event|
-    {request_id: event.payload[:request_id]}
+  config.lograge.custom_payload do |controller|
+    {request_id: controller.request.uuid}
   end
 
   # Log to both STDOUT and AppSignal.
