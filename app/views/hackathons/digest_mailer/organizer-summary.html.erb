@@ -1,0 +1,13 @@
+<% content_for :greeting do %>
+  <p>G'day!</p>
+<% end %>
+
+<p>
+  We've just sent an email about <%= hackathon.name %> to <%= @digests_by_hackathons[hackathon].count %> hackers. Let us know how things go!
+</p>
+
+<% content_for :signature do %>
+  <p>
+    Best of luck with everything! 🦕 💸
+  </p>
+<% end %>
