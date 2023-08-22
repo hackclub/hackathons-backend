@@ -33,23 +33,9 @@ class Hackathons::DigestMailer < ApplicationMailer
     mail to: Hackathons::SUPPORT_EMAIL, cc: User.admins.collect(&:email_address), subject:
   end
 
-  def organizer_summary(sent_digests)
-    # This reloads the (possible) sent_digests array as an
-    # ActiveRecord::Relation so that we can use includes to prevent an N+1.
-    @sent_digests = Hackathon::Digest.where(id: sent_digests.map(&:id)) ||
-      Hackathon::Digest.where(created_at: 6.days.ago...Time.now)
-
-    @sent_digests_by_hackathons = @sent_digests
-      .includes(listings: {hackathon: {logo_attachment: :blob}})
-      .flat_map(&:listings).group_by(&:hackathon)
-      .transform_values { |listings| listings.map(&:digest).uniq }
-
-    @listed_hackathons = @sent_digests_by_hackathons.keys
-
-    @listed_hackathons.each do |hackathon|
-      @hackathon = hackathon
-      @count = @digests_by_hackathons[hackathon].count
-      mail to: hackathon.applicant.email_address, subject: "We've just sent your hackathon to #{@count} hackers."
-    end
+  def organizer_summary(sent_digests, hackathon)
+    @hackathon = hackathon
+    @count = sent_digests.count
+    mail to: hackathon.applicant.email_address, subject: "We've just sent your hackathon to #{@count} hackers."
   end
 end

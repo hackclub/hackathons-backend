@@ -11,7 +11,9 @@ class Hackathons::SendDigestsJob < ApplicationJob
       digest.save! unless digest.invalid? && digest.listings.none?
       sent_digests << digest if digest.persisted?
     end
+    
   ensure
+    Hackathons::SendOrganizerSummariesJob(sent_digests).perform if sent_digests.any?
     Hackathons::DigestMailer.admin_summary(sent_digests).deliver_later if sent_digests.any?
   end
 
