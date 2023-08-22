@@ -14,8 +14,7 @@ class Hackathons::DigestMailer < ApplicationMailer
   def admin_summary(sent_digests)
     # This reloads the (possible) sent_digests array as an
     # ActiveRecord::Relation so that we can use includes to prevent an N+1.
-    @sent_digests = Hackathon::Digest.where(id: sent_digests.map(&:id)) ||
-      Hackathon::Digest.where(created_at: 6.days.ago...Time.now)
+    @sent_digests = Hackathon::Digest.where(id: sent_digests.map(&:id))
 
     @sent_digests_by_hackathons = @sent_digests
       .includes(listings: {hackathon: {logo_attachment: :blob}})

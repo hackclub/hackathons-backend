@@ -5,6 +5,6 @@ class Hackathons::DigestMailerPreview < ActionMailer::Preview
   end
 
   def admin_summary
-    Hackathons::DigestMailer.with(digests: Hackathon::Digest.all).admin_summary
+    Hackathons::DigestMailer.admin_summary(Hackathon::Digest.all)
   end
 end
