@@ -54,6 +54,9 @@ Rails.application.configure do
   # Use lograge to tame log output.
   config.lograge.enabled = true
 
+  # Don't log health checks.
+  config.lograge.ignore_actions = ["Rails::HealthController#show"]
+
   # Log to both STDOUT and AppSignal.
   config.lograge.keep_original_rails_log = true
   config.lograge.logger = Appsignal::Logger.new(
