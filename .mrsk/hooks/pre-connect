@@ -9,7 +9,7 @@ gemfile(true, quiet: true) do
   gem "benchmark"
 end
 
-hosts = ENV["MRSK_HOSTS"].split(",")
+hosts = ENV["KAMAL_HOSTS"].split(",")
 results = nil
 MAX_ATTEMPTS = 3
 
