@@ -1,6 +1,7 @@
 class Hackathon < ApplicationRecord
   include Eventable
   include Taggable
+  include Deliverable
 
   include Status
 
@@ -14,4 +15,8 @@ class Hackathon < ApplicationRecord
   include Reviewable # depends on Eventable and Status
   include Scheduled
   include Swag
+
+  def delivery
+    HackathonMailer.with(name:, email: User.admins).submission
+  end
 end
