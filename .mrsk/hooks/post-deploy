@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo "Deployed $MRSK_VERSION -> $MRSK_DESTINATION in $MRSK_RUNTIME seconds"
+echo "Deployed $KAMAL_VERSION -> $KAMAL_DESTINATION in $KAMAL_RUNTIME seconds"

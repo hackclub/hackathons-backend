@@ -25,8 +25,8 @@ def escape_str(string)
   string.gsub("\"", "\\\"")
 end
 
-def mrsk_exec(cmd)
-  exec "bundle exec mrsk app exec --reuse -i \"#{cmd.gsub("\"", "\\\"")}\""
+def kamal_exec(cmd)
+  exec "bundle exec kamal app exec --reuse -i \"#{cmd.gsub("\"", "\\\"")}\""
 end
 
 if environment == :production
@@ -37,9 +37,9 @@ if environment == :production
 
     raise Interrupt unless confirmed
     user = console_user
-    puts # blank line to separate from MRSK output
+    puts # blank line to separate from Kamal output
 
-    mrsk_exec "env CONSOLE_USER=\"#{user}\" bin/rails console"
+    kamal_exec "env CONSOLE_USER=\"#{user}\" bin/rails console"
   rescue Interrupt
     puts "\nphew! you're safe 😅"
   end
