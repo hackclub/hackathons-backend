@@ -41,3 +41,6 @@
 
 # OS
 .DS_Store
+
+# SimpleCov
+/coverage

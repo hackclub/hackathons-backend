@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
-gem "dotenv-rails"
+gem "dotenv-rails", require: "dotenv/rails-now"
 
 gem "rails", github: "rails/rails"
 
@@ -83,4 +83,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "shoulda"
+
+  gem "simplecov", require: false
+  gem "simplecov-cobertura", require: false
 end

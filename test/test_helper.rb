@@ -1,3 +1,13 @@
+if ENV["SIMPLECOV"]
+  require "simplecov"
+  SimpleCov.start "rails"
+
+  if ENV["CI"]
+    require "simplecov-cobertura"
+    SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
+  end
+end
+
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
