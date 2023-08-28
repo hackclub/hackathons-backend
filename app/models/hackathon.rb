@@ -17,6 +17,6 @@ class Hackathon < ApplicationRecord
   include Swag
 
   def delivery
-    HackathonMailer.with(name:, email: User.admins).submission
+    HackathonMailer.with(hackathon: self).submission
   end
 end

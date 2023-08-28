@@ -2,8 +2,8 @@
 
 class HackathonMailer < ApplicationMailer
   def submission
-    @name  = params[:name]
-    @email = params[:email]
-    mail to: @email, subject: 'A new Hackathon entry was submitted!'
+    @hackathon = params[:hackathon]
+    email_addresses = User.admins.collect(&:email_address)
+    mail to: email_addresses, subject: 'A new Hackathon entry was submitted!'
   end
 end
