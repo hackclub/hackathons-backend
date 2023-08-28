@@ -111,7 +111,7 @@ GEM
       faraday (>= 1.0, < 3.0)
       faraday-net_http_persistent
       net-http-persistent
-    appsignal (3.4.10)
+    appsignal (3.4.11)
       rack
     ast (2.4.2)
     audits1984 (0.1.4)
