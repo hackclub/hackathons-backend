@@ -16,6 +16,8 @@ class Hackathon < ApplicationRecord
   include Scheduled
   include Swag
 
+  private
+
   def delivery
     HackathonMailer.with(hackathon: self).submission
   end
