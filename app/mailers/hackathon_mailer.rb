@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class HackathonMailer < ApplicationMailer
   def submission
     @hackathon = params[:hackathon]
