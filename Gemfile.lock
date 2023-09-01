@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: c0980d30360149d0c77beb79850e047440c628bf
+  revision: 0d46f69db53ccf36687b2a228ed5efb19d258389
   specs:
     actioncable (7.1.0.alpha)
       actionpack (= 7.1.0.alpha)
@@ -67,6 +67,7 @@ GIT
       marcel (~> 1.0)
     activesupport (7.1.0.alpha)
       base64
+      bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
       connection_pool (>= 2.2.5)
       drb
@@ -111,7 +112,7 @@ GEM
       faraday (>= 1.0, < 3.0)
       faraday-net_http_persistent
       net-http-persistent
-    appsignal (3.4.10)
+    appsignal (3.4.11)
       rack
     ast (2.4.2)
     audits1984 (0.1.4)
@@ -120,8 +121,8 @@ GEM
       rouge
       turbo-rails
     aws-eventstream (1.2.0)
-    aws-partitions (1.803.0)
-    aws-sdk-core (3.180.3)
+    aws-partitions (1.812.0)
+    aws-sdk-core (3.181.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
       aws-sigv4 (~> 1.5)
@@ -129,8 +130,8 @@ GEM
     aws-sdk-kms (1.71.0)
       aws-sdk-core (~> 3, >= 3.177.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.132.1)
-      aws-sdk-core (~> 3, >= 3.179.0)
+    aws-sdk-s3 (1.134.0)
+      aws-sdk-core (~> 3, >= 3.181.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.6)
     aws-sigv4 (1.6.0)
@@ -141,6 +142,7 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
       rouge (>= 1.0.0)
+    bigdecimal (3.1.4)
     bindex (0.8.1)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
@@ -220,6 +222,16 @@ GEM
       activesupport (>= 5.0.0)
     jmespath (1.6.2)
     json (2.6.3)
+    kamal (0.16.1)
+      activesupport (>= 7.0)
+      bcrypt_pbkdf (~> 1.0)
+      concurrent-ruby (~> 1.2)
+      dotenv (~> 2.8)
+      ed25519 (~> 1.2)
+      net-ssh (~> 7.0)
+      sshkit (~> 1.21)
+      thor (~> 1.2)
+      zeitwerk (~> 2.5)
     language_server-protocol (3.17.0.3)
     launchy (2.5.2)
       addressable (~> 2.8)
@@ -250,15 +262,6 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitest (5.19.0)
-    mrsk (0.15.1)
-      activesupport (>= 7.0)
-      bcrypt_pbkdf (~> 1.0)
-      dotenv (~> 2.8)
-      ed25519 (~> 1.2)
-      net-ssh (~> 7.0)
-      sshkit (~> 1.21)
-      thor (~> 1.2)
-      zeitwerk (~> 2.5)
     msgpack (1.7.1)
     mutex_m (0.1.2)
     net-http-persistent (4.0.2)
@@ -327,7 +330,7 @@ GEM
     redis-client (0.15.0)
       connection_pool
     regexp_parser (2.8.1)
-    reline (0.3.7)
+    reline (0.3.8)
       io-console (~> 0.5)
     request_store (1.5.1)
       rack (>= 1.4)
@@ -470,10 +473,10 @@ DEPENDENCIES
   image_processing (>= 1.2)
   importmap-rails
   jbuilder
+  kamal
   letter_opener_web
   local_time
   lograge
-  mrsk
   pagy
   pg
   premailer-rails

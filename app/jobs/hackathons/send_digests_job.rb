@@ -8,7 +8,7 @@ class Hackathons::SendDigestsJob < ApplicationJob
 
       digest = subscriber.digests.new
 
-      digest.save! unless digest.listings.none?
+      digest.save! unless digest.invalid? && digest.listings.none?
       sent_digests << digest if digest.persisted?
     end
   ensure
@@ -18,7 +18,7 @@ class Hackathons::SendDigestsJob < ApplicationJob
   private
 
   def current_subscribers
-    User.includes(:subscriptions).where(subscriptions: {status: :active})
+    User.includes(:subscriptions).where(subscriptions: {status: :active}).includes(:digests)
   end
 
   def new_digest_pertinent?(subscriber)

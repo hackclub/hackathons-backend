@@ -54,6 +54,15 @@ Rails.application.configure do
   # Use lograge to tame log output.
   config.lograge.enabled = true
 
+  # Don't log health checks.
+  config.lograge.ignore_actions = ["Rails::HealthController#show"]
+
+  # Prepend all log lines with the following tags.
+  config.log_tags = [:request_id]
+  config.lograge.custom_payload do |controller|
+    {request_id: controller.request.uuid}
+  end
+
   # Log to both STDOUT and AppSignal.
   config.lograge.keep_original_rails_log = true
   config.lograge.logger = Appsignal::Logger.new(
@@ -66,9 +75,6 @@ Rails.application.configure do
   config.lograge.logger = console_logger.extend(
     ActiveSupport::Logger.broadcast(Appsignal::Logger.new("rails", format: Appsignal::Logger::LOGFMT))
   )
-
-  # Prepend all log lines with the following tags.
-  config.log_tags = [:request_id]
 
   # Info include generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you

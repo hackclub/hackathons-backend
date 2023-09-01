@@ -1,31 +1,65 @@
 .hackathon-snippet {
-  border: 3px solid;
-  padding: 0.5rem;
   display: flex;
+  flex-direction: column;
+
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+}
+
+.hackathon-snippet__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: var(--spacing-2);
+
+  margin-bottom: var(--spacing-2);
 }
 
 .hackathon-snippet__title {
-  margin: 0 !important;
-  font-weight: normal;
+  margin: 0;
+  color: var(--red);
 }
 
-.hackathon-snippet__time {
-  margin-left: auto;
-  text-decoration: none !important;
+.hackathon-snippet__status {
+  font-size: var(--font-1);
+
+  padding-left: var(--spacing-2);
+  padding-right: var(--spacing-2);
 }
 
-.hackathon > * {
-  margin-top: 1rem;
+.hackathon-snippet__created-at {
+  text-align: right;
 }
 
-.hackathon--pending {
-  border-color: darkgray;
+.hackathon-snippet__logo {
+  max-width: 3rem;
+  max-height: 3rem;
+  background-color: black;
 }
 
-.hackathon--approved {
-  border-color: limegreen;
+.hackathon-snippet__description {
+  display: flex;
+  column-gap: var(--spacing-3);
+  align-items: flex-start;
 }
 
-.hackathon--rejected {
-  border-color: red;
+.hackathon-snippet__times {
+  display: grid;
+  grid-template: auto auto / auto auto;
+  column-gap: var(--spacing-1);
+}
+
+.hackathon__attributes {
+  > div {
+    margin-top: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
+  }
+}
+
+@each $status, $color in ((pending, --slate), (approved, --green), (rejected, --red)) {
+  .hackathon--#{$status} {
+    border-color: var(#{$color});
+    color: var(#{$color});
+    background-color: color-mix(in srgb, var(#{$color}) 3%, transparent);
+  }
 }

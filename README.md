@@ -81,11 +81,11 @@ brew install vips
   - Redis (Heroku Data for Redis `premium0`)
 - Hetzner
   - Runs the Rails app and Sidekiq (3 vCPU, 4 GB)
-  - Deployed via [MRSK](https://mrsk.dev/)
+  - Deployed via [Kamal](https://kamal-deploy.org)
 
-### MRSK
+### Kamal
 
-All pushes to the `main` branch are automatically deployed by MRSK.
+All pushes to the `main` branch are automatically deployed by Kamal.
 
 - Environment variables are stored on GitHub and accessed by GitHub Actions
   when deploying.

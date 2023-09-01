@@ -27,7 +27,7 @@
         please!
       </p>
       <p class="m0">
-        If you're running a high school hackathon on Hack Club Bank, we can
+        If you're running a high school hackathon on HCB, we can
         purchase a custom domain for your event.
       </p>
     <% end %>
@@ -47,7 +47,7 @@
           <%= f.input :city, required: false %>
           <%= f.input :province, label: "State/Province", required: false %>
           <%= f.input :postal_code, label: "ZIP/Postal Code", required: false %>
-          <%= f.input :country_code, as: :country, priority_countries: ["US"], required: false %>
+          <%= f.input :country_code, label: "Country", as: :country, priority_countries: ["US"], required: false %>
         </div>
       </div>
     </div>
@@ -75,7 +75,7 @@
           <%= sma.input :city, required: false %>
           <%= sma.input :province, label: "State/Province", required: false %>
           <%= sma.input :postal_code, label: "ZIP/Postal Code", required: false %>
-          <%= sma.input :country_code, as: :country, required: false %>
+          <%= sma.input :country_code, label: "Country", as: :country, required: false %>
         <% end %>
       </div>
     </div>

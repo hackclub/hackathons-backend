@@ -20,9 +20,9 @@ servers:
 registry:
   server: ghcr.io
   username:
-    - MRSK_REGISTRY_USERNAME
+    - KAMAL_REGISTRY_USERNAME
   password:
-    - MRSK_REGISTRY_PASSWORD
+    - KAMAL_REGISTRY_PASSWORD
 
 env:
   clear:

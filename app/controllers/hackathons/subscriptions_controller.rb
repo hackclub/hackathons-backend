@@ -1,6 +1,6 @@
 class Hackathons::SubscriptionsController < ApplicationController
-  skip_before_action :redirect_if_unauthenticated, only: [:index, :unsubscribe_all]
-  before_action :set_user, only: [:index, :unsubscribe_all]
+  skip_before_action :redirect_if_unauthenticated
+  before_action :set_user
 
   # Manage subscriptions for a user.
   # GET /users/:user_id/subscriptions

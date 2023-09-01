@@ -6,8 +6,6 @@
 </h2>
 <div style="margin-bottom: 2rem;">
   <% listings.each do |listing| %>
-    <td>
-      <%= render "hackathon", hackathon: listing.hackathon %>
-    </td>
+    <%= render "hackathon", hackathon: listing.hackathon %>
   <% end %>
 </div>
