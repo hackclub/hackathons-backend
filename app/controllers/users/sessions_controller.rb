@@ -26,6 +26,6 @@ class Users::SessionsController < ApplicationController
   def destroy
     Current.session.destroy!
     cookies.permanent.signed[:session_token] = nil
-    redirect_to sign_in_path
+    redirect_to root_path
   end
 end
