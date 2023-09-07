@@ -19,13 +19,13 @@ class Users::SessionsController < ApplicationController
     authentication.complete
     session = authentication.create_session!
 
-    cookies.permanent.signed[:session_token] = session.token
-    redirect_to hackathons_submissions_path
+    cookies.permanent.signed[:session_token] = {value: session.token, httponly: true}
+    redirect_to root_path
   end
 
   def destroy
     Current.session.destroy!
     cookies.permanent.signed[:session_token] = nil
-    redirect_to root_path
+    redirect_to sign_in_path
   end
 end
