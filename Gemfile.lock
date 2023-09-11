@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: e4d47eaecf25619f1cae601d06ff86616b99cbd6
+  revision: bb4dbd14f8ef5f157838b14fba5664e43566aaa7
   specs:
     actioncable (7.1.0.alpha)
       actionpack (= 7.1.0.alpha)
@@ -262,7 +262,7 @@ GEM
     matrix (0.4.2)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
-    minitest (5.19.0)
+    minitest (5.20.0)
     msgpack (1.7.1)
     mutex_m (0.1.2)
     net-http-persistent (4.0.2)
