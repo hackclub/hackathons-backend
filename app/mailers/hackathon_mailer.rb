@@ -2,8 +2,8 @@ class HackathonMailer < ApplicationMailer
   before_action :set_hackathon
 
   def submission
-    email_addresses = User.admins.pluck(&:email_address)
-    mail to: email_addresses, subject: "A new Hackathon named \"#{@hackathon.name}\" was submitted!"
+    admin_email_addresses = User.admins.pluck :email_address
+    mail to: admin_email_addresses, subject: "A new Hackathon named \"#{@hackathon.name}\" was submitted!"
   end
 
   private
