@@ -10,6 +10,7 @@ class Hackathon < ApplicationRecord
   include FinanciallyAssisting # depends on Taggable
   include Gathering
   include Named
+  include Notifying
   include Regional
   include Reviewable # depends on Eventable and Status
   include Scheduled
