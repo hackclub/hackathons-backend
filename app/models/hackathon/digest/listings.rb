@@ -7,13 +7,21 @@ module Hackathon::Digest::Listings
     has_many :listed_subscriptions, through: :listings, source: :subscription
 
     before_validation :build_candidate_listings, on: :create, if: -> { listings.empty? }
+
     validates_length_of :listings, minimum: 1, on: :create, message: "must not be empty"
+    validate :minimum_one_unseen_listing, on: :create, if: -> { errors.none? }
   end
 
   private
 
   LISTING_CRITERIA = [Criterion::Location]
   MAX_LISTINGS = 8
+
+  def build_candidate_listings
+    applicable_listings.each do |result|
+      listings.build hackathon: result[:hackathon], subscription: result[:subscription]
+    end
+  end
 
   def applicable_listings(listing_criteria: LISTING_CRITERIA, max_listings: MAX_LISTINGS)
     listing_criteria
@@ -22,9 +30,9 @@ module Hackathon::Digest::Listings
       .first(max_listings)
   end
 
-  def build_candidate_listings
-    applicable_listings.each do |result|
-      listings.build hackathon: result[:hackathon], subscription: result[:subscription]
+  def minimum_one_unseen_listing
+    if listed_hackathons.any? ->(hackathon) { Hackathon::Digest::Listing.exists?(recipient:, hackathon:) }
+      errors.add :listings, "must include at least one unseen hackathon"
     end
   end
 end
