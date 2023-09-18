@@ -6,7 +6,6 @@ class Hackathon < ApplicationRecord
 
   include Applicant
   include Brand
-  include Brand::Website
   include FinanciallyAssisting # depends on Taggable
   include Gathering
   include Named
