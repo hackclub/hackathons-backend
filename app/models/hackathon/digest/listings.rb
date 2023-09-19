@@ -31,7 +31,7 @@ module Hackathon::Digest::Listings
   end
 
   def minimum_one_unseen_listing
-    if listed_hackathons.any? ->(hackathon) { Hackathon::Digest::Listing.exists?(recipient:, hackathon:) }
+    if listed_hackathons.all? ->(hackathon) { Hackathon::Digest::Listing.exists?(recipient:, hackathon:) }
       errors.add :listings, "must include at least one unseen hackathon"
     end
   end
