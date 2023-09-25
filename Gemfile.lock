@@ -160,7 +160,7 @@ GEM
       xpath (~> 3.2)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
-    console1984 (0.1.29)
+    console1984 (0.1.31)
       parser
       rainbow
     countries (5.6.0)
