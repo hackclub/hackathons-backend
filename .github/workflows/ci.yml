@@ -27,6 +27,7 @@ jobs:
         ports: ["5432:5432"]
         env:
           POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: hackathons_test
       redis:
         image: redis:7.0
         ports: ["6379:6379"]
@@ -44,7 +45,7 @@ jobs:
         with:
           bundler-cache: true
       - name: Run tests
-        run: bundle exec rails db:create test:all
+        run: bundle exec rails test:all
         env:
           RAILS_ENV: test
           DATABASE_URL: postgresql://postgres@127.0.0.1:5432
