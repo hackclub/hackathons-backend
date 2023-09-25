@@ -1,3 +1,5 @@
+ENV["PARALLEL_WORKERS"] ||= "1"
+
 require "test_helper"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
