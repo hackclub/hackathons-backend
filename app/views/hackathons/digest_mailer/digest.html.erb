@@ -1,7 +1,7 @@
 <p>
   Check out
   <% if (count = @digest.listings.count { |listing| listing.previously_listed_for_recipient? }) > 1 %>
-    these <%= count %> newly listed hackathons
+    these <%= count %> new hackathons
   <% else %>
     this newly listed hackathon
   <% end %>
