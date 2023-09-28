@@ -45,7 +45,7 @@ jobs:
         with:
           bundler-cache: true
       - name: Run tests
-        run: bundle exec rails test:all
+        run: bin/rails test; bin/rails test:system
         env:
           RAILS_ENV: test
           DATABASE_URL: postgresql://postgres@127.0.0.1:5432
