@@ -1,4 +1,4 @@
-ENV["PARALLEL_WORKERS"] ||= "1"
+ENV["PARALLEL_WORKERS"] ||= "0"
 
 require "test_helper"
 
