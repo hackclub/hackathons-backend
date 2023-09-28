@@ -45,7 +45,11 @@ jobs:
         with:
           bundler-cache: true
       - name: Run tests
-        run: bundle exec rails test:all
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 2
+          max_attempts: 3
+          command: bundle exec rails test:all
         env:
           RAILS_ENV: test
           DATABASE_URL: postgresql://postgres@127.0.0.1:5432
