@@ -9,7 +9,7 @@ class Hackathons::DigestMailer < ApplicationMailer
 
     @new_listings_by_subscription = @digest.listings
       .includes(:subscription, hackathon: {logo_attachment: :blob})
-      .select { |listing| listing.previously_listed_for_recipient? })
+      .select { |listing| listing.previously_listed_for_recipient? }
       .group_by(&:subscription)
 
     @previous_listings_by_subscription = @digest.listings
