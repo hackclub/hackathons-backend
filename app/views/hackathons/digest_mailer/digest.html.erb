@@ -8,11 +8,11 @@
   coming up near you.
 </p>
 
-<% @listings_by_subscription.each do |subscription, listings| %>
-  <%= render "subscription", subscription:, listings: listings.select { |listing| listing.previously_listed_for_recipient? }) %>
+<% @new_listings_by_subscription.each do |subscription, listings| %>
+  <%= render "subscription", subscription:, listings: %>
 <% end %>
 
-<% if listings.reject { |listing| listing.previously_listed_for_recipient? }.count > 0 %>
+<% if @previous_listings_by_subscription.count > 0 %>
   <p>
     Here
     <% if (count = @digest.listings.count - @digest.listings.count { |listing| listing.previously_listed_for_recipient? }) > 1 %>
@@ -23,7 +23,7 @@
     coming up near you.
   </p>
   
-  <% @listings_by_subscription.each do |subscription, listings| %>
-    <%= render "subscription", subscription:, listings: listings.reject { |listing| listing.previously_listed_for_recipient? }) %>
+  <% @previous_listings_by_subscription.each do |subscription, listings| %>
+    <%= render "subscription", subscription:, listings: %>
   <% end %>
 <% end %>
