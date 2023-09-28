@@ -12,7 +12,7 @@
   <%= render "subscription", subscription:, listings: %>
 <% end %>
 
-<% if @previous_listings_by_subscription.count > 0 %>
+<% if @previous_listings_by_subscription.any? %>
   <p>
     Here
     <% if (count = @digest.listings.count - @digest.listings.count { |listing| listing.previously_listed_for_recipient? }) > 1 %>
