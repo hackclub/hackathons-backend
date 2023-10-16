@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: e3e0c646ab9e6a86e000e0cd331ca6bf2cf51949
+  revision: e4e242685efc74e4bacccd5c5878bc671fd63fb7
   specs:
     actioncable (7.2.0.alpha)
       actionpack (= 7.2.0.alpha)
@@ -216,7 +216,7 @@ GEM
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.6.0)
-    irb (1.8.1)
+    irb (1.8.3)
       rdoc
       reline (>= 0.3.8)
     jbuilder (2.11.5)
@@ -251,7 +251,7 @@ GEM
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.21.3)
+    loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -268,7 +268,7 @@ GEM
     mutex_m (0.1.2)
     net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
-    net-imap (0.4.0)
+    net-imap (0.4.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -301,7 +301,7 @@ GEM
       actionmailer (>= 3)
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
-    psych (5.1.0)
+    psych (5.1.1.1)
       stringio
     public_suffix (5.0.1)
     puma (6.4.0)
