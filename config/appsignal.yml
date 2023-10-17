@@ -1,5 +1,5 @@
 default: &defaults
-  push_api_key: "<%= ENV['APPSIGNAL_PUSH_API_KEY'] %>"
+  push_api_key: "<%= Rails.credentials.dig(:appsignal, :push_api_key) %>"
 
   name: "Hackathons"
 

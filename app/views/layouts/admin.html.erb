@@ -14,7 +14,7 @@
     const Hackathons = {
       appsignal: {
         // Frontend API key (intended to be exposed publicly)
-        key: "<%= ENV["APPSIGNAL_FRONTEND_API_KEY"] if Rails.env.production? %>"
+        key: "<%= Rails.application.credentials.dig(:appsignal, :frontend_api_key) %>"
       }
     }
   </script>
