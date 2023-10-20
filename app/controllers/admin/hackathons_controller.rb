@@ -2,7 +2,15 @@ class Admin::HackathonsController < Admin::BaseController
   before_action :set_hackathon, except: :index
 
   def index
-    @pagy, @hackathons = pagy(Hackathon.all.order(created_at: :desc))
+    @hackathons = Hackathon.all.order(created_at: :desc)
+
+    @search = params[:q]
+    @status = params[:status]
+
+    @hackathons = @hackathons.where("name ILIKE ?", "%#{Hackathon.sanitize_sql_like(@search)}%") if @search.present?
+    @hackathons = @hackathons.where(status: @status) if @status.present?
+
+    @pagy, @hackathons = pagy(@hackathons)
   end
 
   def show
