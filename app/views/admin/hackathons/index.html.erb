@@ -3,7 +3,7 @@
 <h2 class="title">Hackathons</h2>
 
 <%= render "filters" %>
-<% if @hackathons.size > 0 %>
+<% if @hackathons.any? %>
   <%= render partial: "snippet", collection: @hackathons, as: :hackathon %>
 <% else %>
   <p>No hackathons to show.</p>
