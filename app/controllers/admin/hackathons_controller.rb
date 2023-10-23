@@ -4,10 +4,10 @@ class Admin::HackathonsController < Admin::BaseController
   def index
     @hackathons = Hackathon.all.order(created_at: :desc)
 
-    @search = params[:q]
+    @query = params[:q]
     @status = params[:status]
 
-    @hackathons = @hackathons.where("name ILIKE ?", "%#{Hackathon.sanitize_sql_like(@search)}%") if @search.present?
+    @hackathons = @hackathons.where("name ILIKE ?", "%#{Hackathon.sanitize_sql_like(@query)}%") if @query.present?
     @hackathons = @hackathons.where(status: @status) if @status.present?
 
     @pagy, @hackathons = pagy(@hackathons)
