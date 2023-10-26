@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: e4e242685efc74e4bacccd5c5878bc671fd63fb7
+  revision: 56b7357dfd004ca80cff131fbcf024d0b75e42b3
   specs:
     actioncable (7.2.0.alpha)
       actionpack (= 7.2.0.alpha)
@@ -32,6 +32,7 @@ GIT
       actionview (= 7.2.0.alpha)
       activesupport (= 7.2.0.alpha)
       nokogiri (>= 1.8.5)
+      racc
       rack (>= 2.2.4)
       rack-session (>= 1.0.1)
       rack-test (>= 0.6.3)
@@ -73,7 +74,6 @@ GIT
       drb
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
-      mutex_m
       tzinfo (~> 2.0)
     rails (7.2.0.alpha)
       actioncable (= 7.2.0.alpha)
@@ -265,10 +265,9 @@ GEM
     mini_mime (1.1.5)
     minitest (5.20.0)
     msgpack (1.7.1)
-    mutex_m (0.1.2)
     net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
-    net-imap (0.4.1)
+    net-imap (0.4.2)
       date
       net-protocol
     net-pop (0.1.2)
