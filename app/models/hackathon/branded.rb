@@ -1,4 +1,4 @@
-module Hackathon::Brand
+module Hackathon::Branded
   extend ActiveSupport::Concern
 
   included do

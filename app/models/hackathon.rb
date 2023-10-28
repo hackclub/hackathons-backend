@@ -5,7 +5,7 @@ class Hackathon < ApplicationRecord
   include Status
 
   include Applicant
-  include Brand
+  include Branded
   include FinanciallyAssisting # depends on Taggable
   include Gathering
   include Named
