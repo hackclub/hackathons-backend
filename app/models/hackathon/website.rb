@@ -1,4 +1,4 @@
-module Hackathon::Brand::Website
+module Hackathon::Website
   extend ActiveSupport::Concern
 
   included do
