@@ -7,7 +7,7 @@ shape_for hackathon, json do
 
   json.website begin
     if hackathon.tagged_with?("Website Down") && hackathon.website_archived?
-      hackathon.archived_website_url
+      hackathon.website_archive_url
     else
       hackathon.website
     end
