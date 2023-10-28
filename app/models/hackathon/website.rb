@@ -8,7 +8,7 @@ module Hackathon::Website
     after_create_commit :archive_website_later
   end
 
-  def archived_website_url
+  def website_archive_url
     "https://web.archive.org/#{website.sub(/^https?:\/\/(www.)?/, "")}"
   end
 
