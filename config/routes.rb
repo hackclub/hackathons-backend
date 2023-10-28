@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get "sign_in", to: "users/authentications#new", as: :sign_in
   scope :my, module: :users do
-    resource :authentication, only: [:create, :show]
+    resource :authentication, only: :create
     resources :sessions, only: [:new, :destroy]
   end
 
