@@ -1,8 +1,6 @@
 module Hackathon::Brand
   extend ActiveSupport::Concern
 
-  include Website
-
   included do
     has_one_attached :logo do |logo|
       logo.variant :small, resize_to_limit: [128, 128]

@@ -14,4 +14,5 @@ class Hackathon < ApplicationRecord
   include Reviewable # depends on Eventable and Status
   include Scheduled
   include Swag
+  include Website
 end
