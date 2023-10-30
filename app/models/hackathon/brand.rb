@@ -12,7 +12,7 @@ module Hackathon::Brand
     end
 
     validates :logo, :banner,
-      attached: true
+      attached: true,
       size: {less_than: 25.megabytes, message: "is too powerful (max 25 MB)"},
       on: :submit
 
