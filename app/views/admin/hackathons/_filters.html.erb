@@ -1,0 +1,15 @@
+<div class="mb3 mt2">
+  <%= form_with method: :get, class: "simple_form mb3" do |form| %>
+    <%= form.hidden_field :status, value: @status if @status.present? %>
+
+    <div style="display: flex">
+      <%= form.text_field :q, placeholder: "Search", value: @query, style: "flex: 1", class: "mr2" %>
+      <button type="submit" class="btn">Search</button>
+    </div>
+  <% end %>
+
+  <%= link_to "All", params.permit(:q).merge(status: nil), class: "mr2", style: ("color: var(--muted); text-decoration: none" unless @status.nil?) %>
+  <% Hackathon.statuses.keys.each do |status| %>
+    <%= link_to status.humanize, params.permit(:q).merge(status:), class: "mr2", style: ("color: var(--muted); text-decoration: none" unless @status == status) %>
+  <% end %>
+</div>
