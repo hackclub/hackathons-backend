@@ -6,6 +6,6 @@ archive_websites:
   cron: "every monday at 10am on America/Los_Angeles"
   class: "Hackathons::ArchiveWebsitesJob"
 
-find_downed_websites:
+refresh_website_statuses:
   cron: "every day at 10am on America/Los_Angeles"
-  class: "Hackathons::FindDownedWebsitesJob"
+  class: "Hackathons::RefreshWebsiteStatusesJob"
