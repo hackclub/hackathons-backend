@@ -2,7 +2,7 @@ class Admin::HackathonsController < Admin::BaseController
   before_action :set_hackathon, except: :index
 
   def index
-    @pagy, @hackathons = pagy(Hackathon.all.order(created_at: :desc))
+    @pagy, @hackathons = pagy(Hackathon.all.order(created_at: :desc).with_attached_logo)
   end
 
   def show
