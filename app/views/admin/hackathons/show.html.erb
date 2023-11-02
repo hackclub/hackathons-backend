@@ -14,19 +14,31 @@
     </turbo-frame>
 
     <% if @hackathon.logo.present? || @hackathon.banner.present? %>
-      <section style="display: flex;" class="pt3">
+      <section style="display: flex; gap: var(--spacing-2)" class="pt3">
         <% if @hackathon.logo.present? %>
-          <div>
-            <h2 class="heading--small">Logo</h2>
-            <%= image_tag @hackathon.logo, size: 128, style: "background-color: black;" %>
-          </div>
+          <turbo-frame id="logo">
+            <div>
+              <h2 class="heading--small">Logo</h2>
+              <%= image_tag @hackathon.logo, size: 128, style: "background-color: black;" %>
+              <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data: { controller: "form", turbo_confirm: "Are you sure you want to upload this file?" } do |form| %>
+                <%= form.label :logo, "Upload new logo", style: "text-decoration: underline; cursor: pointer; color: darkgray" %>
+                <%= form.file_field :logo, data: { action: "input->form#submit" }, style: "display: none;" %>
+              <% end %>
+            </div>
+          </turbo-frame>
         <% end %>
 
         <% if @hackathon.banner.present? %>
-          <div>
-            <h2 class="heading--small">Banner</h2>
-            <%= image_tag @hackathon.banner, height: 128, style: "background-color: black;" %>
-          </div>
+          <turbo-frame id="banner">
+            <div>
+              <h2 class="heading--small">Banner</h2>
+              <%= image_tag @hackathon.banner, height: 128, style: "background-color: black;" %>
+              <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data: { controller: "form", turbo_confirm: "Are you sure you want to upload this file?" } do |form| %>
+                <%= form.label :banner, "Upload new banner", style: "text-decoration: underline; cursor: pointer; color: darkgray" %>
+                <%= form.file_field :banner, data: { action: "input->form#submit" }, style: "display: none;" %>
+              <% end %>
+            </div>
+          </turbo-frame>
         <% end %>
       </section>
     <% end %>
