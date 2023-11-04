@@ -1,6 +1,5 @@
 require "sidekiq/web"
 require "sidekiq/cron/web"
-require "constraints/admin"
 
 Rails.application.routes.draw do
   root "hackathons#index"
