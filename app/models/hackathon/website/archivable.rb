@@ -15,7 +15,7 @@ module Hackathon::Website::Archivable
 
   def website_archived?
     if events.loaded?
-      events.any? {|e| e.action == "archived_website"}
+      events.any? { |e| e.action == "archived_website" }
     else
       events.where(action: "archived_website").exists?
     end
