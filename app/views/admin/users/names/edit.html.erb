@@ -1,0 +1,8 @@
+<turbo-frame id="name">
+  <%= form_with model: @user, url: admin_user_path(@user), data: {controller: "form"} do |form| %>
+    <h1>
+      <%= form.text_field :name, data:
+        {action: "click@document->form#submitOnClickOutside keydown->form#submitOnEnter"} %>
+    </h1>
+  <% end %>
+</turbo-frame>

@@ -5,6 +5,10 @@ module User::Named
     encrypts :name
   end
 
+  def display_name
+    name.presence || email_address
+  end
+
   def first_name
     name&.split(" ")&.first
   end

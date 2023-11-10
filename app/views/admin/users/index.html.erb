@@ -1,0 +1,7 @@
+<% page :narrow %>
+<% @nav_active_item = admin_users_path %>
+<h1 class="title">Users</h1>
+
+<%= render partial: "snippet", collection: @users, as: :user %>
+
+<%== pagy_nav(@pagy) %>
