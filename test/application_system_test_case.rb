@@ -10,7 +10,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
     fill_in :email_address, with: user.email_address
     click_on "Send Sign In Link"
-    assert_text /sent/i
+    assert_text(/sent/i)
 
     visit new_session_path(auth_token: user.authentications.last.token)
   end

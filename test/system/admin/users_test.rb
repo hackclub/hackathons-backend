@@ -60,6 +60,6 @@ class Admin::UsersTest < ApplicationSystemTestCase
 
     assert_selector "input[type=email]#user_email_address"
 
-    assert_text /taken/i
+    assert_text(/taken/i)
   end
 end
