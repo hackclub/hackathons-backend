@@ -1,7 +1,7 @@
 <turbo-frame id="email_address">
   <%= form_with model: @user, url: admin_user_path(@user), data: {controller: "form"} do |form| %>
     <h2>
-      <%= form.text_field :email_address, required: true, data:
+      <%= form.email_field :email_address, required: true, data:
         {action: "click@document->form#submitOnClickOutside keydown->form#submitOnEnter"} %>
     </h2>
   <% end %>
