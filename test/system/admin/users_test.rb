@@ -14,7 +14,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
     assert_text(/not found/i)
 
     fill_in :email_address, with: "#{@user.email_address}\n"
-    assert_redirected_to admin_user_path(@user)
+    assert_text @user.display_name
   end
 
   test "editing a user's name" do
