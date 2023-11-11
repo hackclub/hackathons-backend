@@ -14,6 +14,7 @@ class Admin::UsersController < Admin::BaseController
 
         format.html { render :edit, status: :unprocessable_entity }
       end
+    end
   end
 
   def show

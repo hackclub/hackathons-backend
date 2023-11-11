@@ -11,7 +11,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
     visit admin_users_path
 
     fill_in :email_address, with: "nonexistent@hey.com\n"
-    assert_text /not found/i
+    assert_text(/not found/i)
 
     fill_in :email_address, with: "#{@user.email_address}\n"
     assert_redirected_to admin_user_path(@user)
