@@ -1,6 +1,0 @@
-<%= link_to admin_user_path(user), style: "text-decoration: none;" do %>
-  <article id="<%= dom_id(user) %>" class="card interactive">
-    <h2 class="user-snippet__title"><%= user.display_name %></h2>
-    <p><%= user.email_address %></p>
-  </article>
-<% end %>

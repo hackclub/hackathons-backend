@@ -2,7 +2,18 @@ class Admin::UsersController < Admin::BaseController
   before_action :set_user, except: :index
 
   def index
-    @pagy, @users = pagy User.all.order(created_at: :desc)
+    @email_address = params[:email_address]
+
+    if (user = User.find_by_email_address @email_address)
+      redirect_to admin_user_path(user)
+    else
+      flash.now[:notice] = "User not found."
+  
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("flash", partial: "shared/flash") }
+
+        format.html { render :edit, status: :unprocessable_entity }
+      end
   end
 
   def show
@@ -12,7 +23,7 @@ class Admin::UsersController < Admin::BaseController
     if @user.update(user_params)
       redirect_to admin_user_path(@user)
     else
-      flash.now[:notice] = @user.errors.full_messages.to_sentence
+      flash.now[:notice] = @user.errors.full_messages.first
 
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace("flash", partial: "shared/flash") }
