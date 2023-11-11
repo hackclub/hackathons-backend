@@ -10,6 +10,8 @@ module Hackathons
   class Application < Rails::Application
     config.load_defaults 7.0
 
+    config.autoload_lib ignore: %w[assets tasks templates]
+
     config.active_record.encryption.encrypt_fixtures = true
 
     host = ENV["HOST"] || "localhost:3000"

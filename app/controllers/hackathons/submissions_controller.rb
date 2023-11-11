@@ -1,5 +1,5 @@
 class Hackathons::SubmissionsController < ApplicationController
-  skip_before_action :redirect_if_unauthenticated, only: %i[new create]
+  skip_before_action :redirect_if_unauthenticated, only: [:new, :create]
 
   def index
     @hackathons = Hackathon.not_approved.where applicant: Current.user

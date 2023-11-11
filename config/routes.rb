@@ -1,13 +1,12 @@
 require "sidekiq/web"
 require "sidekiq/cron/web"
-require "constraints/admin"
 
 Rails.application.routes.draw do
   root "hackathons#index"
 
   get "sign_in", to: "users/authentications#new", as: :sign_in
   scope :my, module: :users do
-    resource :authentication, only: [:create, :show]
+    resource :authentication, only: :create
     resources :sessions, only: [:new, :destroy]
   end
 

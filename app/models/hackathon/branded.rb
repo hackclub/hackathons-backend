@@ -1,4 +1,4 @@
-module Hackathon::Brand
+module Hackathon::Branded
   extend ActiveSupport::Concern
 
   included do
@@ -10,8 +10,11 @@ module Hackathon::Brand
     end
 
     validates :logo, :banner,
-      attached: true, content_type: {in: /\Aimage\/.*\z/, message: "is not an image"},
+      attached: true,
       size: {less_than: 25.megabytes, message: "is too powerful (max 25 MB)"},
       on: :submit
+
+    validates :logo, :banner,
+      content_type: {in: /\Aimage\/.*\z/, message: "is not an image"}
   end
 end

@@ -19,10 +19,9 @@ _The thing that powers [hackathons.hackclub.com](https://hackathons.hackclub.com
 
 ## Contributing
 
-This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org/). It uses 🐘
+This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org/) (running [on the edge](https://shopify.engineering/living-on-the-edge-of-rails)). It uses 🐘
 [PostgreSQL](https://www.postgresql.org/) for the database and 🥋
 [Sidekiq](https://sidekiq.org/)/[Redis](https://redis.io/) for background jobs.
-And we're running on Rails edge (Rails 7.1.0.alpha) and Ruby 3.2.2.
 
 ### Getting Started
 
