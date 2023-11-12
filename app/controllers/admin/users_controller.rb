@@ -3,6 +3,7 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     @email_address = params[:email_address]
+    return unless @email_address.present?
 
     if (user = User.find_by_email_address @email_address.downcase)
       redirect_to admin_user_path(user)
