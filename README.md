@@ -88,7 +88,7 @@ All pushes to the `main` branch are automatically deployed by Kamal.
 
 - Environment variables are stored on GitHub and accessed by GitHub Actions
   when deploying.
-- Deployments take roughly 2 minutes to complete.
+- Deployments take 2-5 minutes to complete.
 - After pushing to `main`, please monitor the `CD / Deploy` check for the status
   of the deployment.
 
