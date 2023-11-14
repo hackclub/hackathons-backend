@@ -1,8 +1,8 @@
 <turbo-frame id="hackathon_times">
   <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data: {controller: "form"} do |form| %>
-    Starts:<%= form.date_field :starts_at, required: true, data:
+    Starts:<%= form.datetime_field :starts_at, include_seconds: false, required: true, data:
       {action: "click@document->form#submitOnClickOutside keydown->form#submitOnEnter"} %>
-    ends:<%= form.date_field :ends_at, required: true, data:
+    ends:<%= form.datetime_field :ends_at, include_seconds: false, required: true, data:
       {action: "click@document->form#submitOnClickOutside keydown->form#submitOnEnter"} %>
   <% end %>
 </turbo-frame>
