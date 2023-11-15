@@ -44,7 +44,7 @@ builder:
     type: gha
     options: mode=max
 
-asset_path: "/rails/public/assets"
+asset_path: "/hackathons/public/assets"
 
 traefik:
   args:
