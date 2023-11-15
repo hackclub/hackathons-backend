@@ -28,6 +28,8 @@ jobs:
           curl https://cli-assets.heroku.com/install-ubuntu.sh | sudo sh
           DATABASE_URL=$(heroku config:get DATABASE_URL -a hackathons)
           REDIS_URL=$(heroku config:get REDIS_URL -a hackathons)
+          echo "DATABASE_URL=${DATABASE_URL}" >> $GITHUB_ENV
+          echo "REDIS_URL=${REDIS_URL}" >> $GITHUB_ENV
       - name: Deploy to production!
         run: bundle exec kamal envify && bundle exec kamal deploy
         env:
