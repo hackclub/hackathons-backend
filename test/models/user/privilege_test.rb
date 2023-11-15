@@ -3,29 +3,21 @@ require "test_helper"
 class User::PrivilegeTest < ActiveSupport::TestCase
   test "promoting a user" do
     user = users(:peasant_matt)
-    user.promote_to_admin
+    assert_not user.admin?
+
+    user.update admin: true
 
     assert user.admin?
-  end
-
-  test "promoting a user creates an event" do
-    user = users(:peasant_matt)
-    user.promote_to_admin
-
-    assert user.events&.last&.action == "promoted_to_admin"
+    assert_equal "promoted_to_admin", user.events.last&.action
   end
 
   test "demoting a user" do
     user = users(:matt)
-    user.demote_from_admin
+    assert user.admin?
+
+    user.update admin: false
 
     assert_not user.admin?
-  end
-
-  test "demoting a user creates an event" do
-    user = users(:matt)
-    user.demote_from_admin
-
-    assert user.events&.last&.action == "demoted_from_admin"
+    assert_equal "demoted_from_admin", user.events.last&.action
   end
 end
