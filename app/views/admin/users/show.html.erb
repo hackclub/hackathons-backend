@@ -35,5 +35,10 @@
     <% end %>
   </turbo-frame>
 
+  <div class="button-group">
+    <%= button_to "Promote to admin", admin_user_promotion_path(@user), class: "button--neutral" %>
+    <%= button_to "Demote from admin", admin_user_promotion_path(@user), class: "button--danger", method: :delete %>
+  </div>
+
   <%= render "events/timeline", {eventable: @user} %>
 </article>

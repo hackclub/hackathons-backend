@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :update] do
         scope module: :users do
           resource :name, :email_address, only: :edit
+          resource :promotion, only: [:create, :destroy]
         end
       end
     end
