@@ -1,0 +1,9 @@
+<% page :narrow %>
+<% @nav_active_item = admin_users_path %>
+<h1 class="title">Users</h1>
+
+<%= form_with method: :get, class: "simple_form mt2" do |form| %> 
+  <div style="display: flex"> 
+    <%= form.email_field :email_address, placeholder: "Email address", value: @email_address, style: "flex: 1" %>
+  </div>
+<% end %>
