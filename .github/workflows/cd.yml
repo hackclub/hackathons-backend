@@ -29,11 +29,8 @@ jobs:
           DATABASE_URL=$(heroku config:get DATABASE_URL -a hackathons)
           REDIS_URL=$(heroku config:get REDIS_URL -a hackathons)
       - name: Deploy to production!
-        run: |
-          bundle exec kamal envify
-          bundle exec kamal deploy
+        run: bundle exec kamal envify && bundle exec kamal deploy
         env:
           KAMAL_REGISTRY_USERNAME: ${{ github.actor }}
           KAMAL_REGISTRY_PASSWORD: ${{ github.token }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-          APP_REVISION: ${{ github.sha }}
