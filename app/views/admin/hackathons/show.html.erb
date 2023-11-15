@@ -43,8 +43,9 @@
 
     <div>
       Applicant:
-      <%= "#{@hackathon.applicant.name}, " if @hackathon.applicant.name.present? %>
-      <%= @hackathon.applicant.email_address %>
+      <%= @hackathon.applicant.name.presence&.+(", ") %>
+      <%= link_to @hackathon.applicant.email_address, admin_user_url(@hackathon.applicant) %>
+      <%= mail_to @hackathon.applicant.email_address, "📧" %>
     </div>
 
     <div>
