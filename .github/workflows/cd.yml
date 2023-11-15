@@ -21,12 +21,19 @@ jobs:
       - name: Setup Docker
         uses: docker/setup-buildx-action@v2
       - uses: crazy-max/ghaction-github-runtime@v2
+      - name: Get credentials from Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          curl https://cli-assets.heroku.com/install-ubuntu.sh | sudo sh
+          DATABASE_URL=$(heroku config:get DATABASE_URL -a hackathons)
+          REDIS_URL=$(heroku config:get REDIS_URL -a hackathons)
       - name: Deploy to production!
-        run: bundle exec kamal deploy
+        run: |
+          bundle exec kamal envify
+          bundle exec kamal deploy
         env:
           KAMAL_REGISTRY_USERNAME: ${{ github.actor }}
           KAMAL_REGISTRY_PASSWORD: ${{ github.token }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          REDIS_URL: ${{ secrets.REDIS_URL }}
           APP_REVISION: ${{ github.sha }}
