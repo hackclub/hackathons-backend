@@ -103,7 +103,7 @@ server(s). Please ask [`@garyhtou`](https://garytou.com) for access.
 Then, run the following locally on your computer:
 
 ```sh
-bin/console
+bin/console prod
 ```
 
 ### Sidekiq
