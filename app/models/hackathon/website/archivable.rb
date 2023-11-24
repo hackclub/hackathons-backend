@@ -1,10 +1,6 @@
 module Hackathon::Website::Archivable
   extend ActiveSupport::Concern
 
-  included do
-    after_create_commit :archive_website_later
-  end
-
   def website_or_archive_url
     if website_down? && website_archived?
       "https://web.archive.org/#{website.sub(/^https?:\/\/(www.)?/, "")}"
@@ -44,11 +40,5 @@ module Hackathon::Website::Archivable
     rescue Timeout::Error
       Rails.logger.info "Timed out waiting for Internet Archive to finish capture for #{website} with job #{capture.job_id}."
     end
-  end
-
-  private
-
-  def archive_website_later
-    Hackathons::ArchiveWebsiteJob.perform_later(self)
   end
 end
