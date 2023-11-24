@@ -1,4 +1,6 @@
 <%= link_to admin_hackathon_path(hackathon), style: "text-decoration: none;" do %>
+  <%= turbo_stream_from hackathon %>
+
   <article id="<%= dom_id(hackathon) %>" class="hackathon-snippet card interactive">
     <div class="hackathon-snippet__header">
       <h2 class="hackathon-snippet__title headline"><%= hackathon.name %></h2>

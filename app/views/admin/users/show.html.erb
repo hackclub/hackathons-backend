@@ -1,6 +1,8 @@
 <% content_for :title, (@user.display_name) %>
 
 <article id="<%= dom_id(@user) %>">
+  <%= turbo_stream_from @user %>
+
   <turbo-frame id="name">
     <h1>
       🪪
