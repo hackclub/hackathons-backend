@@ -25,7 +25,7 @@ module Hackathon::Website
   end
 
   def website_likely_associated?
-    website_response.body&.downcase&.include?(name.downcase)
+    website_response&.body&.downcase&.include?(name.downcase)
   end
 
   private
