@@ -7,15 +7,30 @@ class Hackathons::SubmissionMailerTest < ActionMailer::TestCase
     @hackathon = hackathons(:zephyr)
   end
 
-  test "submission notification for admins" do
-    submission = HackathonMailer.with(hackathon: @hackathon).submission
-    submission_delivery = submission.deliver_now
+  test "confirmation" do
+    email = Hackathons::SubmissionMailer.with(hackathon: @hackathon).confirmation.deliver_now
 
-    assert submission_delivery.to, User.admins.pluck(:email_address)
+    assert email.to, @hackathon.applicant.email_address
 
-    assert_includes submission_delivery.subject, "submitted"
-    assert_includes submission_delivery.subject, @hackathon.name
+    assert_includes email.subject, "submitted"
+  end
 
-    assert_includes submission_delivery.to_s, admin_hackathon_url(@hackathon)
+  test "notification" do
+    email = Hackathons::SubmissionMailer.with(hackathon: @hackathon).notification.deliver_now
+
+    assert email.to, User.admins.pluck(:email_address)
+
+    assert_includes email.subject, "submitted"
+    assert_includes email.subject, @hackathon.name
+
+    assert_includes email.to_s, admin_hackathon_url(@hackathon)
+  end
+
+  test "approval" do
+    email = Hackathons::SubmissionMailer.with(hackathon: @hackathon).approval.deliver_now
+
+    assert email.to, @hackathon.applicant.email_address
+
+    assert_includes email.subject, "approved"
   end
 end
