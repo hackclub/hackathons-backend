@@ -15,8 +15,8 @@ class Hackathons::SubmissionMailerTest < ActionMailer::TestCase
     assert_includes email.subject, "submitted"
   end
 
-  test "notification" do
-    email = Hackathons::SubmissionMailer.with(hackathon: @hackathon).notification.deliver_now
+  test "admin notification" do
+    email = Hackathons::SubmissionMailer.with(hackathon: @hackathon).admin_notification.deliver_now
 
     assert email.to, User.admins.pluck(:email_address)
 

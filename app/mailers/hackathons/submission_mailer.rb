@@ -5,7 +5,7 @@ class Hackathons::SubmissionMailer < ApplicationMailer
     mail to: @hackathon.applicant.email_address, subject: "Your hackathon was submitted!"
   end
 
-  def notification
+  def admin_notification
     admin_email_addresses = User.admins.pluck :email_address
     mail to: admin_email_addresses, subject: "A new hackathon named \"#{@hackathon.name}\" was submitted!"
   end

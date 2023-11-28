@@ -13,7 +13,7 @@ module Hackathon::Notifying
   end
 
   def notify_admins
-    Hackathons::SubmissionMailer.with(hackathon: self).notification.deliver_later
+    Hackathons::SubmissionMailer.with(hackathon: self).admin_notification.deliver_later
   end
 
   def deliver_approval
