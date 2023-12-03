@@ -3,7 +3,10 @@ class HttpUrlValidator < ActiveModel::EachValidator
     return if value.blank?
 
     uri = URI.parse(value)
-    uri.is_a?(URI::HTTP) && uri.host.present?
+
+    unless uri.is_a?(URI::HTTP) && uri.host.present?
+      raise URI::InvalidURIError
+    end
   rescue URI::InvalidURIError
     record.errors.add attribute, "is not a valid URL"
   end
