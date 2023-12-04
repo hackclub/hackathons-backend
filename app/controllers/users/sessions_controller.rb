@@ -19,7 +19,8 @@ class Users::SessionsController < ApplicationController
     authentication.complete
     session = authentication.create_session!
 
-    cookies.permanent.signed[:session_token] = {value: session.token, httponly: true}
+    cookies.permanent.signed[:session_token] = {value: session.token, httponly: true, secure: Rails.env.production?}
+
     redirect_to hackathons_submissions_path
   end
 
