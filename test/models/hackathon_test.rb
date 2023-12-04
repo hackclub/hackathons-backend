@@ -66,4 +66,14 @@ class HackathonTest < ActiveSupport::TestCase
     assert @hackathon.save
     assert @hackathon.requested_swag?
   end
+
+  test "creating a hackathon with photos ending in .jfif" do
+    @hackathon.logo.attach(io: File.open(Rails.root.join("test/fixtures/files/assemble_logo.jpg")), filename: "assemble_logo.jfif")
+    @hackathon.banner.attach(io: File.open(Rails.root.join("test/fixtures/files/assemble.jpg")), filename: "assemble.jfif")
+
+    assert @hackathon.save
+
+    assert_equal "assemble_logo.jpeg", @hackathon.logo.blob.filename.to_s
+    assert_equal "assemble.jpeg", @hackathon.banner.blob.filename.to_s
+  end
 end
