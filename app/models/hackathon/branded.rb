@@ -16,5 +16,14 @@ module Hackathon::Branded
 
     validates :logo, :banner,
       content_type: {in: /\Aimage\/.*\z/, message: "is not an image"}
+
+    before_save :jfif_to_jpeg, if: -> { attachment_changes.any? }
+  end
+
+  private
+
+  def jfif_to_jpeg
+    logo&.blob&.update(filename: logo.blob.filename.to_s.gsub(/\.jfif\z/i, ".jpeg"))
+    banner&.blob&.update(filename: banner.blob.filename.to_s.gsub(/\.jfif\z/i, ".jpeg"))
   end
 end
