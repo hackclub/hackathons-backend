@@ -19,7 +19,7 @@ jobs:
         with:
           bundler-cache: true
       - name: Setup Docker
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
       - uses: crazy-max/ghaction-github-runtime@v2
       - name: Get credentials from Heroku
         env:
