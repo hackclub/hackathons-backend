@@ -13,8 +13,8 @@ module Authenticate
       session.access
       Current.session = session
 
-      # handle cookies that weren't initially set as HTTP-only
-      cookies.permanent.signed[:session_token] = {value: cookies.permanent.signed[:session_token], httponly: true}
+      # handle cookies that weren't initially set as HTTP-only / Secure
+      cookies.permanent.signed[:session_token] = {value: cookies.signed[:session_token], httponly: true, secure: Rails.env.production?}
     end
   end
 

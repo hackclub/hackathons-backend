@@ -59,8 +59,8 @@
 
     <div>
       <turbo-frame id="hackathon_times">
-        Starts <%= local_time_ago(@hackathon.starts_at) %>,
-        ends <%= local_time_ago(@hackathon.ends_at) %>
+        Starts <%= time_tag(@hackathon.starts_at, format: "%B %e, %Y at %l:%M %p") %>,
+        ends <%= time_tag(@hackathon.ends_at, format: "%B %e at %l:%M %p") %> (UTC)
         <%= link_to "✏️", edit_admin_hackathon_times_path(@hackathon), class: "hidden-link text--small" %>
       </turbo-frame>
     </div>

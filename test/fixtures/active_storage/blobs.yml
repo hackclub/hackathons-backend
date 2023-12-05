@@ -1,3 +1,3 @@
-hack_club_logo: <%= ActiveStorage::FixtureSet.blob filename: "hack_club_logo.png", service_name: "test_fixtures" %>
-assemble: <%= ActiveStorage::FixtureSet.blob filename: "assemble.png", service_name: "test_fixtures" %>
-assemble_logo: <%= ActiveStorage::FixtureSet.blob filename: "assemble_logo.png", service_name: "test_fixtures" %>
+hack_club_logo: <%= ActiveStorage::FixtureSet.blob filename: "hack_club_logo.jpg", service_name: "test_fixtures" %>
+assemble: <%= ActiveStorage::FixtureSet.blob filename: "assemble.jpg", service_name: "test_fixtures" %>
+assemble_logo: <%= ActiveStorage::FixtureSet.blob filename: "assemble_logo.jpg", service_name: "test_fixtures" %>
