@@ -1,9 +1,9 @@
-class Hackathons::ArchiveWebsitesJob < ApplicationJob
+class Hackathons::WebsiteArchivalsJob < ApplicationJob
   queue_as :low
 
   def perform
     upcoming_or_recent_hackathons.find_each do |hackathon|
-      Hackathons::ArchiveWebsiteJob.perform_later(hackathon)
+      Hackathons::WebsiteArchivalJob.perform_later(hackathon)
     end
   end
 

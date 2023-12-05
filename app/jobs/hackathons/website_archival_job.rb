@@ -1,4 +1,4 @@
-class Hackathons::ArchiveWebsiteJob < ApplicationJob
+class Hackathons::WebsiteArchivalJob < ApplicationJob
   queue_as :low
 
   def perform(hackathon)

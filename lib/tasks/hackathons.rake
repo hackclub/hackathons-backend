@@ -8,7 +8,7 @@ namespace :hackathons do
     # In order to see the output logs
     Hackathon.find_each do |hackathon|
       next if hackathon.events.where(action: "archived_website").last&.created_at&.after? 1.day.ago
-      Hackathons::ArchiveWebsiteJob.perform_now(hackathon)
+      Hackathons::WebsiteArchivalJob.perform_now(hackathon)
     end
   end
 end

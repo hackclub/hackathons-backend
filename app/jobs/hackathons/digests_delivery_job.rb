@@ -1,4 +1,4 @@
-class Hackathons::SendDigestsJob < ApplicationJob
+class Hackathons::DigestsDeliveryJob < ApplicationJob
   sidekiq_options retry: 20 # up to 6.5 days
 
   def perform
