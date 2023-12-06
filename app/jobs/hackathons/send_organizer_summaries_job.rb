@@ -5,7 +5,7 @@ class Hackathons::SendOrganizerSummariesJob < ApplicationJob
     @sent_digests = Hackathon::Digest.where(id: sent_digests.map(&:id))
 
     @sent_digests_by_hackathons = @sent_digests
-      .includes(listings: {hackathon: {logo_attachment: :blob}})
+      .includes(listings: :hackathon)
       .flat_map(&:listings).group_by(&:hackathon)
       .transform_values { |listings| listings.map(&:digest).uniq }
 
