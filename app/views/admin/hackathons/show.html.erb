@@ -5,6 +5,8 @@
 <% end %>
 
 <article id="<%= dom_id(@hackathon) %>" class="hackathon">
+  <%= turbo_stream_from @hackathon %>
+
   <div class="hackathon__attributes">
     <turbo-frame id="hackathon_name">
       <h1 class="heading--medium">
