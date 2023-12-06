@@ -3,7 +3,7 @@ class Hackathons::WebsiteStatusesRefreshJob < ApplicationJob
 
   def perform
     past_hackathons.find_each do |hackathon|
-      hackathon.refresh_website_status
+      WebsiteStatusRefreshJob.perform_later(hackathon)
     end
   end
 
