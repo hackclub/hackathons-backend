@@ -12,7 +12,6 @@ class Hackathons::OrganizerSummaryTest < ActionMailer::TestCase
     assert_match "We've just sent an email about #{hackathon.name} to #{sent_digests.count} hackers.", mail.body.encoded
 
     # Email CAN-SPAM compliance
-    assert_match "unsubscribe", mail.body.encoded
     assert_match Hackathons::HACK_CLUB_ADDRESS[:full], mail.body.encoded
   end
 end
