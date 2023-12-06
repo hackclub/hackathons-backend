@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Broadcasting
   include Eventable
 
   include Authenticatable

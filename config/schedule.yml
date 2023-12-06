@@ -1,11 +1,11 @@
-send_digests:
+digests_delivery:
   cron: "every tuesday at 10am on America/Los_Angeles"
-  class: "Hackathons::SendDigestsJob"
+  class: "Hackathons::DigestsDeliveryJob"
 
-archive_websites:
+website_archivals:
   cron: "every monday at 10am on America/Los_Angeles"
-  class: "Hackathons::ArchiveWebsitesJob"
+  class: "Hackathons::WebsiteArchivalsJob"
 
-refresh_website_statuses:
+website_statuses_refresh:
   cron: "every day at 10am on America/Los_Angeles"
-  class: "Hackathons::RefreshWebsiteStatusesJob"
+  class: "Hackathons::WebsiteStatusesRefreshJob"

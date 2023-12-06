@@ -49,6 +49,6 @@ module Hackathon::Website::Archivable
   private
 
   def archive_website_later
-    Hackathons::ArchiveWebsiteJob.perform_later(self)
+    Hackathons::WebsiteArchivalJob.perform_later(self)
   end
 end

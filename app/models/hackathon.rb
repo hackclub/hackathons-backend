@@ -1,4 +1,5 @@
 class Hackathon < ApplicationRecord
+  include Broadcasting
   include Eventable
   include Taggable
 

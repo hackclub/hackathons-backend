@@ -3,18 +3,16 @@ module User::Privileged
 
   included do
     scope :admins, -> { where admin: true }
+
+    after_save :record_privilege_changes, if: :saved_change_to_admin?
   end
 
-  def promote_to_admin
-    transaction do
-      update! admin: true
+  private
+
+  def record_privilege_changes
+    if admin?
       record :promoted_to_admin
-    end
-  end
-
-  def demote_from_admin
-    transaction do
-      update! admin: false
+    else
       record :demoted_from_admin
     end
   end

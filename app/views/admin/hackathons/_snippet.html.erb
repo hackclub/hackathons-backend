@@ -1,4 +1,6 @@
 <%= link_to admin_hackathon_path(hackathon), style: "text-decoration: none;" do %>
+  <%= turbo_stream_from hackathon %>
+
   <article id="<%= dom_id(hackathon) %>" class="hackathon-snippet card interactive">
     <div class="hackathon-snippet__header">
       <h2 class="hackathon-snippet__title headline"><%= hackathon.name %></h2>
@@ -18,9 +20,9 @@
 
       <div class="hackathon-snippet__times">
         <span>Starts</span>
-        <span><%= local_time hackathon.starts_at %></span>
+        <span><%= time_tag(hackathon.starts_at, format: "%B %d, %Y at %l:%M %p") %></span>
         <span>Ends</span>
-        <span><%= local_time hackathon.ends_at %></span>
+        <span><%= time_tag(hackathon.ends_at, format: "%B %d, %Y at %l:%M %p") %> (UTC)</span>
       </div>
     </div>
   </article>

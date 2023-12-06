@@ -5,6 +5,8 @@
 <% end %>
 
 <article id="<%= dom_id(@hackathon) %>" class="hackathon">
+  <%= turbo_stream_from @hackathon %>
+
   <div class="hackathon__attributes">
     <turbo-frame id="hackathon_name">
       <h1 class="heading--medium">
@@ -43,8 +45,9 @@
 
     <div>
       Applicant:
-      <%= "#{@hackathon.applicant.name}, " if @hackathon.applicant.name.present? %>
-      <%= @hackathon.applicant.email_address %>
+      <%= @hackathon.applicant.name.presence&.+(", ") %>
+      <%= link_to @hackathon.applicant.email_address, admin_user_url(@hackathon.applicant) %>
+      <%= mail_to @hackathon.applicant.email_address, "📧" %>
     </div>
 
     <div>
@@ -56,8 +59,8 @@
 
     <div>
       <turbo-frame id="hackathon_times">
-        Starts <%= local_time_ago(@hackathon.starts_at) %>,
-        ends <%= local_time_ago(@hackathon.ends_at) %>
+        Starts <%= time_tag(@hackathon.starts_at, format: "%B %e, %Y at %l:%M %p") %>,
+        ends <%= time_tag(@hackathon.ends_at, format: "%B %e at %l:%M %p") %> (UTC)
         <%= link_to "✏️", edit_admin_hackathon_times_path(@hackathon), class: "hidden-link text--small" %>
       </turbo-frame>
     </div>
