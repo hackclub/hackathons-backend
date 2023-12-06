@@ -1,4 +1,4 @@
-class Hackathons::WebsiteStatusesRefreshJob < ApplicationJob
+class Hackathons::WebsiteStatusRefreshJob < ApplicationJob
   queue_as :low
 
   def perform(hackathon)
