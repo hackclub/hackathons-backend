@@ -163,7 +163,7 @@ GEM
     console1984 (0.1.31)
       parser
       rainbow
-    countries (5.7.0)
+    countries (5.7.1)
       unaccent (~> 0.3)
     country_select (8.0.3)
       countries (~> 5.0)
