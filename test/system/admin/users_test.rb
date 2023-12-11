@@ -60,8 +60,10 @@ class Admin::UsersTest < ApplicationSystemTestCase
 
     fill_in :user_email_address, with: "#{User.second.email_address}\n"
 
+    assert_text(/taken/i)
+
     assert_selector "input[type=email]#user_email_address"
 
-    assert_text(/taken/i)
+    assert_not_equal @user.reload.email_address, User.second.email_address
   end
 end
