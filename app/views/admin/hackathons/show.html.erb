@@ -27,7 +27,7 @@
         <% if @hackathon.banner.present? %>
           <div>
             <h2 class="heading--small">Banner</h2>
-            <%= image_tag @hackathon.banner, height: 128, style: "background-color: black;" %>
+            <%= image_tag @hackathon.banner.variant(:small), height: 128 %>
           </div>
         <% end %>
       </section>
