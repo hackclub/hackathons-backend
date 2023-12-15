@@ -15,7 +15,7 @@
 
     <div class="hackathon-snippet__description">
       <% if hackathon.logo.attached? %>
-        <%= image_tag hackathon.logo, class: "hackathon-snippet__logo" %>
+        <%= image_tag hackathon.logo.variant(:small), class: "hackathon-snippet__logo" %>
       <% end %>
 
       <div class="hackathon-snippet__times">

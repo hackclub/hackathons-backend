@@ -6,6 +6,7 @@ module Hackathon::Branded
       logo.variant :small, resize_to_limit: [128, 128]
     end
     has_one_attached :banner do |banner|
+      banner.variant :small, resize_to_limit: [228, 128]
       banner.variant :large, resize_to_limit: [1920, 1080]
     end
 
