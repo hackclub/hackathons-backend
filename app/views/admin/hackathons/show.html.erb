@@ -16,20 +16,22 @@
     </turbo-frame>
 
     <% if @hackathon.logo.present? || @hackathon.banner.present? %>
-      <section style="display: flex;" class="pt3">
-        <% if @hackathon.logo.present? %>
-          <div>
-            <h2 class="heading--small">Logo</h2>
-            <%= image_tag @hackathon.logo, size: 128, style: "background-color: black;" %>
-          </div>
-        <% end %>
+      <section style="display: flex;">
+        <div style="display: flex; background-color: lightgrey;" class="p3">
+          <% if @hackathon.logo.present? %>
+            <div class="mr3">
+              <h2 class="heading--small">Logo</h2>
+              <%= image_tag @hackathon.logo.variant(:small), size: 128 %>
+            </div>
+          <% end %>
 
-        <% if @hackathon.banner.present? %>
-          <div>
-            <h2 class="heading--small">Banner</h2>
-            <%= image_tag @hackathon.banner.variant(:small), height: 128 %>
-          </div>
-        <% end %>
+          <% if @hackathon.banner.present? %>
+            <div>
+              <h2 class="heading--small">Banner</h2>
+              <%= image_tag @hackathon.banner.variant(:small), height: 128 %>
+            </div>
+          <% end %>
+        </div>
       </section>
     <% end %>
 
