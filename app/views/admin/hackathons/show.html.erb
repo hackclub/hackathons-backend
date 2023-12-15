@@ -17,7 +17,7 @@
 
     <% if @hackathon.logo.present? || @hackathon.banner.present? %>
       <section style="display: flex;">
-        <div style="display: flex; background-color: lightgrey;" class="p3">
+        <div style="display: flex; flex-wrap: wrap; background-color: lightgrey;" class="p3">
           <% if @hackathon.logo.present? %>
             <div class="mr3">
               <h2 class="heading--small">Logo</h2>
