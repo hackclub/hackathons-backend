@@ -6,6 +6,9 @@ default: &defaults
   ignore_actions:
     - Rails::HealthController#show
 
+  ignore_errors:
+    - ActionDispatch::Http::MimeNegotiation::InvalidType
+
 development:
   <<: *defaults
   active: false
