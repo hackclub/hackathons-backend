@@ -8,6 +8,7 @@ default: &defaults
 
   ignore_errors:
     - ActionDispatch::Http::MimeNegotiation::InvalidType
+    - ActiveRecord::RecordNotFound
 
 development:
   <<: *defaults
