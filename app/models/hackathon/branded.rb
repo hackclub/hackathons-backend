@@ -16,7 +16,7 @@ module Hackathon::Branded
       on: :submit
 
     validates :logo, :banner,
-      content_type: {in: /\Aimage\/.*\z/, message: "is not an image"}
+      processable_image: true
 
     before_save :jfif_to_jpeg, if: -> { attachment_changes.any? }
   end
