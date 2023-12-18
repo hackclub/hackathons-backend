@@ -4,7 +4,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "monday"
+      day: "friday"
       time: "10:00"
       timezone: "America/New_York"
 
@@ -12,6 +12,6 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "friday"
+      day: "monday"
       time: "10:00"
       timezone: "America/New_York"
