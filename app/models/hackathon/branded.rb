@@ -6,6 +6,7 @@ module Hackathon::Branded
       logo.variant :small, resize_to_limit: [128, 128]
     end
     has_one_attached :banner do |banner|
+      banner.variant :small, resize_to_limit: [228, 128]
       banner.variant :large, resize_to_limit: [1920, 1080]
     end
 
@@ -15,7 +16,7 @@ module Hackathon::Branded
       on: :submit
 
     validates :logo, :banner,
-      content_type: {in: /\Aimage\/.*\z/, message: "is not an image"}
+      processable_image: true
 
     before_save :jfif_to_jpeg, if: -> { attachment_changes.any? }
   end
