@@ -3,7 +3,7 @@ require "test_helper"
 class Hackathons::OrganizerSummaryTest < ActionMailer::TestCase
   test "organizer_summary" do
     sent_digests = [hackathon_digests(:one)]
-    hackathon = sent_digests[0].listings[0].hackathon
+    hackathon = hackathon_digests(:one).listings.first.hackathon
     mail = Hackathons::DigestMailer.organizer_summary(hackathon, sent_digests)
 
     assert_equal "We've just notified #{sent_digests.count} hackers about #{hackathon.name}!", mail.subject
