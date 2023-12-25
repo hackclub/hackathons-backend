@@ -16,4 +16,9 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
     visit new_session_path(auth_token: user.authentications.last.token)
   end
+
+  def visit(path)
+    super(path)
+    find 'body[data-stimulus-ready="true"]'
+  end
 end
