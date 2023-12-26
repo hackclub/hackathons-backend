@@ -1,4 +1,4 @@
-class Hackathons::SendOrganizerSummariesJob < ApplicationJob
+class Hackathons::OrganizerSummaryDeliveriesJob < ApplicationJob
   def perform(sent_digests)
     # This reloads the (possible) sent_digests array as an
     # ActiveRecord::Relation so that we can use includes to prevent an N+1.
