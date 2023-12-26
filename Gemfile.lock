@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 462e8e8b1c74d46a78e7077c5b07bfbc6fab08b0
+  revision: 16ff9afb2e78346e51b8969b76fc6afcba69d860
   specs:
     actioncable (7.2.0.alpha)
       actionpack (= 7.2.0.alpha)
@@ -268,7 +268,7 @@ GEM
     msgpack (1.7.2)
     net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
-    net-imap (0.4.8)
+    net-imap (0.4.9)
       date
       net-protocol
     net-pop (0.1.2)
