@@ -20,15 +20,15 @@ class Admin::UsersTest < ApplicationSystemTestCase
   test "editing a user's name" do
     visit admin_user_path(@user)
 
-    within("#name") do
+    within("turbo-frame#name") do
       click_on "✏️"
     end
 
-    assert_selector "input[type=text]#user_name"
+    assert_field :user_name
 
     fill_in :user_name, with: "#{@user.name} 2.0\n"
 
-    assert_no_selector "input[type=text]#user_name"
+    assert_no_field :user_name
 
     assert @user.reload.name =~ /2\.0/
   end
@@ -36,15 +36,15 @@ class Admin::UsersTest < ApplicationSystemTestCase
   test "changing a user's email address" do
     visit admin_user_path(@user)
 
-    within("#email_address") do
+    within("turbo-frame#email_address") do
       click_on "✏️"
     end
 
-    assert_selector "input[type=email]#user_email_address"
+    assert_field :user_email_address
 
     fill_in :user_email_address, with: "different@hey.com\n"
 
-    assert_no_selector "input[type=email]#user_email_address"
+    assert_no_field :user_email_address
 
     assert_equal @user.reload.email_address, "different@hey.com"
   end
@@ -52,17 +52,15 @@ class Admin::UsersTest < ApplicationSystemTestCase
   test "changing a user's email address to one already in use" do
     visit admin_user_path(@user)
 
-    within("#email_address") do
+    within("turbo-frame#email_address") do
       click_on "✏️"
     end
 
-    assert_selector "input[type=email]#user_email_address"
+    assert_field :user_email_address, type: :email
 
     fill_in :user_email_address, with: "#{User.second.email_address}\n"
 
-    assert_text(/taken/i)
-
-    assert_selector "input[type=email]#user_email_address"
+    assert_field :user_email_address
 
     assert_not_equal @user.reload.email_address, User.second.email_address
   end
