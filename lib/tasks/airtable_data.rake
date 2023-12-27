@@ -25,7 +25,7 @@ namespace :airtable_data do
           %w[name status starts_at ends_at website high_school_led
             expected_attendees modality apac].each do |field|
             value = record.send field
-            hackathon.send "#{field}=", value
+            hackathon.send :"#{field}=", value
           end
 
           # Re-geocoding existing address
