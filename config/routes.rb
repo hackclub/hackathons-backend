@@ -24,6 +24,12 @@ Rails.application.routes.draw do
   namespace :hackathons do
     resources :submissions, only: [:index, :new, :create, :show]
   end
+  
+  resources :hackathons, only: [] do
+    scope module: :hackathons do
+      resource :logo, :banner, only: :show
+    end
+  end
 
   constraints Constraints::Admin do
     mount Sidekiq::Web => "/admin/sidekiq" if Rails.env.production?
