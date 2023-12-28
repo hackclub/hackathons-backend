@@ -1,9 +1,9 @@
 class Users::SessionsController < ApplicationController
-  allow_unauthenticated_access, except: :destroy
+  allow_unauthenticated_access except: :destroy
   before_action :redirect_if_authenticated, except: :destroy
 
   def new
-    authentication = User::Authentication.find_by(token: params[:auth_token]))
+    authentication = User::Authentication.find_by(token: params[:auth_token])
     return redirect_to sign_in_path unless authentication
 
     if authentication.expired?

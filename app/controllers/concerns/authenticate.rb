@@ -7,8 +7,8 @@ module Authenticate
   end
   
   class_methods do
-    def allow_unauthenticated_access(**options)
-      skip_before_action :redirect_if_unauthenticated, **options
+    def allow_unauthenticated_access(**)
+      skip_before_action :redirect_if_unauthenticated, **
     end
   end
 
