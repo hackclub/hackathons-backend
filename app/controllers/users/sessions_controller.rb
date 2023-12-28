@@ -1,10 +1,10 @@
 class Users::SessionsController < ApplicationController
-  skip_before_action :redirect_if_unauthenticated, except: :destroy
+  allow_unauthenticated_access except: :destroy
   before_action :redirect_if_authenticated, except: :destroy
 
   def new
     authentication = User::Authentication.find_by(token: params[:auth_token])
-    return redirect_to sign_in_path if authentication.nil?
+    return redirect_to sign_in_path unless authentication
 
     if authentication.expired?
       authentication.reject reason: :expired
@@ -26,7 +26,7 @@ class Users::SessionsController < ApplicationController
 
   def destroy
     Current.session.destroy!
-    cookies.permanent.signed[:session_token] = nil
+    cookies.delete :session_token
     redirect_to root_path
   end
 end

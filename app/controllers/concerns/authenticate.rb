@@ -6,10 +6,16 @@ module Authenticate
     before_action :redirect_if_unauthenticated
   end
 
+  class_methods do
+    def allow_unauthenticated_access(**)
+      skip_before_action :redirect_if_unauthenticated, **
+    end
+  end
+
   private
 
   def authenticate
-    if (session = User::Session.find_by(token: cookies.permanent.signed[:session_token]))
+    if (session = User::Session.find_by(token: cookies.signed[:session_token]))
       session.access
       Current.session = session
 
@@ -23,7 +29,10 @@ module Authenticate
   end
 
   def redirect_if_authenticated
-    return redirect_to admin_hackathons_path if Current.user&.admin?
-    redirect_to hackathons_submissions_path if Current.user
+    if Current.user&.admin?
+      redirect_to admin_hackathons_path
+    elsif Current.user
+      redirect_to hackathons_submissions_path
+    end
   end
 end
