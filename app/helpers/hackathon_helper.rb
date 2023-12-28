@@ -5,7 +5,7 @@ module HackathonHelper
       v: hackathon.logo.updated_at.to_i
     )
   end
-  
+
   def hackathon_banner_url(hackathon)
     super(
       hackathon,
