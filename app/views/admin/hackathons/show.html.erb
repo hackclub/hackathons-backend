@@ -54,7 +54,7 @@
 
     <div>
       <turbo-frame id="hackathon_website">
-        Website: <%= link_to @hackathon.website, target: "_blank" %>
+        Website: <%= link_to nil, @hackathon.website, target: "_blank" %>
         <%= link_to "✏️", edit_admin_hackathon_website_path(@hackathon), class: "hidden-link text--small" %>
       </turbo-frame>
     </div>
