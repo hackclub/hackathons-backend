@@ -5,7 +5,7 @@ module Authenticate
     before_action :authenticate
     before_action :redirect_if_unauthenticated
   end
-  
+
   class_methods do
     def allow_unauthenticated_access(**)
       skip_before_action :redirect_if_unauthenticated, **
