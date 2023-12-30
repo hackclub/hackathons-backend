@@ -1,0 +1,48 @@
+<% content_for :title, (@user.display_name) %>
+
+<article id="<%= dom_id(@user) %>">
+  <%= turbo_stream_from @user %>
+
+  <turbo-frame id="name">
+    <h1>
+      🪪
+      <%= @user.display_name %>
+      <%= link_to "✏️", edit_admin_user_name_path(@user), class: "hidden-link text--small" %>
+    </h1>
+  </turbo-frame>
+
+  <turbo-frame id="email_address">
+    <h2>
+      📧
+      <%= @user.email_address %>
+      <%= link_to "✏️", edit_admin_user_email_address_path(@user), class: "hidden-link text--small" %>
+    </h2>
+  </turbo-frame>
+
+  <turbo-frame id="subscriptions">
+    <% if @user.subscriptions.active.any? %>
+      <div class="mt3">
+        <h3>Active Subscriptions</h3>
+        <ul>
+          <% @user.subscriptions.active.each do |subscription| %>
+            <li>
+              <%= subscription.location %>
+              <%= link_to "⛔", admin_subscription_path(subscription),
+                          style: "text-decoration: none;", "data-turbo-method": "delete",
+                          "data-turbo-confirm": "Remove this subscription for #{subscription.location}?" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </turbo-frame>
+
+  <% unless @user == Current.user %>
+    <div class="button-group">
+      <%= button_to "Promote to admin", admin_user_promotion_path(@user), class: "button--neutral" %>
+      <%= button_to "Demote from admin", admin_user_promotion_path(@user), class: "button--danger", method: :delete %>
+    </div>
+  <% end %>
+
+  <%= render "events/timeline", {eventable: @user} %>
+</article>

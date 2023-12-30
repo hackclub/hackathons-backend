@@ -5,13 +5,7 @@ shape_for hackathon, json do
     :ends_at,
     :modality)
 
-  json.website begin
-    if hackathon.tagged_with?("Website Down") && hackathon.website_archived?
-      hackathon.archived_website_url
-    else
-      hackathon.website
-    end
-  end
+  json.website hackathon.website_or_archive_url
 
   json.logo_url file_url_for hackathon.logo, :small
   json.banner_url file_url_for hackathon.banner, :large

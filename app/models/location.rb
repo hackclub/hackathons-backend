@@ -32,7 +32,7 @@ class Location
   end
 
   COMPONENTS.each do |compon|
-    define_method "#{compon}_most_significant?" do
+    define_method :"#{compon}_most_significant?" do
       most_significant_component == compon
     end
   end

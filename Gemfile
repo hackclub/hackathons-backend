@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.2"
+ruby file: ".ruby-version"
 
 gem "dotenv-rails"
 
@@ -82,5 +82,4 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
-  gem "shoulda"
 end

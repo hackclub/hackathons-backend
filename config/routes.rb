@@ -1,6 +1,5 @@
 require "sidekiq/web"
 require "sidekiq/cron/web"
-require "constraints/admin"
 
 Rails.application.routes.draw do
   root "hackathons#index"
@@ -37,6 +36,17 @@ Rails.application.routes.draw do
 
           resource :name, :website, :times,
             :expected_attendees, only: :edit
+
+          collection do
+            resources :subscriptions, only: :destroy
+          end
+        end
+      end
+
+      resources :users, only: [:index, :show, :update] do
+        scope module: :users do
+          resource :name, :email_address, only: :edit
+          resource :promotion, only: [:create, :destroy]
         end
       end
     end

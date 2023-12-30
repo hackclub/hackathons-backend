@@ -18,10 +18,15 @@
       }
     }
   </script>
+
   <%= javascript_importmap_tags %>
+
+  <% turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+  <%= yield :head %> <%# used by Turbo Drive helpers %>
 </head>
 
-<body>
+<body data-controller="test-readiness">
 
 <%= render "admin/header" %>
 <%= render "shared/flash" %>

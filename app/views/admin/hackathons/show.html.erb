@@ -5,6 +5,8 @@
 <% end %>
 
 <article id="<%= dom_id(@hackathon) %>" class="hackathon">
+  <%= turbo_stream_from @hackathon %>
+
   <div class="hackathon__attributes">
     <turbo-frame id="hackathon_name">
       <h1 class="heading--medium">
@@ -15,31 +17,33 @@
 
     <% if @hackathon.logo.present? || @hackathon.banner.present? %>
       <section style="display: flex; gap: var(--spacing-2)" class="pt3">
-        <% if @hackathon.logo.present? %>
-          <turbo-frame id="logo">
-            <div>
-              <h2 class="heading--small">Logo</h2>
-              <%= image_tag @hackathon.logo, size: 128, style: "background-color: black;" %>
-              <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data: { controller: "form", turbo_confirm: "Are you sure you want to upload this file?" } do |form| %>
-                <%= form.label :logo, "Upload new logo", style: "text-decoration: underline; cursor: pointer; color: darkgray" %>
-                <%= form.file_field :logo, data: { action: "input->form#submit" }, style: "display: none;" %>
-              <% end %>
-            </div>
-          </turbo-frame>
-        <% end %>
+        <div style="display: flex; flex-wrap: wrap; background-color: lightgrey;" class="p3">
+          <% if @hackathon.logo.present? %>
+            <turbo-frame id="logo">
+              <div class="mr3">
+                <h2 class="heading--small">Logo</h2>
+                <%= image_tag @hackathon.logo.variant(:small), size: 128 %>
+                <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data: { controller: "form", turbo_confirm: "Are you sure you want to upload this file?" } do |form| %>
+                  <%= form.label :logo, "Upload new logo", style: "text-decoration: underline; cursor: pointer; color: darkgray" %>
+                  <%= form.file_field :logo, data: { action: "input->form#submit" }, style: "display: none;" %>
+                <% end %>
+              </div>
+            </turbo-frame>
+          <% end %>
 
-        <% if @hackathon.banner.present? %>
-          <turbo-frame id="banner">
-            <div>
-              <h2 class="heading--small">Banner</h2>
-              <%= image_tag @hackathon.banner, height: 128, style: "background-color: black;" %>
-              <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data: { controller: "form", turbo_confirm: "Are you sure you want to upload this file?" } do |form| %>
-                <%= form.label :banner, "Upload new banner", style: "text-decoration: underline; cursor: pointer; color: darkgray" %>
-                <%= form.file_field :banner, data: { action: "input->form#submit" }, style: "display: none;" %>
-              <% end %>
-            </div>
-          </turbo-frame>
-        <% end %>
+          <% if @hackathon.banner.present? %>
+            <turbo-frame id="banner">
+              <div>
+                <h2 class="heading--small">Banner</h2>
+                <%= image_tag @hackathon.banner.variant(:small), height: 128 %>
+                <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data: { controller: "form", turbo_confirm: "Are you sure you want to upload this file?" } do |form| %>
+                  <%= form.label :banner, "Upload new banner", style: "text-decoration: underline; cursor: pointer; color: darkgray" %>
+                  <%= form.file_field :banner, data: { action: "input->form#submit" }, style: "display: none;" %>
+                <% end %>
+              </div>
+            </turbo-frame>
+          <% end %>
+        </div>
       </section>
     <% end %>
 
@@ -55,21 +59,22 @@
 
     <div>
       Applicant:
-      <%= "#{@hackathon.applicant.name}, " if @hackathon.applicant.name.present? %>
-      <%= @hackathon.applicant.email_address %>
+      <%= @hackathon.applicant.name.presence&.+(", ") %>
+      <%= link_to @hackathon.applicant.email_address, admin_user_url(@hackathon.applicant) %>
+      <%= mail_to @hackathon.applicant.email_address, "📧" %>
     </div>
 
     <div>
       <turbo-frame id="hackathon_website">
-        Website: <%= @hackathon.website %>
+        Website: <%= link_to nil, @hackathon.website, target: "_blank" %>
         <%= link_to "✏️", edit_admin_hackathon_website_path(@hackathon), class: "hidden-link text--small" %>
       </turbo-frame>
     </div>
 
     <div>
       <turbo-frame id="hackathon_times">
-        Starts <%= local_time_ago(@hackathon.starts_at) %>,
-        ends <%= local_time_ago(@hackathon.ends_at) %>
+        Starts <%= time_tag(@hackathon.starts_at, format: "%B %e, %Y at %l:%M %p") %>,
+        ends <%= time_tag(@hackathon.ends_at, format: "%B %e at %l:%M %p") %> (UTC)
         <%= link_to "✏️", edit_admin_hackathon_times_path(@hackathon), class: "hidden-link text--small" %>
       </turbo-frame>
     </div>

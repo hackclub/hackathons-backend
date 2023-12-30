@@ -8,8 +8,11 @@ Bundler.require(*Rails.groups)
 
 module Hackathons
   class Application < Rails::Application
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
+    config.autoload_lib ignore: %w[assets tasks templates]
+
+    config.active_record.encryption.hash_digest_class = OpenSSL::Digest::SHA1
     config.active_record.encryption.encrypt_fixtures = true
 
     host = ENV["HOST"] || "localhost:3000"

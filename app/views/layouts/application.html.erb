@@ -21,7 +21,7 @@
   <%= javascript_importmap_tags %>
 </head>
 
-<body style="<%= content_for :body_style %>">
+<body style="<%= content_for :body_style %>" data-controller="test-readiness">
 <%= render "shared/flash" %>
 
 <main class="container <%= yield :container_class %>">

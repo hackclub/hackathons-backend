@@ -32,8 +32,8 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     fill_in "End date", with: 1.month.from_now + 2.days
     fill_in "Website", with: "https://assemble.hackclub.com"
 
-    attach_file "Logo", Rails.root.join("test/fixtures/files/assemble_logo.png")
-    attach_file "Banner", Rails.root.join("test/fixtures/files/assemble.png")
+    attach_file "Logo", Rails.root.join("test/fixtures/files/assemble_logo.jpg")
+    attach_file "Banner", Rails.root.join("test/fixtures/files/assemble.jpg")
 
     select "In Person", from: "Where is the hackathon taking place?"
     fill_in "Street", with: "760 Market St"
@@ -70,8 +70,8 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     fill_in "End date", with: 1.month.from_now + 2.days
     fill_in "Website", with: "https://assemble.hackclub.com"
 
-    attach_file "Logo", Rails.root.join("test/fixtures/files/assemble_logo.png")
-    attach_file "Banner", Rails.root.join("test/fixtures/files/assemble.png")
+    attach_file "Logo", Rails.root.join("test/fixtures/files/assemble_logo.jpg")
+    attach_file "Banner", Rails.root.join("test/fixtures/files/assemble.jpg")
 
     select "In Person", from: "Where is the hackathon taking place?"
     fill_in "Street", with: "760 Market St"

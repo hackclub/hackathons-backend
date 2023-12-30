@@ -1,3 +1,5 @@
+minimum_version: 1.1.0
+
 service: hackathons
 
 image: hackclub/hackathons
@@ -30,18 +32,19 @@ env:
     WEB_CONCURRENCY: 2
     RAILS_MAX_THREADS: 10
     RAILS_MIN_THREADS: 5
-    APPSIGNAL_HOSTNAME: "${hostname}"
+    APP_REVISION: <%= `git rev-parse HEAD`.strip %>
   secret:
     - RAILS_MASTER_KEY
     - DATABASE_URL
     - REDIS_URL
-    - APP_REVISION
 
 builder:
   multiarch: false
   cache:
     type: gha
     options: mode=max
+
+asset_path: "/hackathons/public/assets"
 
 traefik:
   args:

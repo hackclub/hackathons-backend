@@ -1,5 +1,5 @@
 class HackathonsController < ApplicationController
-  skip_before_action :redirect_if_unauthenticated
+  allow_unauthenticated_access
 
   def index
     if Current.user&.admin?
