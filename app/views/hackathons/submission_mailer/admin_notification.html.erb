@@ -3,3 +3,7 @@
   <%= link_to @hackathon.name, admin_hackathon_url(@hackathon) %>
   was submitted!
 </p>
+
+<p>
+  Don't wanna get these emails? <%= link_to "Toggle new submission notifications!", admin_submissions_notifications_url %>
+</p>

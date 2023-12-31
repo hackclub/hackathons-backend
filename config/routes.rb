@@ -39,6 +39,10 @@ Rails.application.routes.draw do
 
           collection do
             resources :subscriptions, only: :destroy
+
+            namespace :submissions do
+              resources :notifications, only: :index
+            end
           end
         end
       end
