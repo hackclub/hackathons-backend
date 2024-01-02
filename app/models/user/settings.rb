@@ -13,7 +13,11 @@ module User::Settings
 
   User::SETTINGS.each do |setting|
     define_method setting do
-      settings[setting.to_s] || User::DEFAULT_SETTINGS[setting]
+      if settings[setting.to_s].nil?
+        User::DEFAULT_SETTINGS[setting]
+      else
+        settings[setting.to_s]
+      end
     end
 
     define_method :"#{setting}=" do |value|
