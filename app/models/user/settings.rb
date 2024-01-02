@@ -1,5 +1,5 @@
 User::DEFAULT_SETTINGS = {
-  new_submission_notifications: true
+  new_hackathon_submission_notifications: true
 }
 
 User::SETTINGS = DEFAULT_SETTINGS.keys
