@@ -1,13 +1,29 @@
 <p>
   Check out
-  <% if (count = @digest.listings.count) > 1 %>
-    these <%= count %> hackathons
+  <% if (count = @digest.listings.count { |listing| listing.previously_listed_for_recipient? }) > 1 %>
+    these <%= count %> new hackathons
   <% else %>
-    this hackathon
+    this newly listed hackathon
   <% end %>
   coming up near you.
 </p>
 
-<% @listings_by_subscription.each do |subscription, listings| %>
+<% @new_listings_by_subscription.each do |subscription, listings| %>
   <%= render "subscription", subscription:, listings: %>
+<% end %>
+
+<% if @previous_listings_by_subscription.any? %>
+  <p>
+    Here
+    <% if (count = @digest.listings.count - @digest.listings.count { |listing| listing.previously_listed_for_recipient? }) > 1 %>
+      are <%= count %> more hackathons
+    <% else %>
+      is one more hackathon
+    <% end %>
+    coming up near you.
+  </p>
+  
+  <% @previous_listings_by_subscription.each do |subscription, listings| %>
+    <%= render "subscription", subscription:, listings: %>
+  <% end %>
 <% end %>

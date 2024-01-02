@@ -1,7 +1,25 @@
 Check out
-<%= (count = @digest.listings.count) > 1 ? "these #{count} hackathons" : "this hackathon" %>
+<% if (count = @digest.listings.count { |listing| listing.previously_listed_for_recipient? }) > 1 %>
+  these <%= count %> newly listed hackathons
+<% else %>
+  this newly listed hackathon
+<% end %>
 coming up near you.
 
 <% @listings_by_subscription.each do |subscription, listings| %>
-  <%= render "subscription", subscription:, listings: %>
+  <%= render "subscription", subscription:, listings: listings.select { |listing| listing.previously_listed_for_recipient? }) %>
+<% end %>
+
+<% if listings.reject { |listing| listing.previously_listed_for_recipient? }.count > 0 %>
+  Here
+  <% if (count = @digest.listings.count - @digest.listings.count { |listing| listing.previously_listed_for_recipient? }) > 1 %>
+    are <%= count %> more hackathons
+  <% else %>
+    is one more hackathon
+  <% end %>
+  coming up near you.
+  
+  <% @listings_by_subscription.each do |subscription, listings| %>
+    <%= render "subscription", subscription:, listings: listings.reject { |listing| listing.previously_listed_for_recipient? }) %>
+  <% end %>
 <% end %>
