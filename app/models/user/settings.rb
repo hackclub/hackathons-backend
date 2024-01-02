@@ -2,7 +2,7 @@ User::DEFAULT_SETTINGS = {
   new_hackathon_submission_notifications: true
 }
 
-User::SETTINGS = DEFAULT_SETTINGS.keys
+User::SETTINGS = User::DEFAULT_SETTINGS.keys
 
 module User::Settings
   extend ActiveSupport::Concern
