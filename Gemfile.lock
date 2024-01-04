@@ -171,6 +171,9 @@ GEM
     crass (1.0.6)
     css_parser (1.14.0)
       addressable
+    cuprite (0.15)
+      capybara (~> 3.0)
+      ferrum (~> 0.14.0)
     date (3.3.4)
     debug (1.9.1)
       irb (~> 1.10)
@@ -196,6 +199,11 @@ GEM
     faraday-net_http_persistent (2.1.0)
       faraday (~> 2.5)
       net-http-persistent (~> 4.0)
+    ferrum (0.14)
+      addressable (~> 2.5)
+      concurrent-ruby (~> 1.1)
+      webrick (~> 1.7)
+      websocket-driver (>= 0.6, < 0.8)
     ffi (1.15.5)
     fugit (1.9.0)
       et-orbi (~> 1, >= 1.2.7)
@@ -364,7 +372,6 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
-    rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -375,10 +382,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.16.0)
-      rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2, < 3.0)
-      websocket (~> 1.0)
     sidekiq (7.2.0)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -440,7 +443,6 @@ GEM
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
     webrick (1.8.1)
-    websocket (1.2.10)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -466,6 +468,7 @@ DEPENDENCIES
   console1984
   countries
   country_select
+  cuprite
   debug
   dotenv-rails
   faraday
@@ -488,7 +491,6 @@ DEPENDENCIES
   rails!
   redis
   sass-rails
-  selenium-webdriver
   sidekiq
   sidekiq-cron
   simple_form
