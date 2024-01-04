@@ -11,7 +11,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
     visit admin_users_path
 
     fill_in :email_address, with: "nonexistent@hey.com\n"
-    assert_text(/not found/i)
+    assert_flash_notice(/not found/i)
 
     fill_in :email_address, with: "#{@user.email_address}\n"
     assert_text @user.display_name
@@ -28,6 +28,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
 
     fill_in :user_name, with: "#{@user.name} 2.0\n"
 
+    assert_flash_notice(/updated/i)
     assert_no_field :user_name
 
     assert @user.reload.name =~ /2\.0/
@@ -44,6 +45,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
 
     fill_in :user_email_address, with: "different@hey.com\n"
 
+    assert_flash_notice(/updated/i)
     assert_no_field :user_email_address
 
     assert_equal @user.reload.email_address, "different@hey.com"
@@ -60,6 +62,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
 
     fill_in :user_email_address, with: "#{User.second.email_address}\n"
 
+    assert_flash_notice(/taken/i)
     assert_field :user_email_address
 
     assert_not_equal @user.reload.email_address, User.second.email_address

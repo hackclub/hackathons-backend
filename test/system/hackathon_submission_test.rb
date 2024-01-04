@@ -49,7 +49,7 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
 
     assert_difference -> { Hackathon.count } do
       click_on "Submit for Review"
-      assert_text(/submitted/i)
+      assert_flash_notice(/submitted/i)
     end
 
     assert User.where(email_address: "not.a.user.yet@hey.test").exists?
@@ -92,7 +92,7 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
 
     assert_difference -> { Hackathon.count } do
       click_on "Submit for Review"
-      assert_text(/submitted/i)
+      assert_flash_notice(/submitted/i)
     end
 
     assert Hackathon.last.requested_swag?

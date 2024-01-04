@@ -12,7 +12,7 @@ class AuthenticationTest < ApplicationSystemTestCase
     fill_in :email_address, with: @user.email_address
     click_on "Send Sign In Link"
 
-    assert_text(/sent/i)
+    assert_flash_notice(/sent/i)
     assert_text(@user.email_address)
 
     authentication = @user.authentications.last
