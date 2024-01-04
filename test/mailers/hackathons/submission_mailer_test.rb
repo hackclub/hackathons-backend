@@ -26,6 +26,19 @@ class Hackathons::SubmissionMailerTest < ActionMailer::TestCase
     assert_includes email.to_s, admin_hackathon_url(@hackathon)
   end
 
+  test "admin notification with some admins opting out" do
+    User.admins.first.update!(new_hackathon_submission_notifications: false)
+
+    email = Hackathons::SubmissionMailer.with(hackathon: @hackathon).admin_notification.deliver_now
+
+    assert email.to, User.admins.pluck(:email_address) - [User.admins.first.email_address]
+
+    assert_includes email.subject, "submitted"
+    assert_includes email.subject, @hackathon.name
+
+    assert_includes email.to_s, admin_hackathon_url(@hackathon)
+  end
+
   test "approval" do
     email = Hackathons::SubmissionMailer.with(hackathon: @hackathon).approval.deliver_now
 
