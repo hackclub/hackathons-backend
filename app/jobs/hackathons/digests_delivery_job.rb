@@ -12,6 +12,7 @@ class Hackathons::DigestsDeliveryJob < ApplicationJob
       sent_digests << digest if digest.persisted?
     end
   ensure
+    Hackathons::OrganizerSummaryDeliveriesJob(sent_digests).perform_later if sent_digests.any?
     Hackathons::DigestMailer.admin_summary(sent_digests).deliver_later if sent_digests.any?
   end
 
