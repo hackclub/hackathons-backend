@@ -7,8 +7,8 @@ shape_for hackathon, json do
 
   json.website hackathon.website_or_archive_url
 
-  json.logo_url file_url_for hackathon.logo, :small
-  json.banner_url file_url_for hackathon.banner, :large
+  json.logo_url hackathon_logo_url(hackathon)
+  json.banner_url hackathon_banner_url(hackathon)
 
   json.location do
     json.city hackathon.city

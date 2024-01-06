@@ -2,7 +2,7 @@
   <%# Hackathon name %>
   <div style="margin-bottom: 0.25rem;">
     <% if hackathon.logo.attached? %>
-      <%= image_tag hackathon.logo.variant(:small), style: "width: 32px; vertical-align: middle; margin-right: 0.5rem;" %>
+      <%= image_tag hackathon_logo_url(hackathon), style: "width: 32px; vertical-align: middle; margin-right: 0.5rem;" %>
     <% end %>
     <h3 style="vertical-align: middle; display: inline-block; margin: 0;">
       <%= link_to hackathon.name, hackathon.website %>
