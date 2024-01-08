@@ -1,0 +1,29 @@
+<% page :narrow %>
+
+<h1>Database Dumps</h1>
+<h2>
+  Baked fresh regularly - contains <%= DatabaseDump::TABLES.join(", ") %>
+  <%= link_to "🥖", database_dumps_path, title: "Put one in the oven!", data:
+    {"turbo-method": "post", "turbo-confirm": "Are you sure you want to create a database dump?"} %>
+</h2>
+
+<% @database_dumps.each do |database_dump| %>
+  <%= link_to database_dump.file, target: "_blank", style: "text-decoration: none;" do %>
+    <article id="<%= dom_id(database_dump) %>" class="mt3 card interactive">
+      <%= turbo_stream_from database_dump %>
+
+      <turbo-frame id="<%= dom_id(database_dump) %>_name">
+        <h3 style="color: var(--red);">
+          <%= database_dump.name %>
+        </h3>
+      </turbo-frame>
+
+      <h4>
+        Created <%= local_time_ago(database_dump.created_at) %>
+        <% unless database_dump.processed? %>
+          , processing...
+        <% end %>
+      </h4>
+    </article>
+  <% end %>
+<% end %>

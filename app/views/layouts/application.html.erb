@@ -24,8 +24,11 @@
 <body style="<%= content_for :body_style %>" data-controller="test-readiness">
 <%= render "shared/flash" %>
 
-<main class="container <%= yield :container_class %>">
+<main class="container <%= yield :container_class %>" style="padding: var(--spacing-4); padding-bottom: var(--spacing-5)">
   <%= yield %>
 </main>
+
+<%= render "shared/footer" %>
+
 </body>
 </html>

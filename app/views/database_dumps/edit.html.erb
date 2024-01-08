@@ -1,0 +1,6 @@
+<turbo-frame id="<%= dom_id(@database_dump) %>_name">
+  <%= form_with model: @database_dump, data: {controller: "form"} do |form| %>
+    <%= form.text_field :name, data:
+      {action: "click@document->form#submitOnClickOutside keydown->form#submitOnEnter"} %>
+  <% end %>
+</turbo-frame>
