@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 6069eba1c36322580f34c6b366f0fbc433d4e514
+  revision: ee169e389e0b8de5edc5940a0fa9e291bd9fe7fd
   specs:
     actioncable (7.2.0.alpha)
       actionpack (= 7.2.0.alpha)
@@ -269,7 +269,7 @@ GEM
     msgpack (1.7.2)
     net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
-    net-imap (0.4.9)
+    net-imap (0.4.9.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -278,7 +278,7 @@ GEM
       timeout
     net-scp (4.0.0)
       net-ssh (>= 2.6.5, < 8.0.0)
-    net-smtp (0.4.0)
+    net-smtp (0.4.0.1)
       net-protocol
     net-ssh (7.2.0)
     nio4r (2.7.0)
@@ -337,7 +337,7 @@ GEM
     redis-client (0.19.0)
       connection_pool
     regexp_parser (2.8.3)
-    reline (0.4.1)
+    reline (0.4.2)
       io-console (~> 0.5)
     request_store (1.5.1)
       rack (>= 1.4)
