@@ -50,12 +50,4 @@ module ApiHelper
   rescue NoMethodError
     nil
   end
-
-  # Permanent URL for an attached file or variant
-  def file_url_for(attachable, variant = nil)
-    return nil if attachable.is_a?(ActiveStorage::Attached) && !attachable.attached?
-
-    attachable = attachable.variant(variant) if variant && attachable.variable?
-    polymorphic_url(attachable)
-  end
 end
