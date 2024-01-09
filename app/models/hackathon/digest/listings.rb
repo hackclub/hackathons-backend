@@ -26,7 +26,7 @@ module Hackathon::Digest::Listings
       .flat_map { |criterion| criterion.new(recipient:).candidate_listings }
       .reject { |candidate|
         candidate[:hackathon].start_date > 1.month.from_now &&
-          Listing.exists?(hackathon: candidate[:hackathon], recipient:, created_at: 3.months.ago..)
+          Hackathon::Digest::Listing.exists?(hackathon: candidate[:hackathon], recipient:, created_at: 3.months.ago..)
       }
       .sort_by { |candidate| candidate[:hackathon].starts_at }
       .first(max_listings)
