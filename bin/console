@@ -31,7 +31,7 @@ end
 
 if environment == :production
   begin
-    puts "❗ ARE YOU SURE YOU WANT TO ACCESS THE **REAL** PRODUCTION CONSOLE? (y/n)"
+    puts "❗ ARE YOU SURE YOU WANT TO ACCESS THE **REAL** PRODUCTION CONSOLE? (y/N)"
     confirmed = STDIN.gets&.chomp == "y" # `gets` may raise Interrupt
 
     raise Interrupt unless confirmed
