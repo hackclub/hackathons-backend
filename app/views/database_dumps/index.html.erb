@@ -8,7 +8,7 @@
 </h2>
 
 <% @database_dumps.each do |database_dump| %>
-  <%= link_to database_dump.file, target: "_blank", style: "text-decoration: none;" do %>
+  <%= link_to (database_dump.file.attached? ? database_dump.file : nil), target: "_blank", style: "text-decoration: none;" do %>
     <article id="<%= dom_id(database_dump) %>" class="mt3 card interactive">
       <%= turbo_stream_from database_dump %>
 
