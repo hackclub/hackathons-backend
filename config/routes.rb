@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :submissions, only: [:index, :new, :create, :show]
   end
 
+  resources :database_dumps, except: [:new, :show]
+
   constraints Constraints::Admin do
     mount Sidekiq::Web => "/admin/sidekiq" if Rails.env.production?
     mount Audits1984::Engine => "/admin/audits"
