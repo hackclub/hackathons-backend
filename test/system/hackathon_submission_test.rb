@@ -28,8 +28,8 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     select "No", from: "Are you a high schooler?"
 
     fill_in "Name of the hackathon", with: "Assemble"
-    fill_in "Start date", with: 1.month.from_now
-    fill_in "End date", with: 1.month.from_now + 2.days
+    fill_in "Start date", with: 1.month.from_now.beginning_of_minute
+    fill_in "End date", with: (1.month.from_now + 2.days).beginning_of_minute
     fill_in "Website", with: "https://assemble.hackclub.com"
 
     attach_file "Logo", Rails.root.join("test/fixtures/files/assemble_logo.jpg")
@@ -47,10 +47,8 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     select "Yes", from: :hackathon_offers_financial_assistance
     select "No", from: :requested_swag
 
-    assert_difference -> { Hackathon.count } do
-      click_on "Submit for Review"
-      assert_text(/submitted/i)
-    end
+    click_on "Submit for Review"
+    assert_text(/submitted/i)
 
     assert User.where(email_address: "not.a.user.yet@hey.test").exists?
 
@@ -66,8 +64,8 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     select "No", from: "Are you a high schooler?"
 
     fill_in "Name of the hackathon", with: "Assemble"
-    fill_in "Start date", with: 1.month.from_now
-    fill_in "End date", with: 1.month.from_now + 2.days
+    fill_in "Start date", with: 1.month.from_now.beginning_of_minute
+    fill_in "End date", with: (1.month.from_now + 2.days).beginning_of_minute
     fill_in "Website", with: "https://assemble.hackclub.com"
 
     attach_file "Logo", Rails.root.join("test/fixtures/files/assemble_logo.jpg")

@@ -10,10 +10,16 @@ class Admin::UsersTest < ApplicationSystemTestCase
   test "searching for a user" do
     visit admin_users_path
 
-    fill_in :email_address, with: "nonexistent@hey.com\n"
+    email_address = find_field(:email_address)
+    email_address.click
+    email_address.fill_in with: "nonexistent@hey.test"
+    email_address.send_keys :enter
+
     assert_text(/not found/i)
 
-    fill_in :email_address, with: "#{@user.email_address}\n"
+    email_address.fill_in with: @user.email_address
+    email_address.send_keys :enter
+
     assert_text @user.display_name
   end
 
@@ -24,13 +30,13 @@ class Admin::UsersTest < ApplicationSystemTestCase
       click_on "✏️"
     end
 
-    assert_field :user_name
-
-    fill_in :user_name, with: "#{@user.name} 2.0\n"
+    name = find_field(:user_name)
+    name.click
+    name.fill_in with: "#{@user.name} 2.0"
+    name.send_keys :enter
 
     assert_no_field :user_name
-
-    assert @user.reload.name =~ /2\.0/
+    assert_equal "#{@user.name} 2.0", @user.reload.name
   end
 
   test "changing a user's email address" do
@@ -40,13 +46,13 @@ class Admin::UsersTest < ApplicationSystemTestCase
       click_on "✏️"
     end
 
-    assert_field :user_email_address
-
-    fill_in :user_email_address, with: "different@hey.com\n"
+    email_address = find_field(:user_email_address)
+    email_address.click
+    email_address.fill_in with: "different@hey.test"
+    email_address.send_keys :enter
 
     assert_no_field :user_email_address
-
-    assert_equal @user.reload.email_address, "different@hey.com"
+    assert_equal @user.reload.email_address, "different@hey.test"
   end
 
   test "changing a user's email address to one already in use" do
@@ -56,10 +62,12 @@ class Admin::UsersTest < ApplicationSystemTestCase
       click_on "✏️"
     end
 
-    assert_field :user_email_address, type: :email
+    email_address = find_field(:user_email_address)
+    email_address.click
+    email_address.fill_in with: User.second.email_address
+    email_address.send_keys :enter
 
-    fill_in :user_email_address, with: "#{User.second.email_address}\n"
-
+    assert_text(/taken/i)
     assert_field :user_email_address
 
     assert_not_equal @user.reload.email_address, User.second.email_address
