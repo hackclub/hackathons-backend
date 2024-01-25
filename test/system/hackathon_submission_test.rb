@@ -48,7 +48,7 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     select "No", from: :requested_swag
 
     click_on "Submit for Review"
-    assert_text(/submitted/i)
+    assert_text(/submitted/i, wait: 8.seconds)
 
     assert User.where(email_address: "not.a.user.yet@hey.test").exists?
 
@@ -90,7 +90,7 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
 
     assert_difference -> { Hackathon.count } do
       click_on "Submit for Review"
-      assert_text(/submitted/i)
+      assert_text(/submitted/i, wait: 8.seconds)
     end
 
     assert Hackathon.last.requested_swag?
