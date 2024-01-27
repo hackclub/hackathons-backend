@@ -39,8 +39,10 @@
 
   <% unless @user == Current.user %>
     <div class="button-group">
-      <%= button_to "Promote to admin", admin_user_promotion_path(@user), class: "button--neutral" %>
-      <%= button_to "Demote from admin", admin_user_promotion_path(@user), class: "button--danger", method: :delete %>
+      <%= button_to "Promote to admin", admin_user_promotion_path(@user), class: "button--neutral",
+                     data: {"turbo-confirm": "Are you sure you want make this user an admin?"} unless @user.admin? %>
+      <%= button_to "Demote from admin", admin_user_promotion_path(@user), class: "button--danger", method: :delete,
+                     data: {"turbo-confirm": "Are you sure you want to demote this user?"} if @user.admin? %>
     </div>
   <% end %>
 
