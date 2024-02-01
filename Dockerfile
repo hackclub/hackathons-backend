@@ -29,8 +29,10 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 FROM base
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y postgresql-client-15 libvips curl && \
+    apt-get install --no-install-recommends -y postgresql-client-15 libvips curl libjemalloc2 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
 
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /hackathons /hackathons
