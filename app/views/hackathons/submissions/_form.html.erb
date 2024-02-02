@@ -59,28 +59,6 @@
       as: :select, selected: nil %>
   </div>
 
-  <div class="form__inputs mt4" data-controller="form--visibility" data-form--visibility-on-value='["1"]'>
-    <div class="input">
-      <%= label_tag :requested_swag, "Would you like an envelope of stickers & postcards mailed to your address?" %>
-      <%= select_tag :requested_swag, options_for_select([["Yes", 1], ["No", 0]]), include_blank: true, required: true,
-        data: {"form--visibility-target": "switch", "action": "change->form--visibility#toggle"} %>
-    </div>
-
-    <div data-form--visibility-target="element" style="display: none;">
-      <div class="form__inputs--nested" style="row-gap: var(--spacing-3)">
-        <%= f.simple_fields_for :swag_mailing_address do |sma| %>
-          <p class="m0 lead">What's a good mailing address for those stickers?</p>
-          <%= sma.input :line1, label: "Street", required: false %>
-          <%= sma.input :line2, label: "Apartment, Suite, etc.", required: false %>
-          <%= sma.input :city, required: false %>
-          <%= sma.input :province, label: "State/Province", required: false %>
-          <%= sma.input :postal_code, label: "ZIP/Postal Code", required: false %>
-          <%= sma.input :country_code, label: "Country", as: :country, required: false %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
   <div class="form__actions">
     <%= f.button :button, "Submit for Review" %>
   </div>
