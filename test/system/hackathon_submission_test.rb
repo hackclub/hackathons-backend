@@ -45,7 +45,6 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     fill_in :hackathon_expected_attendees, with: 100
 
     select "Yes", from: :hackathon_offers_financial_assistance
-    select "No", from: :requested_swag
 
     click_on "Submit for Review"
     assert_text(/submitted/i)
@@ -81,18 +80,10 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     fill_in :hackathon_expected_attendees, with: 100
 
     select "Yes", from: :hackathon_offers_financial_assistance
-    select "Yes", from: :requested_swag
-
-    fill_in "Street", with: "760 Market St", id: :hackathon_swag_mailing_address_attributes_line1
-    fill_in "City", with: "San Francisco", id: :hackathon_swag_mailing_address_attributes_city
-    fill_in "State/Province", with: "CA", id: :hackathon_swag_mailing_address_attributes_province
-    # country dropdown is on US by default
 
     assert_difference -> { Hackathon.count } do
       click_on "Submit for Review"
       assert_text(/submitted/i)
     end
-
-    assert Hackathon.last.requested_swag?
   end
 end
