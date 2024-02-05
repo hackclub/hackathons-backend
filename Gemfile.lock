@@ -249,7 +249,7 @@ GEM
       railties (>= 5.2)
       rexml
     lint_roller (1.1.0)
-    local_time (2.1.0)
+    local_time (3.0.2)
     lograge (0.14.0)
       actionpack (>= 4)
       activesupport (>= 4)
