@@ -13,12 +13,10 @@ class Hackathons::SubmissionsController < ApplicationController
   end
 
   def create
-    requested_swag = params[:requested_swag] == "1"
     offers_financial_assistance = params[:hackathon][:offers_financial_assistance] == "true"
 
     @hackathon = Hackathon.new(hackathon_params)
 
-    @hackathon.swag_mailing_address = nil unless requested_swag
     @hackathon.tag_with! "Offers Financial Assistance" if offers_financial_assistance
 
     @hackathon.applicant = User.find_or_initialize_by(email_address: applicant_params[:email_address]) do |user|
@@ -54,16 +52,7 @@ class Hackathons::SubmissionsController < ApplicationController
       :postal_code,
       :country_code,
       :expected_attendees,
-      :high_school_led,
-      # Swag
-      swag_mailing_address_attributes: [
-        :line1,
-        :line2,
-        :city,
-        :province,
-        :postal_code,
-        :country_code
-      ]
+      :high_school_led
     )
   end
 
