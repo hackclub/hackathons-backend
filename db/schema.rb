@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_01_07_231455) do
+ActiveRecord::Schema[7.2].define(version: 2024_02_06_140353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -157,6 +157,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_01_07_231455) do
     t.index ["subscriber_id"], name: "index_hackathon_subscriptions_on_subscriber_id"
   end
 
+  create_table "hackathon_swag_requests", force: :cascade do |t|
+    t.bigint "hackathon_id", null: false
+    t.bigint "mailing_address_id", null: false
+    t.datetime "delivered_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hackathon_id"], name: "index_hackathon_swag_requests_on_hackathon_id"
+    t.index ["mailing_address_id"], name: "index_hackathon_swag_requests_on_mailing_address_id"
+  end
+
   create_table "hackathons", force: :cascade do |t|
     t.string "name", null: false
     t.integer "status", default: 0, null: false
@@ -261,6 +271,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_01_07_231455) do
   add_foreign_key "hackathon_digest_listings", "hackathons"
   add_foreign_key "hackathon_digests", "users", column: "recipient_id"
   add_foreign_key "hackathon_subscriptions", "users", column: "subscriber_id"
+  add_foreign_key "hackathon_swag_requests", "hackathons"
+  add_foreign_key "hackathon_swag_requests", "mailing_addresses"
   add_foreign_key "hackathons", "mailing_addresses", column: "swag_mailing_address_id"
   add_foreign_key "hackathons", "users", column: "applicant_id"
   add_foreign_key "user_authentications", "users"
