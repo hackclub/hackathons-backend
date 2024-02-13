@@ -9,7 +9,6 @@ class MailingAddress < ApplicationRecord
     components << [line1, line2].reject(&:blank?).compact.join(" ")
     components << city << province << postal_code << country_code
 
-    components.reject!(&:blank?)
-    components.compact.join(", ")
+    components.compact_blank.join(", ")
   end
 end
