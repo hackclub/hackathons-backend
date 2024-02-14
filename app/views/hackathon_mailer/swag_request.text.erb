@@ -2,4 +2,8 @@ Hey mail team! 👋
 
 Hackathon swag has been requested for:
 
-<%= @hackathon.swag_request.mailing_address.to_s %>
+<%= @hackathon.applicant.name %> c/o <%= @hackathon.name %>
+<%= @mailing_address.line1 %>
+<%= @mailing_address.line2 %>
+<%= @mailing_address.city %><%= ", #{@mailing_address.province} #{@mailing_address.postal_code}" if @mailing_address.province %>
+<%= @mailing_address.country_code %>
