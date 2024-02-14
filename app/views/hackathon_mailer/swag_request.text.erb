@@ -2,7 +2,7 @@ Hey mail team! 👋
 
 Hackathon swag has been requested for:
 
-<%= @hackathon.applicant.name %> c/o <%= @hackathon.name %>
+<%= @hackathon.name %><%= " c/o #{@hackathon.applicant.name}" if @hackathon.applicant.name.present? %>
 <%= @mailing_address.line1 %>
 <%= @mailing_address.line2 %>
 <%= @mailing_address.city %><%= ", #{@mailing_address.province} #{@mailing_address.postal_code}" if @mailing_address.province %>
