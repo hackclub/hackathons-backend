@@ -24,6 +24,8 @@ class Hackathons::SubmissionsController < ApplicationController
     end
 
     if @hackathon.save context: :submit
+      @hackathon.logo.attach(hackathon_params[:logo])
+      @hackathon.banner.attach(hackathon_params[:banner])
       redirect_to new_hackathons_submission_path, notice: "Your hackathon has been submitted for approval!"
     else
       render :new, status: :unprocessable_entity

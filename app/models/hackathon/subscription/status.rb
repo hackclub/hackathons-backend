@@ -3,7 +3,7 @@ module Hackathon::Subscription::Status
   extend Suppressible
 
   included do
-    enum status: {inactive: 0, active: 1}
+    enum :status, inactive: 0, active: 1
     after_update :track_changes, unless: -> { self.class::Status.suppressed? }
 
     scope :active_for, ->(user) { active.where(subscriber: user) }
