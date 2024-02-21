@@ -8,7 +8,7 @@ module Hackathon::Digest::Listings
         hackathons = hackathons_in subscription.to_location
 
         # Search for hackathons **near** Subscription's location
-        hackathons.concat hackathons_near(subscription.to_location)
+        hackathons.concat hackathons_near(subscription.to_location, [subscription.latitude, subscription.longitude])
 
         hackathons.uniq.map { |hackathon| {hackathon:, subscription:} }
       end
@@ -22,7 +22,7 @@ module Hackathon::Digest::Listings
       end
     end
 
-    def hackathons_near(location)
+    def hackathons_near(location, coordinates)
       # In order to get accurate "nearby" searches, we must have accurate
       # coordinates. Generally, coordinates obtained via geocoding are only
       # accurate when the input address is very specific. And geocoded coordinates
@@ -38,7 +38,7 @@ module Hackathon::Digest::Listings
 
       upcoming_hackathons
         .where.not(city: [nil, ""]) # where Most Significant Component is city
-        .near(location.to_s, MAX_DISTANCE, units: :mi)
+        .near(coordinates, MAX_DISTANCE, units: :mi)
     end
 
     def subscriptions_to_search
