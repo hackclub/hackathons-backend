@@ -23,7 +23,7 @@ class Hackathons::SubmissionsController < ApplicationController
       user.attributes = applicant_params
     end
 
-    if @hackathon.save context: :submit
+    if @hackathon.save context: [:create, :submit]
       redirect_to new_hackathons_submission_path, notice: "Your hackathon has been submitted for approval!"
     else
       render :new, status: :unprocessable_entity
