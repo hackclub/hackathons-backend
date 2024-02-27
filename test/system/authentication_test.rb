@@ -29,7 +29,7 @@ class AuthenticationTest < ApplicationSystemTestCase
   end
 
   test "using an invalid link" do
-    assert_no_difference -> { @user.sessions.count } do
+    assert_no_difference -> { @user.sessions.reload.count } do
       visit new_session_path(auth_token: "1234")
     end
 
@@ -41,7 +41,7 @@ class AuthenticationTest < ApplicationSystemTestCase
 
     travel 1.day
 
-    assert_no_difference -> { @user.sessions.count } do
+    assert_no_difference -> { @user.sessions.reload.count } do
       visit new_session_path(auth_token: authentication.token)
     end
 
@@ -55,7 +55,7 @@ class AuthenticationTest < ApplicationSystemTestCase
   test "using a valid link" do
     authentication = @user.authentications.create!
 
-    assert_difference -> { @user.sessions.count } do
+    assert_difference -> { @user.sessions.reload.count } do
       visit new_session_path(auth_token: authentication.token)
     end
 

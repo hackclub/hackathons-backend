@@ -18,13 +18,13 @@ module Hackathon::Branded
     validates :logo, :banner,
       processable_image: true
 
-    before_save :jfif_to_jpeg, if: -> { attachment_changes.any? }
+    before_validation :jfif_to_jpeg, if: -> { attachment_changes.any? }, on: :create
   end
 
   private
 
   def jfif_to_jpeg
-    logo&.blob&.update(filename: logo.blob.filename.to_s.gsub(/\.jfif\z/i, ".jpeg"))
-    banner&.blob&.update(filename: banner.blob.filename.to_s.gsub(/\.jfif\z/i, ".jpeg"))
+    logo&.blob&.filename = logo&.blob&.filename&.to_s&.gsub(/\.jfif\z/i, ".jpeg")
+    banner&.blob&.filename = banner&.blob&.filename&.to_s&.gsub(/\.jfif\z/i, ".jpeg")
   end
 end

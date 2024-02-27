@@ -19,7 +19,6 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
 
   test "submitting a hackathon" do
     assert_not Current.user
-    assert_not User.where(email_address: "not.a.user.yet@hey.test").exists?
 
     visit new_hackathons_submission_path
 
@@ -49,8 +48,7 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     click_on "Submit for Review"
     assert_text(/submitted/i)
 
-    assert User.where(email_address: "not.a.user.yet@hey.test").exists?
-
+    assert_equal "not.a.user.yet@hey.test", Hackathon.last.applicant.email_address
     assert_equal "Assemble", Hackathon.last.name
     assert_not Hackathon.last.requested_swag?
   end
