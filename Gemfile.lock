@@ -300,7 +300,7 @@ GEM
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
-    pg (1.5.4)
+    pg (1.5.5)
     premailer (1.21.0)
       addressable
       css_parser (>= 1.12.0)
