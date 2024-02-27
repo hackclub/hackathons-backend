@@ -3,8 +3,7 @@ Hey mail team! 👋
 Hackathon swag has been requested for:
 
 <%= @hackathon.name %><%= " c/o #{@hackathon.applicant.name}" if @hackathon.applicant.name.present? %>
-<%= @mailing_address.line1 %>
-<%= @mailing_address.line2 %>
+<%= [@mailing_address.line1, @mailing_address.line2].compact_blank.join("\n") %>
 <% city, *province_and_postal = [@mailing_address.city, @mailing_address.province, @mailing_address.postal_code].compact_blank %>
 <%= [city, province_and_postal.join(" ")].compact_blank.join(", ") %>
 <%= @mailing_address.country_code %>
