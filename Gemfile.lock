@@ -201,6 +201,9 @@ GEM
     fugit (1.9.0)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
+    geared_pagination (1.2.0)
+      activesupport (>= 5.0)
+      addressable (>= 2.5.0)
     geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -295,7 +298,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
-    pagy (6.4.3)
     parallel (1.24.0)
     parser (3.2.2.4)
       ast (~> 2.4.1)
@@ -474,6 +476,7 @@ DEPENDENCIES
   dotenv-rails
   faraday
   faraday-follow_redirects
+  geared_pagination
   geocoder
   hashid-rails
   image_processing (>= 1.2)
@@ -483,7 +486,6 @@ DEPENDENCIES
   letter_opener_web
   local_time
   lograge
-  pagy
   pg
   premailer-rails
   puma

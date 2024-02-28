@@ -1,3 +1,3 @@
-paginated json, @pagy do
-  json.array! @hackathons, partial: "hackathon", as: :hackathon
+paginated json do
+  json.array! @page.records, partial: "hackathon", as: :hackathon
 end

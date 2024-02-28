@@ -39,7 +39,7 @@ gem "rack-cors" # Cross-origin resource sharing
 gem "faraday" # GET / POST requests
 gem "faraday-follow_redirects"
 
-gem "pagy" # Pagination
+gem "geared_pagination"
 
 # User interface
 gem "simple_form"
