@@ -3,15 +3,13 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "friday"
+      interval: "monthly"
       time: "10:00"
       timezone: "America/New_York"
 
   - package-ecosystem: "bundler"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "monday"
+      interval: "monthly"
       time: "10:00"
       timezone: "America/New_York"
