@@ -11,7 +11,7 @@ class CreateSwagRequests < ActiveRecord::Migration[7.2]
 
     Hackathon.where.associated(:swag_mailing_address).includes(:swag_mailing_address).find_each do |hackathon|
       Hackathon::SwagRequest::Delivered.suppress do
-        hackathon.create_swag_request!(mailing_address: hackathon.swag_mailing_address.attributes)
+        hackathon.create_swag_request!(mailing_address: hackathon.swag_mailing_address)
       end
     end
   end
