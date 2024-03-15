@@ -105,7 +105,7 @@
     <div>
       <turbo-frame id="swag_mailing_address">
         <% if @hackathon.requested_swag? %>
-          Swag requested for: <%= @hackathon.swag_mailing_address.full %>
+          Swag requested for: <%= @hackathon.swag_request.mailing_address.to_s %>
         <% else %>
           No swag requested.
         <% end %>
