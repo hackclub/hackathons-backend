@@ -61,7 +61,7 @@
 
   <div class="form__inputs mt4" data-controller="form--visibility" data-form--visibility-on-value='["1"]'>
     <div class="input">
-      <%= label_tag :requested_swag, "Would you like an envelope of stickers & postcards mailed to your address?" %>
+      <%= label_tag :requested_swag, "Would you like a small envelope of Hack Club stickers mailed to you?" %>
       <%= select_tag :requested_swag, options_for_select([["Yes", 1], ["No", 0]]), include_blank: true, required: true,
         data: {"form--visibility-target": "switch", "action": "change->form--visibility#toggle"} %>
     </div>
@@ -70,7 +70,10 @@
       <div class="form__inputs--nested" style="row-gap: var(--spacing-3)">
         <%= f.simple_fields_for :swag_request do |swag| %>
           <%= swag.simple_fields_for :mailing_address do |address| %>
-            <p class="m0 lead">What's a good mailing address for those stickers?</p>
+            <p class="m0 lead">
+              What's a good mailing address for those stickers?
+              We will mail them out when your hackathon is approved for listing.
+            </p>
             <%= address.input :line1, label: "Street", required: false %>
             <%= address.input :line2, label: "Apartment, Suite, etc.", required: false %>
             <%= address.input :city, required: false %>
