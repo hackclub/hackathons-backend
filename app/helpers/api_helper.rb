@@ -1,29 +1,18 @@
 module ApiHelper
-  # Shape for a paginated response
-  def paginated(json, pagy)
+  def paginated(json)
     json.data do
       yield
     end
 
-    json.links do
-      scaffold_url = pagy_metadata(pagy, absolute: true)[:scaffold_url]
-      url_for_page = ->(page) do
-        next nil if page.nil?
-        scaffold_url.gsub("__pagy_page__", page.to_s)
+    unless @page.last?
+      json.links do
+        json.next url_for(page: @page.next_param)
       end
-
-      json.first url_for_page.call(1)
-
-      %i[prev next last].each do |link|
-        json.set! link, url_for_page.call(pagy.public_send(link))
-      end
-
-      json.self url_for_page.call(pagy.page)
     end
 
     json.meta do
-      json.total_count pagy.count
-      json.total_pages pagy.pages
+      json.total_count @page.recordset.records_count
+      json.total_pages @page.recordset.page_count
     end
   end
 
@@ -35,12 +24,6 @@ module ApiHelper
     yield if block_given?
 
     json.created_at record.created_at if record.respond_to?(:created_at)
-
-    json.links do
-      if (self_url = api_url_for(record))
-        json.self self_url
-      end
-    end
   end
 
   # API URL for an record. By default, the api_version of the generated URL is
