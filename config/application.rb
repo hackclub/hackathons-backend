@@ -15,6 +15,8 @@ module Hackathons
     config.active_record.encryption.hash_digest_class = OpenSSL::Digest::SHA1
     config.active_record.encryption.encrypt_fixtures = true
 
+    config.active_record.automatically_invert_plural_associations = true
+
     host = ENV["HOST"] || "localhost:3000"
     Rails.application.routes.default_url_options[:host] = host
     config.action_mailer.default_url_options = {host:}
