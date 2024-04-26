@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   include Authenticatable
   include Identifiable
+  include Informed
   include Named
   include Privileged # depends on Eventable
   include Settings

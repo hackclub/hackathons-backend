@@ -78,6 +78,8 @@ group :development do
 end
 
 group :test do
+  gem "webmock"
+
   gem "capybara"
   gem "cuprite"
 end
