@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 0033d46236932aad5477b966fad155a83caeab97
+  revision: 325c04c1af9cb0ec53657a4cf00cf824a9dfe932
   specs:
     actioncable (7.2.0.alpha)
       actionpack (= 7.2.0.alpha)
@@ -292,11 +292,11 @@ GEM
       net-protocol
     net-ssh (7.2.1)
     nio4r (2.7.1)
-    nokogiri (1.16.3-aarch64-linux)
+    nokogiri (1.16.4-aarch64-linux)
       racc (~> 1.4)
-    nokogiri (1.16.3-arm64-darwin)
+    nokogiri (1.16.4-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.3-x86_64-linux)
+    nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
     pagy (6.4.3)
     parallel (1.24.0)
@@ -339,7 +339,7 @@ GEM
       loofah (~> 2.21)
       nokogiri (~> 1.14)
     rainbow (3.1.1)
-    rake (13.1.0)
+    rake (13.2.1)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
     redis (5.1.0)
@@ -347,7 +347,7 @@ GEM
     redis-client (0.21.0)
       connection_pool
     regexp_parser (2.9.0)
-    reline (0.5.0)
+    reline (0.5.4)
       io-console (~> 0.5)
     request_store (1.5.1)
       rack (>= 1.4)
