@@ -4,7 +4,10 @@ class User::Session < ApplicationRecord
 
   has_secure_token
 
+  after_create -> { authentication.completed }
+
   def access
-    touch(:last_accessed_at)
+    touch :last_accessed_at
+    self
   end
 end

@@ -3,25 +3,12 @@ class Users::SessionsController < ApplicationController
   before_action :redirect_if_authenticated, except: :destroy
 
   def new
-    authentication = User::Authentication.find_by(token: params[:auth_token])
-    return redirect_to sign_in_path unless authentication
-
-    if authentication.expired?
-      authentication.reject reason: :expired
-      return redirect_to sign_in_path
+    if (auth = User.authenticate(params[:auth_token]))
+      cookies.permanent.signed[:session_token] = {value: auth.token, httponly: true, secure: Rails.env.production?}
+      redirect_to hackathons_submissions_path
+    else
+      redirect_to sign_in_path, notice: "Invalid or expired, try again!"
     end
-
-    if authentication.succeeded?
-      authentication.reject reason: :previously_succeeded
-      return redirect_to sign_in_path
-    end
-
-    authentication.complete
-    session = authentication.create_session!
-
-    cookies.permanent.signed[:session_token] = {value: session.token, httponly: true, secure: Rails.env.production?}
-
-    redirect_to hackathons_submissions_path
   end
 
   def destroy

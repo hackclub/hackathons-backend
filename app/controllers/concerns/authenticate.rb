@@ -16,8 +16,7 @@ module Authenticate
 
   def authenticate
     if (session = User::Session.find_by(token: cookies.signed[:session_token]))
-      session.access
-      Current.session = session
+      Current.session = session.access
 
       # handle cookies that weren't initially set as HTTP-only / Secure
       cookies.permanent.signed[:session_token] = {value: cookies.signed[:session_token], httponly: true, secure: Rails.env.production?}
