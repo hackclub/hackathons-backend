@@ -47,7 +47,6 @@ class Hackathons::SubmissionsController < ApplicationController
       :starts_at,
       :ends_at,
       :modality,
-      # Location
       :street,
       :city,
       :province,
@@ -55,7 +54,6 @@ class Hackathons::SubmissionsController < ApplicationController
       :country_code,
       :expected_attendees,
       :high_school_led,
-      # Swag
       swag_request_attributes: [
         mailing_address_attributes: [
           :line1,

@@ -4,7 +4,7 @@ module Eventable
   included do
     has_many :events, as: :eventable, dependent: :destroy
 
-    before_create { record(:created) }
+    before_create { record :created }
   end
 
   private

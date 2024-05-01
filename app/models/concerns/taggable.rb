@@ -17,7 +17,6 @@ module Taggable
     return false unless tags_or_names.present?
     Array(tags_or_names).all? do |tag|
       if tags.loaded? && tag.is_a?(String)
-        # Use loaded association to prevent N+1
         tags.any? { |t| t.name == tag }
       elsif tag.is_a? Tag
         tags.include? tag

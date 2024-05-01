@@ -21,10 +21,9 @@
     <i>Sad to see you go. :(</i>
   </p>
 
-  <%# Button for undo-ing unsubscribe all %>
   <% unless @unsubscribe_count.zero? %>
     <%= form_with url: user_subscriptions_bulk_path, method: :put do |form| %>
-      <% @unsubscribed_ids.each do |id| %>
+      <% @subscriptions.ids.each do |id| %>
         <%= form.hidden_field "ids[]", value: id %>
       <% end %>
 
