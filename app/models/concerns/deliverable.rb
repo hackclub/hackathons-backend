@@ -3,7 +3,6 @@ module Deliverable
   extend Suppressible
 
   class_methods do
-    # Configurator for deliverable_options
     def delivered(timing, **)
       timing = timing.to_sym
       raise ArgumentError, "Invalid timing: #{timing}" unless %i[now later].include?(timing)
@@ -23,7 +22,6 @@ module Deliverable
       when :now
         delivery.deliver_now
       else
-        # default to :later
         delivery.deliver_later
       end
     end

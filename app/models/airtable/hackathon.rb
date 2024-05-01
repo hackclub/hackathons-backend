@@ -83,7 +83,6 @@ module Airtable
 
       invalid = [line1, city, country_code].any?(&:blank?)
       if invalid
-        # Address is invalid. Try to standardize it by geocoding
         address = []
         address << [line1, line2].compact.join(" ")
         address << city << province << postal_code << country_code
