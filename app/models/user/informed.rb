@@ -13,7 +13,7 @@ module User::Informed
       Loops::Contact.create(
         email: email_address,
         firstName: first_name,
-        lastName: name.sub!(first_name, "").strip,
+        lastName: name&.sub!(first_name, "")&.strip,
         userGroup: "Hack Clubber",
         source: "hackathons.hackclub.com",
         subscribedToHackathonsAt: created_at
