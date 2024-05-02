@@ -8,13 +8,7 @@ class Admin::UsersController < Admin::BaseController
     if (user = User.find_by_email_address @email_address.downcase)
       redirect_to admin_user_path(user)
     else
-      flash.now[:notice] = "User not found."
-
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("flash", partial: "shared/flash") }
-
-        format.html { render :index, status: :unprocessable_entity }
-      end
+      stream_flash_notice "User not found."
     end
   end
 
@@ -25,13 +19,7 @@ class Admin::UsersController < Admin::BaseController
     if @user.update(user_params)
       redirect_to admin_user_path(@user)
     else
-      flash.now[:notice] = @user.errors.full_messages.first
-
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("flash", partial: "shared/flash") }
-
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+      stream_flash_notice @user.errors.full_messages.first
     end
   end
 
