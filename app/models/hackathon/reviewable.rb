@@ -2,36 +2,29 @@ module Hackathon::Reviewable
   extend ActiveSupport::Concern
 
   included do
-    scope :reviewed_by, ->(user) {
-      joins(:events)
-        .where(events:
-               {action: [:approved, :rejected, :held],
-                creator: user})
-    }
+    scope :reviewed_by, ->(user) do
+      joins(:events).where(events: {action: REVIEW_ACTIONS, creator: user})
+    end
+
+    after_save :record_status, if: :saved_change_to_status?
   end
 
   def reviewers
-    events.where(action: [:approved, :rejected, :held]).collect(&:creator)
-  end
-
-  def approve
-    transaction do
-      record :approved
-      update! status: :approved
-    end
-  end
-
-  def reject
-    transaction do
-      record :rejected
-      update! status: :rejected
-    end
+    events.includes(:creator).where(action: REVIEW_ACTIONS).collect(&:creator)
   end
 
   def hold
     transaction do
-      record :held_for_review
       update! status: :pending
+      record :held_for_review
     end
+  end
+
+  private
+
+  REVIEW_ACTIONS = %i[approved rejected held_for_review]
+
+  def record_status
+    record status unless pending?
   end
 end

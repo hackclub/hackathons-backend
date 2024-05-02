@@ -32,6 +32,7 @@ class Admin::HackathonsController < Admin::BaseController
   def hackathon_params
     params.require(:hackathon).permit(
       :name,
+      :status,
       :website,
       :logo,
       :banner,
