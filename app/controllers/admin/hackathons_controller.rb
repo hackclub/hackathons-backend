@@ -15,13 +15,7 @@ class Admin::HackathonsController < Admin::BaseController
     if @hackathon.update(hackathon_params)
       redirect_to admin_hackathon_path(@hackathon)
     else
-      flash.now[:notice] = @hackathon.errors.full_messages.to_sentence
-
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("flash", partial: "shared/flash") }
-
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+      stream_flash_notice @hackathon.errors.full_messages.to_sentence
     end
   end
 
