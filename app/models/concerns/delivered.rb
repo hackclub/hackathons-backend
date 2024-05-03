@@ -1,4 +1,4 @@
-module Deliverable
+module Delivered
   extend ActiveSupport::Concern
   extend Suppressible
 
@@ -30,7 +30,7 @@ module Deliverable
   private
 
   def deliver_after_creation?
-    !Deliverable.suppressed?
+    !Delivered.suppressed?
   end
 
   def delivery
