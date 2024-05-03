@@ -1,5 +1,5 @@
 class User::Authentication < ApplicationRecord
-  include Deliverable
+  include Delivered
   delivered :now
   include Eventable
 
