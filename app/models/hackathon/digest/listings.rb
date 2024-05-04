@@ -17,15 +17,9 @@ module Hackathon::Digest::Listings
   def build_listings
     candidates
       .sort_by { |candidate| candidate.hackathon.starts_at }
-      .first(max_listings).each do |listing|
+      .first(MAX_LISTINGS).each do |listing|
       listings << listing
     end
-  end
-
-  def applicable_listings(max_listings: MAX_LISTINGS)
-    candidates
-      .sort_by { |candidate| candidate.hackathon.starts_at }
-      .first(max_listings)
   end
 
   def candidates
