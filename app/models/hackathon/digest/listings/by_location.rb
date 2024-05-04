@@ -4,11 +4,17 @@ module Hackathon::Digest::Listings::ByLocation
   MAX_DISTANCE = 150 # miles
 
   def candidates
-    super.concat subscriptions_to_search.flat_map { |subscription|
+    candidates = subscriptions_to_search.flat_map { |subscription|
       hackathons_for(subscription).uniq.collect do |hackathon|
         Hackathon::Digest::Listing.new(hackathon:, subscription:)
       end
     }
+
+    if defined(super)
+      super.concat candidates
+    else
+      candidates
+    end
   end
 
   def hackathons_for(subscription)
