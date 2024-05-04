@@ -22,10 +22,10 @@ module Hackathon::Digest::Listings
     end
   end
 
-  def candidates
-    []
-  end
-
   include ByLocation
   include ExcludingPreviouslyListedHackathons
+
+  def candidates
+    super || []
+  end
 end
