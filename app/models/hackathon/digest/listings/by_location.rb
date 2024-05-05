@@ -5,7 +5,7 @@ module Hackathon::Digest::Listings::ByLocation
 
   def candidates
     candidates = subscriptions_to_search.flat_map { |subscription|
-      hackathons_for(subscription).uniq.collect do |hackathon|
+      hackathons_for(subscription).collect do |hackathon|
         Hackathon::Digest::Listing.new(hackathon:, subscription:)
       end
     }
@@ -34,6 +34,8 @@ module Hackathon::Digest::Listings::ByLocation
 
     if subscription.to_location.city_most_significant?
       hackathons.concat(hackathons_near(subscription.latitude, subscription.longitude)).uniq
+    else
+      hackathons
     end
   end
 
