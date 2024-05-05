@@ -12,8 +12,6 @@ gem "sqlite3"
 gem "puma"
 gem "redis"
 
-gem "airrecord" # Airtable client
-
 # Assets
 gem "sprockets-rails"
 gem "sass-rails"

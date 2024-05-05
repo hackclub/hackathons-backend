@@ -490,7 +490,6 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations
-  airrecord
   appsignal
   audits1984
   aws-sdk-locationservice
