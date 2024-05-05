@@ -1,5 +1,5 @@
 class Hackathons::SubscriptionsController < ApplicationController
-  skip_before_action :redirect_if_unauthenticated
+  allow_unauthenticated_access
   before_action :set_user
 
   def index
