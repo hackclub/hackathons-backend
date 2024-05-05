@@ -12,8 +12,6 @@ gem "pg"
 gem "puma"
 gem "redis"
 
-gem "airrecord" # Airtable client
-
 # Assets
 gem "sprockets-rails"
 gem "sass-rails"
