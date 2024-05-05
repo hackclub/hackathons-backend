@@ -1,5 +1,5 @@
 class Hackathons::Subscriptions::BulkController < ApplicationController
-  skip_before_action :redirect_if_unauthenticated
+  allow_unauthenticated_access
 
   before_action :set_user
   before_action :set_subscriptions
