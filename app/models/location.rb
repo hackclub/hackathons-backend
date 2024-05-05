@@ -10,7 +10,7 @@ class Location
   # Listed in the order of significance.
   # The name "component" is pulled from USPS
   # https://pe.usps.com/text/pub28/28c2_012.htm#ep526349
-  COMPONENTS = [:city, :province, :country]
+  COMPONENTS = %i[city province country]
 
   def components
     [@city, @province, @country]
