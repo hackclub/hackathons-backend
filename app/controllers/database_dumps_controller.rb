@@ -1,5 +1,5 @@
 class DatabaseDumpsController < ApplicationController
-  before_action :set_database_dump, except: [:index, :create]
+  before_action :set_database_dump, except: %i[index create]
 
   def index
     @database_dumps = DatabaseDump.all
