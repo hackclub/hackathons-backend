@@ -10,7 +10,7 @@ module Hackathon::Digest::Listings::ByLocation
       end
     }
 
-    if defined(super)
+    if defined?(super)
       super.concat candidates
     else
       candidates
