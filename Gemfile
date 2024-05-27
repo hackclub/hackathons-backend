@@ -47,6 +47,7 @@ gem "country_select"
 
 # Geography
 gem "geocoder"
+gem "aws-sdk-locationservice"
 gem "countries"
 
 gem "hashid-rails" # Non-sequential IDs
