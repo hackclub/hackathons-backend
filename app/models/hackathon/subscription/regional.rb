@@ -6,11 +6,9 @@ module Hackathon::Subscription::Regional
     validates :location, presence: {message: ->(object, _) { "'#{object.input_or_location}' could not be found." }}
 
     geocoded_by :input_or_location do |subscription, results|
-      # Geocode to coordinates and standardizes the location attributes
-
       # Bias towards US results. This handles cases where the user enters "CA",
       # likely intending "California", but geocoding to "Canada".
-      us = results.first(2).find { |r| r.country_code&.upcase == "US" }
+      us = results.first(2).find { |r| r.country_code&.upcase&.starts_with? "US" }
       if (result = us || results.first)
         subscription.attributes = {
           latitude: result.latitude,
