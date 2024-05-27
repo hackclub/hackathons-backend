@@ -1,5 +1,6 @@
 if Rails.env.production?
   Geocoder.configure(
+    always_raise: :all,
     lookup: :amazon_location_service,
     amazon_location_service: {
       index_name: "hackathons",
