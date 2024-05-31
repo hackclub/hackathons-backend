@@ -12,7 +12,7 @@ module Hackathon::Regional
           longitude: result.longitude,
 
           address: result.address,
-          street: [result.house_number, result.street].compact.join(" ").presence,
+          street: nil,
           city: result.city,
           province: result.province || result.state,
           postal_code: result.postal_code,
