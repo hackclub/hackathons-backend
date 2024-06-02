@@ -12,7 +12,7 @@ module Hackathon::Regional
           longitude: result.longitude,
 
           address: result.address,
-          street: result.street,
+          street: result.route,
           city: result.city,
           province: result.province || result.state,
           postal_code: result.postal_code,
