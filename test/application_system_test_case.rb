@@ -15,7 +15,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   end
 
   def visit(path)
-    super(path)
+    super
     find 'body[data-stimulus-ready="true"]'
   end
 end
