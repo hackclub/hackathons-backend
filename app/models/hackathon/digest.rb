@@ -1,7 +1,5 @@
 class Hackathon::Digest < ApplicationRecord
-  include Eventable
-
-  include Deliverable # utilizes Eventable
+  include Deliverable
 
   include Listings
 
