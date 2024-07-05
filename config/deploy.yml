@@ -26,23 +26,29 @@ registry:
   password:
     - KAMAL_REGISTRY_PASSWORD
 
-env:
-  clear:
-    HOST: dash.hackathons.hackclub.com
-    WEB_CONCURRENCY: 2
-    RAILS_MAX_THREADS: 10
-    RAILS_MIN_THREADS: 5
-    APP_REVISION: <%= `git rev-parse HEAD`.strip %>
-  secret:
-    - RAILS_MASTER_KEY
-    - DATABASE_URL
-    - REDIS_URL
-
 builder:
   multiarch: false
   cache:
     type: gha
     options: mode=max
+
+env:
+  clear:
+    HOST: dash.hackathons.hackclub.com
+    WEB_CONCURRENCY: 2
+  secret:
+    - RAILS_MASTER_KEY
+    - REDIS_URL
+
+volumes: ["hackathons-storage:/hackathons/storage"]
+
+accessories:
+  litestream:
+    roles: ["web"]
+    image: litestream/litestream
+    files: ["config/litestream.yml.erb:/etc/litestream.yml"]
+    volumes: ["hackathons-storage:/storage"]
+    cmd: replicate
 
 asset_path: "/hackathons/public/assets"
 

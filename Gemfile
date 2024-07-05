@@ -8,7 +8,7 @@ gem "dotenv-rails"
 gem "rails", github: "rails/rails"
 
 # Drivers
-gem "pg"
+gem "sqlite3"
 gem "puma"
 gem "redis"
 
