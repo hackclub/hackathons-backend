@@ -8,6 +8,7 @@ module User::Settings
   extend ActiveSupport::Concern
 
   included do
+    serialize :settings, coder: JSON
     scope :with_setting_enabled, ->(setting) do
       where "COALESCE(settings ->> ?, ?) = 'true'", setting.to_s, User::DEFAULT_SETTINGS[setting].to_s
     end

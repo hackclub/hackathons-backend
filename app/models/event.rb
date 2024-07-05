@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   belongs_to :target, class_name: "User", optional: true
 
   validates :action, presence: true
+  serialize :details, coder: JSON
 
   def description
     [creator&.name, action.humanize(capitalize: false), target&.name].compact.join(" ")

@@ -1,8 +1,9 @@
 development:
-  adapter: postgresql
+  adapter: async
 
 test:
   adapter: test
 
 production:
-  adapter: postgresql
+  adapter: redis
+  url: <%= ENV["REDIS_URL"] %>

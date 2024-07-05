@@ -19,9 +19,8 @@ _The thing that powers [hackathons.hackclub.com](https://hackathons.hackclub.com
 
 ## Contributing
 
-This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org/) (running [on the edge](https://shopify.engineering/living-on-the-edge-of-rails)). It uses 🐘
-[PostgreSQL](https://www.postgresql.org/) for the database and 🥋
-[Sidekiq](https://sidekiq.org/)/[Redis](https://redis.io/) for background jobs.
+This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org/) (running [on the edge](https://shopify.engineering/living-on-the-edge-of-rails))
+and uses 🥋 [Sidekiq](https://sidekiq.org/)/[Redis](https://redis.io/) for running background jobs.
 
 ### Getting Started
 
@@ -35,25 +34,13 @@ This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org/) (runnin
    cd hackathons-backend
    ```
 
-3. Setup credentials
-
-   ```sh
-   cp .env.example .env
-   ```
-
-4. Install dependencies
+3. Install dependencies
 
    ```sh
    bundle install
    ```
 
-5. Boot required services (PostgreSQL, etc.)
-
-   ```sh
-   docker compose up
-   ```
-
-6. Setup the database and run the server
+4. Setup the database and run the server
 
    ```sh
    rails db:prepare
@@ -76,7 +63,6 @@ brew install vips
 **Vendors:**
 
 - Heroku
-  - Postgres (Heroku Postgres `standard0`)
   - Redis (Heroku Data for Redis `premium0`)
 - Hetzner
   - Runs the Rails app and Sidekiq (3 vCPU, 4 GB)
