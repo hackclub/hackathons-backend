@@ -5,3 +5,4 @@ dbs:
 - path: /storage/production.sqlite3
   replicas:
   - url: s3://${LITESTREAM_BUCKET}/db
+    region: $LITESTREAM_REGION
