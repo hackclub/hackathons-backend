@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_04_26_144308) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
+ActiveRecord::Schema[8.0].define(version: 2024_07_04_165824) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -109,7 +106,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_04_26_144308) do
     t.bigint "creator_id"
     t.bigint "target_id"
     t.string "action"
-    t.jsonb "details", default: {}, null: false
+    t.json "details", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_events_on_creator_id"
@@ -256,7 +253,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_04_26_144308) do
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.jsonb "settings", default: {}, null: false
+    t.json "settings", default: {}, null: false
     t.index ["admin"], name: "index_users_on_admin"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
