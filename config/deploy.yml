@@ -54,6 +54,7 @@ accessories:
         - LITESTREAM_ACCESS_KEY_ID
         - LITESTREAM_SECRET_ACCESS_KEY
         - LITESTREAM_BUCKET
+        - LITESTREAM_REGION
 
 asset_path: "/hackathons/public/assets"
 
