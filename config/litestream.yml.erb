@@ -1,4 +1,4 @@
-<% require "config/application" %>
+<% require_relative "application" %>
 <% aws = Rails.application.credentials.aws %>
 
 access-key-id: <%= aws.access_key_id %>
