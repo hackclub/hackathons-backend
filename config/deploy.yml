@@ -49,6 +49,9 @@ accessories:
     files: ["config/litestream.yml.erb:/etc/litestream.yml"]
     volumes: ["hackathons-storage:/storage"]
     cmd: replicate
+    env:
+      secret:
+        - RAILS_MASTER_KEY
 
 asset_path: "/hackathons/public/assets"
 
