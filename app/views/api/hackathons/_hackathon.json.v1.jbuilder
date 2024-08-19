@@ -5,7 +5,7 @@ shape_for hackathon, json do
     :ends_at,
     :modality)
 
-  json.website hackathon.website_or_archive_url
+  json.website hackathon.website
 
   json.logo_url file_url_for hackathon.logo, :small
   json.banner_url file_url_for hackathon.banner, :large
