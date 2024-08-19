@@ -29,7 +29,7 @@ jobs:
           REDIS_URL=$(heroku config:get REDIS_URL -a hackathons)
           echo "REDIS_URL=${REDIS_URL}" >> $GITHUB_ENV
       - name: Deploy to production!
-        run: bundle exec kamal setup
+        run: bundle exec kamal deploy
         env:
           KAMAL_REGISTRY_USERNAME: ${{ github.actor }}
           KAMAL_REGISTRY_PASSWORD: ${{ github.token }}
