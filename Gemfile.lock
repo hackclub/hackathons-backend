@@ -316,7 +316,6 @@ GEM
     parser (3.3.3.0)
       ast (~> 2.4.1)
       racc
-    pg (1.5.6)
     premailer (1.21.0)
       addressable
       css_parser (>= 1.12.0)
@@ -328,7 +327,7 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (6.0.0)
-    puma (6.4.2)
+    puma (6.4.3)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.0)
@@ -364,7 +363,7 @@ GEM
       io-console (~> 0.5)
     request_store (1.5.1)
       rack (>= 1.4)
-    rexml (3.3.1)
+    rexml (3.3.3)
       strscan
     rinku (2.0.6)
     rouge (4.2.0)
@@ -416,6 +415,9 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
+    sqlite3 (2.0.2-aarch64-linux-gnu)
+    sqlite3 (2.0.2-arm64-darwin)
+    sqlite3 (2.0.2-x86_64-linux-gnu)
     sshkit (1.23.0)
       base64
       net-scp (>= 1.1.2)
@@ -507,7 +509,6 @@ DEPENDENCIES
   local_time
   lograge
   pagy
-  pg
   premailer-rails
   puma
   rack-cors
@@ -519,6 +520,7 @@ DEPENDENCIES
   sidekiq-cron
   simple_form
   sprockets-rails
+  sqlite3
   standard
   stimulus-rails
   turbo-rails

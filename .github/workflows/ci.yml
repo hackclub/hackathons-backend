@@ -21,20 +21,13 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    services:
-      postgres:
-        image: postgres:15.3
-        ports: ["5432:5432"]
-        env:
-          POSTGRES_HOST_AUTH_METHOD: trust
-          POSTGRES_DB: hackathons_test
     steps:
       - name: Install system dependencies
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo apt-get update -yqq
-          sudo apt-get install -yqq libvips
+          sudo apt-get update
+          sudo apt-get install sqlite3 libvips
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup Ruby
@@ -45,7 +38,6 @@ jobs:
         run: bin/rails test; bin/rails test:system
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgresql://postgres@127.0.0.1:5432
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
         if: failure()
