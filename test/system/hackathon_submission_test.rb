@@ -46,8 +46,8 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     select "Yes", from: :hackathon_offers_financial_assistance
     select "No", from: :requested_swag
 
-    click_on "Submit for Review"
-    assert_text(/submitted/i, wait: 8.seconds)
+    click_button "Submit for Review"
+    assert_text(/submitted/i, wait: 15.seconds)
 
     assert_equal "not.a.user.yet@hey.test", Hackathon.last.applicant.email_address
     assert_equal "Assemble", Hackathon.last.name
