@@ -28,6 +28,7 @@ class Hackathons::SubmissionsController < ApplicationController
     if @hackathon.save context: [:create, :submit]
       redirect_to hackathons_submissions_path, notice: "Your hackathon has been submitted for approval!"
     else
+      flash.now[:notice] = @hackathon.errors.first.full_message
       render :new, status: :unprocessable_entity
     end
   end
