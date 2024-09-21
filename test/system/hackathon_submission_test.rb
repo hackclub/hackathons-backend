@@ -46,6 +46,8 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     select "Yes", from: :hackathon_offers_financial_assistance
     select "No", from: :requested_swag
 
+    sleep 1.second
+
     click_button "Submit for Review"
     assert_text(/submitted/i, wait: 15.seconds)
 
