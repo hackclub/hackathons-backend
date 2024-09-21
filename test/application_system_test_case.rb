@@ -16,10 +16,6 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   def visit(path)
     super
-    wait_for_stimulus
-  end
-
-  def wait_for_stimulus
     find 'body[data-stimulus-ready="true"]'
   end
 end
