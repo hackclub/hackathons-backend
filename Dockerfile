@@ -1,4 +1,4 @@
-FROM ruby:3.3.2-slim as base
+FROM ruby:3.3.2-slim AS base
 
 WORKDIR /hackathons
 
@@ -8,7 +8,7 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development"
 
 
-FROM base as build
+FROM base AS build
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libvips pkg-config sqlite3
