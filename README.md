@@ -25,7 +25,7 @@ and uses 🥋 [Sidekiq](https://sidekiq.org/)/[Redis](https://redis.io/) for run
 ### Getting Started
 
 1. Make sure you have Docker
-   and [Ruby 3.3.2 installed](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-22-04#step-1-install-rbenv-and-dependencies).
+   and [Ruby 3.3.5 installed](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-22-04#step-1-install-rbenv-and-dependencies).
 
 2. Clone the repo
 
