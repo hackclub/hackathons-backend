@@ -20,7 +20,7 @@ module DatabaseDump::Processed
       Tempfile.create do |io|
         dump DatabaseDump::TABLES, to: io.path
 
-        file.attach io:, filename: "#{name.delete(",").tr(" ", "-")}.sql"
+        file.attach io: File.open(io), filename: "#{name.delete(",").tr(" ", "-")}.sql"
         record :processed
       end
     end
