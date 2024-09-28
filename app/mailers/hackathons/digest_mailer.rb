@@ -31,4 +31,10 @@ class Hackathons::DigestMailer < ApplicationMailer
 
     mail to: Hackathons::SUPPORT_EMAIL, cc: User.admins.collect(&:email_address), subject:
   end
+
+  def organizer_summary(hackathon, sent_digests)
+    @hackathon = hackathon
+    @count = sent_digests.count
+    mail to: hackathon.applicant.email_address, subject: "We've just notified #{@count} hackers about #{hackathon.name}!"
+  end
 end
