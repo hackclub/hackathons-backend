@@ -26,11 +26,11 @@ module Hackathon::Subscription::Status
   end
 
   def unsubscribe
-    update(status: :inactive)
+    update status: :inactive
   end
 
   def resubscribe
-    update(status: :active)
+    update status: :active
   end
 
   private
@@ -38,7 +38,7 @@ module Hackathon::Subscription::Status
   def track_changes
     return unless saved_change_to_status?
 
-    record(:enabled) if active?
-    record(:disabled) if inactive?
+    record :enabled if active?
+    record :disabled if inactive?
   end
 end

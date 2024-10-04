@@ -1,5 +1,4 @@
 <article style="margin-bottom: 1.5rem;">
-  <%# Hackathon name %>
   <div style="margin-bottom: 0.25rem;">
     <% if hackathon.logo.attached? %>
       <%= image_tag hackathon.logo.variant(:small), style: "width: 32px; vertical-align: middle; margin-right: 0.5rem;" %>
@@ -10,7 +9,6 @@
     <%= local_assigns[:subtitle] %>
   </div>
 
-  <%# Hackathon description %>
   <div>
     <p style="margin: 0;">
       <%= hackathon.start_date.to_fs(:long_ordinal) %>

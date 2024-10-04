@@ -114,8 +114,8 @@
   </div>
 
   <div class="button-group">
-    <%= button_to "Approve", admin_hackathon_approval_path(@hackathon), disabled: @hackathon.approved?, class: "button--success" %>
-    <%= button_to "Reject", admin_hackathon_rejection_path(@hackathon), disabled: @hackathon.rejected?, class: "button--danger" %>
+    <%= button_to "Approve", admin_hackathon_path(@hackathon), method: :patch, params: {hackathon: {status: :approved}}, disabled: @hackathon.approved?, class: "button--success" %>
+    <%= button_to "Reject", admin_hackathon_path(@hackathon), method: :patch, params: {hackathon: {status: :rejected}}, disabled: @hackathon.rejected?, class: "button--danger" %>
     <%= button_to "Hold for review", admin_hackathon_hold_path(@hackathon), class: "button--neutral" %>
   </div>
 

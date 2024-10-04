@@ -1,5 +1,5 @@
 class Hackathons::SubmissionsController < ApplicationController
-  skip_before_action :redirect_if_unauthenticated, only: [:new, :create]
+  allow_unauthenticated_access only: %i[new create]
 
   def index
     @hackathons = Hackathon.not_approved.where applicant: Current.user
@@ -47,7 +47,6 @@ class Hackathons::SubmissionsController < ApplicationController
       :starts_at,
       :ends_at,
       :modality,
-      # Location
       :street,
       :city,
       :province,
@@ -55,7 +54,6 @@ class Hackathons::SubmissionsController < ApplicationController
       :country_code,
       :expected_attendees,
       :high_school_led,
-      # Swag
       swag_request_attributes: [
         mailing_address_attributes: [
           :line1,

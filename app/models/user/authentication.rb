@@ -1,5 +1,5 @@
 class User::Authentication < ApplicationRecord
-  include Deliverable
+  include Delivered
   delivered :now
   include Eventable
 
@@ -9,26 +9,26 @@ class User::Authentication < ApplicationRecord
   has_one :session, dependent: :destroy
 
   def expired?
-    (created_at + AUTHENTICATION_VALIDITY_PERIOD).past?
+    (created_at + VALIDITY_PERIOD).past?
   end
 
   def succeeded?
     events.where(action: :completed).exists?
   end
 
-  def complete
+  def completed
     record :completed, by: user
   end
 
   def reject(reason: nil)
-    record :rejected, reason: reason
+    record :rejected, reason:
   end
 
   private
 
+  VALIDITY_PERIOD = 1.hour
+
   def delivery
     UserMailer.authentication(self)
   end
-
-  AUTHENTICATION_VALIDITY_PERIOD = 1.hour
 end
