@@ -3,5 +3,6 @@
 
 :queues:
   - critical
+  - SES
   - default
   - low
