@@ -7,7 +7,7 @@ Sidekiq.configure_server do |config|
   config.capsule("AWS SES") do |capsule| # avoid rate limits
     Rails.configuration.action_mailer.deliver_later_queue_name = "SES"
     capsule.queues = ["SES"]
-    capsule.concurrency = 2
+    capsule.concurrency = 1
   end
 end
 
