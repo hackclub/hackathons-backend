@@ -1,7 +1,9 @@
-minimum_version: 1.1.0
+<% ENV["RAILS_ENV"] = "production" %>
+<% require_relative "config/application" %>
 
-service: hackathons
+minimum_version: 2.2.2
 
+service:        hackathons
 image: hackclub/hackathons
 
 servers:
@@ -27,7 +29,7 @@ registry:
     - KAMAL_REGISTRY_PASSWORD
 
 builder:
-  multiarch: false
+  arch: amd64
   cache:
     type: gha
     options: mode=max
@@ -40,7 +42,11 @@ env:
     - RAILS_MASTER_KEY
     - REDIS_URL
 
+asset_path: "/hackathons/public/assets"
 volumes: ["hackathons-storage:/hackathons/storage"]
+
+proxy:
+  app_port: 3000
 
 accessories:
   litestream:
@@ -51,13 +57,7 @@ accessories:
     cmd: replicate
     env:
       secret:
-        - LITESTREAM_ACCESS_KEY_ID
-        - LITESTREAM_SECRET_ACCESS_KEY
-        - LITESTREAM_BUCKET
-        - LITESTREAM_REGION
-
-asset_path: "/hackathons/public/assets"
-
-traefik:
-  args:
-    entrypoints.web.forwardedHeaders.trustedIPs: 10.0.0.0/8
+        <% %w[BUCKET REGION ACCESS_KEY_ID SECRET_ACCESS_KEY].each do |secret| %>
+          <% ENV["LITESTREAM_#{secret}"] = Rails.application.credentials.aws!.fetch(secret.downcase.to_sym) %>
+          - LITESTREAM_<%= secret %>
+        <% end %>

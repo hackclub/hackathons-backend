@@ -3,9 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby file: ".ruby-version"
 
-gem "dotenv-rails"
-
 gem "rails", github: "rails/rails"
+
+gem "dotenv-rails", require: "dotenv/load"
 
 # Drivers
 gem "sqlite3"
