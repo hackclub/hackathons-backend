@@ -17,5 +17,3 @@ Sidekiq.configure_client do |config|
     ssl_params: {verify_mode: OpenSSL::SSL::VERIFY_NONE}
   }
 end
-
-Sidekiq.strict_args!(false)
