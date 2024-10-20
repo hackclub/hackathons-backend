@@ -1,8 +1,10 @@
+redis = {
+  url: ENV["REDIS_URL"], timeout: 10.seconds,
+  ssl_params: {verify_mode: OpenSSL::SSL::VERIFY_NONE}
+}
+
 Sidekiq.configure_server do |config|
-  config.redis = {
-    url: ENV["REDIS_URL"],
-    ssl_params: {verify_mode: OpenSSL::SSL::VERIFY_NONE}
-  }
+  config.redis = redis
 
   config.capsule("AWS SES") do |capsule| # avoid rate limits
     Rails.configuration.action_mailer.deliver_later_queue_name = "SES"
@@ -12,8 +14,5 @@ Sidekiq.configure_server do |config|
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = {
-    url: ENV["REDIS_URL"],
-    ssl_params: {verify_mode: OpenSSL::SSL::VERIFY_NONE}
-  }
+  config.redis = redis
 end
