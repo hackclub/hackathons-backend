@@ -16,7 +16,7 @@ servers:
   jobs:
     hosts:
       - app-1.hackathons.hackclub.com
-    cmd: bundle exec sidekiq
+    cmd: bundle exec rails solid_queue:start
     options:
       memory: 1G
       cpus: 1

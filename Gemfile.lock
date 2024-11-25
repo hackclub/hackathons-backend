@@ -285,6 +285,16 @@ GEM
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.25.1)
+    mission_control-jobs (0.6.0)
+      actioncable (>= 7.1)
+      actionpack (>= 7.1)
+      activejob (>= 7.1)
+      activerecord (>= 7.1)
+      importmap-rails (>= 1.2.1)
+      irb (~> 1.13)
+      railties (>= 7.1)
+      stimulus-rails
+      turbo-rails
     msgpack (1.7.2)
     net-http (0.4.1)
       uri
@@ -395,19 +405,16 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.3.1)
-    sidekiq (7.3.2)
-      concurrent-ruby (< 2)
-      connection_pool (>= 2.3.0)
-      logger
-      rack (>= 2.2.4)
-      redis-client (>= 0.22.2)
-    sidekiq-cron (1.12.0)
-      fugit (~> 1.8)
-      globalid (>= 1.0.1)
-      sidekiq (>= 6)
     simple_form (5.3.1)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    solid_queue (1.0.2)
+      activejob (>= 7.1)
+      activerecord (>= 7.1)
+      concurrent-ruby (>= 1.3.1)
+      fugit (~> 1.11.0)
+      railties (>= 7.1)
+      thor (~> 1.3.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -505,6 +512,7 @@ DEPENDENCIES
   letter_opener_web
   local_time
   lograge
+  mission_control-jobs
   pagy
   premailer-rails
   puma
@@ -513,9 +521,8 @@ DEPENDENCIES
   rails!
   redis
   sass-rails
-  sidekiq
-  sidekiq-cron
   simple_form
+  solid_queue
   sprockets-rails
   sqlite3
   standard
