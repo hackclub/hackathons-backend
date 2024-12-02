@@ -10,7 +10,7 @@ module Hackathons
   class Application < Rails::Application
     config.load_defaults 7.2
 
-    config.autoload_lib ignore: %w[assets tasks templates]
+    config.autoload_lib ignore: %w[assets tasks templates puma]
 
     config.active_record.encryption.hash_digest_class = OpenSSL::Digest::SHA1
     config.active_record.encryption.encrypt_fixtures = true
