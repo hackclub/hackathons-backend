@@ -14,7 +14,7 @@ gem "redis"
 
 # Assets
 gem "sprockets-rails"
-gem "sass-rails"
+gem "dartsass-rails"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
