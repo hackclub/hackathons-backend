@@ -27,8 +27,8 @@ gem "image_processing", ">= 1.2"
 gem "active_storage_validations"
 
 # Background jobs
-gem "sidekiq"
-gem "sidekiq-cron"
+gem "solid_queue"
+gem "mission_control-jobs"
 
 # API
 gem "jbuilder" # JSON templating
