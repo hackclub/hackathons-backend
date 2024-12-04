@@ -1,3 +1,6 @@
+require "sidekiq/web"
+require "sidekiq/cron/web"
+
 Rails.application.routes.draw do
   root "hackathons#index"
 
@@ -25,10 +28,10 @@ Rails.application.routes.draw do
   resources :database_dumps, except: [:new, :show]
 
   constraints Constraints::Admin do
-    namespace :admin do
-      mount MissionControl::Jobs::Engine => "jobs" if Rails.env.production?
-      mount Audits1984::Engine => "audits"
+    mount Sidekiq::Web => "/admin/sidekiq" if Rails.env.production?
+    mount Audits1984::Engine => "/admin/audits"
 
+    namespace :admin do
       resources :hackathons, except: [:new, :create] do
         scope module: :hackathons do
           resource :hold, only: :create
