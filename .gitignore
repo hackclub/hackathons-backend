@@ -26,6 +26,7 @@
 !/tmp/storage/
 !/tmp/storage/.keep
 
+/app/assets/builds
 /public/assets
 
 # Ignore master key for decrypting credentials and more.
