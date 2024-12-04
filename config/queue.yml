@@ -1,0 +1,15 @@
+default: &default
+  workers:
+  - queues:
+    - critical
+    - default
+    - low
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
