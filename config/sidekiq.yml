@@ -1,0 +1,8 @@
+:verbose: false
+:timeout: 25
+
+:queues:
+  - critical
+  - SES
+  - default
+  - low

@@ -19,8 +19,8 @@ _The thing that powers [hackathons.hackclub.com](https://hackathons.hackclub.com
 
 ## Contributing
 
-This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org) (running [on the edge](https://shopify.engineering/living-on-the-edge-of-rails))
-and uses 🥋 [Solid Queue](https://github.com/rails/solid_queue) for running background jobs.
+This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org/) (running [on the edge](https://shopify.engineering/living-on-the-edge-of-rails))
+and uses 🥋 [Sidekiq](https://sidekiq.org/)/[Redis](https://redis.io/) for running background jobs.
 
 ### Getting Started
 
@@ -65,7 +65,7 @@ brew install vips
 - Heroku
   - Redis (Heroku Data for Redis `premium0`)
 - Hetzner
-  - Runs the Rails app and Solid Queue (3 vCPU, 4 GB)
+  - Runs the Rails app and Sidekiq (3 vCPU, 4 GB)
   - Deployed via [Kamal](https://kamal-deploy.org)
 
 ### Kamal
@@ -92,12 +92,12 @@ Then, run the following locally on your computer:
 bin/console prod
 ```
 
-### Solid Queue
+### Sidekiq
 
-Solid Queue is used to process background jobs in production. In development, we use
+Sidekiq is used to process background jobs in production. In development, we use
 the good old default Active Job Async queue adapter.
 
-To check up on jobs, visit `/admin/jobs` on the production site. You must
+To check up on Sidekiq, visit `/admin/sidekiq` on the production site. You must
 be logged in as an admin to access this page.
 
 ---

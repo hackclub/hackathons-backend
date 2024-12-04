@@ -1,4 +1,6 @@
 class Hackathons::DigestsDeliveryJob < ApplicationJob
+  sidekiq_options retry: 20 # up to 6.5 days
+
   def perform
     sent_digest_ids = []
     current_subscribers.find_each do |subscriber|
