@@ -1,12 +1,12 @@
 production:
   digest_deliveries:
     class: Hackathons::DigestsDeliveryJob
-    schedule: every Tuesday @ 10am in America/Los_Angeles
+    schedule: every Tuesday at 10am in America/Los_Angeles
 
   website_status_refreshes:
     class: Hackathons::WebsiteStatusesRefreshJob
-    schedule: every day @ 9am in America/Los_Angeles
+    schedule: every day at 9am in America/Los_Angeles
 
   website_archivals:
     class: Hackathons::WebsiteArchivalsJob
-    schedule: every Monday @ 10am in America/Los_Angeles
+    schedule: every Monday at 10am in America/Los_Angeles
