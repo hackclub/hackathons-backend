@@ -4,7 +4,7 @@ default: &default
     - critical
     - default
     - low
-    threads: <%= ENV.fetch "RAILS_MAX_THREADS" { 5 } %>
+    threads: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
