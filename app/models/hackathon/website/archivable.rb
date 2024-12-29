@@ -27,7 +27,7 @@ module Hackathon::Website::Archivable
       Rails.logger.warn "Internet Archive returned an error capturing #{website}:"
       Rails.logger.warn request["message"]
     else
-      follow_up
+      FollowUpJob.set(wait: 3.minutes).perform_later(self, capture.job_id)
     end
   end
 
