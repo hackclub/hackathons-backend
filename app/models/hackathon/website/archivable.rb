@@ -24,25 +24,30 @@ module Hackathon::Website::Archivable
     request = capture.request
 
     if request["status"] == "error"
-      Rails.logger.info "Internet Archive returned an error capturing #{website}:"
-      Rails.logger.info request["message"]
-      return
+      Rails.logger.warn "Internet Archive returned an error capturing #{website}:"
+      Rails.logger.warn request["message"]
+    else
+      follow_up
     end
+  end
 
-    begin
-      Timeout.timeout(3.minutes) do
-        sleep 5 until capture.finished?
-      end
-
-      record :archived_website if capture.finished?
-    rescue Timeout::Error
-      Rails.logger.info "Timed out waiting for Internet Archive to finish capture for #{website} with job #{capture.job_id}."
+  def follow_up_on_archive(job_id)
+    if archive_with(job_id).finished?
+      record :website_archived
+    else
+      Rails.logger.warn "Internet Archive didn't finish capture for #{website} with job #{capture.job_id}."
     end
   end
 
   private
 
-  def archive_website_later
-    Hackathons::WebsiteArchivalJob.perform_later(self)
+  def archive_with(job_id)
+    InternetArchive::Capture.new(job_id:)
+  end
+
+  class FollowUpJob < ApplicationJob
+    def perform(hackathon, id)
+      hackathon.follow_up_on_archive(id)
+    end
   end
 end
