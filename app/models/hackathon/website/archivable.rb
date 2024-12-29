@@ -48,7 +48,7 @@ module Hackathon::Website::Archivable
   class FollowUpJob < ApplicationJob
     limits_concurrency to: 15, duration: 1.minute, group: "Wayback Machine", key: "API"
     queue_as :low
-    
+
     def perform(hackathon, id)
       hackathon.follow_up_on_archive(id)
     end
