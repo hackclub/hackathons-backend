@@ -12,6 +12,8 @@ module Hackathons
 
     config.autoload_lib ignore: %w[assets tasks templates puma]
 
+    config.mission_control.jobs.http_basic_auth_enabled = false
+
     config.active_record.encryption.hash_digest_class = OpenSSL::Digest::SHA1
     config.active_record.encryption.encrypt_fixtures = true
 
