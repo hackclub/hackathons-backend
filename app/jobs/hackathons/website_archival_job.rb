@@ -1,5 +1,5 @@
 class Hackathons::WebsiteArchivalJob < ApplicationJob
-  limits_concurrency to: 15, duration: 1.minute, key: "Wayback Machine"
+  limits_concurrency to: 15, duration: 1.minute, group: "Wayback Machine", key: "API"
   queue_as :low
 
   def perform(hackathon)

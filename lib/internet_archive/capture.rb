@@ -3,8 +3,9 @@
 class InternetArchive::Capture
   attr_reader :website_url, :job_id
 
-  def initialize(website_url)
+  def initialize(website_url: nil, job_id: nil)
     @website_url = website_url
+    @job_id = job_id
   end
 
   def request
