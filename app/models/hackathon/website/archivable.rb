@@ -35,7 +35,7 @@ module Hackathon::Website::Archivable
     if archive_with(job_id).finished?
       record :website_archived
     else
-      Rails.logger.warn "Internet Archive didn't finish capture for #{website} with job #{capture.job_id}."
+      Rails.logger.warn "Internet Archive didn't finish capture for #{website} with job #{job_id}."
     end
   end
 
