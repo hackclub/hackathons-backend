@@ -20,7 +20,7 @@ module Hackathon::Website::Archivable
   end
 
   def archive_website
-    capture = InternetArchive::Capture.new(website)
+    capture = InternetArchive::Capture.new(website_url: website)
     request = capture.request
 
     if request["status"] == "error"
