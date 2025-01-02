@@ -1,4 +1,5 @@
 class LoopsSynchronizationJob < ApplicationJob
+  limits_concurrency to: 5, duration: 1.second, key: "Loops"
   queue_as :low
 
   def perform(user)
