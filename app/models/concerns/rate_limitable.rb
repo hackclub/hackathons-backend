@@ -12,8 +12,8 @@ module RateLimitable
   class_methods do
     def rate_limit(key = name, to:, within:)
       around_perform do |job, block|
-        unless Lock.acquire(key, limit: to, duration: within) { block }
-          raise Limit.new(duration:)
+        unless Lock.acquire(key, limit: to, duration: within) { block.call }
+          raise Limit.new(duration: within)
         end
       end
     end
