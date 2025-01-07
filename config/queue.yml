@@ -1,4 +1,5 @@
 default: &default
+  dispatchers: [{}] # default options
   workers:
   - queues:
     - critical
