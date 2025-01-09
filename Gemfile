@@ -10,7 +10,8 @@ gem "dotenv-rails", require: "dotenv/load"
 # Drivers
 gem "sqlite3"
 gem "puma"
-gem "redis"
+
+gem "solid_cable"
 
 # Assets
 gem "sprockets-rails"

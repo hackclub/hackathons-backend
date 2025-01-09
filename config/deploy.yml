@@ -40,7 +40,6 @@ env:
     WEB_CONCURRENCY: 2
   secret:
     - RAILS_MASTER_KEY
-    - REDIS_URL
 
 asset_path: "/hackathons/public/assets"
 volumes: ["hackathons-storage:/hackathons/storage"]

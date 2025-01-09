@@ -21,13 +21,6 @@ jobs:
       - name: Setup Docker
         uses: docker/setup-buildx-action@v3
       - uses: crazy-max/ghaction-github-runtime@v3
-      - name: Get credentials from Heroku
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: |
-          curl https://cli-assets.heroku.com/install-ubuntu.sh | sudo sh
-          REDIS_URL=$(heroku config:get REDIS_URL -a hackathons)
-          echo "REDIS_URL=${REDIS_URL}" >> $GITHUB_ENV
       - name: Deploy to production!
         run: bundle exec kamal deploy
         env:

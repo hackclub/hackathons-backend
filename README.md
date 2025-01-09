@@ -62,8 +62,6 @@ brew install vips
 
 **Vendors:**
 
-- Heroku
-  - Redis (Heroku Data for Redis `premium0`)
 - Hetzner
   - Runs the Rails app and Solid Queue (3 vCPU, 4 GB)
   - Deployed via [Kamal](https://kamal-deploy.org)

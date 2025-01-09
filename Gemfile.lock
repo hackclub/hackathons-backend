@@ -376,10 +376,6 @@ GEM
     rake (13.2.1)
     rdoc (6.10.0)
       psych (>= 4.0.0)
-    redis (5.3.0)
-      redis-client (>= 0.22.0)
-    redis-client (0.22.2)
-      connection_pool
     regexp_parser (2.10.0)
     reline (0.6.0)
       io-console (~> 0.5)
@@ -417,6 +413,11 @@ GEM
     simple_form (5.3.1)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    solid_cable (3.0.5)
+      actioncable (>= 7.2)
+      activejob (>= 7.2)
+      activerecord (>= 7.2)
+      railties (>= 7.2)
     solid_queue (1.1.2)
       activejob (>= 7.1)
       activerecord (>= 7.1)
@@ -530,8 +531,8 @@ DEPENDENCIES
   rack-cors
   rack-mini-profiler
   rails!
-  redis
   simple_form
+  solid_cable
   solid_queue
   sprockets-rails
   sqlite3

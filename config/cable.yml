@@ -5,7 +5,7 @@ test:
   adapter: test
 
 production:
-  adapter: redis
-  url: <%= ENV["REDIS_URL"] %>
-  ssl_params:
-    verify_mode: <%= OpenSSL::SSL::VERIFY_NONE %>
+  adapter: solid_cable
+  connects_to:
+    database:
+      writing: cable
