@@ -54,13 +54,13 @@ gem "hashid-rails" # Non-sequential IDs
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby] # Windows doesn't include zoneinfo files
 gem "bootsnap", require: false # reduces boot times through caching; required in config/boot.rb
 
-gem "kamal" # Deployments
+gem "litestream"
+
+gem "appsignal"
+gem "lograge"
+
 gem "console1984"
 gem "audits1984"
-
-# Application monitoring (errors, performance, etc.)
-gem "appsignal"
-gem "lograge" # Log formatting
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
