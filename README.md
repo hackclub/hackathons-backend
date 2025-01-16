@@ -25,7 +25,7 @@ and uses 🥋 [Solid Queue](https://github.com/rails/solid_queue) for running ba
 ### Getting Started
 
 1. Make sure you have Docker
-   and [Ruby 3.3.6 installed](https://gorails.com/setup).
+   and [Ruby 3.4.1 installed](https://guides.rubyonrails.org/install_ruby_on_rails.html).
 
 2. Clone the repo
 

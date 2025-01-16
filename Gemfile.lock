@@ -211,9 +211,7 @@ GEM
       concurrent-ruby (~> 1.1)
       webrick (~> 1.7)
       websocket-driver (~> 0.7)
-    ffi (1.17.0-aarch64-linux-gnu)
-    ffi (1.17.0-arm64-darwin)
-    ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.17.0)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
@@ -222,13 +220,7 @@ GEM
       csv (>= 3.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (4.29.0-aarch64-linux)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.29.0-arm64-darwin)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.29.0-x86_64-linux)
+    google-protobuf (4.29.0)
       bigdecimal
       rake (>= 13)
     hashdiff (1.1.2)
@@ -545,7 +537,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 3.3.6p108
+   ruby 3.4.1p0
 
 BUNDLED WITH
    2.5.22
