@@ -29,6 +29,7 @@ class InternetArchive::Capture
   def connection
     @connection ||= Faraday.new(BASE_URL, headers:) do |faraday|
       faraday.response :json
+      faraday.response :raise_error
     end
   end
 
