@@ -1,4 +1,5 @@
 class LoopsSynchronizationJob < ApplicationJob
+  rate_limit to: 3, within: 1.second
   queue_as :low
 
   def perform(user)
