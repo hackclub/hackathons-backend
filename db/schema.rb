@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_01_03_164545) do
+ActiveRecord::Schema[8.1].define(version: 2025_01_28_210851) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -205,7 +205,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_01_03_164545) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["expiration"], name: "index_locks_on_expiration"
-    t.index ["key"], name: "index_locks_on_key", unique: true
+    t.index ["key"], name: "index_locks_on_key"
   end
 
   create_table "mailing_addresses", force: :cascade do |t|
