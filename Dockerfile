@@ -11,7 +11,7 @@ ENV RAILS_ENV="production" \
 FROM base AS build
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libvips pkg-config sqlite3
+    apt-get install --no-install-recommends -y build-essential git pkg-config libyaml-dev sqlite3 libvips
 
 COPY .ruby-version Gemfile Gemfile.lock ./
 RUN bundle install && \

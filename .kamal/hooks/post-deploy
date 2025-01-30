@@ -1,3 +1,0 @@
-#!/bin/sh
-
-echo "Deployed $KAMAL_VERSION -> $KAMAL_DESTINATION in $KAMAL_RUNTIME seconds"
