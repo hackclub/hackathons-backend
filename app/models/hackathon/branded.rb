@@ -10,13 +10,9 @@ module Hackathon::Branded
       banner.variant :large, resize_to_limit: [1920, 1080]
     end
 
-    validates :logo, :banner,
-      attached: true,
-      size: {less_than: 25.megabytes, message: "is too powerful (max 25 MB)"},
-      on: :submit
-
-    validates :logo, :banner,
-      processable_image: true
+    validates :logo, :banner, processable_file: true
+    validates :logo, :banner, on: :submit, attached: true,
+      size: {less_than: 25.megabytes, message: "is too powerful (max 25 MB)"}
 
     before_validation :jfif_to_jpeg, if: -> { attachment_changes.any? }, on: :create
   end
