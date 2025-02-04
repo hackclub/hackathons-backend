@@ -58,38 +58,6 @@ dependency installed on your machine. For macs, run:
 brew install vips
 ```
 
-## Production Deployment
-
-**Vendors:**
-
-- Hetzner
-  - Runs the Rails app and Solid Queue (3 vCPU, 4 GB)
-  - Deployed via [Kamal](https://kamal-deploy.org)
-
-### Kamal
-
-All pushes to the `main` branch are automatically deployed by Kamal.
-
-- Environment variables are stored on GitHub and accessed by GitHub Actions
-  when deploying.
-- Deployments take 2-5 minutes to complete.
-- After pushing to `main`, please monitor the `CD / Deploy` check for the status
-  of the deployment.
-
-### Production Rails Console
-
-We audit the use of the production console with [`console1984`](https://github.com/basecamp/console1984)
-and [`audits1984`](https://github.com/basecamp/audits1984).
-
-To use the production console, you must first have SSH access to the Hetzner
-server(s). Please ask [`@garyhtou`](https://garytou.com) for access.
-
-Then, run the following locally on your computer:
-
-```sh
-bin/console prod
-```
-
 ### Solid Queue
 
 Solid Queue is used to process background jobs in production. In development, we use
