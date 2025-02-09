@@ -8,12 +8,16 @@ Bundler.require(*Rails.groups)
 
 module Hackathons
   class Application < Rails::Application
-    config.load_defaults 7.1
+    config.load_defaults 7.2
 
-    config.autoload_lib ignore: %w[assets tasks templates]
+    config.autoload_lib ignore: %w[assets tasks templates puma]
+
+    config.mission_control.jobs.http_basic_auth_enabled = false
 
     config.active_record.encryption.hash_digest_class = OpenSSL::Digest::SHA1
     config.active_record.encryption.encrypt_fixtures = true
+
+    config.active_record.automatically_invert_plural_associations = true
 
     host = ENV["HOST"] || "localhost:3000"
     Rails.application.routes.default_url_options[:host] = host

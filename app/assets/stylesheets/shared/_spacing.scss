@@ -1,3 +1,6 @@
+@use "sass:list";
+@use "sass:string";
+
 // vvv DEPRECATED BEGIN vvv
 $spacing-unit: 1rem;
 
@@ -11,17 +14,15 @@ $spacing-unit: 1rem;
   }
 
   .push-half--#{$direction} {
-    margin-#{$direction}: $spacing-unit / 2;
+    margin-#{$direction}: calc($spacing-unit / 2);
   }
 }
 
 // ^^^ DEPRECATED END ^^^
 
-@use "sass:string";
-
 @for $unit from 0 through 8 {
   @each $direction in (top, bottom, left, right) {
-    $dir: str-slice($direction, 0, 1);
+    $dir: string.slice($direction, 0, 1);
 
     .m#{$dir}#{$unit} {
       margin-#{$direction}: var(--spacing-#{$unit});
@@ -33,9 +34,9 @@ $spacing-unit: 1rem;
   }
 
   @each $list in ((x, left, right), (y, top, bottom)) {
-    $axis: nth($list, 1);
-    $dir1: nth($list, 2);
-    $dir2: nth($list, 3);
+    $axis: list.nth($list, 1);
+    $dir1: list.nth($list, 2);
+    $dir2: list.nth($list, 3);
 
     .m#{$axis}#{$unit} {
       margin-#{$dir1}: var(--spacing-#{$unit});

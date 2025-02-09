@@ -8,7 +8,7 @@
 
   <%= stylesheet_link_tag "https://css.hackclub.com/theme.min.css" %>
   <%= stylesheet_link_tag "https://css.hackclub.com/fonts.min.css" %>
-  <%= stylesheet_link_tag "admin", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
   <script>
     const Hackathons = {
@@ -19,11 +19,11 @@
     }
   </script>
 
-  <%= javascript_importmap_tags %>
-
   <% turbo_refreshes_with method: :morph, scroll: :preserve %>
 
   <%= yield :head %> <%# used by Turbo Drive helpers %>
+
+  <%= javascript_importmap_tags %>
 </head>
 
 <body data-controller="test-readiness">

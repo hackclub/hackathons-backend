@@ -1,4 +1,4 @@
-FROM ruby:3.3.0-slim as base
+FROM ruby:3.4.1-slim AS base
 
 WORKDIR /hackathons
 
@@ -8,10 +8,10 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development"
 
 
-FROM base as build
+FROM base AS build
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config
+    apt-get install --no-install-recommends -y build-essential git pkg-config libyaml-dev sqlite3 libvips
 
 COPY .ruby-version Gemfile Gemfile.lock ./
 RUN bundle install && \
@@ -29,7 +29,7 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 FROM base
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y postgresql-client-15 libvips curl libjemalloc2 && \
+    apt-get install --no-install-recommends -y sqlite3 libvips curl libjemalloc2 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2

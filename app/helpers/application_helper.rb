@@ -23,12 +23,12 @@ module ApplicationHelper
   # - https://guides.rubyonrails.org/layouts_and_rendering.html#understanding-yield
   # - https://apidock.com/rails/ActionView/Helpers/CaptureHelper/content_for
   # - https://apidock.com/rails/v5.2.3/ActionView/Helpers/CaptureHelper/content_for%3F
-  def yield_with_default_for(key, &block)
+  def yield_with_default_for(key, &)
     default_key = :"default_#{key}"
     before_key = :"before_#{key}"
     after_key = :"after_#{key}"
 
-    content_for(default_key, &block)
+    content_for(default_key, &)
 
     concat content_for(before_key) if content_for?(before_key)
     concat content_for?(key) ? content_for(key) : content_for(default_key)

@@ -17,7 +17,7 @@ class SubscriptionTest < ActiveSupport::TestCase
   end
 
   test "subscribing to hackathons for an area" do
-    assert_difference -> { Hackathon::Subscription.active_for(@user).count } do
+    assert_difference -> { @user.subscriptions.count } do
       Hackathon::Subscription.create location_input: "05482"
     end
 
@@ -25,11 +25,11 @@ class SubscriptionTest < ActiveSupport::TestCase
   end
 
   test "subscribing for the same area" do
-    assert_difference -> { Hackathon::Subscription.active_for(@user).count } do
+    assert_difference -> { @user.subscriptions.count } do
       Hackathon::Subscription.create location_input: "05482"
     end
 
-    assert_no_difference -> { Hackathon::Subscription.active_for(@user).count } do
+    assert_no_difference -> { @user.subscriptions.active.count } do
       Hackathon::Subscription.create location_input: "05482"
     end
   end

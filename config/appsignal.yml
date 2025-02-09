@@ -8,6 +8,8 @@ default: &defaults
 
   ignore_errors:
     - ActionDispatch::Http::MimeNegotiation::InvalidType
+    - ActionController::BadRequest
+    - ActionController::InvalidAuthenticityToken
     - ActiveRecord::RecordNotFound
 
 development:

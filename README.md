@@ -19,14 +19,13 @@ _The thing that powers [hackathons.hackclub.com](https://hackathons.hackclub.com
 
 ## Contributing
 
-This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org/) (running [on the edge](https://shopify.engineering/living-on-the-edge-of-rails)). It uses 🐘
-[PostgreSQL](https://www.postgresql.org/) for the database and 🥋
-[Sidekiq](https://sidekiq.org/)/[Redis](https://redis.io/) for background jobs.
+This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org) (running [on the edge](https://shopify.engineering/living-on-the-edge-of-rails))
+and uses 🥋 [Solid Queue](https://github.com/rails/solid_queue) for running background jobs.
 
 ### Getting Started
 
 1. Make sure you have Docker
-   and [Ruby 3.3.0 installed](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-22-04#step-1-install-rbenv-and-dependencies).
+   and [Ruby 3.4.1 installed](https://guides.rubyonrails.org/install_ruby_on_rails.html).
 
 2. Clone the repo
 
@@ -35,25 +34,13 @@ This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org/) (runnin
    cd hackathons-backend
    ```
 
-3. Setup credentials
-
-   ```sh
-   cp .env.example .env
-   ```
-
-4. Install dependencies
+3. Install dependencies
 
    ```sh
    bundle install
    ```
 
-5. Boot required services (PostgreSQL, etc.)
-
-   ```sh
-   docker compose up
-   ```
-
-6. Setup the database and run the server
+4. Setup the database and run the server
 
    ```sh
    rails db:prepare
@@ -71,47 +58,12 @@ dependency installed on your machine. For macs, run:
 brew install vips
 ```
 
-## Production Deployment
+### Solid Queue
 
-**Vendors:**
-
-- Heroku
-  - Postgres (Heroku Postgres `standard0`)
-  - Redis (Heroku Data for Redis `premium0`)
-- Hetzner
-  - Runs the Rails app and Sidekiq (3 vCPU, 4 GB)
-  - Deployed via [Kamal](https://kamal-deploy.org)
-
-### Kamal
-
-All pushes to the `main` branch are automatically deployed by Kamal.
-
-- Environment variables are stored on GitHub and accessed by GitHub Actions
-  when deploying.
-- Deployments take 2-5 minutes to complete.
-- After pushing to `main`, please monitor the `CD / Deploy` check for the status
-  of the deployment.
-
-### Production Rails Console
-
-We audit the use of the production console with [`console1984`](https://github.com/basecamp/console1984)
-and [`audits1984`](https://github.com/basecamp/audits1984).
-
-To use the production console, you must first have SSH access to the Hetzner
-server(s). Please ask [`@garyhtou`](https://garytou.com) for access.
-
-Then, run the following locally on your computer:
-
-```sh
-bin/console prod
-```
-
-### Sidekiq
-
-Sidekiq is used to process background jobs in production. In development, we use
+Solid Queue is used to process background jobs in production. In development, we use
 the good old default Active Job Async queue adapter.
 
-To check up on Sidekiq, visit `/admin/sidekiq` on the production site. You must
+To check up on jobs, visit `/admin/jobs` on the production site. You must
 be logged in as an admin to access this page.
 
 ---

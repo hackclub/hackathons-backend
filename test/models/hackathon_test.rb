@@ -56,7 +56,7 @@ class HackathonTest < ActiveSupport::TestCase
   test "creating a hackathon wanting swag mailed" do
     assert_not @hackathon.requested_swag?
 
-    @hackathon.swag_mailing_address_attributes = {
+    @hackathon.build_swag_request.mailing_address_attributes = {
       line1: "123 Test St",
       city: "Test City",
       province: "Test State",

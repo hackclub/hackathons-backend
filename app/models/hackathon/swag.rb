@@ -6,10 +6,22 @@ module Hackathon::Swag
 
   included do
     belongs_to :swag_mailing_address, class_name: "MailingAddress", optional: true
-    accepts_nested_attributes_for :swag_mailing_address, reject_if: :all_blank
+
+    has_one :swag_request, dependent: :destroy
+    accepts_nested_attributes_for :swag_request
+
+    after_commit :deliver_swag_request_later_if_pertinent
   end
 
   def requested_swag?
-    swag_mailing_address.present?
+    swag_request
+  end
+
+  private
+
+  SWAG_REQUEST_GRACE_PERIOD = 1.minute
+
+  def deliver_swag_request_later_if_pertinent
+    swag_request&.deliver_later_if_pertinent(wait: SWAG_REQUEST_GRACE_PERIOD)
   end
 end

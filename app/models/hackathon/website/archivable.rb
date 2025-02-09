@@ -20,29 +20,37 @@ module Hackathon::Website::Archivable
   end
 
   def archive_website
-    capture = InternetArchive::Capture.new(website)
+    capture = InternetArchive::Capture.new(website_url: website)
     request = capture.request
 
     if request["status"] == "error"
-      Rails.logger.info "Internet Archive returned an error capturing #{website}:"
-      Rails.logger.info request["message"]
-      return
+      Rails.logger.warn "Internet Archive returned an error capturing #{website}:"
+      Rails.logger.warn request["message"]
+    else
+      FollowUpJob.set(wait: 3.minutes).perform_later(self, capture.job_id)
     end
+  end
 
-    begin
-      Timeout.timeout(3.minutes) do
-        sleep 5 until capture.finished?
-      end
-
-      record :archived_website if capture.finished?
-    rescue Timeout::Error
-      Rails.logger.info "Timed out waiting for Internet Archive to finish capture for #{website} with job #{capture.job_id}."
+  def follow_up_on_archive(job_id)
+    if archive_with(job_id).finished?
+      record :website_archived
+    else
+      Rails.logger.warn "Internet Archive didn't finish capture for #{website} with job #{job_id}."
     end
   end
 
   private
 
-  def archive_website_later
-    Hackathons::WebsiteArchivalJob.perform_later(self)
+  def archive_with(job_id)
+    InternetArchive::Capture.new(job_id:)
+  end
+
+  class FollowUpJob < ApplicationJob
+    rate_limit "Wayback Machine", to: 15, within: 1.minute
+    queue_as :low
+
+    def perform(hackathon, id)
+      hackathon.follow_up_on_archive(id)
+    end
   end
 end

@@ -1,4 +1,5 @@
 class Hackathons::WebsiteArchivalJob < ApplicationJob
+  rate_limit "Wayback Machine", to: 15, within: 1.minute
   queue_as :low
 
   def perform(hackathon)

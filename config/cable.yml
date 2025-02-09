@@ -1,8 +1,11 @@
 development:
-  adapter: postgresql
+  adapter: async
 
 test:
   adapter: test
 
 production:
-  adapter: postgresql
+  adapter: solid_cable
+  connects_to:
+    database:
+      writing: cable

@@ -44,6 +44,9 @@ class HackathonSubmissionTest < ApplicationSystemTestCase
     fill_in :hackathon_expected_attendees, with: 100
 
     select "Yes", from: :hackathon_offers_financial_assistance
+    select "No", from: :requested_swag
+
+    sleep 1.second # let browser catch up, preventing flaky tests
 
     click_on "Submit for Review"
     assert_text(/submitted/i)

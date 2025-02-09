@@ -1,8 +1,5 @@
 class Hackathon::Digest < ApplicationRecord
-  include Eventable
-
-  include Deliverable # utilizes Eventable
-
+  include Delivered
   include Listings
 
   belongs_to :recipient, class_name: "User"
@@ -10,6 +7,6 @@ class Hackathon::Digest < ApplicationRecord
   private
 
   def delivery
-    Hackathons::DigestMailer.with(digest: self).digest
+    Hackathons::DigestMailer.digest(self)
   end
 end

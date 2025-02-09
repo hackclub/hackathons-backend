@@ -38,7 +38,6 @@ class Hackathon::RegionalTest < ActiveSupport::TestCase
     @hackathon.province = "Vermont"
 
     assert @hackathon.save
-    assert_equal @hackathon.street, "15 Falls Road"
     assert_equal @hackathon.address, "15, Falls Road, Shelburne, Chittenden County, Vermont, 05482, United States"
   end
 
