@@ -1,6 +1,4 @@
 module ApplicationHelper
-  include Pagy::Frontend
-
   # This method makes it easier to yield content with a default value.
   #
   # USAGE:

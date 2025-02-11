@@ -19,11 +19,11 @@
     }
   </script>
 
-  <%= javascript_importmap_tags %>
-
   <% turbo_refreshes_with method: :morph, scroll: :preserve %>
 
   <%= yield :head %> <%# used by Turbo Drive helpers %>
+
+  <%= javascript_importmap_tags %>
 </head>
 
 <body data-controller="test-readiness">

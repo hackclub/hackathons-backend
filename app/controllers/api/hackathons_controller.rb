@@ -1,9 +1,10 @@
 class Api::HackathonsController < Api::BaseController
   def index
-    @pagy, @hackathons = pagy(
+    set_page_and_extract_portion_from(
       Hackathon.approved
                .includes(:tags, :events)
-               .with_attached_logo.with_attached_banner
+               .with_attached_logo.with_attached_banner,
+      ordered_by: {id: :desc}, per_page: 100
     )
   end
 
