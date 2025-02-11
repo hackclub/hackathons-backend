@@ -1,7 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
-import "./custom_turbo_stream_actions.js"
+import "custom_turbo_stream_actions"
 
 import LocalTime from "local-time"
 LocalTime.start()
