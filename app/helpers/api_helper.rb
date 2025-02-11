@@ -6,7 +6,7 @@ module ApiHelper
 
     unless @page.last?
       json.links do
-        json.next url_for(page: @page.next_param)
+        json.next url_for(page: @page.next_param, only_path: false)
       end
     end
 
