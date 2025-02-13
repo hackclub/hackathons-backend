@@ -8,10 +8,8 @@ gem "rails", github: "rails/rails"
 gem "dotenv-rails", require: "dotenv/load"
 
 # Drivers
-gem "sqlite3"
+gem "pg"
 gem "puma"
-
-gem "solid_cable"
 
 # Assets
 gem "sprockets-rails"
@@ -53,8 +51,6 @@ gem "hashid-rails" # Non-sequential IDs
 
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby] # Windows doesn't include zoneinfo files
 gem "bootsnap", require: false # reduces boot times through caching; required in config/boot.rb
-
-gem "litestream"
 
 gem "appsignal"
 gem "lograge"

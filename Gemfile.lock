@@ -260,32 +260,7 @@ GEM
       railties (>= 6.1)
       rexml
     lint_roller (1.1.0)
-    litestream (0.12.0)
-      actionpack (>= 7.0)
-      actionview (>= 7.0)
-      activejob (>= 7.0)
-      activesupport (>= 7.0)
-      logfmt (>= 0.0.10)
-      railties (>= 7.0)
-      sqlite3
-    litestream (0.12.0-arm64-darwin)
-      actionpack (>= 7.0)
-      actionview (>= 7.0)
-      activejob (>= 7.0)
-      activesupport (>= 7.0)
-      logfmt (>= 0.0.10)
-      railties (>= 7.0)
-      sqlite3
-    litestream (0.12.0-x86_64-linux)
-      actionpack (>= 7.0)
-      actionview (>= 7.0)
-      activejob (>= 7.0)
-      activesupport (>= 7.0)
-      logfmt (>= 0.0.10)
-      railties (>= 7.0)
-      sqlite3
     local_time (3.0.2)
-    logfmt (0.0.10)
     logger (1.6.5)
     lograge (0.14.0)
       actionpack (>= 4)
@@ -338,6 +313,7 @@ GEM
     parser (3.3.7.0)
       ast (~> 2.4.1)
       racc
+    pg (1.5.9)
     pp (0.6.2)
       prettyprint
     premailer (1.21.0)
@@ -417,11 +393,6 @@ GEM
     simple_form (5.3.1)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
-    solid_cable (3.0.7)
-      actioncable (>= 7.2)
-      activejob (>= 7.2)
-      activerecord (>= 7.2)
-      railties (>= 7.2)
     solid_queue (1.1.3)
       activejob (>= 7.1)
       activerecord (>= 7.1)
@@ -436,9 +407,6 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sqlite3 (2.5.0-aarch64-linux-gnu)
-    sqlite3 (2.5.0-arm64-darwin)
-    sqlite3 (2.5.0-x86_64-linux-gnu)
     standard (1.44.0)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
@@ -521,20 +489,18 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   letter_opener_web
-  litestream
   local_time
   lograge
   mission_control-jobs
+  pg
   premailer-rails
   puma
   rack-cors
   rack-mini-profiler
   rails!
   simple_form
-  solid_cable
   solid_queue
   sprockets-rails
-  sqlite3
   standard
   stimulus-rails
   turbo-rails

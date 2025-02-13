@@ -1,0 +1,26 @@
+services:
+  web:
+    build: .
+    deploy:
+      resources:
+        limits:
+          cpus: 1
+          memory: 2G
+    environment:
+      WEB_CONCURRENCY: 2
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/up"]
+    volumes: ["storage:/hackathons/storage"]
+  jobs:
+    volumes: ["storage:/hackathons/storage"]
+    build: .
+    depends_on: [web]
+    command: bin/rails solid_queue:start
+    deploy:
+      resources:
+        limits:
+          cpus: 1
+          memory: 1G
+
+volumes:
+  storage: {}

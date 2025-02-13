@@ -4,7 +4,7 @@ module DatabaseDump::Processed
   included do
     has_one_attached :file
 
-    after_create_commit :process_later
+    after_create_commit { DatabaseDumpJob.perform_later(self) }
   end
 
   def processed?
@@ -14,7 +14,7 @@ module DatabaseDump::Processed
   def process
     return if processed?
 
-    raise "sqlite3 not found" unless `which sqlite3`.present?
+    raise "pg_dump not found" unless `which pg_dump`.present?
 
     transaction do
       Tempfile.create do |io|
@@ -28,12 +28,19 @@ module DatabaseDump::Processed
 
   private
 
-  def process_later
-    DatabaseDumpJob.perform_later(self)
+  def dump(tables, to:)
+    system postgres_env, "pg_dump --table '#{tables.join("|")}' --file #{to}", exception: true
   end
 
-  def dump(tables, to:)
-    db = self.class.connection.raw_connection.filename
-    system "sqlite3 #{db} \".dump '#{tables.join("' '")}'\" > #{to}", exception: true
+  def postgres_env
+    connection = ApplicationRecord.connection_db_config.configuration_hash
+
+    {}.tap do |env|
+      env["PGHOST"] = connection[:host]
+      env["PGPORT"] = connection[:port]
+      env["PGUSER"] = connection[:username]
+      env["PGPASSWORD"] = connection[:password]
+      env["PGDATABASE"] = connection[:database]
+    end.transform_values!(&:to_s)
   end
 end

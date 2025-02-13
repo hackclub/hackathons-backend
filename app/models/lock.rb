@@ -6,12 +6,13 @@ class Lock < ApplicationRecord
     def acquire(key, limit: 1, duration: nil)
       lock = nil
       transaction do
-        lock = active.find_by(key:) || create!(key:, expiration: duration&.from_now)
+        lock = active.lock.find_or_create_by!(key:)
 
         if lock.capacity >= limit
           return false
         else
           lock.acquire
+          lock.update! expiration: duration&.from_now
         end
       end
 
@@ -29,8 +30,7 @@ class Lock < ApplicationRecord
   end
 
   def release(quantity = 1)
-    transaction do
-      reload
+    with_lock do
       if capacity <= 1
         destroy!
       else

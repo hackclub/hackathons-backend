@@ -20,7 +20,7 @@ _The thing that powers [hackathons.hackclub.com](https://hackathons.hackclub.com
 ## Contributing
 
 This app is built with 🛤️ [Ruby on Rails](https://rubyonrails.org) (running [on the edge](https://shopify.engineering/living-on-the-edge-of-rails))
-and uses 🥋 [Solid Queue](https://github.com/rails/solid_queue) for running background jobs.
+using 🐘 [PostgreSQL](https://www.postgresql.org) for the database and 💾 [Solid Queue](https://github.com/rails/solid_queue) for running background jobs.
 
 ### Getting Started
 
@@ -39,6 +39,12 @@ and uses 🥋 [Solid Queue](https://github.com/rails/solid_queue) for running ba
    ```sh
    bundle install
    ```
+   
+4. Start Postgres
+
+   ```sh
+   docker compose up --detach
+   ```
 
 4. Setup the database and run the server
 
@@ -51,8 +57,11 @@ The application will now be running at [localhost:3000](http://localhost:3000)!
 
 ### Additional Dependencies
 
-Rails 7 (Active Storage) depends on [vips](https://libvips.github.io/libvips/) to process images. You'll want this
-dependency installed on your machine. For macs, run:
+[Postgres will need to be installed](https://www.postgresql.org/download)
+in order for the `pg` gem to be compiled.
+
+Additionally, Active Storage depends on [vips](https://libvips.github.io/libvips/)
+to process images. You'll want this dependency installed on your machine. For Macs, run:
 
 ```sh
 brew install vips

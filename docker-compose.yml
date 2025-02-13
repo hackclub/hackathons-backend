@@ -1,26 +1,14 @@
 services:
-  web:
-    build: .
-    deploy:
-      resources:
-        limits:
-          cpus: 1
-          memory: 2G
+  postgres:
+    image: postgres:17.2
+    ports:
+      - ${POSTGRES_PORT-:5432}:5432
     environment:
-      WEB_CONCURRENCY: 2
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/up"]
-    volumes: ["storage:/hackathons/storage"]
-  jobs:
-    volumes: ["storage:/hackathons/storage"]
-    build: .
-    depends_on: [web]
-    command: bin/rails solid_queue:start
-    deploy:
-      resources:
-        limits:
-          cpus: 1
-          memory: 1G
+      POSTGRES_USER: hackathons
+      POSTGRES_DB: hackathons_test
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
 
 volumes:
-  storage: {}
+  postgres-data: {}
