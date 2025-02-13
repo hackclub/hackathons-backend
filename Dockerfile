@@ -11,7 +11,7 @@ ENV RAILS_ENV="production" \
 FROM base AS build
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git pkg-config libyaml-dev sqlite3 libvips
+    apt-get install --no-install-recommends -y build-essential git pkg-config libyaml-dev libpq-dev libvips
 
 COPY .ruby-version Gemfile Gemfile.lock ./
 RUN bundle install && \
@@ -29,7 +29,7 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 FROM base
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y sqlite3 libvips curl libjemalloc2 && \
+    apt-get install --no-install-recommends -y postgresql-client libvips curl libjemalloc2 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2

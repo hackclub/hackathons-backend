@@ -1,21 +1,22 @@
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+
+local: &local
+  <<: *default
+  username: hackathons
+  host: 127.0.0.1
+  gssencmode: disable # https://github.com/ged/ruby-pg/issues/311#issuecomment-561927000
 
 development:
-  <<: *default
-  database: storage/development.sqlite3
+  <<: *local
+  database: hackathons_development
 
 test:
-  <<: *default
-  database: storage/test.sqlite3
+  <<: *local
+  database: hackathons_test
 
 production:
-  primary:
-    <<: *default
-    database: storage/production.sqlite3
-  cable:
-    <<: *default
-    database: storage/production_cable.sqlite3
-    migrations_paths: db/cable_migrate
+  <<: *default
+  database: hackathons_production
