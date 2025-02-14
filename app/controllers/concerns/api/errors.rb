@@ -14,6 +14,7 @@ module Api::Errors
     # Handle any non-custom API errors. These require a custom handler to add
     # more context such as the `title` and `detail`.
     rescue_from VersionCake::UnsupportedVersionError, with: :unsupported_version
+    rescue_from ReadOnlyModeError, with: :read_only_mode
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
     rescue_from ActionController::ParameterMissing, with: :bad_request
@@ -26,6 +27,10 @@ module Api::Errors
     detail = "API version #{api_version} is not supported."
 
     api_error ::Api::InvalidApiVersionError.new(detail:, backtrace: error.backtrace)
+  end
+
+  def read_only_mode
+    api_error ::Api::ReadOnlyModeError.new
   end
 
   def not_found(error)
