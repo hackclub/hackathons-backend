@@ -1,7 +1,7 @@
 module ReadOnly
   def readonly?(mode: true)
     if mode
-      super() || ENV["MAINTENANCE"].present?
+      super() || ENV["READ_ONLY_MODE"].present?
     else
       super()
     end
