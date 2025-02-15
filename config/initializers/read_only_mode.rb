@@ -4,11 +4,7 @@ end
 
 module ReadOnly
   def readonly?(mode: true)
-    if mode
-      super || read_only_mode?
-    else
-      super
-    end
+    super || (read_only_mode? if mode)
   end
 
   def _raise_readonly_record_error
