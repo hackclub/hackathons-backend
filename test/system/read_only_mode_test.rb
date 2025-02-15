@@ -9,7 +9,7 @@ class ReadOnlyModeTest < ApplicationSystemTestCase
     ENV.delete "READ_ONLY_MODE"
   end
 
-  test "signing in" do
+  test "signing in with read only mode" do
     visit sign_in_path
     assert_no_text(/read only/i)
 
@@ -18,5 +18,17 @@ class ReadOnlyModeTest < ApplicationSystemTestCase
 
     assert_text(/read only/i)
     assert_not User::Authentication.exists? user: users(:matt)
+  end
+
+  test "default behavior takes priority" do
+    assert_raises ReadOnlyModeError do
+      users(:matt).update! name: "different"
+    end
+
+    users(:matt).readonly!
+
+    assert_raises ActiveRecord::ReadOnlyRecord do
+      users(:matt).update! name: "different"
+    end
   end
 end
