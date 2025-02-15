@@ -1,10 +1,10 @@
-def read_only_mode?
-  ENV["MAINTENANCE"].present?
-end
-
 module ReadOnly
   def readonly?(mode: true)
-    super || (read_only_mode? if mode)
+    if mode
+      super || ENV["MAINTENANCE"].present?
+    else
+      super
+    end
   end
 
   def _raise_readonly_record_error
