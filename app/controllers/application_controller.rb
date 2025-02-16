@@ -4,4 +4,5 @@ class ApplicationController < ActionController::Base
   include SetCurrentRequestDetails
   include Authenticate
   include StreamFlashes
+  include ReadOnlyMode
 end
