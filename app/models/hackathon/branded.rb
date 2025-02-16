@@ -10,7 +10,9 @@ module Hackathon::Branded
       banner.variant :large, resize_to_limit: [1920, 1080]
     end
 
-    validates :logo, :banner, processable_file: true
+    validates :logo, :banner, processable_file: true,
+      content_type: {in: ActiveStorage.variable_content_types, message: "must be a valid image format (png, jpeg, webp, etc.)"}
+
     validates :logo, :banner, on: :submit, attached: true,
       size: {less_than: 25.megabytes, message: "is too powerful (max 25 MB)"}
 
