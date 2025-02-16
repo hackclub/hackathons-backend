@@ -22,22 +22,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Install system dependencies
-        env:
-          DEBIAN_FRONTEND: noninteractive
+      - name: Install dependencies
         run: |
+          sudo apt-get install postgresql-common
+          sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
           sudo apt-get update
-          sudo apt-get install sqlite3 libvips
+          sudo apt-get install libvips postgresql-client
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - name: Setup Postgres
+        run: docker compose up --detach
       - name: Run tests
         run: bin/rails test; bin/rails test:system
-        env:
-          RAILS_ENV: test
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
         if: failure()
