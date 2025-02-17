@@ -7,7 +7,7 @@ class User::Session < ApplicationRecord
   after_create -> { authentication.completed }
 
   def access
-    touch :last_accessed_at
+    touch :last_accessed_at unless ENV["READ_ONLY_MODE"]
     self
   end
 end
