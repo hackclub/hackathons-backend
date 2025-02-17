@@ -4,7 +4,7 @@ class Api::HackathonsController < Api::BaseController
       Hackathon.approved
                .includes(:tags, :events)
                .with_attached_logo.with_attached_banner,
-      ordered_by: {id: :desc}, per_page: 100
+      ordered_by: {id: :desc}, per_page: 50
     )
   end
 
