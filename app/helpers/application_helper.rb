@@ -40,8 +40,7 @@ module ApplicationHelper
 
     default_options = {
       alt: "#{user.name} profile picture",
-      class: "avatar",
-      style: "width: #{size}; height: #{size};"
+      class: "align-middle size-[#{size}] rounded-full"
     }
 
     image_tag user.gravatar_url, default_options.deep_merge(options)
@@ -51,6 +50,18 @@ module ApplicationHelper
     url = URI.parse("https://ui-avatars.com/api/")
     url.query = URI.encode_www_form({name:}.deep_merge(options))
     image_tag url.to_s, **html
+  end
+
+  def classes_for_hackathon_status(status)
+    case status
+    when "approved"
+      "text-(--green)"
+    when "rejected"
+      "text-(--red)"
+    when "pending"
+      "text-(--slate)"
+    end <<
+      " border-current bg-[color-mix(in srgb, currentcolor) 3%, transparent);]"
   end
 
   def page(size)

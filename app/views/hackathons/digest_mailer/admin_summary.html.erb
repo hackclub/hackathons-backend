@@ -7,7 +7,7 @@
   for <%= @listed_hackathons.count %> <%= "hackathon".pluralize(@listed_hackathons.count) %>.
 </p>
 
-<div style="margin-top: 2rem;">
+<div class="mt-8">
   <% @listed_hackathons.each do |hackathon| %>
 
     <% subtitle = capture do %>
@@ -18,7 +18,7 @@
     <% end %>
 
     <%= render "hackathon", hackathon:, subtitle: do %>
-      <p style="margin: 0.2rem 0;">
+      <p class="my-1">
         <%= hackathon.general_location %>
       </p>
     <% end %>

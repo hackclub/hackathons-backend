@@ -1,123 +1,121 @@
 <% content_for :title, @hackathon.name %>
 
 <% content_for :nav do %>
-  <%= link_to "◀ Back to Hackathons", admin_hackathons_path, class: "button" %>
+  <%= link_to "◀ Back to Hackathons", admin_hackathons_path, class: "p-2" %>
 <% end %>
 
 <article id="<%= dom_id(@hackathon) %>" class="hackathon">
   <%= turbo_stream_from @hackathon %>
 
-  <div class="hackathon__attributes">
-    <turbo-frame id="hackathon_name">
-      <h1 class="heading--medium">
-        <%= @hackathon.name %>
-        <%= link_to "✏️", edit_admin_hackathon_name_path(@hackathon), class: "hidden-link text--small" %>
-      </h1>
-    </turbo-frame>
+  <turbo-frame id="hackathon_name">
+    <h1 class="text-3xl">
+      <%= @hackathon.name %>
+      <%= link_to "✏️", edit_admin_hackathon_name_path(@hackathon), class: "text-xs no-underline focus:underline decoration-wavy" %>
+    </h1>
+  </turbo-frame>
 
-    <% if @hackathon.logo.present? || @hackathon.banner.present? %>
-      <section style="display: flex;" class="pt3">
-        <div style="display: flex; flex-wrap: wrap; background-color: lightgrey;" class="p3">
-          <% if @hackathon.logo.present? %>
-            <turbo-frame id="logo">
-              <div class="mr3">
-                <h2 class="heading--small">Logo</h2>
-                <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data:
-                  {controller: "form", turbo_confirm: "Are you sure you want to overwrite the logo?"} do |form| %>
-                  <%= form.label :logo, style: "cursor: pointer;" do %>
-                    <%= image_tag @hackathon.logo.variant(:small) %>
-                    <%= form.file_field :logo, data: {action: "input->form#submit"}, style: "display: none;" %>
-                  <% end %>
+  <% if @hackathon.logo.present? || @hackathon.banner.present? %>
+    <section class="pt-3 flex">
+      <div class="bg-[lightgray] py-3 flex flex-wrap">
+        <% if @hackathon.logo.present? %>
+          <turbo-frame id="logo">
+            <div class="mr-3 py-3">
+              <h2 class=text-2xl">Logo</h2>
+              <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data:
+                {controller: "form", turbo_confirm: "Are you sure you want to overwrite the logo?"} do |form| %>
+                <%= form.label :logo, class: "cursor-pointer" do %>
+                  <%= image_tag @hackathon.logo.variant(:small) %>
+                  <%= form.file_field :logo, data: {action: "input->form#submit"}, class: "hidden" %>
                 <% end %>
-              </div>
-            </turbo-frame>
-          <% end %>
+              <% end %>
+            </div>
+          </turbo-frame>
+        <% end %>
 
-          <% if @hackathon.banner.present? %>
-            <turbo-frame id="banner">
-              <div>
-                <h2 class="heading--small">Banner</h2>
-                <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data:
-                  {controller: "form", turbo_confirm: "Are you sure you want to overwrite the banner?"} do |form| %>
-                  <%= form.label :banner, style: "cursor: pointer;" do %>
-                    <%= image_tag @hackathon.banner.variant(:small) %>
-                    <%= form.file_field :banner, data: {action: "input->form#submit"}, style: "display: none;" %>
-                  <% end %>
+        <% if @hackathon.banner.present? %>
+          <turbo-frame id="banner">
+            <div class="py-3">
+              <h2 class="text-2xl">Banner</h2>
+              <%= form_with model: @hackathon, url: admin_hackathon_path(@hackathon), data:
+                {controller: "form", turbo_confirm: "Are you sure you want to overwrite the banner?"} do |form| %>
+                <%= form.label :banner, class: "cursor-pointer" do %>
+                  <%= image_tag @hackathon.banner.variant(:small) %>
+                  <%= form.file_field :banner, data: {action: "input->form#submit"}, class: "hidden" %>
                 <% end %>
-              </div>
-            </turbo-frame>
-          <% end %>
-        </div>
-      </section>
-    <% end %>
-
-    <div>
-      Status:
-      <%= @hackathon.status %>
-    </div>
-
-    <div>
-      High School Led:
-      <%= @hackathon.high_school_led? ? "Yes" : "No" %>
-    </div>
-
-    <div>
-      Applicant:
-      <%= @hackathon.applicant.name.presence&.+(", ") %>
-      <%= link_to @hackathon.applicant.email_address, admin_user_url(@hackathon.applicant) %>
-      <%= mail_to @hackathon.applicant.email_address, "📧" %>
-    </div>
-
-    <div>
-      <turbo-frame id="hackathon_website">
-        Website: <%= link_to nil, @hackathon.website, target: "_blank" %>
-        <%= link_to "✏️", edit_admin_hackathon_website_path(@hackathon), class: "hidden-link text--small" %>
-      </turbo-frame>
-    </div>
-
-    <div>
-      <turbo-frame id="hackathon_times">
-        Starts <%= time_tag(@hackathon.starts_at, format: "%B %e, %Y at %l:%M %p") %>,
-        ends <%= time_tag(@hackathon.ends_at, format: "%B %e at %l:%M %p") %> (UTC)
-        <%= link_to "✏️", edit_admin_hackathon_times_path(@hackathon), class: "hidden-link text--small" %>
-      </turbo-frame>
-    </div>
-
-    <div>
-      <turbo-frame id="hackathon_expected_attendees">
-        Expected Attendees:
-        <%= @hackathon.expected_attendees %>
-        <%= @hackathon.modality.humanize(capitalize: false) %>
-        <%= link_to "✏️", edit_admin_hackathon_expected_attendees_path(@hackathon), class: "hidden-link text--small" %>
-      </turbo-frame>
-    </div>
-
-    <div>
-      <turbo-frame id="hackathon_address">
-        Address: <%= @hackathon.address %>
-        <%= link_to "✏️", edit_admin_hackathon_address_path(@hackathon), class: "hidden-link text--small" %>
-
-        <% if @hackathon.latitude %>
-          <span title="latitude, longitude">- <%= @hackathon.latitude %>, <%= @hackathon.longitude %></span>
+              <% end %>
+            </div>
+          </turbo-frame>
         <% end %>
-      </turbo-frame>
-    </div>
+      </div>
+    </section>
+  <% end %>
 
-    <div>
-      <turbo-frame id="swag_mailing_address">
-        <% if @hackathon.requested_swag? %>
-          Swag requested for: <%= @hackathon.swag_request.mailing_address.to_s %>
-        <% else %>
-          No swag requested.
-        <% end %>
-      </turbo-frame>
-    </div>
+  <div class="my-3">
+    Status:
+    <%= @hackathon.status %>
   </div>
 
-  <div class="button-group">
-    <%= button_to "Approve", admin_hackathon_path(@hackathon), method: :patch, params: {hackathon: {status: :approved}}, disabled: @hackathon.approved?, class: "button--success" %>
-    <%= button_to "Reject", admin_hackathon_path(@hackathon), method: :patch, params: {hackathon: {status: :rejected}}, disabled: @hackathon.rejected?, class: "button--danger" %>
-    <%= button_to "Hold for review", admin_hackathon_hold_path(@hackathon), class: "button--neutral" %>
+  <div class="my-3">
+    High School Led:
+    <%= @hackathon.high_school_led? ? "Yes" : "No" %>
+  </div>
+
+  <div class="my-3">
+    Applicant:
+    <%= @hackathon.applicant.name.presence&.+(", ") %>
+    <%= link_to @hackathon.applicant.email_address, admin_user_url(@hackathon.applicant) %>
+    <%= mail_to @hackathon.applicant.email_address, "📧" %>
+  </div>
+
+  <div class="my-3">
+    <turbo-frame id="hackathon_website">
+      Website: <%= link_to nil, @hackathon.website, target: "_blank" %>
+      <%= link_to "✏️", edit_admin_hackathon_website_path(@hackathon), class: "text-xs no-underline focus:underline decoration-wavy" %>
+    </turbo-frame>
+  </div>
+
+  <div class="my-3">
+    <turbo-frame id="hackathon_times">
+      Starts <%= time_tag(@hackathon.starts_at, format: "%B %e, %Y at %l:%M %p") %>,
+      ends <%= time_tag(@hackathon.ends_at, format: "%B %e at %l:%M %p") %> (UTC)
+      <%= link_to "✏️", edit_admin_hackathon_times_path(@hackathon), class: "text-xs no-underline focus:underline decoration-wavy" %>
+    </turbo-frame>
+  </div>
+
+  <div class="my-3">
+    <turbo-frame id="hackathon_expected_attendees">
+      Expected Attendees:
+      <%= @hackathon.expected_attendees %>
+      <%= @hackathon.modality.humanize(capitalize: false) %>
+      <%= link_to "✏️", edit_admin_hackathon_expected_attendees_path(@hackathon), class: "text-xs no-underline focus:underline decoration-wavy" %>
+    </turbo-frame>
+  </div>
+
+  <div class="my-3">
+    <turbo-frame id="hackathon_address">
+      Address: <%= @hackathon.address %>
+      <%= link_to "✏️", edit_admin_hackathon_address_path(@hackathon), class: "text-xs no-underline focus:underline decoration-wavy" %>
+
+      <% if @hackathon.latitude %>
+        <span title="latitude, longitude">- <%= @hackathon.latitude %>, <%= @hackathon.longitude %></span>
+      <% end %>
+    </turbo-frame>
+  </div>
+
+  <div class="my-3">
+    <turbo-frame id="swag_mailing_address">
+      <% if @hackathon.requested_swag? %>
+        Swag requested for: <%= @hackathon.swag_request.mailing_address.to_s %>
+      <% else %>
+        No swag requested.
+      <% end %>
+    </turbo-frame>
+  </div>
+
+  <div class="my-3 flex gap-2">
+    <%= button_to "Approve", admin_hackathon_path(@hackathon), method: :patch, params: {hackathon: {status: :approved}}, disabled: @hackathon.approved?, class: "bg-[limegreen]" %>
+    <%= button_to "Reject", admin_hackathon_path(@hackathon), method: :patch, params: {hackathon: {status: :rejected}}, disabled: @hackathon.rejected?, class: "bg-[crimson]" %>
+    <%= button_to "Hold for review", admin_hackathon_hold_path(@hackathon), class: "bg-[darkgray]" %>
   </div>
 
   <%= render "events/timeline", {eventable: @hackathon} %>

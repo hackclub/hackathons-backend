@@ -8,12 +8,12 @@
 </h2>
 
 <% @database_dumps.each do |database_dump| %>
-  <%= link_to (database_dump.file.attached? ? database_dump.file : nil), target: "_blank", style: "text-decoration: none;" do %>
-    <article id="<%= dom_id(database_dump) %>" class="mt3 card interactive">
+  <%= link_to (database_dump.file.attached? ? database_dump.file : nil), target: "_blank", class: "no-underline" do %>
+    <article id="<%= dom_id(database_dump) %>" class="mt-4 card interactive">
       <%= turbo_stream_from database_dump %>
 
       <turbo-frame id="<%= dom_id(database_dump) %>_name">
-        <h3 style="color: var(--red);">
+        <h3 class="text-(color:--red)">
           <%= database_dump.name %>
         </h3>
       </turbo-frame>

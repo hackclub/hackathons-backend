@@ -1,24 +1,24 @@
-<%= link_to admin_hackathon_path(hackathon), style: "text-decoration: none;" do %>
+<%= link_to admin_hackathon_path(hackathon), class: "no-underline" do %>
   <%= turbo_stream_from hackathon %>
 
-  <article id="<%= dom_id(hackathon) %>" class="hackathon-snippet card interactive">
-    <div class="hackathon-snippet__header">
-      <h2 class="hackathon-snippet__title headline"><%= hackathon.name %></h2>
-      <span class="hackathon-snippet__status outline-badge hackathon--<%= hackathon.status %>">
+  <article id="<%= dom_id(hackathon) %>" class="mb-2 p-4 flex flex-col card interactive">
+    <div class="mb-2 flex flex-wrap items-center gap-x-2">
+      <h2 class="m-0 text-(color:--red) headline"><%= hackathon.name %></h2>
+      <span class="px-2 text-xs outline-badge <%= classes_for_hackathon_status hackathon.status %>">
         <%= hackathon.status.humanize %>
       </span>
 
-      <span style="flex-grow: 1;"></span>
+      <span class="grow-1"></span>
 
-      <span class="hackathon-snippet__created-at">submitted <%= local_time_ago(hackathon.created_at) %></span>
+      <span class="text-right">submitted <%= local_time_ago(hackathon.created_at) %></span>
     </div>
 
-    <div class="hackathon-snippet__description">
+    <div class="flex items-start gap-x-4">
       <% if hackathon.logo.attached? %>
-        <%= image_tag hackathon.logo.variant(:small), class: "hackathon-snippet__logo" %>
+        <%= image_tag hackathon.logo.variant(:small), class: "max-w-[3rem] max-h-[3rem] bg-black" %>
       <% end %>
 
-      <div class="hackathon-snippet__times">
+      <div class="grid gap-x-1" style="grid-template: auto auto / auto auto">
         <span>Starts</span>
         <span><%= time_tag(hackathon.starts_at, format: "%B %d, %Y at %l:%M %p") %></span>
         <span>Ends</span>

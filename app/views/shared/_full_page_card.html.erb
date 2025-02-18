@@ -2,11 +2,11 @@
 <% content_for :body_style, "background-color: var(--sheet)" %>
 
 <div>
-  <div style="height: var(--spacing-6);">
-    <div class="full_page_card__background" style="background-image: url('<%= background_url %>');"></div>
+  <div class="h-32">
+    <div class="h-[220%] bg-center bg-cover" style="background-image: url('<%= background_url %>');"></div>
   </div>
 
-  <div class="full_page_card__card container narrow card">
+  <div class="bg-(color:--elevated) rounded-(--radii-default) container narrow card">
     <%= yield %>
   </div>
 </div>

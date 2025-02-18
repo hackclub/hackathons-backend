@@ -1,0 +1,69 @@
+@layer tailwind-theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(tailwind-theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@import "../stylesheets/simple_form";
+
+body {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+/* redefining .container here so Hack Club's theme doesn't conflict with Tailwind */
+.container {
+  width: 100%;
+  margin: auto;
+  padding-left: var(--spacing-3);
+  padding-right: var(--spacing-3);
+
+  @media screen and (max-width: 32em) {
+    padding: inherit var(--spacing-3);
+  }
+
+  .full {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+}
+@media screen {
+  @media (min-width: 32em) {
+    .container {
+      max-width: var(--size-layout);
+    }
+    .container.copy {
+      max-width: var(--size-copy);
+    }
+    .container.narrow {
+      max-width: var(--size-narrow);
+    }
+  }
+
+  @media (min-width: 64em) {
+    .container {
+      max-width: var(--size-layout-plus);
+    }
+    .container.wide {
+      max-width: var(--size-wide);
+    }
+    .container.copy {
+      max-width: var(--size-copy-plus);
+    }
+    .container.narrow {
+      max-width: var(--size-narrow-plus);
+    }
+  }
+}
+
+@theme {
+  @keyframes appear-then-fade {
+    0%,100% {
+      opacity: 0
+    }
+
+    6%,66% {
+      opacity: 1
+    }
+  }
+}
