@@ -4,7 +4,7 @@
   </span>
   <%= subscription.to_location.to_fs(:short) %>
 </h2>
-<div style="margin-bottom: 2rem;">
+<div class="mb-8">
   <% listings.each do |listing| %>
     <%= render "hackathon", hackathon: listing.hackathon %>
   <% end %>
