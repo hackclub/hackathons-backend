@@ -40,4 +40,4 @@ plugin :tmp_restart
 
 $LOAD_PATH << File.expand_path("../lib", __dir__)
 
-plugin :dartsass if Rails.env.development?
+plugin :tailwindcss if Rails.env.development?

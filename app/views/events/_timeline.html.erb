@@ -1,23 +1,21 @@
-<section class="timeline">
+<section class="my-8 relative after:absolute after:mt-4 after:top-0 after:left-4 after:w-0.5 after:content-[''] after:-z-1 after:bg-(color:--border) after:h-[calc(100%-32px)] after:-translate-x-1/2">
   <% eventable.events.order(created_at: :asc).includes(:creator, :target).each do |event| %>
-    <article id="<%= dom_id(event) %>" class="timeline__event">
-
-      <div class="timeline__icon">
+    <article id="<%= dom_id(event) %>" class="mb-4 flex flex-row items-center">
+      <div class="inline-block mr-2">
         <% if event.creator %>
-          <div style="display: inline-block;">
+          <div class="inline-block">
             <%= avatar event.creator %>
           </div>
         <% else %>
           <%= ui_avatars event.action, size: "32", length: 1, bold: true,
-            html: {class: "avatar", style: "width: 32px; height: 32px;", alt: "#{event.action} icon"} %>
+            html: {class: "rounded-full align-middle size-[32px]", alt: "#{event.action} icon"} %>
         <% end %>
       </div>
 
-      <div class="timeline__description">
+      <div>
         <%= event.description %>
         <i><%= local_time_ago(event.created_at) %></i>
       </div>
-
     </article>
   <% end %>
 </section>
