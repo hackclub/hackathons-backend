@@ -33,7 +33,7 @@ Rails.application.routes.draw do
         scope module: :hackathons do
           resource :hold, only: :create
 
-          resource :name, :website, :times,
+          resource :name, :website, :times, :address,
             :expected_attendees, only: :edit
 
           collection do

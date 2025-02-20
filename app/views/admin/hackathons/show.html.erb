@@ -93,13 +93,14 @@
     </div>
 
     <div>
-      Location:
+      <turbo-frame id="hackathon_address">
+        Address: <%= @hackathon.address %>
+        <%= link_to "✏️", edit_admin_hackathon_address_path(@hackathon), class: "hidden-link text--small" %>
 
-      <%= @hackathon.address %>
-
-      <% if @hackathon.latitude %>
-        <span title="latitude, longitude">- <%= @hackathon.latitude %>, <%= @hackathon.longitude %></span>
-      <% end %>
+        <% if @hackathon.latitude %>
+          <span title="latitude, longitude">- <%= @hackathon.latitude %>, <%= @hackathon.longitude %></span>
+        <% end %>
+      </turbo-frame>
     </div>
 
     <div>
