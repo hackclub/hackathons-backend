@@ -26,7 +26,7 @@ module Hackathon::Regional
   end
 
   def address
-    super.presence || [street, city, province, postal_code, country_code].compact.join(", ")
+    super.presence || [street, city, province, postal_code, country_code].compact.presence&.join(", ")
   end
 
   def general_location
