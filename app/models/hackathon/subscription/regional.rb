@@ -16,7 +16,7 @@ module Hackathon::Subscription::Regional
 
           city: result.city,
           province: result.province || result.state,
-          country_code: result.country_code&.upcase
+          country_code: (ISO3166::Country.from_alpha3_to_alpha2(result.country_code) || result.country_code)&.upcase
         }
       end
     end
