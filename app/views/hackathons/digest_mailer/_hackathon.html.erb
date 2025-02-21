@@ -1,9 +1,9 @@
-<article style="margin-bottom: 1.5rem;">
-  <div style="margin-bottom: 0.25rem;">
+<article class="mb-6">
+  <div class="mb-1">
     <% if hackathon.logo.attached? %>
-      <%= image_tag hackathon.logo.variant(:small), style: "width: 32px; vertical-align: middle; margin-right: 0.5rem;" %>
+      <%= image_tag hackathon.logo.variant(:small), class: "mr-2 w-8 align-middle" %>
     <% end %>
-    <h3 style="vertical-align: middle; display: inline-block; margin: 0;">
+    <h3 class="m-0 inline-block align-middle">
       <%= link_to hackathon.name, hackathon.website %>
     </h3>
     <%= local_assigns[:subtitle] %>
