@@ -1,16 +1,9 @@
-// This module is used by both the `application` and `admin` layouts.
+@import "tailwindcss";
+@import "../stylesheets/simple_form";
 
 body {
   overflow-y: scroll;
   scrollbar-gutter: stable;
-}
-
-.hidden-link {
-  text-decoration: none;
-
-  &:hover, &:focus {
-    text-decoration: underline wavy;
-  }
 }
 
 .container {
@@ -22,5 +15,17 @@ body {
     max-width: 100%;
     padding: 0;
     margin: 0;
+  }
+}
+
+@theme {
+  @keyframes appear-then-fade {
+    0%,100% {
+      opacity: 0
+    }
+
+    6%,66% {
+      opacity: 1
+    }
   }
 }

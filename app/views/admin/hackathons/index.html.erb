@@ -9,7 +9,7 @@
   <% unless @page.last? %>
     <%= turbo_stream.action :after_unless_duplicate, "hackathons-#{@page.number}" do %>
       <%= turbo_frame_tag "hackathons-#{@page.number + 1}", target: "_top", src: url_for(page: @page.next_param), loading: :lazy, refresh: :morph do %>
-        <div class="spinner" style="margin: 20px auto auto auto"></div>
+        <div class="mt-5 m-auto size-12 rounded-full border-5 border-[lightgray] border-t-[darkgray] animate-spin"></div>
       <% end %>
     <% end %>
   <% end %>

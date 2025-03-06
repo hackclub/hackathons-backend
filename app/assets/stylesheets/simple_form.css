@@ -10,7 +10,7 @@ form.simple_form {
     font-weight: 800;
   }
 
-  // Simple form's asterisk (for required fields)
+  /* Simple form's asterisk (for required fields) */
   abbr[title] {
     text-decoration: none;
     margin-left: 2px;
@@ -31,10 +31,8 @@ form.simple_form {
     flex-direction: column;
     row-gap: var(--spacing-4);
 
-    @each $type in (text, email, url) {
-      input[type="#{$type}"], textarea {
-        width: 100%;
-      }
+    input[type=email], input[type=text], input[type=url] textarea {
+      width: 100%;
     }
 
     .hint {
@@ -59,12 +57,12 @@ form.simple_form {
       margin-top: calc(var(--spacing-4) / -2);
     }
   }
-  
+
   .form__inputs--nested > div > label {
     font-size: 18px;
     margin-bottom: var(--spacing-2);
   }
-  
+
   .form__inputs--nested > .lead {
     font-size: var(--font-2)!important;
   }
@@ -76,7 +74,7 @@ form.simple_form {
   .input.file {
     padding-left: 0px;
   }
-  
+
   input::file-selector-button {
     font-family: "Phantom Sans";
     padding: 4px;
