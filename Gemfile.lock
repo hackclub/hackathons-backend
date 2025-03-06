@@ -107,9 +107,9 @@ GEM
       marcel (>= 1.0.3)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
-    appsignal (4.4.0)
+    appsignal (4.5.3)
       logger
-      rack
+      rack (>= 2.0.0)
     ast (2.4.2)
     audits1984 (0.1.7)
       console1984
@@ -261,7 +261,7 @@ GEM
       rexml
     lint_roller (1.1.0)
     local_time (3.0.2)
-    logger (1.6.5)
+    logger (1.6.6)
     lograge (0.14.0)
       actionpack (>= 4)
       activesupport (>= 4)
@@ -333,7 +333,7 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.1.10)
+    rack (3.1.11)
     rack-cors (2.0.2)
       rack (>= 2.0.0)
     rack-mini-profiler (3.3.1)
