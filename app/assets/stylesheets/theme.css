@@ -1,9 +1,6 @@
-// The following CSS variables are already defined by the Hack Club CSS theme
-// that's linked in the view layout. However, they are being "redefined" here so
-// that IDEs don't complain about undefined css variables.
-//
-// This file isn't actually used/compiled by SCSS since the wildcard import in
-// `application.scss` ignores dotfiles (including this one).
+/* The following CSS variables are already defined by the Hack Club CSS theme
+that's linked in the view layout. However, they are being "redefined" here so
+that IDEs don't complain about undefined css variables. */
 
 :root {
   --darker: var(--darker);

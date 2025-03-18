@@ -6,9 +6,9 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag "https://css.hackclub.com/theme.min.css" %>
   <%= stylesheet_link_tag "https://css.hackclub.com/fonts.min.css" %>
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "https://css.hackclub.com/theme.min.css" %>
+  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
 
   <script>
     const Hackathons = {
@@ -31,7 +31,7 @@
 <%= render "admin/header" %>
 <%= render "shared/flash" %>
 
-<main class="container wide <%= yield :container_class %>" style="padding: var(--spacing-4); padding-bottom: var(--spacing-5)">
+<main class="container wide <%= yield :container_class %> p-8">
   <%= yield %>
 </main>
 

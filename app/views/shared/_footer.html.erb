@@ -1,11 +1,11 @@
-<footer style="margin: var(--spacing-4)">
-  <p class="caption" style="text-align: center;">
+<footer class="m-8">
+  <p class="caption text-center">
     <% if Current.user&.admin? %>
       Dashboard
     <% end %>
     <br/>
-    <%= link_to "hackathons.hackclub.com", Hackathons::WEBSITE, class: "hidden-link" %>, made with ❤️ by
-    <%= link_to "Hack Club", "https://hackclub.com", class: "hidden-link" %>
+    <%= link_to "hackathons.hackclub.com", Hackathons::WEBSITE, class: "no-underline focus:underline decoration-wavy" %>, made with ❤️ by
+    <%= link_to "Hack Club", "https://hackclub.com", class: "no-underline focus:underline decoration-wavy" %>
   </p>
 
 </footer>

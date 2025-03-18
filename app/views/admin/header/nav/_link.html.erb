@@ -1,5 +1,5 @@
 <% selected = @nav_active_item == link %>
 
-<%= link_to link, class: "admin__nav__link#{"--active" if selected }" do %>
+<%= link_to link, class: "no-underline px-0 py-2 text-(color:--slate) text-xl hover:text-(color:--red) border-b-4 hover:border-b-(color:--red) #{selected ? "border-black" : "border-transparent"}" do %>
   <%= title %>
 <% end %>

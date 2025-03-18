@@ -2,9 +2,9 @@
 <% @nav_active_item = admin_users_path %>
 <h1 class="title">Users</h1>
 
-<%= form_with method: :get, class: "simple_form mt2" do |form| %> 
-  <div style="display: flex"> 
+<%= form_with method: :get, class: "simple_form mt-2" do |form| %>
+  <div class="flex">
     <%= form.email_field :email_address, placeholder: "Email address",
-        required: true, value: @email_address, style: "flex: 1" %>
+        required: true, value: @email_address, class: "flex-1" %>
   </div>
 <% end %>

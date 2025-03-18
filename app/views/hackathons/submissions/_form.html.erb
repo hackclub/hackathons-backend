@@ -12,7 +12,7 @@
       as: :select, selected: nil %>
   </div>
 
-  <hr class="my4"/>
+  <hr class="my-8"/>
 
   <div class="form__inputs">
     <%= f.input :name, label: "Name of the hackathon", hint: "Make sure this matches what's on its website." %>
@@ -21,12 +21,12 @@
     <%= f.input :ends_at, label: "End date", hint: "and this too!", html5: true %>
 
     <% website_hint = capture do %>
-      <p class="mt0">
+      <p class="mt-0">
         Your hackathon website must on a custom domain and include a registration
         page or link to be listed in the hackathon directory—no Devpost links here
         please!
       </p>
-      <p class="m0">
+      <p class="m-0">
         If you're running a high school hackathon on HCB, we can
         purchase a custom domain for your event.
       </p>
@@ -41,8 +41,8 @@
         input_html: {data: {"form--visibility-target": "switch", "action": "change->form--visibility#toggle"}} %>
 
       <div data-form--visibility-target="element">
-        <div class="form__inputs--nested" style="row-gap: var(--spacing-3)">
-          <p class="m0 lead">What's the address of the venue?</p>
+        <div class="form__inputs--nested gap-y-4">
+          <p class="m-0 lead">What's the address of the venue?</p>
           <%= f.input :street, label: "Street", required: false %>
           <%= f.input :city, required: false %>
           <%= f.input :province, label: "State/Province", required: false %>
@@ -59,18 +59,18 @@
       as: :select, selected: nil %>
   </div>
 
-  <div class="form__inputs mt4" data-controller="form--visibility" data-form--visibility-on-value='["1"]'>
+  <div class="form__inputs mt-8" data-controller="form--visibility" data-form--visibility-on-value='["1"]'>
     <div class="input">
       <%= label_tag :requested_swag, "Would you like a small envelope of Hack Club stickers mailed to you?" %>
       <%= select_tag :requested_swag, options_for_select([["Yes", 1], ["No", 0]]), include_blank: true, required: true,
         data: {"form--visibility-target": "switch", "action": "change->form--visibility#toggle"} %>
     </div>
 
-    <div data-form--visibility-target="element" style="display: none;">
-      <div class="form__inputs--nested" style="row-gap: var(--spacing-3)">
+    <div class="hidden" data-form--visibility-target="element">
+      <div class="form__inputs--nested gap-x-4">
         <%= f.simple_fields_for :swag_request do |swag| %>
           <%= swag.simple_fields_for :mailing_address do |address| %>
-            <p class="m0 lead">
+            <p class="m-0 lead">
               What's a good mailing address for those stickers?
               We will mail them out when your hackathon is approved for listing.
             </p>

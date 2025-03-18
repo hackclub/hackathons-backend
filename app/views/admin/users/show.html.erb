@@ -7,7 +7,7 @@
     <h1>
       🪪
       <%= @user.display_name %>
-      <%= link_to "✏️", edit_admin_user_name_path(@user), class: "hidden-link text--small" %>
+      <%= link_to "✏️", edit_admin_user_name_path(@user), class: "text-xs no-underline focus:underline decoration-wavy" %>
     </h1>
   </turbo-frame>
 
@@ -15,20 +15,20 @@
     <h2>
       📧
       <%= @user.email_address %>
-      <%= link_to "✏️", edit_admin_user_email_address_path(@user), class: "hidden-link text--small" %>
+      <%= link_to "✏️", edit_admin_user_email_address_path(@user), class: "text-xs no-underline focus:underline decoration-wavy" %>
     </h2>
   </turbo-frame>
 
   <turbo-frame id="subscriptions">
     <% if @user.subscriptions.active.any? %>
-      <div class="mt3">
+      <div class="mt-4">
         <h3>Active Subscriptions</h3>
         <ul>
           <% @user.subscriptions.active.each do |subscription| %>
             <li>
               <%= subscription.location %>
               <%= link_to "⛔", admin_subscription_path(subscription),
-                          style: "text-decoration: none;", "data-turbo-method": "delete",
+                          class: "no-underline", "data-turbo-method": "delete",
                           "data-turbo-confirm": "Remove this subscription for #{subscription.location}?" %>
             </li>
           <% end %>
@@ -38,10 +38,10 @@
   </turbo-frame>
 
   <% unless @user == Current.user %>
-    <div class="button-group">
-      <%= button_to "Promote to admin", admin_user_promotion_path(@user), class: "button--neutral",
+    <div class="flex my-3">
+      <%= button_to "Promote to admin", admin_user_promotion_path(@user), class: "bg-[darkgray]",
                      data: {"turbo-confirm": "Are you sure you want make this user an admin?"} unless @user.admin? %>
-      <%= button_to "Demote from admin", admin_user_promotion_path(@user), class: "button--danger", method: :delete,
+      <%= button_to "Demote from admin", admin_user_promotion_path(@user), class: "bg-[crimson]", method: :delete,
                      data: {"turbo-confirm": "Are you sure you want to demote this user?"} if @user.admin? %>
     </div>
   <% end %>
