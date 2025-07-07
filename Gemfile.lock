@@ -169,8 +169,8 @@ GEM
       rainbow
     countries (7.1.1)
       unaccent (~> 0.3)
-    country_select (10.0.1)
-      countries (> 5.0, < 8.0)
+    country_select (11.0.0)
+      countries (> 6.0, < 9.0)
     crack (1.0.0)
       bigdecimal
       rexml
