@@ -167,7 +167,7 @@ GEM
       parser
       rails (>= 7.0)
       rainbow
-    countries (7.1.1)
+    countries (8.0.2)
       unaccent (~> 0.3)
     country_select (11.0.0)
       countries (> 6.0, < 9.0)
