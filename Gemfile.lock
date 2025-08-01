@@ -102,7 +102,7 @@ GEM
   specs:
     action_text-trix (2.1.15)
       railties
-    active_storage_validations (3.0.0)
+    active_storage_validations (3.0.1)
       activejob (>= 6.1.4)
       activemodel (>= 6.1.4)
       activestorage (>= 6.1.4)
@@ -339,7 +339,7 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.1.16)
+    rack (3.2.0)
     rack-cors (3.0.0)
       logger
       rack (>= 3.0.14)
