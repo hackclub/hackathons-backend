@@ -111,7 +111,7 @@ GEM
       marcel (>= 1.0.3)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
-    appsignal (4.6.0)
+    appsignal (4.7.0)
       logger
       rack (>= 2.0.0)
     ast (2.4.3)
@@ -343,7 +343,7 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.2.0)
+    rack (3.2.1)
     rack-cors (3.0.0)
       logger
       rack (>= 3.0.14)
