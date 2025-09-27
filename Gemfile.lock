@@ -373,7 +373,7 @@ GEM
       io-console (~> 0.5)
     request_store (1.6.0)
       rack (>= 1.4)
-    rexml (3.4.1)
+    rexml (3.4.2)
     rinku (2.0.6)
     rouge (4.3.0)
     rubocop (1.75.8)
