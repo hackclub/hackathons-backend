@@ -1,6 +1,8 @@
 class User::Authentication < ApplicationRecord
   include Delivered
+
   delivered :now
+
   include Eventable
 
   belongs_to :user
