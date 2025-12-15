@@ -29,7 +29,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # This directive tells Puma to first boot the application and load code
 # before forking the application. This takes advantage of Copy On Write
 # process behavior so workers use less memory.
-web_concurrency = (ENV.fetch("WEB_CONCURRENCY") { 1 }).to_i
+web_concurrency = ENV.fetch("WEB_CONCURRENCY", 1).to_i
 if web_concurrency > 1
   workers web_concurrency
   preload_app!
