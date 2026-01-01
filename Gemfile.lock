@@ -103,7 +103,7 @@ GEM
   specs:
     action_text-trix (2.1.16)
       railties
-    active_storage_validations (3.0.2)
+    active_storage_validations (3.0.3)
       activejob (>= 6.1.4)
       activemodel (>= 6.1.4)
       activestorage (>= 6.1.4)
@@ -336,7 +336,7 @@ GEM
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
     prettyprint (0.2.0)
-    prism (1.6.0)
+    prism (1.7.0)
     psych (5.3.1)
       date
       stringio
@@ -441,7 +441,7 @@ GEM
     tailwindcss-ruby (4.1.16-arm64-darwin)
     tailwindcss-ruby (4.1.16-x86_64-linux-gnu)
     thor (1.4.0)
-    timeout (0.4.4)
+    timeout (0.6.0)
     tsort (0.2.0)
     turbo-rails (2.0.20)
       actionpack (>= 7.1.0)
