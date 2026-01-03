@@ -5,8 +5,6 @@ ruby file: ".ruby-version"
 
 gem "rails", github: "rails/rails"
 
-gem "dotenv-rails", require: "dotenv/load"
-
 # Drivers
 gem "pg"
 gem "puma"
