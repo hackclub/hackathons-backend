@@ -20,6 +20,6 @@ class Hackathons::DigestsDeliveryJob < ApplicationJob
   end
 
   def new_digest_pertinent?(subscriber)
-    subscriber.digests.none? || subscriber.digests.last.created_at.before?(6.days.ago)
+    subscriber.digests.none? { it.created_at.after?(6.days.ago) }
   end
 end
