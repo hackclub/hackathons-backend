@@ -15,14 +15,5 @@ module Hackathon::Branded
 
     validates :logo, :banner, on: :submit, attached: true,
       size: {less_than: 25.megabytes, message: "is too powerful (max 25 MB)"}
-
-    before_validation :jfif_to_jpeg, if: -> { attachment_changes.any? }, on: :create
-  end
-
-  private
-
-  def jfif_to_jpeg
-    logo&.blob&.filename = logo&.blob&.filename&.to_s&.gsub(/\.jfif\z/i, ".jpeg")
-    banner&.blob&.filename = banner&.blob&.filename&.to_s&.gsub(/\.jfif\z/i, ".jpeg")
   end
 end

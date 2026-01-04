@@ -73,7 +73,8 @@ class HackathonTest < ActiveSupport::TestCase
 
     assert @hackathon.save
 
-    assert_equal "assemble_logo.jpeg", @hackathon.logo.blob.filename.to_s
-    assert_equal "assemble.jpeg", @hackathon.banner.blob.filename.to_s
+    assert @hackathon.logo.variant(:small).processed
+    assert @hackathon.banner.variant(:small).processed
+    assert @hackathon.banner.variant(:large).processed
   end
 end
