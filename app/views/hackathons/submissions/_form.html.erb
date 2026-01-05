@@ -33,8 +33,8 @@
     <% end %>
     <%= f.input :website, as: :url, hint: website_hint %>
 
-    <%= f.input :logo, hint: "This image is placed right above your event's name and description. The logo shouldn't include your event's name.", accept: (accept = ActiveStorage.variable_content_types.join(",")) %>
-    <%= f.input :banner, hint: "This image is used as the background for your listing card, and shouldn't include the logo you used above. We strongly recommend not including any text on the background, or it might be clipped off and covered by the logo you uploaded above.", accept: %>
+    <%= f.input :logo, hint: "This image is placed right above your event's name and description. The logo shouldn't include your event's name.", input_html: {accept: (accept = ActiveStorage.join(","))} %>
+    <%= f.input :banner, hint: "This image is used as the background for your listing card, and shouldn't include the logo you used above. We strongly recommend not including any text on the background, or it might be clipped off and covered by the logo you uploaded above.", input_html: {accept:} %>
 
     <div class="form__inputs" data-controller="form--visibility" data-form--visibility-on-value='["in_person","hybrid"]'>
 
