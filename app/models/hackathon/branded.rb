@@ -2,10 +2,11 @@ module Hackathon::Branded
   extend ActiveSupport::Concern
 
   included do
-    has_one_attached :logo do |logo|
+    has_one_attached :logo, analyze: :immediately do |logo|
       logo.variant :small, resize_to_limit: [128, 128]
     end
-    has_one_attached :banner do |banner|
+
+    has_one_attached :banner, analyze: :immediately do |banner|
       banner.variant :small, resize_to_limit: [228, 128]
       banner.variant :large, resize_to_limit: [1920, 1080]
     end
