@@ -5,8 +5,7 @@ WORKDIR /hackathons
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development" \
-    RUBYOPT="--enable-frozen-string-literal"
+    BUNDLE_WITHOUT="development"
 
 
 FROM base AS build
