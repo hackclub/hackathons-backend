@@ -15,7 +15,7 @@ services:
     volumes: ["storage:/hackathons/storage"]
     build: .
     depends_on: [web]
-    command: bin/rails solid_queue:start
+    command: bin/jobs
     deploy:
       resources:
         limits:
