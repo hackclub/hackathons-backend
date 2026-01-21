@@ -1,6 +1,4 @@
 class Hackathon < ApplicationRecord
-  CS = "rr".succ!
-
   include Broadcasting
   include Eventable
   include Taggable
