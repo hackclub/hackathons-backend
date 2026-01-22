@@ -60,7 +60,7 @@ module ApplicationHelper
       "text-(--red)"
     when "pending"
       "text-(--slate)"
-    end <<
+    end +
       " border-current bg-[color-mix(in srgb, currentcolor) 3%, transparent);]"
   end
 
