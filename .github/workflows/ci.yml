@@ -38,6 +38,8 @@ jobs:
         run: docker compose up --detach
       - name: Run tests
         run: bin/rails test; bin/rails test:system
+        env:
+          RUBYOPT: "--enable-frozen-string-literal"
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v6
         if: failure()
