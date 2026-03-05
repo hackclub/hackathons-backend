@@ -9,7 +9,7 @@ class InternetArchive::Capture
   end
 
   def request
-    response = connection.post("save", "url=#{website_url}").body
+    response = connection.post("save", {url: website_url}).body
     @job_id = response["job_id"]
     response
   end
@@ -28,6 +28,7 @@ class InternetArchive::Capture
 
   def connection
     @connection ||= Faraday.new(BASE_URL, headers:) do |faraday|
+      faraday.request :url_encoded
       faraday.response :json
       faraday.response :raise_error
     end
