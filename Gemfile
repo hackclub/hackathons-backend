@@ -10,7 +10,7 @@ gem "pg"
 gem "puma"
 
 # Assets
-gem "sprockets-rails"
+gem "propshaft"
 gem "tailwindcss-rails"
 gem "importmap-rails"
 gem "turbo-rails"
