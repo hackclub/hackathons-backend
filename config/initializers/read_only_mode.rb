@@ -16,4 +16,6 @@ module ReadOnly
   end
 end
 
-ActiveRecord::Base.prepend ReadOnly
+ActiveSupport.on_load(:active_record) do
+  ActiveRecord::Base.prepend ReadOnly
+end
