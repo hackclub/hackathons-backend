@@ -1,5 +1,5 @@
 # This file is used in development only, as the production database is managed by Coolify's native feature for that.
-# If you bump the database version here, be sure you update the database accordingly on Coolify as well.
+# If you bump the database version here, be sure to update the database accordingly on Coolify as well.
 
 services:
   postgres:
