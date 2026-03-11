@@ -10,7 +10,7 @@ class RenameLocksToRateLimitWindows < ActiveRecord::Migration[8.2]
         execute <<~SQL.squish
           DELETE FROM rate_limit_windows a
           USING rate_limit_windows b
-          WHERE a.id < b.id
+          WHERE a.id > b.id
             AND a.key = b.key;
         SQL
       end
