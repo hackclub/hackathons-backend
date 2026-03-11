@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_02_20_140522) do
+ActiveRecord::Schema[8.2].define(version: 2026_03_10_235500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -201,16 +201,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_02_20_140522) do
     t.index ["swag_mailing_address_id"], name: "index_hackathons_on_swag_mailing_address_id"
   end
 
-  create_table "locks", force: :cascade do |t|
-    t.integer "capacity", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "expiration"
-    t.string "key", null: false
-    t.datetime "updated_at", null: false
-    t.index ["expiration"], name: "index_locks_on_expiration"
-    t.index ["key"], name: "index_locks_on_key"
-  end
-
   create_table "mailing_addresses", force: :cascade do |t|
     t.string "city", null: false
     t.string "country_code", default: "US", null: false
@@ -221,6 +211,16 @@ ActiveRecord::Schema[8.1].define(version: 2025_02_20_140522) do
     t.string "postal_code"
     t.string "province"
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rate_limit_windows", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "expiration"
+    t.string "key", null: false
+    t.integer "tally", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["expiration"], name: "index_rate_limit_windows_on_expiration"
+    t.index ["key"], name: "index_rate_limit_windows_on_key", unique: true
   end
 
   create_table "solid_queue_blocked_executions", force: :cascade do |t|

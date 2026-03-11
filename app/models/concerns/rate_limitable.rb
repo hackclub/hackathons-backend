@@ -3,16 +3,17 @@ module RateLimitable
 
   class Limit < StandardError
     attr_reader :duration
-    def initialize(duration: nil)
+
+    def initialize(duration:)
       @duration = duration
-      super
+      super()
     end
   end
 
   class_methods do
     def rate_limit(key = name, to:, within:)
       around_perform do |job, block|
-        unless Lock.acquire(key, limit: to, duration: within) { block.call }
+        unless RateLimitWindow.admit(key, limit: to, duration: within) { block.call }
           raise Limit.new(duration: within)
         end
       end
