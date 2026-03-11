@@ -2,11 +2,12 @@ require "test_helper"
 
 class RateLimitableTest < ActiveJob::TestCase
   setup do
+    @previous_queue_adapter = ActiveJob::Base.queue_adapter
     ActiveJob::Base.queue_adapter = :test
   end
 
   teardown do
-    ActiveJob::Base.queue_adapter = :inline
+    ActiveJob::Base.queue_adapter = @previous_queue_adapter
   end
 
   class RateLimitedJob < ApplicationJob
