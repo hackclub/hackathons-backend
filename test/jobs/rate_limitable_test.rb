@@ -34,6 +34,6 @@ class RateLimitableTest < ActiveJob::TestCase
 
     travel 30.seconds, with_usec: true
     perform_enqueued_jobs at: Time.now
-    assert_no_enqueued_jobs only: RateLimitedJob
+    assert_no_enqueued_jobs
   end
 end
