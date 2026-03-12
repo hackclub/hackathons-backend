@@ -1,11 +1,7 @@
 class Api::HackathonsController < Api::BaseController
   def index
-    set_page_and_extract_portion_from(
-      Hackathon.approved
-               .includes(:tags, :events)
-               .with_attached_logo.with_attached_banner,
+    set_page_and_extract_portion_from Hackathon.approved,
       ordered_by: {id: :desc}, per_page: 50
-    )
   end
 
   def show
