@@ -45,10 +45,7 @@ module Hackathon::Website::Archivable
     InternetArchive::Capture.new(job_id:)
   end
 
-  class FollowUpJob < ApplicationJob
-    rate_limit "Wayback Machine", to: 15, within: 1.minute
-    queue_as :low
-
+  class FollowUpJob < Hackathons::WebsiteArchivalJob
     def perform(hackathon, id)
       hackathon.follow_up_on_archive(id)
     end

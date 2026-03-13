@@ -17,23 +17,65 @@ class RateLimitableTest < ActiveJob::TestCase
     end
   end
 
-  test "executing jobs within the limit" do
+  class ExtendedWaitJob < ApplicationJob
+    rate_limit to: 1, within: 1.minute, max_retries: 1,
+      extend_wait: {on: Faraday::TimeoutError, for: 2.minutes}
+
+    def perform(raise_error: false)
+      raise Faraday::TimeoutError if raise_error
+    end
+  end
+
+  test "executing jobs under the limit" do
     assert_no_enqueued_jobs do
       3.times { RateLimitedJob.perform_now }
     end
   end
 
-  test "exceeding the rate limit" do
-    assert_enqueued_jobs 2, only: RateLimitedJob do
-      5.times { RateLimitedJob.perform_now }
+  test "rescheduling jobs exceeding the limit" do
+    3.times { RateLimitedJob.perform_now }
+
+    assert_enqueued_with(job: RateLimitedJob) do
+      RateLimitedJob.perform_now
+    end
+  end
+
+  test "backing off when configured errors occur" do
+    assert_enqueued_with job: ExtendedWaitJob, at: 2.minutes.from_now do
+      ExtendedWaitJob.perform_now(raise_error: true)
+    end
+  end
+
+  test "resuming jobs after backoff" do
+    ExtendedWaitJob.perform_now(raise_error: true)
+
+    travel 1.minute do
+      perform_enqueued_jobs at: Time.now
+      assert_enqueued_jobs 1
     end
 
-    travel 30.seconds, with_usec: true
-    perform_enqueued_jobs at: Time.now
-    assert_enqueued_jobs 2, only: RateLimitedJob
+    travel 3.minutes do
+      assert_raises Faraday::TimeoutError do
+        perform_enqueued_jobs at: Time.now
+      end
+    end
+  end
 
-    travel 30.seconds, with_usec: true
-    perform_enqueued_jobs at: Time.now
+  test "dropping jobs after max retries" do
+    ExtendedWaitJob.perform_now
+
+    assert_enqueued_with job: ExtendedWaitJob do
+      ExtendedWaitJob.perform_now
+    end
+
+    travel 2.minutes do
+      ExtendedWaitJob.perform_now
+
+      assert_raises RateLimitable::Limit do
+        perform_enqueued_jobs at: Time.now
+      end
+    end
+
     assert_no_enqueued_jobs
   end
 end
