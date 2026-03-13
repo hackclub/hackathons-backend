@@ -23,6 +23,8 @@ gem "aws-sdk-s3", require: false
 gem "image_processing", ">= 1.2"
 gem "active_storage_validations"
 
+gem "solid_cache"
+
 # Background jobs
 gem "solid_queue"
 gem "mission_control-jobs"
