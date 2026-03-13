@@ -1,8 +1,38 @@
 class RateLimitWindow < ApplicationRecord
   scope :expired, -> { where("expiration <= ?", Time.now) }
-  scope :active, -> { expired.invert_where }
+  scope :current, -> { expired.invert_where }
+
+  scope :on_hold, -> { where "tally < 0" }
+
+  def on_hold?
+    tally.negative?
+  end
+
+  def hold_for(duration)
+    self.expiration = [expiration, duration.from_now].compact.max
+    self.tally = -1
+
+    save! unless new_record?
+  end
 
   class << self
+    def block(key, duration:)
+      transaction do
+        lock.find_or_initialize_by(key:).tap do
+          it.hold_for duration
+          it.save!
+        end
+      end
+    rescue ActiveRecord::RecordNotUnique
+      retry
+    end
+
+    def remaining_wait_time(key)
+      expiration = current.on_hold.where(key:).pick :expiration
+
+      expiration&.- Time.now
+    end
+
     def admit(key, limit:, duration:)
       if open_window(key, limit:, duration:)
         yield
@@ -31,8 +61,9 @@ class RateLimitWindow < ApplicationRecord
     end
 
     def join_window(key, limit:)
-      window = active.lock.find_by(key:)
-      window&.tally&.<(limit) && window.increment!(:tally)
+      window = current.lock.find_by(key:)
+
+      window&.tally&.<(limit) && !window.on_hold? && window.increment!(:tally)
     end
   end
 end
