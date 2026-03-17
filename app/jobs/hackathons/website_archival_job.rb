@@ -1,5 +1,11 @@
 class Hackathons::WebsiteArchivalJob < ApplicationJob
-  rate_limit "Wayback Machine", to: 10, within: 1.minute
+  rate_limit "Wayback Machine",
+    to: 10, within: 1.minute,
+    extend_wait: {
+      on: [Faraday::TooManyRequestsError, Faraday::ServerError],
+      for: 1.minute
+    }
+
   queue_as :low
 
   def perform(hackathon)
