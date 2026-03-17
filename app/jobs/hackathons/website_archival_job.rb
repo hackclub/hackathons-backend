@@ -6,6 +6,8 @@ class Hackathons::WebsiteArchivalJob < ApplicationJob
       for: 1.minute
     }
 
+  retry_on Faraday::ConnectionFailed, wait: :polynomially_longer, attempts: 3
+
   queue_as :low
 
   def perform(hackathon)
