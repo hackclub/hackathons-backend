@@ -211,6 +211,7 @@ GEM
       concurrent-ruby (~> 1.1)
       webrick (~> 1.7)
       websocket-driver (~> 0.7)
+    ffi (1.17.1)
     ffi (1.17.1-aarch64-linux-gnu)
     ffi (1.17.1-arm64-darwin)
     ffi (1.17.1-x86_64-linux-gnu)
@@ -583,6 +584,7 @@ CHECKSUMS
   faraday-follow_redirects (0.5.0) sha256=5cde93c894b30943a5d2b93c2fe9284216a6b756f7af406a1e55f211d97d10ad
   faraday-net_http (3.4.2) sha256=f147758260d3526939bf57ecf911682f94926a3666502e24c69992765875906c
   ferrum (0.17.1) sha256=51d591120fc593e5a13b5d9d6474389f5145bb92a91e36eab147b5d096c8cbe7
+  ffi (1.17.1) sha256=26f6b0dbd1101e6ffc09d3ca640b2a21840cc52731ad8a7ded9fb89e5fb0fc39
   ffi (1.17.1-aarch64-linux-gnu) sha256=c5d22cb545a3a691d46060f1343c461d1a8d38c3fd71b96b4cbbe6906bf1fd38
   ffi (1.17.1-arm64-darwin) sha256=a8e04f79d375742c54ee7f9fff4b4022b87200a4ec0eb082128d3b6559e67b4d
   ffi (1.17.1-x86_64-linux-gnu) sha256=8c0ade2a5d19f3672bccfe3b58e016ae5f159e3e2e741c856db87fcf07c903d0
@@ -701,7 +703,7 @@ CHECKSUMS
   zeitwerk (2.7.5) sha256=d8da92128c09ea6ec62c949011b00ed4a20242b255293dd66bf41545398f73dd
 
 RUBY VERSION
-  ruby 3.4.9
+  ruby 4.0.2
 
 BUNDLED WITH
   4.0.7
