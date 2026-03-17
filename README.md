@@ -25,7 +25,7 @@ using 🐘 [PostgreSQL](https://www.postgresql.org) for the database and 💾 [S
 ### Getting Started
 
 1. Make sure you have Docker
-   and [Ruby 3.4 installed](https://guides.rubyonrails.org/install_ruby_on_rails.html).
+   and [Ruby 4 installed](https://guides.rubyonrails.org/install_ruby_on_rails.html).
 
 2. Clone the repo
 

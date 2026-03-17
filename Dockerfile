@@ -1,4 +1,4 @@
-FROM ruby:3.4.9-slim AS base
+FROM ruby:4.0.2-slim AS base
 
 WORKDIR /hackathons
 
