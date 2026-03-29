@@ -5,10 +5,14 @@ export default class extends Controller {
   static values = {on: Array}
 
   connect() {
-    this.toggle()
+    this.#update()
   }
 
   toggle() {
+    this.#withViewTransition(() => this.#update())
+  }
+
+  #update() {
     const elementType = this.switchTarget.type;
 
     let visible;
@@ -21,16 +25,18 @@ export default class extends Controller {
         visible = this.onValue.includes(this.switchTarget.value);
     }
 
-    const update = () => {
-      this.elementTargets.forEach((element) => element.style.display = visible ? "block" : "none");
-    };
+    this.elementTargets.forEach((element) => {
+      element.style.display = visible ? "block" : "none"
+    });
+  }
 
-    // Fallback for browsers that don't support View Transitions
-    if (!document.startViewTransition) {
-      update();
-      return;
+  #withViewTransition(operation) {
+    if (document.startViewTransition) {
+      requestAnimationFrame(() => {
+        document.startViewTransition(operation);
+      });
+    } else {
+      operation();
     }
-
-    document.startViewTransition(() => update());
   }
 }
