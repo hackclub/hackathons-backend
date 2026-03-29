@@ -12,6 +12,8 @@ default: &defaults
     - ActionController::InvalidAuthenticityToken
     - ActiveRecord::RecordNotFound
 
+  enable_active_support_event_log_reporter: true
+
 development:
   <<: *defaults
   active: false
