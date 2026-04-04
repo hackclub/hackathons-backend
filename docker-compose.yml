@@ -2,8 +2,8 @@
 # If you bump the database version here, be sure to update the database accordingly on Coolify as well.
 
 services:
-  postgres:
-    image: postgres:17.9
+  postgres-18:
+    image: postgres:18.3
     ports:
       - ${POSTGRES_PORT-:5432}:5432
     environment:
@@ -11,7 +11,7 @@ services:
       POSTGRES_DB: hackathons_test
       POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - postgres-18:/var/lib/postgresql
 
 volumes:
-  postgres-data: {}
+  postgres-18: {}
