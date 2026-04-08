@@ -110,7 +110,7 @@ GEM
       activestorage (>= 6.1.4)
       activesupport (>= 6.1.4)
       marcel (>= 1.0.3)
-    addressable (2.8.9)
+    addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     appsignal (4.8.4)
       logger
@@ -542,7 +542,7 @@ CHECKSUMS
   activerecord (8.2.0.alpha)
   activestorage (8.2.0.alpha)
   activesupport (8.2.0.alpha)
-  addressable (2.8.9) sha256=cc154fcbe689711808a43601dee7b980238ce54368d23e127421753e46895485
+  addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
   appsignal (4.8.4) sha256=5c708a41c2913383d19ae581140da1904dbf642b974220d6c1bc4c7fdb1cf667
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
   audits1984 (0.1.7) sha256=095e0a0a2135f310ef6be5234e4aecd1ab5fb3670e15d4083b604cb425449cc2
