@@ -181,7 +181,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    css_parser (1.14.0)
+    css_parser (1.22.0)
       addressable
     csv (3.3.5)
     cuprite (0.17)
@@ -570,7 +570,7 @@ CHECKSUMS
   country_select (11.0.0) sha256=0ab0a385fa70eadc71473af4b21b9b4d09f75660cc1c282a5bf6ec873719204b
   crack (1.0.1) sha256=ff4a10390cd31d66440b7524eb1841874db86201d5b70032028553130b6d4c7e
   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d
-  css_parser (1.14.0) sha256=f2ce6148cd505297b07bdbe7a5db4cce5cf530071f9b732b9a23538d6cdc0113
+  css_parser (1.22.0) sha256=f274988a40c6178305530d60e7deb5162f7b5538b701b61b5488fc703e5b40c1
   csv (3.3.5) sha256=6e5134ac3383ef728b7f02725d9872934f523cb40b961479f69cf3afa6c8e73f
   cuprite (0.17) sha256=b140d5dc70d08b97ad54bcf45cd95d0bd430e291e9dffe76fff851fddd57c12b
   date (3.5.1) sha256=750d06384d7b9c15d562c76291407d89e368dda4d4fff957eb94962d325a0dc0
