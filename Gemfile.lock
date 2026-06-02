@@ -104,7 +104,7 @@ GEM
   specs:
     action_text-trix (2.1.19)
       railties
-    active_storage_validations (3.0.4)
+    active_storage_validations (3.0.5)
       activejob (>= 6.1.4)
       activemodel (>= 6.1.4)
       activestorage (>= 6.1.4)
@@ -536,7 +536,7 @@ CHECKSUMS
   actionpack (8.2.0.alpha)
   actiontext (8.2.0.alpha)
   actionview (8.2.0.alpha)
-  active_storage_validations (3.0.4) sha256=134ba51d5166cd419311fe1510d7eb64af6996e7041d8d56c26a2f151abb6522
+  active_storage_validations (3.0.5) sha256=4ae7338769ea28d67f1eb20a5693de4cf356c0a68ade914be4b5ae9691628425
   activejob (8.2.0.alpha)
   activemodel (8.2.0.alpha)
   activerecord (8.2.0.alpha)
