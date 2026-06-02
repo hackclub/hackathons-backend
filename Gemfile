@@ -21,6 +21,7 @@ gem "premailer-rails" # Inline CSS for emails
 # Active Storage
 gem "aws-sdk-s3", require: false
 gem "image_processing", ">= 1.2"
+gem "ruby-vips" # used by image_processing
 gem "active_storage_validations"
 
 gem "solid_cache"
