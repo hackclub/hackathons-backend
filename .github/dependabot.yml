@@ -13,4 +13,6 @@ updates:
       interval: "monthly"
       time: "10:00"
       timezone: "America/New_York"
+    allow:
+      - dependency-type: "all"
     open-pull-requests-limit: 10
