@@ -45,7 +45,7 @@ module Hackathon::Digest::Listings::ByLocation
   end
 
   def subscriptions_to_search
-    active_subscriptions = recipient.subscriptions.active
+    active_subscriptions = recipient.active_subscriptions
 
     active_subscriptions.reject do |subscription|
       # Remove any subscriptions that are covered by another subscription.

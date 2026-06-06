@@ -1,9 +1,7 @@
 class Hackathons::DigestsDeliveryJob < ApplicationJob
   def perform
     sent_digest_ids = []
-    current_subscribers.find_each do |subscriber|
-      next unless new_digest_pertinent?(subscriber)
-
+    current_subscribers_due_for_digest.find_each(batch_size: 500) do |subscriber|
       digest = subscriber.digests.new
 
       digest.save! unless digest.invalid? && digest.listings.none?
@@ -15,11 +13,8 @@ class Hackathons::DigestsDeliveryJob < ApplicationJob
 
   private
 
-  def current_subscribers
-    User.includes(:subscriptions).where(subscriptions: {status: :active}).includes(:digests)
-  end
-
-  def new_digest_pertinent?(subscriber)
-    subscriber.digests.none? { it.created_at.after?(6.days.ago) }
+  def current_subscribers_due_for_digest
+    User.includes(:active_subscriptions).where.associated(:active_subscriptions)
+      .where.missing :digests_in_past_week
   end
 end
