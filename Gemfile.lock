@@ -224,7 +224,7 @@ GEM
     geocoder (1.8.6)
       base64 (>= 0.1.0)
       csv (>= 3.0.0)
-    globalid (1.3.0)
+    globalid (1.4.0)
       activesupport (>= 6.1)
     hashdiff (1.2.1)
     hashid-rails (1.4.1)
@@ -595,7 +595,7 @@ CHECKSUMS
   fugit (1.12.3) sha256=826d77739086482a6ac2805bc32693845395da688f637890cb4ca457dede2ec2
   geared_pagination (1.2.0) sha256=16dc25b28e9d6945df27e9bcc6ed298d66eb9493ba45bf987037010724120cc7
   geocoder (1.8.6) sha256=e0ca1554b499f466de9b003f7dff70f89a5888761c2ca68ed9f86b6e5e24e74c
-  globalid (1.3.0) sha256=05c639ad6eb4594522a0b07983022f04aa7254626ab69445a0e493aa3786ff11
+  globalid (1.4.0) sha256=037f12fbf1d9d7a014d501c2d5c77356fd4ddd96d7a7991d6700bba96706f427
   hashdiff (1.2.1) sha256=9c079dbc513dfc8833ab59c0c2d8f230fa28499cc5efb4b8dd276cf931457cd1
   hashid-rails (1.4.1) sha256=cc14a9c16a6320a39f1b84a01c6b66ab934526cec9680118292f3c17370053e3
   hashids (1.0.6) sha256=a344c05f249417492bf48451a93770558834ff7a445e1b64ef112954a0293019
