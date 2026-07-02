@@ -112,7 +112,7 @@ GEM
       marcel (>= 1.0.3)
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
-    appsignal (4.8.5)
+    appsignal (4.8.6)
       logger
       rack (>= 2.0.0)
     ast (2.4.3)
@@ -548,7 +548,7 @@ CHECKSUMS
   activestorage (8.2.0.alpha)
   activesupport (8.2.0.alpha)
   addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
-  appsignal (4.8.5) sha256=ea43efbfd81359b9833e4babf8861aa448f8008f9ed50bc761271bb5253f4703
+  appsignal (4.8.6) sha256=411be975ddf3b3f47a18261a69990df36a3e9663e4efabdd3077ca67576600cb
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
   audits1984 (0.1.7) sha256=095e0a0a2135f310ef6be5234e4aecd1ab5fb3670e15d4083b604cb425449cc2
   aws-eventstream (1.4.0) sha256=116bf85c436200d1060811e6f5d2d40c88f65448f2125bc77ffce5121e6e183b
