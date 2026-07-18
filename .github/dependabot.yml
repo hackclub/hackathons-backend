@@ -17,6 +17,9 @@ updates:
     groups:
       development-dependencies:
         dependency-type: "development"
+      aws-sdk:
+        patterns:
+          - "aws-*"
     allow:
       - dependency-type: "all"
     open-pull-requests-limit: 10
