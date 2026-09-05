@@ -16,9 +16,9 @@ FROM base AS build
 # uploads reach through libvips' heifload. Build a patched one and let
 # LD_LIBRARY_PATH shadow the distro package. ENABLE_PLUGIN_LOADING=NO compiles
 # the codecs in, avoiding a plugin/core ABI version mismatch.
-# https://github.com/strukturag/libheif/security/advisories/GHSA-g89c-p67h-r497
-ARG LIBHEIF_VERSION=1.23.2
-ARG LIBHEIF_SHA256=1405ed070421459b569ff49deab109b7f1a30a447e72a9b20a4154f774634a44
+# https://github.com/strukturag/libheif/security/advisories/GHSA-x8r2-mggj-j6wr
+ARG LIBHEIF_VERSION=1.23.3
+ARG LIBHEIF_SHA256=79e1f66059e55728e541b671f347e3fa787cedeb61170f4e75efe8aaee6ef59e
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git pkg-config libyaml-dev libpq-dev libvips \
