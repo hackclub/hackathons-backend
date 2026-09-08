@@ -18,7 +18,7 @@ FROM base AS build
 # the codecs in, avoiding a plugin/core ABI version mismatch.
 # https://github.com/strukturag/libheif/security/advisories/GHSA-xrp2-63fq-jm8q
 ARG LIBHEIF_VERSION=1.23.4
-ARG LIBHEIF_SHA256=ce7739356637b7371dcc0ae876027f6f692de9c9ace8cd0e9ed8d79a01ea61f
+ARG LIBHEIF_SHA256=ce7739356637b7371dcc0ae876027f6f692de9c9ace8cd0e9ed8d79a01ea61fe
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git pkg-config libyaml-dev libpq-dev libvips \
