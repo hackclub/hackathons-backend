@@ -12,8 +12,8 @@ ENV RAILS_ENV="production" \
 
 FROM base AS build
 
-# Debian trixie's libheif 1.19.8 has an unfixed heap overflow that public image
-# uploads reach through libvips' heifload. Build a patched one and let
+# Debian trixie's libheif version has multiple critical vulnerabilities that public
+# image uploads reach through libvips' heifload. Build a patched one and let
 # LD_LIBRARY_PATH shadow the distro package. ENABLE_PLUGIN_LOADING=NO compiles
 # the codecs in, avoiding a plugin/core ABI version mismatch.
 # https://github.com/strukturag/libheif/security/advisories/GHSA-xrp2-63fq-jm8q
