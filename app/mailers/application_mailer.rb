@@ -1,4 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
+  self.delivery_job = MailDeliveryJob
+
   default from: "hackathons@hackclub.com"
   layout "mailer"
 
