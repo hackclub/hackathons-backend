@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: be63fd9b4449505b90038acb9d51c88c02694e7e
+  revision: f75d20b4c37e34131b173bab53527d735309f5b3
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -74,7 +74,7 @@ GIT
       logger (>= 1.4.2)
       minitest (>= 5.1)
       psych (>= 4)
-      ractor-dispatch (>= 0.2.0)
+      ractor-dispatch (>= 0.3.0)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
