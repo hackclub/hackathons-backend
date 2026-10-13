@@ -466,7 +466,7 @@ GEM
     unicode-display_width (3.3.0)
       unicode-emoji (~> 4.3)
     unicode-emoji (4.3.0)
-    uri (1.1.1)
+    uri (1.1.2)
     useragent (0.16.11)
     versioncake (4.1.1)
       actionpack (> 5.0)
@@ -709,7 +709,7 @@ CHECKSUMS
   unaccent (0.4.0) sha256=d9278230016edc5317c053f8e84c1e1dea6827dec028e5481e2294a4e11e7333
   unicode-display_width (3.3.0) sha256=4b7aa66a4b11db50f6f7e98411215cd0dd10eaecb665d36eec5bcacb3fa0b613
   unicode-emoji (4.3.0) sha256=11c02fa73290378c066bb0562cd4c87d8e1b706fbbe0059ca12746a4244de8ce
-  uri (1.1.1) sha256=379fa58d27ffb1387eaada68c749d1426738bd0f654d812fcc07e7568f5c57c6
+  uri (1.1.2) sha256=89292e98eabbef6248b0a0ed5e7e398e152f83f17560023a6d94a7f492b169fb
   useragent (0.16.11) sha256=700e6413ad4bb954bb63547fa098dddf7b0ebe75b40cc6f93b8d54255b173844
   versioncake (4.1.1) sha256=b8612a46c70a3fd38e2b54129f81f71d04c77164feeb42a6d0f25cc2b43befe8
   web-console (4.3.0) sha256=e13b71301cdfc2093f155b5aa3a622db80b4672d1f2f713119cc7ec7ac6a6da4
