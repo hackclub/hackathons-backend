@@ -1,3 +1,8 @@
+x-env-var: &env-vars
+  HOST: ${{shared.HOST}}
+  DATABASE_URL: ${{shared.DATABASE_URL}}
+  RAILS_MASTER_KEY: ${{shared.RAILS_MASTER_KEY}}
+
 services:
   web:
     build: .
@@ -8,12 +13,15 @@ services:
           memory: 2G
     environment:
       WEB_CONCURRENCY: 2
+      <<: *env-vars
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/up"]
   jobs:
     build: .
     depends_on: [web]
     command: bin/jobs
+    environment:
+      <<: *env-vars
     deploy:
       resources:
         limits:
