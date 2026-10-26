@@ -1,3 +1,8 @@
+x-env-var: &env-vars
+  HOST: ${{shared.HOST}}
+  DATABASE_URL: ${{shared.DATABASE_URL}}
+  RAILS_MASTER_KEY: ${{shared.RAILS_MASTER_KEY}}
+
 services:
   web:
     build: .
