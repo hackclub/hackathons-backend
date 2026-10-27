@@ -22,6 +22,9 @@ RUN bundle install && \
 
 COPY . .
 
+# Record the deployed commit without shipping Git metadata in the runtime image.
+RUN git rev-parse --short HEAD > REVISION && rm -rf .git
+
 RUN bundle exec bootsnap precompile app/ lib/
 
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
