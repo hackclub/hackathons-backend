@@ -37,7 +37,7 @@ jobs:
       - name: Setup Postgres
         run: docker compose up --detach
       - name: Run tests
-        run: bin/rails test; bin/rails test:system
+        run: bin/rails test:all
         env:
           RUBYOPT: "--enable-frozen-string-literal"
       - name: Keep screenshots from failed system tests
